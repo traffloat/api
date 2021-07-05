@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Accept","Notifies the client that the login is accepted."],["GameStart","Notifies the client that the game can start rendering"],["Login","Sends login information"],["Reject","Notifies the client that the login is rejected."]]});

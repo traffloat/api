@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for debug info rendering."]],"struct":[["Canvas","Stores setup data for the ui layer."]]});

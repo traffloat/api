@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["RENDER_DEBUG","Whether to render debug messages"],["SCROLL_VELOCITY","Rate of scrolling per event"],["WASD_LINEAR_VELOCITY","Moving velocity with WASD per delta time"],["WASD_ROTATION_VELOCITY","Moving rotation with WASD per delta time"],["ZOOM_VELOCITY","Rate of zooming with =- per delta time"]]});

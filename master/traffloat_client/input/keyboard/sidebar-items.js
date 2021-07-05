@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Command","Commands interpreted by the keymap."]],"fn":[["setup_ecs","Sets up legion ECS for keyboard input handling."]],"struct":[["CommandState","The state of a command."],["RawKeyEvent","A raw key event from the yew layer."]],"type":[["CommandStates","A map storing the time since which a command was clicked or released."]]});

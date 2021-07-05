@@ -1,0 +1,1 @@
+initSidebarItems({"attr":[["system",""]],"derive":[["Gen",""]],"fn":[["hrtime","The high-resolution clock in microseconds"]],"struct":[["Legion","The set of values required to run legion"],["Perf","Performance tracking"],["SetupEcs","The standard setup parameters"]],"type":[["PerfMap",""]]});

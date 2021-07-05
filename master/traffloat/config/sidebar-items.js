@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Initializes ECS"]],"struct":[["Id","The ID of a mostly-fixed set of metadata"],["Scalar","Scalar configuration values"],["Store","A storage for a configuration type"]],"trait":[["Config","A marker trait for configuration types"]]});

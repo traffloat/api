@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["MONTH_COUNT","Number of partitions to compute shadow casting for"]],"fn":[["setup_ecs","Initializes ECS"]],"struct":[["LightStats","A component storing the lighting data for a node."],["Sun","The position of the sun"]]});
