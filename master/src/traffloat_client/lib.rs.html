@@ -139,6 +139,14 @@
 <span id="139">139</span>
 <span id="140">140</span>
 <span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
 </pre><pre class="rust">
 <span class="doccomment">//! The webassembly client crate.</span>
 
@@ -202,7 +210,7 @@
 
 <span class="doccomment">/// Sets up legion ECS.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
-    <span class="kw">use</span> <span class="ident">traffloat::graph</span>::{<span class="ident">EdgeId</span>, <span class="ident">NodeId</span>};
+    <span class="kw">use</span> <span class="ident">traffloat::graph</span>::{<span class="ident">EdgeId</span>, <span class="ident">EdgeSize</span>, <span class="ident">NodeId</span>};
     <span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">setup</span> <span class="op">=</span> <span class="ident">setup</span>
@@ -245,6 +253,7 @@
             <span class="ident">String::from</span>(<span class="string">&quot;solar-panel&quot;</span>),
         ))
     };
+
     <span class="kw">let</span> <span class="ident">core</span> <span class="op">=</span> <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((
         <span class="ident">NodeId::new</span>(<span class="number">0</span>),
         <span class="ident">Position::new</span>(<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>),
@@ -265,7 +274,7 @@
             .<span class="ident">build</span>(),
         <span class="ident">traffloat::sun::LightStats::default</span>(),
     ));
-    <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((
+    <span class="kw">let</span> <span class="ident">solar_panel</span> <span class="op">=</span> <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((
         <span class="ident">NodeId::new</span>(<span class="number">2</span>),
         <span class="ident">Position::new</span>(<span class="op">-</span><span class="number">2.</span>, <span class="number">0.</span>, <span class="number">3.</span>),
         <span class="ident">Shape::builder</span>()
@@ -275,10 +284,17 @@
             .<span class="ident">build</span>(),
         <span class="ident">traffloat::sun::LightStats::default</span>(),
     ));
+
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">edge</span> <span class="op">=</span> <span class="ident">EdgeId::new</span>(<span class="ident">NodeId::new</span>(<span class="number">0</span>), <span class="ident">NodeId::new</span>(<span class="number">1</span>));
     <span class="ident">edge</span>.<span class="ident">set_from_entity</span>(<span class="prelude-val">Some</span>(<span class="ident">core</span>));
     <span class="ident">edge</span>.<span class="ident">set_to_entity</span>(<span class="prelude-val">Some</span>(<span class="ident">house</span>));
-    <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((<span class="ident">edge</span>,));
+    <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((<span class="ident">edge</span>, <span class="ident">EdgeSize::new</span>(<span class="number">0.2</span>)));
+
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">edge</span> <span class="op">=</span> <span class="ident">EdgeId::new</span>(<span class="ident">NodeId::new</span>(<span class="number">0</span>), <span class="ident">NodeId::new</span>(<span class="number">2</span>));
+    <span class="ident">edge</span>.<span class="ident">set_from_entity</span>(<span class="prelude-val">Some</span>(<span class="ident">core</span>));
+    <span class="ident">edge</span>.<span class="ident">set_to_entity</span>(<span class="prelude-val">Some</span>(<span class="ident">solar_panel</span>));
+    <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((<span class="ident">edge</span>, <span class="ident">EdgeSize::new</span>(<span class="number">0.1</span>)));
+
     <span class="ident">setup</span>
 }
 </pre></div>
