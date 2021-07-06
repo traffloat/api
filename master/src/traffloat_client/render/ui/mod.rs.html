@@ -43,12 +43,23 @@
 <span id="43">43</span>
 <span id="44">44</span>
 <span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders user interface.</span>
 
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Dimension</span>, <span class="ident">RenderFlag</span>};
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">CursorType</span>, <span class="ident">Dimension</span>, <span class="ident">RenderFlag</span>};
 
 <span class="doccomment">/// Stores setup data for the ui layer.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>)]</span>
@@ -62,6 +73,15 @@
         <span class="self">self</span>.<span class="ident">context</span>
             .<span class="ident">clear_rect</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="ident">dim</span>.<span class="ident">width</span>.<span class="ident">into</span>(), <span class="ident">dim</span>.<span class="ident">height</span>.<span class="ident">into</span>());
     }
+
+    <span class="doccomment">/// Sets the cursor icon.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+        <span class="kw">let</span> <span class="ident">canvas</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">context</span>.<span class="ident">canvas</span>().<span class="ident">expect</span>(<span class="string">&quot;UI does not have a canvas&quot;</span>);
+        <span class="ident">canvas</span>
+            .<span class="ident">style</span>()
+            .<span class="ident">set_property</span>(<span class="string">&quot;cursor&quot;</span>, <span class="ident">name</span>)
+            .<span class="ident">expect</span>(<span class="string">&quot;Failed to set canvas cursor property&quot;</span>);
+    }
 }
 
 <span class="attribute">#[<span class="ident">codegen::system</span>]</span>
@@ -69,6 +89,7 @@
 <span class="kw">fn</span> <span class="ident">draw</span>(
     <span class="attribute">#[<span class="ident">resource</span>(<span class="ident">no_init</span>)]</span> <span class="ident">dim</span>: <span class="kw-2">&amp;</span><span class="ident">Dimension</span>,
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">canvas</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">super</span><span class="ident">::Layers</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">cursor_type</span>: <span class="kw-2">&amp;</span><span class="ident">CursorType</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">render_flag</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">RenderFlag</span><span class="op">&gt;</span>,
 ) {
     <span class="comment">// Render flag gate boilerplate</span>
@@ -83,6 +104,7 @@
 
     <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">canvas</span>.<span class="ident">ui</span>();
     <span class="ident">ui</span>.<span class="ident">reset</span>(<span class="ident">dim</span>);
+    <span class="ident">ui</span>.<span class="ident">set_cursor</span>(<span class="ident">cursor_type</span>.<span class="ident">name</span>());
 }
 
 <span class="doccomment">/// Sets up legion ECS for debug info rendering.</span>
