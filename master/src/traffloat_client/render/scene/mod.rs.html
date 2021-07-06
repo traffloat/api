@@ -177,6 +177,18 @@
 <span id="177">177</span>
 <span id="178">178</span>
 <span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders nodes, edges and vehicles.</span>
 
@@ -197,6 +209,8 @@
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cube</span>;
 <span class="kw">use</span> <span class="ident">cube::CUBE</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cylinder</span>;
+<span class="kw">use</span> <span class="ident">cylinder::CYLINDER</span>;
 
 <span class="kw">mod</span> <span class="ident">marker</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">marker</span>::<span class="kw-2">*</span>;
@@ -209,7 +223,8 @@
 <span class="doccomment">/// Stores the setup data of the scene canvas.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Canvas</span> {
     <span class="ident">gl</span>: <span class="ident">WebGlRenderingContext</span>,
-    <span class="ident">object_prog</span>: <span class="ident">WebGlProgram</span>,
+    <span class="ident">node_prog</span>: <span class="ident">WebGlProgram</span>,
+    <span class="ident">edge_prog</span>: <span class="ident">WebGlProgram</span>,
     <span class="ident">cube</span>: <span class="ident">PreparedMesh</span>,
 }
 
@@ -219,19 +234,28 @@
         <span class="ident">gl</span>.<span class="ident">enable</span>(<span class="ident">WebGlRenderingContext::DEPTH_TEST</span>);
         <span class="ident">gl</span>.<span class="ident">enable</span>(<span class="ident">WebGlRenderingContext::CULL_FACE</span>);
 
-        <span class="kw">let</span> <span class="ident">object_prog</span> <span class="op">=</span> <span class="ident">util::create_program</span>(
+        <span class="kw">let</span> <span class="ident">node_prog</span> <span class="op">=</span> <span class="ident">util::create_program</span>(
             <span class="kw-2">&amp;</span><span class="ident">gl</span>,
             <span class="string">&quot;node.vert&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;node.vert&quot;</span>),
+            <span class="macro">include_str!</span>(<span class="string">&quot;node.min.vert&quot;</span>),
             <span class="string">&quot;node.frag&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;node.frag&quot;</span>),
+            <span class="macro">include_str!</span>(<span class="string">&quot;node.min.frag&quot;</span>),
+        );
+
+        <span class="kw">let</span> <span class="ident">edge_prog</span> <span class="op">=</span> <span class="ident">util::create_program</span>(
+            <span class="kw-2">&amp;</span><span class="ident">gl</span>,
+            <span class="string">&quot;edge.vert&quot;</span>,
+            <span class="macro">include_str!</span>(<span class="string">&quot;edge.min.vert&quot;</span>),
+            <span class="string">&quot;edge.frag&quot;</span>,
+            <span class="macro">include_str!</span>(<span class="string">&quot;edge.min.frag&quot;</span>),
         );
 
         <span class="kw">let</span> <span class="ident">cube</span> <span class="op">=</span> <span class="ident">CUBE</span>.<span class="ident">prepare</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>);
 
         <span class="self">Self</span> {
             <span class="ident">gl</span>,
-            <span class="ident">object_prog</span>,
+            <span class="ident">node_prog</span>,
+            <span class="ident">edge_prog</span>,
             <span class="ident">cube</span>,
         }
     }
@@ -252,27 +276,27 @@
         <span class="ident">brightness</span>: <span class="ident">f64</span>,
         <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">texture::PreparedTexture</span>,
     ) {
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">use_program</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_prog</span>));
+        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">use_program</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>));
         <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_prog</span>, <span class="string">&quot;u_proj&quot;</span>, <span class="ident">util::glize_matrix</span>(<span class="ident">proj</span>));
+            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;u_proj&quot;</span>, <span class="ident">util::glize_matrix</span>(<span class="ident">proj</span>));
         <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_prog</span>, <span class="string">&quot;u_sun&quot;</span>, <span class="ident">util::glize_vector</span>(<span class="ident">sun</span>));
+            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;u_sun&quot;</span>, <span class="ident">util::glize_vector</span>(<span class="ident">sun</span>));
         <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_prog</span>, <span class="string">&quot;u_brightness&quot;</span>, <span class="ident">brightness</span>.<span class="ident">lossy_trunc</span>());
+            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;u_brightness&quot;</span>, <span class="ident">brightness</span>.<span class="ident">lossy_trunc</span>());
 
         <span class="self">self</span>.<span class="ident">cube</span>
             .<span class="ident">positions</span>()
-            .<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_prog</span>, <span class="string">&quot;a_pos&quot;</span>);
+            .<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;a_pos&quot;</span>);
         <span class="self">self</span>.<span class="ident">cube</span>
             .<span class="ident">normals</span>()
-            .<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_prog</span>, <span class="string">&quot;a_normal&quot;</span>);
+            .<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;a_normal&quot;</span>);
 
         <span class="ident">texture</span>.<span class="ident">apply</span>(
             <span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">tex_pos</span>(),
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_prog</span>,
+            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>,
             <span class="string">&quot;a_tex_pos&quot;</span>,
             <span class="self">self</span>.<span class="ident">gl</span>
-                .<span class="ident">get_uniform_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_prog</span>, <span class="string">&quot;u_tex&quot;</span>)
+                .<span class="ident">get_uniform_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;u_tex&quot;</span>)
                 .<span class="ident">as_ref</span>(),
             <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>,
         );
