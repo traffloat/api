@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for mouse input handling."]],"struct":[["CursorPosition","Resource storing the position of the mouse, in the range [0, 1]^2."],["Segment","Resource storing the line segment below the cursor."],["Target","Resource storing the entity targeted by the cursor."]]});

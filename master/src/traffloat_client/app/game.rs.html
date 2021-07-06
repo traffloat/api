@@ -367,9 +367,6 @@
 <span id="367">367</span>
 <span id="368">368</span>
 <span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
@@ -523,24 +520,21 @@
         <span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">publish</span>(<span class="ident">event</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">on_mouse_move</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_x</span>: <span class="ident">i32</span>, <span class="ident">_y</span>: <span class="ident">i32</span>) {
-        <span class="comment">// TODO!(&quot;Send the event to ECS&quot;)</span>
-        <span class="comment">/*
-        let canvas = match self.ui_canvas_ref.cast::&lt;web_sys::HtmlCanvasElement&gt;() {
-            Some(canvas) =&gt; canvas,
-            None =&gt; return,
+    <span class="kw">fn</span> <span class="ident">on_mouse_move</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) {
+        <span class="kw">let</span> <span class="ident">canvas</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">ui_canvas_ref</span>.<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">web_sys::HtmlCanvasElement</span><span class="op">&gt;</span>() {
+            <span class="prelude-val">Some</span>(<span class="ident">canvas</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">canvas</span>,
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span>,
         };
 
-        let x = (x as f64) / (canvas.width() as f64);
-        let y = (y as f64) / (canvas.height() as f64);
+        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> (<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span>) <span class="op">/</span> (<span class="ident">canvas</span>.<span class="ident">width</span>() <span class="kw">as</span> <span class="ident">f64</span>);
+        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f64</span>) <span class="op">/</span> (<span class="ident">canvas</span>.<span class="ident">height</span>() <span class="kw">as</span> <span class="ident">f64</span>);
 
-        let mut pos = self
-            .legion
-            .resources
-            .get_mut::&lt;input::mouse::CursorPosition&gt;()
-            .expect(&quot;CursorPosition is uninitialized&quot;);
-        pos.0 = Some(input::mouse::ScreenPosition { x, y });
-        */</span>
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pos</span> <span class="op">=</span> <span class="self">self</span>
+            .<span class="ident">legion</span>
+            .<span class="ident">resources</span>
+            .<span class="ident">get_mut</span>::<span class="op">&lt;</span><span class="ident">input::mouse::CursorPosition</span><span class="op">&gt;</span>()
+            .<span class="ident">expect</span>(<span class="string">&quot;CursorPosition is uninitialized&quot;</span>);
+        <span class="kw-2">*</span><span class="ident">pos</span> <span class="op">=</span> <span class="ident">input::mouse::CursorPosition::new</span>(<span class="ident">x</span>, <span class="ident">y</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">on_mouse_click</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_button</span>: <span class="ident">i16</span>, <span class="ident">_down</span>: <span class="ident">bool</span>) {

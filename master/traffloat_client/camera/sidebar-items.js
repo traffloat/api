@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for this module."]],"struct":[["Camera","A resource that stores the view perspective of the user."],["CursorTarget","A resource storing the current cursor-pointed target."]]});
+initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for this module."]],"struct":[["Camera","A resource that stores the view perspective of the user."]]});
