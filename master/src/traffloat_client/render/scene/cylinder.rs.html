@@ -40,8 +40,12 @@
 <span id="40">40</span>
 <span id="41">41</span>
 <span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
 </pre><pre class="rust">
 <span class="doccomment">//! This module generates geometry data for a cube.</span>
+
+<span class="kw">use</span> <span class="ident">std::f32::consts::PI</span>;
 
 <span class="kw">use</span> <span class="ident">lazy_static::lazy_static</span>;
 
@@ -57,7 +61,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mesh</span> <span class="op">=</span> <span class="ident">IndexedMesh::default</span>();
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">z</span> <span class="op">=</span> <span class="number">0.</span>;
-        <span class="kw">let</span> <span class="ident">unit</span> <span class="op">=</span> <span class="number">0.5f32</span> <span class="op">/</span> <span class="ident">f32::from</span>(<span class="ident">NUM_VERTICES</span>);
+        <span class="kw">let</span> <span class="ident">unit</span> <span class="op">=</span> <span class="ident">PI</span> <span class="op">/</span> <span class="ident">f32::from</span>(<span class="ident">NUM_VERTICES</span>);
         <span class="kw">for</span> <span class="ident">num</span> <span class="kw">in</span> <span class="number">0</span>..(<span class="ident">NUM_VERTICES</span> <span class="op">*</span> <span class="number">2</span>) {
             <span class="kw">let</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">unit</span> <span class="op">*</span> <span class="ident">f32::from</span>(<span class="ident">num</span>);
             <span class="ident">z</span> <span class="op">=</span> <span class="number">1.</span> <span class="op">-</span> <span class="ident">z</span>;
@@ -65,7 +69,7 @@
             <span class="kw">let</span> <span class="ident">cos</span> <span class="op">=</span> <span class="ident">angle</span>.<span class="ident">cos</span>();
             <span class="kw">let</span> <span class="ident">sin</span> <span class="op">=</span> <span class="ident">angle</span>.<span class="ident">sin</span>();
             <span class="ident">mesh</span>.<span class="ident">positions_mut</span>().<span class="ident">extend</span>(<span class="kw-2">&amp;</span>[<span class="ident">cos</span>, <span class="ident">sin</span>, <span class="ident">z</span>]);
-            <span class="ident">mesh</span>.<span class="ident">normals_mut</span>().<span class="ident">extend</span>(<span class="kw-2">&amp;</span>[<span class="ident">cos</span>, <span class="ident">sin</span>, <span class="ident">z</span>]);
+            <span class="ident">mesh</span>.<span class="ident">normals_mut</span>().<span class="ident">extend</span>(<span class="kw-2">&amp;</span>[<span class="ident">cos</span>, <span class="ident">sin</span>, <span class="number">0.</span>]);
         }
 
         <span class="kw">for</span> <span class="ident">num</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">NUM_VERTICES</span> {
