@@ -173,6 +173,39 @@
 <span id="173">173</span>
 <span id="174">174</span>
 <span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Provides a camera resource to store the view perspective of the user.</span>
 
@@ -345,9 +378,42 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="kw">fn</span> <span class="ident">debug</span>(
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">camera</span>: <span class="kw-2">&amp;</span><span class="ident">Camera</span>,
+
+    <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;Camera&quot;</span>, <span class="string">&quot;Position&quot;</span>)]</span> <span class="ident">focus_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
+    <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;Camera&quot;</span>, <span class="string">&quot;Facing&quot;</span>)]</span> <span class="ident">dir_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
+    <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;Camera&quot;</span>, <span class="string">&quot;Render distance&quot;</span>)]</span> <span class="ident">dist_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
+    <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;Camera&quot;</span>, <span class="string">&quot;Zoom&quot;</span>)]</span> <span class="ident">zoom_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
+) {
+    <span class="macro">codegen::update_debug!</span>(
+        <span class="ident">focus_debug</span>,
+        <span class="string">&quot;({:.1}, {:.1}, {:.1})&quot;</span>,
+        <span class="ident">camera</span>.<span class="ident">focus</span>().<span class="ident">x</span>(),
+        <span class="ident">camera</span>.<span class="ident">focus</span>().<span class="ident">y</span>(),
+        <span class="ident">camera</span>.<span class="ident">focus</span>().<span class="ident">z</span>()
+    );
+
+    <span class="kw">let</span> <span class="ident">line_of_sight</span> <span class="op">=</span> <span class="ident">camera</span>
+        .<span class="ident">rotation</span>()
+        .<span class="ident">transpose</span>()
+        .<span class="ident">transform_vector</span>(<span class="kw-2">&amp;</span><span class="ident">Vector::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>));
+    <span class="macro">codegen::update_debug!</span>(
+        <span class="ident">dir_debug</span>,
+        <span class="string">&quot;({:.1}, {:.1}, {:.1})&quot;</span>,
+        <span class="ident">line_of_sight</span>.<span class="ident">x</span>,
+        <span class="ident">line_of_sight</span>.<span class="ident">y</span>,
+        <span class="ident">line_of_sight</span>.<span class="ident">z</span>,
+    );
+
+    <span class="macro">codegen::update_debug!</span>(<span class="ident">dist_debug</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">camera</span>.<span class="ident">distance</span>());
+    <span class="macro">codegen::update_debug!</span>(<span class="ident">zoom_debug</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">camera</span>.<span class="ident">zoom</span>());
+}
+
 <span class="doccomment">/// Sets up legion ECS for this module.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
-    <span class="ident">setup</span>
+    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">debug_setup</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat_client" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Counter","Counts the FPS of the last second"]]});
+initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for debug info rendering."]],"struct":[["Counter","Counts the FPS of the last second"],["Render","Resource type for rendering FPS counter."],["Simul","Resource type for simulation FPS counter."]]});

@@ -33,11 +33,63 @@
 <span id="33">33</span>
 <span id="34">34</span>
 <span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Counts the FPS of the last second.</span>
 
 <span class="kw">use</span> <span class="ident">std::collections::VecDeque</span>;
 
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render</span>::{<span class="ident">Comm</span>, <span class="ident">RenderFlag</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
 
 <span class="doccomment">/// Counts the FPS of the last second</span>
@@ -68,6 +120,56 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frames</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="ident">deque</span>.<span class="ident">len</span>()
     }
+}
+
+<span class="doccomment">/// Resource type for simulation FPS counter.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Simul</span>(
+    <span class="doccomment">/// The actual FPS counter</span>
+    <span class="kw">pub</span> <span class="ident">Counter</span>,
+);
+
+<span class="doccomment">/// Resource type for rendering FPS counter.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Render</span>(
+    <span class="doccomment">/// The actual FPS counter</span>
+    <span class="kw">pub</span> <span class="ident">Counter</span>,
+);
+
+<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">thread_local</span>]</span>
+<span class="kw">fn</span> <span class="ident">update</span>(
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">render_fps</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Render</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">simul_fps</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Simul</span>,
+    <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">render_flag</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">RenderFlag</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">comm</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Comm</span>,
+
+    <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;FPS&quot;</span>, <span class="string">&quot;Graphics&quot;</span>)]</span> <span class="ident">graphics_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
+    <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;FPS&quot;</span>, <span class="string">&quot;Physics&quot;</span>)]</span> <span class="ident">physics_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
+    <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;FPS&quot;</span>, <span class="string">&quot;Cycle time&quot;</span>)]</span> <span class="ident">cycle_time_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
+) {
+    <span class="comment">// Store FPS data</span>
+    <span class="kw">let</span> <span class="ident">simul_fps</span> <span class="op">=</span> <span class="ident">simul_fps</span>.<span class="number">0</span>.<span class="ident">add_frame</span>();
+
+    <span class="kw">match</span> <span class="ident">render_flag</span>.<span class="ident">last</span>() {
+        <span class="prelude-val">Some</span>(<span class="ident">RenderFlag</span>) <span class="op">=</span><span class="op">&gt;</span> (),
+        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span>,
+    };
+
+    <span class="kw">let</span> <span class="ident">render_fps</span> <span class="op">=</span> <span class="ident">render_fps</span>.<span class="number">0</span>.<span class="ident">add_frame</span>();
+
+    <span class="macro">codegen::update_debug!</span>(<span class="ident">graphics_debug</span>, <span class="string">&quot;{:.1}&quot;</span>, <span class="ident">render_fps</span>);
+    <span class="macro">codegen::update_debug!</span>(<span class="ident">physics_debug</span>, <span class="string">&quot;{:.1}&quot;</span>, <span class="ident">simul_fps</span>);
+    <span class="macro">codegen::update_debug!</span>(
+        <span class="ident">cycle_time_debug</span>,
+        <span class="string">&quot;{:.2} \u{03bc}s&quot;</span>,
+        <span class="ident">comm</span>.<span class="ident">perf</span>.<span class="ident">average_exec_us</span>()
+    );
+}
+
+<span class="doccomment">/// Sets up legion ECS for debug info rendering.</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
+    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">update_setup</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="traffloat_client" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
