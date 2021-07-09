@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ARROW","Geometry data for a 3D arrow."]]});
