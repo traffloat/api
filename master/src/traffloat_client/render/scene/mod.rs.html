@@ -203,175 +203,39 @@
 <span id="203">203</span>
 <span id="204">204</span>
 <span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
-<span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-<span id="215">215</span>
-<span id="216">216</span>
-<span id="217">217</span>
-<span id="218">218</span>
-<span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
-<span id="239">239</span>
-<span id="240">240</span>
-<span id="241">241</span>
-<span id="242">242</span>
-<span id="243">243</span>
-<span id="244">244</span>
-<span id="245">245</span>
-<span id="246">246</span>
-<span id="247">247</span>
-<span id="248">248</span>
-<span id="249">249</span>
-<span id="250">250</span>
-<span id="251">251</span>
-<span id="252">252</span>
-<span id="253">253</span>
-<span id="254">254</span>
-<span id="255">255</span>
-<span id="256">256</span>
-<span id="257">257</span>
-<span id="258">258</span>
-<span id="259">259</span>
-<span id="260">260</span>
-<span id="261">261</span>
-<span id="262">262</span>
-<span id="263">263</span>
-<span id="264">264</span>
-<span id="265">265</span>
-<span id="266">266</span>
-<span id="267">267</span>
-<span id="268">268</span>
-<span id="269">269</span>
-<span id="270">270</span>
-<span id="271">271</span>
-<span id="272">272</span>
-<span id="273">273</span>
-<span id="274">274</span>
-<span id="275">275</span>
-<span id="276">276</span>
-<span id="277">277</span>
-<span id="278">278</span>
-<span id="279">279</span>
-<span id="280">280</span>
-<span id="281">281</span>
-<span id="282">282</span>
-<span id="283">283</span>
-<span id="284">284</span>
-<span id="285">285</span>
-<span id="286">286</span>
-<span id="287">287</span>
-<span id="288">288</span>
-<span id="289">289</span>
-<span id="290">290</span>
-<span id="291">291</span>
-<span id="292">292</span>
-<span id="293">293</span>
-<span id="294">294</span>
-<span id="295">295</span>
-<span id="296">296</span>
-<span id="297">297</span>
-<span id="298">298</span>
-<span id="299">299</span>
-<span id="300">300</span>
-<span id="301">301</span>
-<span id="302">302</span>
-<span id="303">303</span>
-<span id="304">304</span>
-<span id="305">305</span>
-<span id="306">306</span>
-<span id="307">307</span>
-<span id="308">308</span>
-<span id="309">309</span>
-<span id="310">310</span>
-<span id="311">311</span>
-<span id="312">312</span>
-<span id="313">313</span>
-<span id="314">314</span>
-<span id="315">315</span>
-<span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
-<span id="319">319</span>
-<span id="320">320</span>
-<span id="321">321</span>
-<span id="322">322</span>
-<span id="323">323</span>
-<span id="324">324</span>
-<span id="325">325</span>
-<span id="326">326</span>
-<span id="327">327</span>
-<span id="328">328</span>
-<span id="329">329</span>
-<span id="330">330</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders nodes, edges and vehicles.</span>
 
-<span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::f64::consts::PI</span>;
 
-<span class="kw">use</span> <span class="ident">legion::component</span>;
 <span class="kw">use</span> <span class="ident">legion::world::SubWorld</span>;
-<span class="kw">use</span> <span class="ident">legion::Entity</span>;
-<span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">WebGlProgram</span>, <span class="ident">WebGlRenderingContext</span>};
+<span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">component</span>, <span class="ident">Entity</span>};
+<span class="kw">use</span> <span class="ident">web_sys::WebGlRenderingContext</span>;
 
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::util</span>::{<span class="self">self</span>, <span class="ident">BufferUsage</span>, <span class="ident">FloatBuffer</span>, <span class="ident">WebglExt</span>};
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::RenderFlag</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::camera::Camera</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::input::mouse</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util::lerp</span>;
-<span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat::config</span>;
 <span class="kw">use</span> <span class="ident">traffloat::graph</span>;
 <span class="kw">use</span> <span class="ident">traffloat::shape</span>::{<span class="ident">Shape</span>, <span class="ident">Texture</span>};
 <span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
 <span class="kw">use</span> <span class="ident">traffloat::sun</span>::{<span class="ident">LightStats</span>, <span class="ident">Sun</span>, <span class="ident">MONTH_COUNT</span>};
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">arrow</span>;
-<span class="kw">use</span> <span class="ident">arrow::ARROW</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cube</span>;
-<span class="kw">use</span> <span class="ident">cube::CUBE</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cylinder</span>;
-<span class="kw">use</span> <span class="ident">cylinder::CYLINDER</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mesh</span>;
 
-<span class="kw">mod</span> <span class="ident">mesh</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">mesh</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">edge</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">node</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">reticle</span>;
 
 <span class="kw">mod</span> <span class="ident">texture</span>;
 
 <span class="doccomment">/// Stores the setup data of the scene canvas.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Canvas</span> {
     <span class="ident">gl</span>: <span class="ident">WebGlRenderingContext</span>,
-    <span class="ident">node_prog</span>: <span class="ident">WebGlProgram</span>,
-    <span class="ident">edge_prog</span>: <span class="ident">WebGlProgram</span>,
-    <span class="ident">crosshair_prog</span>: <span class="ident">WebGlProgram</span>,
-    <span class="ident">cube</span>: <span class="ident">PreparedMesh</span>,
-    <span class="ident">cylinder</span>: <span class="ident">PreparedIndexedMesh</span>,
-    <span class="ident">arrow</span>: <span class="ident">FloatBuffer</span>,
+    <span class="ident">node_prog</span>: <span class="ident">node::Program</span>,
+    <span class="ident">edge_prog</span>: <span class="ident">edge::Program</span>,
+    <span class="ident">reticle_prog</span>: <span class="ident">reticle::Program</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Canvas</span> {
@@ -385,42 +249,15 @@
             <span class="ident">WebGlRenderingContext::ONE</span>,
         );
 
-        <span class="kw">let</span> <span class="ident">node_prog</span> <span class="op">=</span> <span class="ident">util::create_program</span>(
-            <span class="kw-2">&amp;</span><span class="ident">gl</span>,
-            <span class="string">&quot;node.vert&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;node.min.vert&quot;</span>),
-            <span class="string">&quot;node.frag&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;node.min.frag&quot;</span>),
-        );
-
-        <span class="kw">let</span> <span class="ident">edge_prog</span> <span class="op">=</span> <span class="ident">util::create_program</span>(
-            <span class="kw-2">&amp;</span><span class="ident">gl</span>,
-            <span class="string">&quot;edge.vert&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;edge.min.vert&quot;</span>),
-            <span class="string">&quot;edge.frag&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;edge.min.frag&quot;</span>),
-        );
-
-        <span class="kw">let</span> <span class="ident">crosshair_prog</span> <span class="op">=</span> <span class="ident">util::create_program</span>(
-            <span class="kw-2">&amp;</span><span class="ident">gl</span>,
-            <span class="string">&quot;crosshair.vert&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;crosshair.min.vert&quot;</span>),
-            <span class="string">&quot;crosshair.frag&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;crosshair.min.frag&quot;</span>),
-        );
-
-        <span class="kw">let</span> <span class="ident">cube</span> <span class="op">=</span> <span class="ident">CUBE</span>.<span class="ident">prepare</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>);
-        <span class="kw">let</span> <span class="ident">cylinder</span> <span class="op">=</span> <span class="ident">CYLINDER</span>.<span class="ident">prepare</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>);
-        <span class="kw">let</span> <span class="ident">arrow</span> <span class="op">=</span> <span class="ident">FloatBuffer::create</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">ARROW</span>[..], <span class="number">3</span>, <span class="ident">BufferUsage::WriteOnceReadMany</span>);
+        <span class="kw">let</span> <span class="ident">node_prog</span> <span class="op">=</span> <span class="ident">node::Program::new</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>);
+        <span class="kw">let</span> <span class="ident">edge_prog</span> <span class="op">=</span> <span class="ident">edge::Program::new</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>);
+        <span class="kw">let</span> <span class="ident">reticle_prog</span> <span class="op">=</span> <span class="ident">reticle::Program::new</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>);
 
         <span class="self">Self</span> {
             <span class="ident">gl</span>,
             <span class="ident">node_prog</span>,
             <span class="ident">edge_prog</span>,
-            <span class="ident">crosshair_prog</span>,
-            <span class="ident">cube</span>,
-            <span class="ident">cylinder</span>,
-            <span class="ident">arrow</span>,
+            <span class="ident">reticle_prog</span>,
         }
     }
 
@@ -428,101 +265,6 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">clear_color</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>);
         <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">clear</span>(<span class="ident">WebGlRenderingContext::COLOR_BUFFER_BIT</span>);
-    }
-
-    <span class="doccomment">/// Draws a node on the canvas.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The projection matrix transforms unit model coordinates to projection coordinates directly.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw_node</span>(
-        <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">proj</span>: <span class="ident">Matrix</span>,
-        <span class="ident">sun</span>: <span class="ident">Vector</span>,
-        <span class="ident">brightness</span>: <span class="ident">f64</span>,
-        <span class="ident">selected</span>: <span class="ident">bool</span>,
-        <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">texture::PreparedTexture</span>,
-    ) {
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">use_program</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>));
-        <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;u_proj&quot;</span>, <span class="ident">util::glize_matrix</span>(<span class="ident">proj</span>));
-        <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;u_sun&quot;</span>, <span class="ident">util::glize_vector</span>(<span class="ident">sun</span>));
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">set_uniform</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>,
-            <span class="string">&quot;u_brightness&quot;</span>,
-            <span class="ident">brightness</span>.<span class="ident">lossy_trunc</span>().<span class="ident">clamp</span>(<span class="number">0.5</span>, <span class="number">1.</span>),
-        );
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">set_uniform</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>,
-            <span class="string">&quot;u_inv_gain&quot;</span>,
-            <span class="kw">if</span> <span class="ident">selected</span> { <span class="number">0.5</span> } <span class="kw">else</span> { <span class="number">1.</span> },
-        );
-
-        <span class="self">self</span>.<span class="ident">cube</span>
-            .<span class="ident">positions</span>()
-            .<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;a_pos&quot;</span>);
-        <span class="self">self</span>.<span class="ident">cube</span>
-            .<span class="ident">normals</span>()
-            .<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;a_normal&quot;</span>);
-
-        <span class="ident">texture</span>.<span class="ident">apply</span>(
-            <span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">tex_pos</span>(),
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>,
-            <span class="string">&quot;a_tex_pos&quot;</span>,
-            <span class="self">self</span>.<span class="ident">gl</span>
-                .<span class="ident">get_uniform_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">node_prog</span>, <span class="string">&quot;u_tex&quot;</span>)
-                .<span class="ident">as_ref</span>(),
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>,
-        );
-
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">tex_parameteri</span>(
-            <span class="ident">WebGlRenderingContext::TEXTURE_2D</span>,
-            <span class="ident">WebGlRenderingContext::TEXTURE_MAG_FILTER</span>,
-            <span class="ident">WebGlRenderingContext::NEAREST</span>.<span class="ident">homosign</span>(),
-        );
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">tex_parameteri</span>(
-            <span class="ident">WebGlRenderingContext::TEXTURE_2D</span>,
-            <span class="ident">WebGlRenderingContext::TEXTURE_MIN_FILTER</span>,
-            <span class="ident">WebGlRenderingContext::NEAREST_MIPMAP_NEAREST</span>.<span class="ident">homosign</span>(),
-        );
-        <span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>);
-    }
-
-    <span class="doccomment">/// Draws an edge on the canvas.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw_edge</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">proj</span>: <span class="ident">Matrix</span>, <span class="ident">sun</span>: <span class="ident">Vector</span>, <span class="ident">rgba</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) {
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">use_program</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>));
-        <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;u_trans&quot;</span>, <span class="ident">util::glize_matrix</span>(<span class="ident">proj</span>));
-        <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;u_trans_sun&quot;</span>, <span class="ident">util::glize_vector</span>(<span class="ident">sun</span>));
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;u_color&quot;</span>, <span class="ident">rgba</span>);
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;u_ambient&quot;</span>, <span class="number">0.3</span>);
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;u_diffuse&quot;</span>, <span class="number">0.2</span>);
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;u_specular&quot;</span>, <span class="number">1.0</span>);
-        <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;u_specular_coef&quot;</span>, <span class="number">10.0</span>);
-
-        <span class="self">self</span>.<span class="ident">cylinder</span>
-            .<span class="ident">positions</span>()
-            .<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;a_pos&quot;</span>);
-        <span class="self">self</span>.<span class="ident">cylinder</span>
-            .<span class="ident">normals</span>()
-            .<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">edge_prog</span>, <span class="string">&quot;a_normal&quot;</span>);
-        <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>);
-    }
-
-    <span class="doccomment">/// Draws an arrow on the canvas.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw_arrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">proj</span>: <span class="ident">Matrix</span>, <span class="ident">rgb</span>: [<span class="ident">f32</span>; <span class="number">3</span>]) {
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">use_program</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">crosshair_prog</span>));
-        <span class="self">self</span>.<span class="ident">gl</span>
-            .<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">crosshair_prog</span>, <span class="string">&quot;u_trans&quot;</span>, <span class="ident">util::glize_matrix</span>(<span class="ident">proj</span>));
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">set_uniform</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">crosshair_prog</span>, <span class="string">&quot;u_color&quot;</span>, <span class="ident">rgb</span>);
-
-        <span class="self">self</span>.<span class="ident">arrow</span>.<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">crosshair_prog</span>, <span class="string">&quot;a_pos&quot;</span>);
-        <span class="self">self</span>.<span class="ident">gl</span>.<span class="ident">draw_arrays</span>(
-            <span class="ident">WebGlRenderingContext::TRIANGLES</span>,
-            <span class="number">0</span>,
-            (<span class="ident">ARROW</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="number">3</span>).<span class="ident">try_into</span>().<span class="ident">expect</span>(<span class="string">&quot;Buffer is too large&quot;</span>),
-        );
     }
 }
 
@@ -589,7 +331,8 @@
         <span class="kw">let</span> <span class="ident">tex</span>: <span class="kw-2">&amp;</span><span class="ident">Texture</span> <span class="op">=</span> <span class="ident">shape</span>.<span class="ident">texture</span>().<span class="ident">get</span>(<span class="ident">textures</span>);
         <span class="kw">let</span> <span class="ident">sprite</span> <span class="op">=</span> <span class="ident">texture_pool</span>.<span class="ident">sprite</span>(<span class="ident">tex</span>, <span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>);
 
-        <span class="ident">scene</span>.<span class="ident">draw_node</span>(
+        <span class="ident">scene</span>.<span class="ident">node_prog</span>.<span class="ident">draw</span>(
+            <span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>,
             <span class="ident">projection</span> <span class="op">*</span> <span class="ident">unit_to_real</span>,
             <span class="ident">sun_dir</span>,
             <span class="ident">brightness</span>,
@@ -623,7 +366,8 @@
             .<span class="ident">prepend_nonuniform_scaling</span>(<span class="kw-2">&amp;</span><span class="ident">Vector::new</span>(<span class="ident">size</span>.<span class="ident">radius</span>(), <span class="ident">size</span>.<span class="ident">radius</span>(), <span class="ident">dir</span>.<span class="ident">norm</span>()))
             .<span class="ident">append_translation</span>(<span class="kw-2">&amp;</span><span class="ident">from</span>.<span class="ident">vector</span>());
 
-        <span class="ident">scene</span>.<span class="ident">draw_edge</span>(
+        <span class="ident">scene</span>.<span class="ident">edge_prog</span>.<span class="ident">draw</span>(
+            <span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>,
             <span class="ident">projection</span> <span class="op">*</span> <span class="ident">unit</span>,
             <span class="ident">projection</span>.<span class="ident">transform_vector</span>(<span class="kw-2">&amp;</span><span class="ident">sun_dir</span>),
             [<span class="number">0.3</span>, <span class="number">0.5</span>, <span class="number">0.8</span>, <span class="number">0.5</span>],
@@ -650,9 +394,15 @@
 
     <span class="ident">scene</span>.<span class="ident">gl</span>.<span class="ident">disable</span>(<span class="ident">WebGlRenderingContext::CULL_FACE</span>);
     <span class="ident">scene</span>.<span class="ident">gl</span>.<span class="ident">disable</span>(<span class="ident">WebGlRenderingContext::BLEND</span>);
-    <span class="ident">scene</span>.<span class="ident">draw_arrow</span>(<span class="ident">arrow_projection</span>, [<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>]);
-    <span class="ident">scene</span>.<span class="ident">draw_arrow</span>(<span class="ident">arrow_projection</span> <span class="op">*</span> <span class="ident">rot_y</span>, [<span class="number">0.</span>, <span class="number">1.</span>, <span class="number">0.</span>]);
-    <span class="ident">scene</span>.<span class="ident">draw_arrow</span>(<span class="ident">arrow_projection</span> <span class="op">*</span> <span class="ident">rot_z</span>, [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>]);
+    <span class="ident">scene</span>
+        .<span class="ident">reticle_prog</span>
+        .<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span>, [<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>]);
+    <span class="ident">scene</span>
+        .<span class="ident">reticle_prog</span>
+        .<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span> <span class="op">*</span> <span class="ident">rot_y</span>, [<span class="number">0.</span>, <span class="number">1.</span>, <span class="number">0.</span>]);
+    <span class="ident">scene</span>
+        .<span class="ident">reticle_prog</span>
+        .<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span> <span class="op">*</span> <span class="ident">rot_z</span>, [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>]);
 }
 
 <span class="doccomment">/// Sets up legion ECS for debug info rendering.</span>

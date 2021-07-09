@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Program","Stores the setup data for edge rendering."]]});
