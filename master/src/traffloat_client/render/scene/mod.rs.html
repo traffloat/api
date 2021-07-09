@@ -326,6 +326,8 @@
 <span id="326">326</span>
 <span id="327">327</span>
 <span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders nodes, edges and vehicles.</span>
 
@@ -628,7 +630,9 @@
         );
     }
 
+    <span class="doccomment">/// Shift columns frontward (1 -&gt; 2) or backward (2 -&gt; 1)</span>
     <span class="kw">fn</span> <span class="ident">shift_axes</span>(<span class="kw-2">mut</span> <span class="ident">mat</span>: <span class="ident">Matrix</span>, <span class="ident">front</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Matrix</span> {
+        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::branches_sharing_code</span>)]</span> <span class="comment">// it is confusing to merge them</span>
         <span class="kw">if</span> <span class="ident">front</span> {
             <span class="ident">mat</span>.<span class="ident">swap_columns</span>(<span class="number">0</span>, <span class="number">1</span>);
             <span class="ident">mat</span>.<span class="ident">swap_columns</span>(<span class="number">1</span>, <span class="number">2</span>);
