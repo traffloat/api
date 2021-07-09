@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for this module."]],"struct":[["Camera","A resource that stores the view perspective of the user."]]});
+initSidebarItems({"constant":[["GL_RIGHT_DIR",""],["GL_TOP_DIR",""],["GL_VIEW_DIR",""]],"fn":[["setup_ecs","Sets up legion ECS for this module."]],"struct":[["Camera","A resource that stores the view perspective of the user."]]});
