@@ -57,16 +57,6 @@
 <span id="57">57</span>
 <span id="58">58</span>
 <span id="59">59</span>
-<span id="60">60</span>
-<span id="61">61</span>
-<span id="62">62</span>
-<span id="63">63</span>
-<span id="64">64</span>
-<span id="65">65</span>
-<span id="66">66</span>
-<span id="67">67</span>
-<span id="68">68</span>
-<span id="69">69</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -107,9 +97,6 @@
     <span class="doccomment">/// The object render layer</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">scene</span>: <span class="ident">scene::Canvas</span>,
-    <span class="doccomment">/// The UI 2D canvas layer</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">ui</span>: <span class="ident">ui::Canvas</span>,
     <span class="doccomment">/// The debug DOM layer</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">debug</span>: <span class="ident">debug::Canvas</span>,
@@ -120,21 +107,14 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">bg</span>: <span class="ident">WebGlRenderingContext</span>,
         <span class="ident">scene</span>: <span class="ident">WebGlRenderingContext</span>,
-        <span class="ident">ui</span>: <span class="ident">CanvasRenderingContext2d</span>,
         <span class="ident">debug</span>: <span class="ident">DebugWriter</span>,
         <span class="ident">seed</span>: [<span class="ident">u8</span>; <span class="number">32</span>],
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Layers</span> {
         <span class="kw">let</span> <span class="ident">bg</span> <span class="op">=</span> <span class="ident">bg::Canvas::new</span>(<span class="ident">bg</span>, <span class="ident">seed</span>);
         <span class="kw">let</span> <span class="ident">scene</span> <span class="op">=</span> <span class="ident">scene::Canvas::new</span>(<span class="ident">scene</span>);
-        <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">ui::Canvas::new</span>(<span class="ident">ui</span>);
         <span class="kw">let</span> <span class="ident">debug</span> <span class="op">=</span> <span class="ident">debug::Canvas::new</span>(<span class="ident">debug</span>);
 
-        <span class="ident">Rc::new</span>(<span class="ident">RefCell::new</span>(<span class="self">Self</span> {
-            <span class="ident">bg</span>,
-            <span class="ident">scene</span>,
-            <span class="ident">ui</span>,
-            <span class="ident">debug</span>,
-        }))
+        <span class="ident">Rc::new</span>(<span class="ident">RefCell::new</span>(<span class="self">Self</span> { <span class="ident">bg</span>, <span class="ident">scene</span>, <span class="ident">debug</span> }))
     }
 }
 </pre></div>

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Msg","Events for [`NodeInfo`]."]],"struct":[["NodeInfo","Displays basic info about a node."],["Props","Yew properties for [`NodeInfo`]."]]});

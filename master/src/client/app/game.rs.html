@@ -367,14 +367,6 @@
 <span id="367">367</span>
 <span id="368">368</span>
 <span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
@@ -402,7 +394,6 @@
     <span class="ident">render_comm</span>: <span class="ident">render::Comm</span>,
     <span class="ident">bg_canvas_ref</span>: <span class="ident">NodeRef</span>,
     <span class="ident">scene_canvas_ref</span>: <span class="ident">NodeRef</span>,
-    <span class="ident">ui_canvas_ref</span>: <span class="ident">NodeRef</span>,
     <span class="ident">debug_ref</span>: <span class="ident">NodeRef</span>,
     <span class="ident">layers_cache</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">render::Layers</span>, <span class="ident">render::Dimension</span>)<span class="op">&gt;</span>,
     <span class="ident">clock_epoch</span>: <span class="ident">u64</span>,
@@ -461,10 +452,9 @@
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">layers_cache</span>.<span class="ident">is_none</span>() {
             <span class="kw">let</span> <span class="ident">bg_canvas</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bg_canvas_ref</span>.<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">web_sys::HtmlCanvasElement</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">scene_canvas</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">scene_canvas_ref</span>.<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">web_sys::HtmlCanvasElement</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">ui_canvas</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ui_canvas_ref</span>.<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">web_sys::HtmlCanvasElement</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">debug_div</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">debug_ref</span>.<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">web_sys::HtmlElement</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">ui_canvas</span>.<span class="ident">width</span>();
-            <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">ui_canvas</span>.<span class="ident">height</span>();
+            <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">scene_canvas</span>.<span class="ident">width</span>();
+            <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">scene_canvas</span>.<span class="ident">height</span>();
 
             <span class="kw">let</span> <span class="ident">bg_context</span> <span class="op">=</span> <span class="ident">bg_canvas</span>
                 .<span class="ident">get_context</span>(<span class="string">&quot;webgl&quot;</span>)
@@ -476,22 +466,11 @@
                 .<span class="ident">expect</span>(<span class="string">&quot;Failed to load WebGL canvas&quot;</span>)<span class="question-mark">?</span>
                 .<span class="ident">dyn_into</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;Failed to load WebGL canvas&quot;</span>);
-            <span class="kw">let</span> <span class="ident">ui_context</span> <span class="op">=</span> <span class="ident">ui_canvas</span>
-                .<span class="ident">get_context</span>(<span class="string">&quot;2d&quot;</span>)
-                .<span class="ident">expect</span>(<span class="string">&quot;Failed to load 2D canvas&quot;</span>)<span class="question-mark">?</span>
-                .<span class="ident">dyn_into</span>()
-                .<span class="ident">expect</span>(<span class="string">&quot;Failed to load 2D canvas&quot;</span>);
             <span class="kw">let</span> <span class="ident">debug_writer</span> <span class="op">=</span> <span class="ident">util::DebugWriter::new</span>(<span class="ident">debug_div</span>);
             <span class="kw">let</span> <span class="ident">dim</span> <span class="op">=</span> <span class="ident">render::Dimension</span> { <span class="ident">width</span>, <span class="ident">height</span> };
 
             <span class="self">self</span>.<span class="ident">layers_cache</span> <span class="op">=</span> <span class="prelude-val">Some</span>((
-                <span class="ident">render::LayersStruct::new</span>(
-                    <span class="ident">bg_context</span>,
-                    <span class="ident">scene_context</span>,
-                    <span class="ident">ui_context</span>,
-                    <span class="ident">debug_writer</span>,
-                    <span class="ident">seed</span>,
-                ),
+                <span class="ident">render::LayersStruct::new</span>(<span class="ident">bg_context</span>, <span class="ident">scene_context</span>, <span class="ident">debug_writer</span>, <span class="ident">seed</span>),
                 <span class="ident">dim</span>,
             ));
         }
@@ -512,11 +491,7 @@
             };
         }
 
-        <span class="kw">for</span> <span class="ident">node_ref</span> <span class="kw">in</span> <span class="kw-2">&amp;</span>[
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bg_canvas_ref</span>,
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">scene_canvas_ref</span>,
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ui_canvas_ref</span>,
-        ] {
+        <span class="kw">for</span> <span class="ident">node_ref</span> <span class="kw">in</span> <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bg_canvas_ref</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">scene_canvas_ref</span>] {
             <span class="kw">let</span> <span class="ident">canvas</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">node_ref</span>.<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">web_sys::HtmlCanvasElement</span><span class="op">&gt;</span>() {
                 <span class="prelude-val">Some</span>(<span class="ident">canvas</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">canvas</span>,
                 <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span>,
@@ -537,7 +512,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">on_mouse_move</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) {
-        <span class="kw">let</span> <span class="ident">canvas</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">ui_canvas_ref</span>.<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">web_sys::HtmlCanvasElement</span><span class="op">&gt;</span>() {
+        <span class="kw">let</span> <span class="ident">canvas</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">scene_canvas_ref</span>.<span class="ident">cast</span>::<span class="op">&lt;</span><span class="ident">web_sys::HtmlCanvasElement</span><span class="op">&gt;</span>() {
             <span class="prelude-val">Some</span>(<span class="ident">canvas</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">canvas</span>,
             <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span>,
         };
@@ -630,7 +605,6 @@
             <span class="ident">render_comm</span>,
             <span class="ident">bg_canvas_ref</span>: <span class="ident">NodeRef::default</span>(),
             <span class="ident">scene_canvas_ref</span>: <span class="ident">NodeRef::default</span>(),
-            <span class="ident">ui_canvas_ref</span>: <span class="ident">NodeRef::default</span>(),
             <span class="ident">debug_ref</span>: <span class="ident">NodeRef::default</span>(),
             <span class="ident">layers_cache</span>: <span class="prelude-val">None</span>,
             <span class="ident">clock_epoch</span>: <span class="ident">util::high_res_time</span>(),
@@ -677,14 +651,14 @@
             <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0; background-color: black;&quot;</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">canvas</span>
                     <span class="kw-2">ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">bg_canvas_ref</span>.<span class="ident">clone</span>()
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 100vw; height: 100vh; z-index: 1; position: absolute; x: 0; y: 0;&quot;</span>
-                    <span class="op">/</span><span class="op">&gt;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
+                        width: 100vw; height: 100vh;
+                        z-index: 1;
+                        position: absolute;
+                        x: 0; y: 0;
+                    &quot;</span> <span class="op">/</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">canvas</span>
                     <span class="kw-2">ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">scene_canvas_ref</span>.<span class="ident">clone</span>()
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 100vw; height: 100vh; z-index: 2; position: absolute; x: 0; y: 0;&quot;</span>
-                    <span class="op">/</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">canvas</span>
-                    <span class="kw-2">ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">ui_canvas_ref</span>.<span class="ident">clone</span>()
                     <span class="ident">onmousemove</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::MouseMove</span>)
                     <span class="ident">onmousedown</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::MouseDown</span>)
                     <span class="ident">onmouseup</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::MouseUp</span>)
@@ -692,21 +666,31 @@
                     <span class="ident">ontouchmove</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::TouchMove</span>)
                     <span class="ident">ontouchstart</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::TouchDown</span>)
                     <span class="ident">ontouchend</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::TouchUp</span>)
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 100vw; height: 100vh; z-index: 3; position: absolute; x: 0; y: 0;&quot;</span>
-                    <span class="op">/</span><span class="op">&gt;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
+                        width: 100vw; height: 100vh;
+                        z-index: 2;
+                        position: absolute;
+                        x: 0; y: 0;
+                    &quot;</span> <span class="op">/</span><span class="op">&gt;</span>
+
+                <span class="op">&lt;</span><span class="ident">render::ui::Wrapper</span>
+                    <span class="ident">updater_ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">resources</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">render::ui::UpdaterRef</span><span class="op">&gt;</span>()
+                        .<span class="ident">expect</span>(<span class="string">&quot;UpdaterRef was not initialized&quot;</span>)
+                        .<span class="ident">clone</span>()
+                <span class="op">/</span><span class="op">&gt;</span>
 
                 <span class="op">&lt;</span><span class="ident">div</span>
                     <span class="kw-2">ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">debug_ref</span>.<span class="ident">clone</span>()
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;\
-                        padding-left: 10px; padding-top: 10px; \
-                        z-index: 4; \
-                        position: absolute; \
-                        x: 0; y: 0; \
-                        color: white; \
-                        pointer-events: none; \
-                        font-family: Helvetica, sans-serif; \
-                        font-size: x-small;&quot;</span>
-                    <span class="op">/</span><span class="op">&gt;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
+                        padding-left: 10px; padding-top: 10px;
+                        z-index: 4;
+                        position: absolute;
+                        x: 0; y: 0;
+                        color: white;
+                        pointer-events: none;
+                        font-family: Helvetica, sans-serif;
+                        font-size: x-small;
+                    &quot;</span> <span class="op">/</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         }
     }
@@ -745,7 +729,7 @@
     <span class="ident">TouchMove</span>(<span class="ident">TouchEvent</span>),
 }
 
-<span class="doccomment">/// yew properties for [`Game`][Game].</span>
+<span class="doccomment">/// yew properties for [`Game`].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Properties</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Props</span> {
     <span class="doccomment">/// Arguments for the game.</span>

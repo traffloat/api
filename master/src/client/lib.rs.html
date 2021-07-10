@@ -147,6 +147,9 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
 </pre><pre class="rust">
 <span class="doccomment">//! The webassembly client crate.</span>
 
@@ -210,7 +213,7 @@
 
 <span class="doccomment">/// Sets up legion ECS.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
-    <span class="kw">use</span> <span class="ident">traffloat::graph</span>::{<span class="ident">EdgeId</span>, <span class="ident">EdgeSize</span>, <span class="ident">NodeId</span>};
+    <span class="kw">use</span> <span class="ident">traffloat::graph</span>::{<span class="ident">EdgeId</span>, <span class="ident">EdgeSize</span>, <span class="ident">NodeId</span>, <span class="ident">NodeName</span>};
     <span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">setup</span> <span class="op">=</span> <span class="ident">setup</span>
@@ -256,6 +259,7 @@
 
     <span class="kw">let</span> <span class="ident">core</span> <span class="op">=</span> <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((
         <span class="ident">NodeId::new</span>(<span class="number">0</span>),
+        <span class="ident">NodeName::new</span>(<span class="ident">String::from</span>(<span class="string">&quot;Core&quot;</span>)),
         <span class="ident">Position::new</span>(<span class="number">1.</span>, <span class="number">2.</span>, <span class="number">3.</span>),
         <span class="ident">Shape::builder</span>()
             .<span class="ident">unit</span>(<span class="ident">shape::Unit::Cube</span>)
@@ -266,6 +270,7 @@
     ));
     <span class="kw">let</span> <span class="ident">house</span> <span class="op">=</span> <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((
         <span class="ident">NodeId::new</span>(<span class="number">1</span>),
+        <span class="ident">NodeName::new</span>(<span class="ident">String::from</span>(<span class="string">&quot;House&quot;</span>)),
         <span class="ident">Position::new</span>(<span class="number">1.</span>, <span class="op">-</span><span class="number">2.</span>, <span class="number">3.</span>),
         <span class="ident">Shape::builder</span>()
             .<span class="ident">unit</span>(<span class="ident">shape::Unit::Cube</span>)
@@ -276,6 +281,7 @@
     ));
     <span class="kw">let</span> <span class="ident">solar_panel</span> <span class="op">=</span> <span class="ident">setup</span>.<span class="ident">world</span>.<span class="ident">push</span>((
         <span class="ident">NodeId::new</span>(<span class="number">2</span>),
+        <span class="ident">NodeName::new</span>(<span class="ident">String::from</span>(<span class="string">&quot;Solar panel&quot;</span>)),
         <span class="ident">Position::new</span>(<span class="op">-</span><span class="number">2.</span>, <span class="number">0.</span>, <span class="number">10.</span>),
         <span class="ident">Shape::builder</span>()
             .<span class="ident">unit</span>(<span class="ident">shape::Unit::Cube</span>)

@@ -131,6 +131,15 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Basic node and edge management</span>
 
@@ -142,13 +151,22 @@
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
 
-<span class="doccomment">/// Identifies a node</span>
+<span class="doccomment">/// Component storing an identifier for a node</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">new</span>, <span class="ident">codegen::Gen</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NodeId</span> {
     <span class="ident">inner</span>: <span class="ident">u32</span>,
 }
 
-<span class="doccomment">/// Identifies an edge</span>
+<span class="doccomment">/// Component storing the name of the node</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">new</span>, <span class="ident">codegen::Gen</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::Setters</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NodeName</span> {
+    <span class="doccomment">/// Name of the node</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">name</span>: <span class="ident">String</span>,
+}
+
+<span class="doccomment">/// Component storing the endpoints of an edge</span>
 <span class="attribute">#[<span class="ident">derive</span>(
     <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">codegen::Gen</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>,
 )]</span>
