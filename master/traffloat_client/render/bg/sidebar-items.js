@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for debug info rendering."]],"mod":[["sun","Sun rendering"]],"struct":[["Canvas","Stores the setup data of the background canvas."]]});
+initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for debug info rendering."]],"mod":[["star","Star rendering"],["sun","Sun rendering"]],"struct":[["Canvas","Stores the setup data of the background canvas."]]});

@@ -83,6 +83,8 @@
 <span id="83">83</span>
 <span id="84">84</span>
 <span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Spatial units</span>
 
@@ -96,6 +98,8 @@
 
 <span class="doccomment">/// Standard homogenous matrix type</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Matrix</span> <span class="op">=</span> <span class="ident">nalgebra::Matrix4</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>;
+<span class="doccomment">/// Standard linear transformation matrix type</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LinearMatrix</span> <span class="op">=</span> <span class="ident">nalgebra::Matrix3</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>;
 
 <span class="doccomment">/// A component storing the world position of an object.</span>
 <span class="doccomment">///</span>
