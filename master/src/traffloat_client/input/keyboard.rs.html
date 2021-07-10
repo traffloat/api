@@ -366,22 +366,22 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pitch</span> <span class="op">=</span> <span class="number">0.</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">yaw</span> <span class="op">=</span> <span class="number">0.</span>;
         <span class="kw">if</span> <span class="ident">commands</span>[<span class="ident">Command::MoveLeft</span>].<span class="ident">active</span>() {
-            <span class="ident">yaw</span> <span class="op">-</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span>;
+            <span class="ident">yaw</span> <span class="op">-</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span> <span class="op">*</span> <span class="ident">dt</span>;
         }
         <span class="kw">if</span> <span class="ident">commands</span>[<span class="ident">Command::MoveRight</span>].<span class="ident">active</span>() {
-            <span class="ident">yaw</span> <span class="op">+</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span>;
+            <span class="ident">yaw</span> <span class="op">+</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span> <span class="op">*</span> <span class="ident">dt</span>;
         }
         <span class="kw">if</span> <span class="ident">commands</span>[<span class="ident">Command::MoveDown</span>].<span class="ident">active</span>() {
-            <span class="ident">pitch</span> <span class="op">+</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span>;
+            <span class="ident">pitch</span> <span class="op">+</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span> <span class="op">*</span> <span class="ident">dt</span>;
         }
         <span class="kw">if</span> <span class="ident">commands</span>[<span class="ident">Command::MoveUp</span>].<span class="ident">active</span>() {
-            <span class="ident">pitch</span> <span class="op">-</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span>;
+            <span class="ident">pitch</span> <span class="op">-</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span> <span class="op">*</span> <span class="ident">dt</span>;
         }
         <span class="kw">if</span> <span class="ident">commands</span>[<span class="ident">Command::MoveFront</span>].<span class="ident">active</span>() {
-            <span class="ident">roll</span> <span class="op">-</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span>;
+            <span class="ident">roll</span> <span class="op">-</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span> <span class="op">*</span> <span class="ident">dt</span>;
         }
         <span class="kw">if</span> <span class="ident">commands</span>[<span class="ident">Command::MoveBack</span>].<span class="ident">active</span>() {
-            <span class="ident">roll</span> <span class="op">+</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span>;
+            <span class="ident">roll</span> <span class="op">+</span><span class="op">=</span> <span class="ident">config::WASD_ROTATION_VELOCITY</span> <span class="op">*</span> <span class="ident">dt</span>;
         }
         <span class="kw">if</span> <span class="ident">roll</span> <span class="op">!</span><span class="op">=</span> <span class="number">0.</span> <span class="op">|</span><span class="op">|</span> <span class="ident">pitch</span> <span class="op">!</span><span class="op">=</span> <span class="number">0.</span> <span class="op">|</span><span class="op">|</span> <span class="ident">yaw</span> <span class="op">!</span><span class="op">=</span> <span class="number">0.</span> {
             <span class="kw">let</span> <span class="ident">mat</span> <span class="op">=</span> <span class="ident">nalgebra::Rotation3::from_euler_angles</span>(<span class="ident">pitch</span>, <span class="ident">yaw</span>, <span class="ident">roll</span>).<span class="ident">to_homogeneous</span>();
