@@ -11,8 +11,14 @@
 <span id="11">11</span>
 <span id="12">12</span>
 <span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Hardcoded client constants</span>
+
+<span class="kw">use</span> <span class="ident">traffloat::time::Time</span>;
 
 <span class="doccomment">/// Moving velocity with WASD per delta time</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WASD_LINEAR_VELOCITY</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">0.1</span>;
@@ -22,6 +28,8 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ZOOM_VELOCITY</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">0.05</span>;
 <span class="doccomment">/// Rate of scrolling per event</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SCROLL_VELOCITY</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">0.03</span>;
+<span class="doccomment">/// Maximum number of ticks between clicks of a double click.</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DOUBLE_CLICK_INTERVAL</span>: <span class="ident">Time</span> <span class="op">=</span> <span class="ident">Time</span>(<span class="number">50</span>);
 
 <span class="doccomment">/// Whether to render debug messages</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RENDER_DEBUG</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="ident">codegen::RENDER_DEBUG</span>;

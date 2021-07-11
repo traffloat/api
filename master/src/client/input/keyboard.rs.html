@@ -231,9 +231,90 @@
 <span id="231">231</span>
 <span id="232">232</span>
 <span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles keyboard input.</span>
 
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::indexing_slicing</span>)]</span> <span class="comment">// this module uses EnumMap extensively.</span>
+
+<span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">enum_map::EnumMap</span>;
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
@@ -247,11 +328,36 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::CopyGetters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RawKeyEvent</span> {
     <span class="doccomment">/// The code of the event.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">code</span>: <span class="ident">String</span>,
+    <span class="ident">key</span>: <span class="ident">RawKey</span>,
     <span class="doccomment">/// Whether the key is pressed down or up.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">down</span>: <span class="ident">bool</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">RawKeyEvent</span> {
+    <span class="doccomment">/// The code of the event.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RawKey</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">key</span>.<span class="ident">as_ref</span>()
+    }
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="doccomment">/// A raw key used by the yew layer.</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">RawKey</span><span class="op">&lt;</span><span class="ident">S</span> <span class="op">=</span> <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// A keyboard key.</span>
+    <span class="ident">Key</span>(<span class="ident">S</span>),
+    <span class="doccomment">/// A mouse button.</span>
+    <span class="ident">Mouse</span>(<span class="ident">i16</span>),
+}
+
+<span class="kw">impl</span> <span class="ident">RawKey</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Changes the key `String` to a `&amp;str` if any.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RawKey</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="self">Self</span><span class="ident">::Key</span>(<span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RawKey::Key</span>(<span class="ident">s</span>.<span class="ident">as_str</span>()),
+            <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Mouse</span>(<span class="ident">button</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">RawKey::Mouse</span>(<span class="ident">button</span>),
+        }
+    }
 }
 
 <span class="doccomment">/// Commands interpreted by the keymap.</span>
@@ -287,21 +393,30 @@
     <span class="ident">ZoomIn</span>,
     <span class="doccomment">/// Zoom out</span>
     <span class="ident">ZoomOut</span>,
+    <span class="doccomment">/// The generic left click command</span>
+    <span class="ident">LeftClick</span>,
+    <span class="doccomment">/// The generic middle click command</span>
+    <span class="ident">MiddleClick</span>,
+    <span class="doccomment">/// The generic right click command</span>
+    <span class="ident">RightClick</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Command</span> {
     <span class="doccomment">/// Converts a `KeyboardEvent.code` to a `Command` if possible.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_code</span>(<span class="ident">code</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Command</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Some</span>(<span class="kw">match</span> <span class="ident">code</span> {
-            <span class="string">&quot;KeyW&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveUp</span>,
-            <span class="string">&quot;KeyS&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveDown</span>,
-            <span class="string">&quot;KeyA&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveLeft</span>,
-            <span class="string">&quot;KeyD&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveRight</span>,
-            <span class="string">&quot;KeyZ&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveFront</span>,
-            <span class="string">&quot;KeyX&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveBack</span>,
-            <span class="string">&quot;Equal&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::ZoomIn</span>,
-            <span class="string">&quot;Minus&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::ZoomOut</span>,
-            <span class="string">&quot;ShiftLeft&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::RotationMask</span>,
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_key</span>(<span class="ident">key</span>: <span class="ident">RawKey</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Command</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Some</span>(<span class="kw">match</span> <span class="ident">key</span> {
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;KeyW&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveUp</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;KeyS&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveDown</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;KeyA&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveLeft</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;KeyD&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveRight</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;KeyZ&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveFront</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;KeyX&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MoveBack</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;Equal&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::ZoomIn</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;Minus&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::ZoomOut</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;ShiftLeft&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::RotationMask</span>,
+            <span class="ident">RawKey::Mouse</span>(<span class="number">0</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::LeftClick</span>,
+            <span class="ident">RawKey::Mouse</span>(<span class="number">1</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MiddleClick</span>,
+            <span class="ident">RawKey::Mouse</span>(<span class="number">2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::RightClick</span>,
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">None</span>,
         })
     }
@@ -323,30 +438,71 @@
 
 <span class="kw">impl</span> <span class="ident">CommandState</span> {
     <span class="doccomment">/// Sets the command state and updates the last activation/deactivation time.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">down</span>: <span class="ident">bool</span>, <span class="ident">now</span>: <span class="ident">time::Instant</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">down</span>: <span class="ident">bool</span>, <span class="ident">now</span>: <span class="ident">time::Instant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ClickType</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">active</span> <span class="op">=</span> <span class="ident">down</span>;
         <span class="kw">if</span> <span class="ident">down</span> {
+            <span class="kw">let</span> <span class="ident">prev</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">last_down</span>;
             <span class="self">self</span>.<span class="ident">last_down</span> <span class="op">=</span> <span class="ident">now</span>;
+            <span class="kw">if</span> <span class="ident">now</span> <span class="op">-</span> <span class="ident">prev</span> <span class="op">&lt;</span> <span class="ident">config::DOUBLE_CLICK_INTERVAL</span> {
+                <span class="prelude-val">Some</span>(<span class="ident">ClickType::Double</span>)
+            } <span class="kw">else</span> {
+                <span class="prelude-val">Some</span>(<span class="ident">ClickType::Single</span>)
+            }
         } <span class="kw">else</span> {
             <span class="self">self</span>.<span class="ident">last_up</span> <span class="op">=</span> <span class="ident">now</span>;
+            <span class="prelude-val">None</span>
         }
     }
 }
 
+<span class="doccomment">/// The type of clicking detected on command state updates.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ClickType</span> {
+    <span class="doccomment">/// A single lcick</span>
+    <span class="ident">Single</span>,
+    <span class="doccomment">/// A double lcick</span>
+    <span class="ident">Double</span>,
+}
+
 <span class="doccomment">/// A map storing the time since which a command was clicked or released.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CommandStates</span> <span class="op">=</span> <span class="ident">EnumMap</span><span class="op">&lt;</span><span class="ident">Command</span>, <span class="ident">CommandState</span><span class="op">&gt;</span>;
+
+<span class="doccomment">/// A single click event.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SingleClick</span> {
+    <span class="doccomment">/// The command clicked.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">command</span>: <span class="ident">Command</span>,
+}
+
+<span class="doccomment">/// A double click event.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DoubleClick</span> {
+    <span class="doccomment">/// The command clicked.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">command</span>: <span class="ident">Command</span>,
+}
 
 <span class="attribute">#[<span class="ident">codegen::system</span>]</span>
 <span class="kw">fn</span> <span class="ident">track_states</span>(
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">states</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CommandStates</span>,
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">clock</span>: <span class="kw-2">&amp;</span><span class="ident">time::Clock</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">raw_key_events</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">RawKeyEvent</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">single_click_pub</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">shrev::EventChannel</span><span class="op">&lt;</span><span class="ident">SingleClick</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">double_click_pub</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">shrev::EventChannel</span><span class="op">&lt;</span><span class="ident">DoubleClick</span><span class="op">&gt;</span>,
 ) {
     <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">clock</span>.<span class="ident">now</span>();
     <span class="kw">for</span> <span class="ident">event</span> <span class="kw">in</span> <span class="ident">raw_key_events</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">command</span>) <span class="op">=</span> <span class="ident">Command::from_code</span>(<span class="ident">event</span>.<span class="ident">code</span>()) {
-            <span class="kw">use</span> <span class="ident">std::ops::IndexMut</span>;
-            <span class="ident">states</span>.<span class="ident">index_mut</span>(<span class="ident">command</span>).<span class="ident">set</span>(<span class="ident">event</span>.<span class="ident">down</span>(), <span class="ident">now</span>);
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">command</span>) <span class="op">=</span> <span class="ident">Command::from_key</span>(<span class="ident">event</span>.<span class="ident">key</span>()) {
+            <span class="kw">match</span> <span class="ident">states</span>[<span class="ident">command</span>].<span class="ident">set</span>(<span class="ident">event</span>.<span class="ident">down</span>(), <span class="ident">now</span>) {
+                <span class="prelude-val">Some</span>(<span class="ident">ClickType::Single</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                    <span class="ident">single_click_pub</span>.<span class="ident">single_write</span>(<span class="ident">SingleClick::new</span>(<span class="ident">command</span>));
+                }
+                <span class="prelude-val">Some</span>(<span class="ident">ClickType::Double</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                    <span class="ident">double_click_pub</span>.<span class="ident">single_write</span>(<span class="ident">DoubleClick::new</span>(<span class="ident">command</span>));
+                }
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {}
+            }
         }
     }
 }

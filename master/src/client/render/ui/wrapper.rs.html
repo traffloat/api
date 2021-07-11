@@ -91,6 +91,7 @@
 <span id="91">91</span>
 <span id="92">92</span>
 <span id="93">93</span>
+<span id="94">94</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -131,6 +132,7 @@
 
     <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">props</span>: <span class="ident">Props</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
         <span class="ident">props</span>.<span class="ident">updater_ref</span>.<span class="ident">set</span>(<span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="ident">update</span><span class="op">|</span> <span class="ident">update</span>));
+        <span class="self">self</span>.<span class="ident">props</span> <span class="op">=</span> <span class="ident">props</span>;
         <span class="bool-val">false</span> <span class="comment">// we just modified the setter, but there is nothing to render yet</span>
     }
 
