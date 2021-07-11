@@ -75,6 +75,18 @@
 <span id="75">75</span>
 <span id="76">76</span>
 <span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
 
@@ -83,16 +95,22 @@
 <span class="doccomment">/// Stores a uniform location with known type.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="ident">_ph</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span><span class="op">&gt;</span>,
-    <span class="ident">loc</span>: <span class="ident">WebGlUniformLocation</span>,
+    <span class="ident">loc</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlUniformLocation</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Uniform</span><span class="op">&gt;</span> <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Locates a uniform for a given program.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">loc</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">gl</span>.<span class="ident">get_uniform_location</span>(<span class="ident">program</span>, <span class="ident">name</span>) {
-            <span class="prelude-val">Some</span>(<span class="ident">loc</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">loc</span>,
-            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;Uniform {:?} does not exist in program&quot;</span>, <span class="ident">name</span>),
-        };
+        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::new_optional</span>(<span class="ident">gl</span>, <span class="ident">program</span>, <span class="ident">name</span>);
+        <span class="kw">if</span> <span class="ident">ret</span>.<span class="ident">loc</span>.<span class="ident">is_none</span>() {
+            <span class="macro">panic!</span>(<span class="string">&quot;Uniform {:?} does not exist in program&quot;</span>, <span class="ident">name</span>);
+        }
+        <span class="ident">ret</span>
+    }
+
+    <span class="doccomment">/// Locates a uniform for a given program.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_optional</span>(<span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">let</span> <span class="ident">loc</span> <span class="op">=</span> <span class="ident">gl</span>.<span class="ident">get_uniform_location</span>(<span class="ident">program</span>, <span class="ident">name</span>);
         <span class="self">Self</span> {
             <span class="ident">_ph</span>: <span class="ident">PhantomData</span>,
             <span class="ident">loc</span>,
@@ -101,7 +119,7 @@
 
     <span class="doccomment">/// Assigns a value for the uniform.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">assign</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">value</span>: <span class="ident">T</span>) {
-        <span class="ident">value</span>.<span class="ident">apply</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">loc</span>), <span class="ident">gl</span>);
+        <span class="ident">value</span>.<span class="ident">apply</span>(<span class="self">self</span>.<span class="ident">loc</span>.<span class="ident">as_ref</span>(), <span class="ident">gl</span>);
     }
 }
 
@@ -151,6 +169,12 @@
 <span class="kw">impl</span> <span class="ident">Uniform</span> <span class="kw">for</span> <span class="ident">f32</span> {
     <span class="kw">fn</span> <span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlUniformLocation</span><span class="op">&gt;</span>, <span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) {
         <span class="ident">gl</span>.<span class="ident">uniform1f</span>(<span class="ident">location</span>, <span class="kw-2">*</span><span class="self">self</span>);
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">Uniform</span> <span class="kw">for</span> <span class="ident">i32</span> {
+    <span class="kw">fn</span> <span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">location</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlUniformLocation</span><span class="op">&gt;</span>, <span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) {
+        <span class="ident">gl</span>.<span class="ident">uniform1i</span>(<span class="ident">location</span>, <span class="kw-2">*</span><span class="self">self</span>);
     }
 }
 </pre></div>

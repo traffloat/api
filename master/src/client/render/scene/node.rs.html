@@ -87,13 +87,19 @@
 <span id="87">87</span>
 <span id="88">88</span>
 <span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Node rendering</span>
 
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">WebGlProgram</span>, <span class="ident">WebGlRenderingContext</span>};
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">mesh</span>, <span class="ident">texture</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::util</span>::{<span class="ident">create_program</span>, <span class="ident">UniformLocation</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::util</span>::{<span class="ident">create_program</span>, <span class="ident">AttrLocation</span>, <span class="ident">UniformLocation</span>};
 <span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Vector</span>};
 
@@ -101,10 +107,14 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Program</span> {
     <span class="ident">prog</span>: <span class="ident">WebGlProgram</span>,
     <span class="ident">cube</span>: <span class="ident">mesh::PreparedMesh</span>,
+    <span class="ident">a_pos</span>: <span class="ident">AttrLocation</span>,
+    <span class="ident">a_normal</span>: <span class="ident">AttrLocation</span>,
+    <span class="ident">a_tex_pos</span>: <span class="ident">AttrLocation</span>,
     <span class="ident">u_proj</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&gt;</span>,
     <span class="ident">u_sun</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
     <span class="ident">u_brightness</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
     <span class="ident">u_inv_gain</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="ident">u_tex</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Program</span> {
@@ -119,18 +129,26 @@
         );
         <span class="kw">let</span> <span class="ident">cube</span> <span class="op">=</span> <span class="ident">mesh::CUBE</span>.<span class="ident">prepare</span>(<span class="ident">gl</span>);
 
+        <span class="kw">let</span> <span class="ident">a_pos</span> <span class="op">=</span> <span class="ident">AttrLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;a_pos&quot;</span>);
+        <span class="kw">let</span> <span class="ident">a_normal</span> <span class="op">=</span> <span class="ident">AttrLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;a_normal&quot;</span>);
+        <span class="kw">let</span> <span class="ident">a_tex_pos</span> <span class="op">=</span> <span class="ident">AttrLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;a_tex_pos&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_proj</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_proj&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_sun</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_sun&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_brightness</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_brightness&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_inv_gain</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_inv_gain&quot;</span>);
+        <span class="kw">let</span> <span class="ident">u_tex</span> <span class="op">=</span> <span class="ident">UniformLocation::new_optional</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_tex&quot;</span>);
 
         <span class="self">Self</span> {
             <span class="ident">prog</span>,
             <span class="ident">cube</span>,
+            <span class="ident">a_pos</span>,
+            <span class="ident">a_normal</span>,
+            <span class="ident">a_tex_pos</span>,
             <span class="ident">u_proj</span>,
             <span class="ident">u_sun</span>,
             <span class="ident">u_brightness</span>,
             <span class="ident">u_inv_gain</span>,
+            <span class="ident">u_tex</span>,
         }
     }
 
@@ -153,16 +171,10 @@
         <span class="self">self</span>.<span class="ident">u_inv_gain</span>
             .<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="kw">if</span> <span class="ident">selected</span> { <span class="number">0.5f32</span> } <span class="kw">else</span> { <span class="number">1f32</span> });
 
-        <span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">positions</span>().<span class="ident">apply</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prog</span>, <span class="string">&quot;a_pos&quot;</span>);
-        <span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">normals</span>().<span class="ident">apply</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prog</span>, <span class="string">&quot;a_normal&quot;</span>);
+        <span class="self">self</span>.<span class="ident">a_pos</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">positions</span>());
+        <span class="self">self</span>.<span class="ident">a_normal</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">normals</span>());
 
-        <span class="ident">texture</span>.<span class="ident">apply</span>(
-            <span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">tex_pos</span>(),
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prog</span>,
-            <span class="string">&quot;a_tex_pos&quot;</span>,
-            <span class="ident">gl</span>.<span class="ident">get_uniform_location</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prog</span>, <span class="string">&quot;u_tex&quot;</span>).<span class="ident">as_ref</span>(),
-            <span class="ident">gl</span>,
-        );
+        <span class="ident">texture</span>.<span class="ident">apply</span>(<span class="self">self</span>.<span class="ident">cube</span>.<span class="ident">tex_pos</span>(), <span class="self">self</span>.<span class="ident">a_tex_pos</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">u_tex</span>, <span class="ident">gl</span>);
 
         <span class="ident">gl</span>.<span class="ident">tex_parameteri</span>(
             <span class="ident">WebGlRenderingContext::TEXTURE_2D</span>,

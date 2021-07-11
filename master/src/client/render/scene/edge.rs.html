@@ -68,19 +68,27 @@
 <span id="68">68</span>
 <span id="69">69</span>
 <span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge rendering</span>
 
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">WebGlProgram</span>, <span class="ident">WebGlRenderingContext</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::mesh</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::util</span>::{<span class="ident">create_program</span>, <span class="ident">UniformLocation</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::util</span>::{<span class="ident">create_program</span>, <span class="ident">AttrLocation</span>, <span class="ident">UniformLocation</span>};
 <span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Vector</span>};
 
 <span class="doccomment">/// Stores the setup data for edge rendering.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Program</span> {
     <span class="ident">prog</span>: <span class="ident">WebGlProgram</span>,
     <span class="ident">cylinder</span>: <span class="ident">mesh::PreparedIndexedMesh</span>,
+    <span class="ident">a_pos</span>: <span class="ident">AttrLocation</span>,
+    <span class="ident">a_normal</span>: <span class="ident">AttrLocation</span>,
     <span class="ident">u_trans</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&gt;</span>,
     <span class="ident">u_trans_sun</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
     <span class="ident">u_color</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span>[<span class="ident">f32</span>; <span class="number">4</span>]<span class="op">&gt;</span>,
@@ -102,6 +110,8 @@
         );
         <span class="kw">let</span> <span class="ident">cylinder</span> <span class="op">=</span> <span class="ident">mesh::CYLINDER</span>.<span class="ident">prepare</span>(<span class="ident">gl</span>);
 
+        <span class="kw">let</span> <span class="ident">a_pos</span> <span class="op">=</span> <span class="ident">AttrLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;a_pos&quot;</span>);
+        <span class="kw">let</span> <span class="ident">a_normal</span> <span class="op">=</span> <span class="ident">AttrLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;a_normal&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_trans</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_trans&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_trans_sun</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_trans_sun&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_color</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_color&quot;</span>);
@@ -113,6 +123,8 @@
         <span class="self">Self</span> {
             <span class="ident">prog</span>,
             <span class="ident">cylinder</span>,
+            <span class="ident">a_pos</span>,
+            <span class="ident">a_normal</span>,
             <span class="ident">u_trans</span>,
             <span class="ident">u_trans_sun</span>,
             <span class="ident">u_color</span>,
@@ -134,8 +146,8 @@
         <span class="self">self</span>.<span class="ident">u_specular</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">1.0</span>);
         <span class="self">self</span>.<span class="ident">u_specular_coef</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">10.0</span>);
 
-        <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">positions</span>().<span class="ident">apply</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prog</span>, <span class="string">&quot;a_pos&quot;</span>);
-        <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">normals</span>().<span class="ident">apply</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prog</span>, <span class="string">&quot;a_normal&quot;</span>);
+        <span class="self">self</span>.<span class="ident">a_pos</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">positions</span>());
+        <span class="self">self</span>.<span class="ident">a_normal</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">normals</span>());
         <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">draw</span>(<span class="ident">gl</span>);
     }
 }
