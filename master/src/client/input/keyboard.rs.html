@@ -361,7 +361,7 @@
 }
 
 <span class="doccomment">/// Commands interpreted by the keymap.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">enum_map::Enum</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">enum_map::Enum</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Command</span> {
     <span class="doccomment">/// Move leftwards</span>
     <span class="doccomment">///</span>

@@ -143,6 +143,9 @@
 <span id="143">143</span>
 <span id="144">144</span>
 <span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles mouse interaction.</span>
 
@@ -279,7 +282,10 @@
         <span class="string">&quot;initial&quot;</span>
     });
 
-    <span class="kw">let</span> <span class="ident">has_click</span> <span class="op">=</span> <span class="ident">click_sub</span>.<span class="ident">count</span>() <span class="op">&gt;</span> <span class="number">0</span>; <span class="comment">// consume the whole iterator without short-circuiting</span>
+    <span class="kw">let</span> <span class="ident">has_click</span> <span class="op">=</span> <span class="ident">click_sub</span>
+        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">click</span><span class="op">|</span> <span class="ident">click</span>.<span class="ident">command</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">keyboard::Command::LeftClick</span>)
+        .<span class="ident">count</span>()
+        <span class="op">&gt;</span> <span class="number">0</span>; <span class="comment">// consume the whole iterator without short-circuiting</span>
     <span class="kw">if</span> <span class="ident">has_click</span> {
         <span class="ident">focus_target</span>.<span class="ident">set_entity</span>(<span class="ident">hover_target</span>.<span class="ident">entity</span>());
     }
