@@ -119,6 +119,10 @@
 <span id="119">119</span>
 <span id="120">120</span>
 <span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 
@@ -207,7 +211,11 @@
 
                 { <span class="kw">for</span> (<span class="self">self</span>.<span class="ident">game_mode</span> <span class="op">=</span><span class="op">=</span> <span class="ident">GameMode::Single</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">html!</span> {
                     <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
-                        <span class="op">&lt;</span><span class="ident">button</span> <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::StartSingle</span>)<span class="op">&gt;</span>{ <span class="string">&quot;Start&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
+                        <span class="op">&lt;</span><span class="ident">button</span>
+                            <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::StartSingle</span>)
+                            <span class="ident">tabindex</span><span class="op">=</span><span class="number">1</span> <span class="op">&gt;</span>
+                            { <span class="string">&quot;Start&quot;</span> }
+                        <span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
                 }) }
 
