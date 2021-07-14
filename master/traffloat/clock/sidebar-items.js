@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIMULATION_PERIOD","The interval between simulation frames."]],"fn":[["setup_ecs","Initializes the time module."]],"struct":[["Clock","A resource for time read/write."],["SimulationEvent","Subscribe to this event to execute updates."]]});

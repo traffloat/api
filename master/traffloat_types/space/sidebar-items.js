@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Position","A component storing the world position of an object."]],"type":[["LinearMatrix","Standard linear transformation matrix type"],["Matrix","Standard homogenous matrix type"],["Point","Standard vector type"],["Vector","Standard vector type"]]});

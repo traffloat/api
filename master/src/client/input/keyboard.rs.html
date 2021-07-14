@@ -309,6 +309,7 @@
 <span id="309">309</span>
 <span id="310">310</span>
 <span id="311">311</span>
+<span id="312">312</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles keyboard input.</span>
 
@@ -321,8 +322,9 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::camera::Camera</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::config</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render</span>;
+<span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
 <span class="kw">use</span> <span class="ident">traffloat::space::Vector</span>;
-<span class="kw">use</span> <span class="ident">traffloat::time</span>;
+<span class="kw">use</span> <span class="ident">traffloat::time::Instant</span>;
 
 <span class="doccomment">/// A raw key event from the yew layer.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::CopyGetters</span>)]</span>
@@ -430,15 +432,15 @@
     <span class="ident">active</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// The last instant at which the command state changed from inactive to active.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">last_down</span>: <span class="ident">time::Instant</span>,
+    <span class="ident">last_down</span>: <span class="ident">Instant</span>,
     <span class="doccomment">/// The last instant at which the command state changed from active to inactive.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">last_up</span>: <span class="ident">time::Instant</span>,
+    <span class="ident">last_up</span>: <span class="ident">Instant</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">CommandState</span> {
     <span class="doccomment">/// Sets the command state and updates the last activation/deactivation time.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">down</span>: <span class="ident">bool</span>, <span class="ident">now</span>: <span class="ident">time::Instant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ClickType</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">down</span>: <span class="ident">bool</span>, <span class="ident">now</span>: <span class="ident">Instant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ClickType</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">active</span> <span class="op">=</span> <span class="ident">down</span>;
         <span class="kw">if</span> <span class="ident">down</span> {
             <span class="kw">let</span> <span class="ident">prev</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">last_down</span>;
@@ -486,7 +488,7 @@
 <span class="attribute">#[<span class="ident">codegen::system</span>]</span>
 <span class="kw">fn</span> <span class="ident">track_states</span>(
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">states</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CommandStates</span>,
-    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">clock</span>: <span class="kw-2">&amp;</span><span class="ident">time::Clock</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">clock</span>: <span class="kw-2">&amp;</span><span class="ident">Clock</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">raw_key_events</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">RawKeyEvent</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">single_click_pub</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">shrev::EventChannel</span><span class="op">&lt;</span><span class="ident">SingleClick</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">double_click_pub</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">shrev::EventChannel</span><span class="op">&lt;</span><span class="ident">DoubleClick</span><span class="op">&gt;</span>,
@@ -511,7 +513,7 @@
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::indexing_slicing</span>, <span class="ident">clippy::too_many_arguments</span>)]</span>
 <span class="kw">fn</span> <span class="ident">move_camera</span>(
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">camera</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Camera</span>,
-    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">clock</span>: <span class="kw-2">&amp;</span><span class="ident">time::Clock</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">clock</span>: <span class="kw-2">&amp;</span><span class="ident">Clock</span>,
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">commands</span>: <span class="kw-2">&amp;</span><span class="ident">CommandStates</span>,
     <span class="attribute">#[<span class="ident">resource</span>(<span class="ident">no_init</span>)]</span> <span class="ident">dim</span>: <span class="kw-2">&amp;</span><span class="ident">render::Dimension</span>,
 ) {

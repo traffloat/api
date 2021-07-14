@@ -372,6 +372,7 @@
 <span id="372">372</span>
 <span id="373">373</span>
 <span id="374">374</span>
+<span id="375">375</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
@@ -384,7 +385,8 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
 <span class="kw">use</span> <span class="ident">safety::Safety</span>;
-<span class="kw">use</span> <span class="ident">traffloat::time</span>::{<span class="ident">Clock</span>, <span class="ident">Instant</span>, <span class="ident">Time</span>};
+<span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
+<span class="kw">use</span> <span class="ident">traffloat::time</span>::{<span class="ident">Instant</span>, <span class="ident">Time</span>};
 <span class="kw">use</span> <span class="ident">traffloat::SetupEcs</span>;
 
 <span class="doccomment">/// HTML interface of the game page</span>

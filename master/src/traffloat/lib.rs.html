@@ -58,7 +58,6 @@
 <span id="58">58</span>
 <span id="59">59</span>
 <span id="60">60</span>
-<span id="61">61</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Common library for server and client</span>
 
@@ -93,17 +92,16 @@
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">mod</span> <span class="ident">macros</span>;
 
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">traffloat_types</span>::{<span class="ident">space</span>, <span class="ident">time</span>, <span class="ident">units</span>};
+
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cargo</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">clock</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">config</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">config::Config</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">factory</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">graph</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">proto</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">shape</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">space</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sun</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">time</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">units</span>;
 <span class="kw">mod</span> <span class="ident">util</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">util</span>::<span class="kw-2">*</span>;
 
@@ -114,8 +112,8 @@
     <span class="ident">setup</span>
         .<span class="ident">resource</span>(<span class="ident">codegen::Perf::default</span>())
         .<span class="ident">uses</span>(<span class="ident">config::setup_ecs</span>)
+        .<span class="ident">uses</span>(<span class="ident">clock::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">factory::setup_ecs</span>)
-        .<span class="ident">uses</span>(<span class="ident">time::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">shape::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">graph::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">cargo::setup_ecs</span>)

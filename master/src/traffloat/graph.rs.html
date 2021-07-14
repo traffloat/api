@@ -136,10 +136,6 @@
 <span id="136">136</span>
 <span id="137">137</span>
 <span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Basic node and edge management</span>
 
@@ -152,13 +148,13 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
 
 <span class="doccomment">/// Component storing an identifier for a node</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">new</span>, <span class="ident">codegen::Gen</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">new</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NodeId</span> {
     <span class="ident">inner</span>: <span class="ident">u32</span>,
 }
 
 <span class="doccomment">/// Component storing the name of the node</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">new</span>, <span class="ident">codegen::Gen</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::Setters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">new</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::Setters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NodeName</span> {
     <span class="doccomment">/// Name of the node</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -167,9 +163,7 @@
 }
 
 <span class="doccomment">/// Component storing the endpoints of an edge</span>
-<span class="attribute">#[<span class="ident">derive</span>(
-    <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">codegen::Gen</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>,
-)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EdgeId</span> {
     <span class="doccomment">/// The &quot;source&quot; node</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -178,7 +172,6 @@
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
-    <span class="attribute">#[<span class="ident">default</span>]</span>
     <span class="ident">from_entity</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Entity</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The &quot;dest&quot; node</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -187,12 +180,11 @@
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
-    <span class="attribute">#[<span class="ident">default</span>]</span>
     <span class="ident">to_entity</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Entity</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// Defines the size of an edge</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">codegen::Gen</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EdgeSize</span> {
     <span class="doccomment">/// The radius of the corridor</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
