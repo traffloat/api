@@ -263,6 +263,58 @@
 <span id="263">263</span>
 <span id="264">264</span>
 <span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">BTreeMap</span>, <span class="ident">VecDeque</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
@@ -273,7 +325,59 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render-debug&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">traffloat_codegen_raw</span>::<span class="kw-2">*</span>;
+<span class="doccomment">/// Generates legion system setup procedure for.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Consider this example:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// struct FooEvent(f32);</span>
+<span class="doccomment">/// struct BarEvent(f32);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// struct QuxComp(u32);</span>
+<span class="doccomment">/// struct CorgeComp(u32);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// #[derive(Default)]</span>
+<span class="doccomment">/// struct GraultRes(u64);</span>
+<span class="doccomment">/// #[derive(Default)]</span>
+<span class="doccomment">/// struct WaldoRes(u64);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// #[codegen::system]</span>
+<span class="doccomment">/// #[read_component(QuxComp)]</span>
+<span class="doccomment">/// #[write_component(CorgeComp)]</span>
+<span class="doccomment">/// fn example(</span>
+<span class="doccomment">///     world: &amp;mut legion::world::SubWorld,</span>
+<span class="doccomment">///     #[subscriber] foo_sub: impl Iterator&lt;Item = FooEvent&gt;,</span>
+<span class="doccomment">///     #[publisher] bar_pub: impl FnMut(BarEvent),</span>
+<span class="doccomment">///     #[resource] grault_res: &amp;mut GraultRes,</span>
+<span class="doccomment">///     #[resource] waldo_res: &amp;WaldoRes,</span>
+<span class="doccomment">///     #[state(0)] local_counter: &amp;mut i32,</span>
+<span class="doccomment">/// ) {</span>
+<span class="doccomment">///     use legion::IntoQuery;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     for (qux, corge) in &lt;(&amp;QuxComp, &amp;mut CorgeComp)&gt;::query().iter_mut(world) {</span>
+<span class="doccomment">///         corge.0 = qux.0;</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     for &amp;FooEvent(float) in foo_sub {</span>
+<span class="doccomment">///         bar_pub(BarEvent(float));</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     grault_res.0 = waldo_res.0;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     *local_counter += 1;</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// fn setup_ecs(setup: codegen::SetupEcs) -&gt; codegen::SetupEcs {</span>
+<span class="doccomment">///     setup.uses(example_setup)</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// If some of the parameters need to be thread-unsafe,</span>
+<span class="doccomment">/// apply the `#[thread_local]` attribute on the function.</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">traffloat_codegen_raw::system</span>;
+
+<span class="doccomment">/// Implements network layer serialization.</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">traffloat_codegen_raw::Gen</span>;
 
 <span class="doccomment">/// Whether debug info should be rendered.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RENDER_DEBUG</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="macro">cfg!</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render-debug&quot;</span>);

@@ -155,13 +155,13 @@
     }
 }
 
-<span class="doccomment">/// Events for [`NodeInfo`].</span>
+<span class="doccomment">/// Events for [`node::NodeInfo`].</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Update</span> {
     <span class="doccomment">/// Sets the node info to display.</span>
     <span class="ident">SetNodeInfo</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">node::Props</span><span class="op">&gt;</span>),
 }
 
-<span class="doccomment">/// Yew properties for [`NodeInfo`].</span>
+<span class="doccomment">/// Yew properties for [`node::NodeInfo`].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Properties</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Props</span> {
     <span class="doccomment">/// An interiorly-mutable reference to update the yew callback for UI messages [`Update`].</span>
