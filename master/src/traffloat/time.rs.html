@@ -134,6 +134,49 @@
 <span id="134">134</span>
 <span id="135">135</span>
 <span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Game clock management</span>
 
@@ -177,6 +220,16 @@
     <span class="doccomment">/// This value is not precise and shall not be used for critical logic.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_secs</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="self">self</span>.<span class="ident">value</span>() <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="number">0.01</span>
+    }
+
+    <span class="doccomment">/// An empty interval.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">zero</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span>(<span class="number">0</span>)
+    }
+
+    <span class="doccomment">/// Returns the integer quotient of the two time spans.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">int_div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
+        <span class="self">self</span>.<span class="number">0</span> <span class="op">/</span> <span class="ident">other</span>.<span class="number">0</span>
     }
 }
 
@@ -267,9 +320,42 @@
     }
 }
 
+<span class="doccomment">/// Subscribe to this event to execute updates.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Subscribers should only handle the event once every time,</span>
+<span class="doccomment">/// i.e. with the following code:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```no_run</span>
+<span class="doccomment">/// # use traffloat::time::SimulationEvent;</span>
+<span class="doccomment">/// #</span>
+<span class="doccomment">/// #[codegen::system]</span>
+<span class="doccomment">/// fn execute(</span>
+<span class="doccomment">///     #[subscriber] simul_sub: impl Iterator&lt;Item = SimulationEvent&gt;,</span>
+<span class="doccomment">/// ) {</span>
+<span class="doccomment">///     if simul_sub.next().is_none() {</span>
+<span class="doccomment">///         return;</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SimulationEvent</span>;
+
+<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="kw">fn</span> <span class="ident">sim_trigger</span>(
+    <span class="attribute">#[<span class="ident">publisher</span>]</span> <span class="ident">sim_pub</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="ident">SimulationEvent</span>),
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">clock</span>: <span class="kw-2">&amp;</span><span class="ident">Clock</span>,
+    <span class="attribute">#[<span class="ident">state</span>(<span class="ident">Instant::default</span>())]</span> <span class="ident">last_sim_time</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Instant</span>,
+) {
+    <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="ident">clock</span>.<span class="ident">now</span>().<span class="ident">since_epoch</span>().<span class="ident">int_div</span>(<span class="ident">SIMULATION_PERIOD</span>);
+    <span class="kw">let</span> <span class="ident">last</span> <span class="op">=</span> <span class="ident">last_sim_time</span>.<span class="ident">since_epoch</span>().<span class="ident">int_div</span>(<span class="ident">SIMULATION_PERIOD</span>);
+    <span class="kw">if</span> <span class="ident">now</span> <span class="op">!</span><span class="op">=</span> <span class="ident">last</span> {
+        <span class="ident">sim_pub</span>(<span class="ident">SimulationEvent</span>);
+        <span class="kw-2">*</span><span class="ident">last_sim_time</span> <span class="op">=</span> <span class="ident">clock</span>.<span class="ident">now</span>();
+    }
+}
+
 <span class="doccomment">/// Initializes the time module.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SetupEcs</span> {
-    <span class="ident">setup</span>
+    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">sim_trigger_setup</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>

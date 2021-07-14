@@ -258,6 +258,11 @@
 <span id="258">258</span>
 <span id="259">259</span>
 <span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">BTreeMap</span>, <span class="ident">VecDeque</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
@@ -320,6 +325,11 @@
     <span class="doccomment">/// Add a resource</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resource</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">res</span>: <span class="kw">impl</span> <span class="ident">legion::systems::Resource</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">resources</span>.<span class="ident">get_or_insert</span>(<span class="ident">res</span>);
+        <span class="self">self</span>
+    }
+    <span class="doccomment">/// Add a default resource</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resource_default</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">legion::systems::Resource</span> <span class="op">+</span> <span class="ident">Default</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">resources</span>.<span class="ident">get_or_default</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>();
         <span class="self">self</span>
     }
     <span class="doccomment">/// Declare a published event</span>
