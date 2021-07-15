@@ -80,6 +80,7 @@ sourcesIndex["thiserror_impl"] = {"name":"","files":["ast.rs","attr.rs","expand.
 sourcesIndex["traffloat"] = {"name":"","files":["cargo.rs","clock.rs","config.rs","factory.rs","graph.rs","lib.rs","macros.rs","shape.rs","sun.rs","util.rs"]};
 sourcesIndex["traffloat_codegen_raw"] = {"name":"","files":["gen.rs","lib.rs","system.rs"]};
 sourcesIndex["traffloat_types"] = {"name":"","files":["lib.rs","space.rs","time.rs","units.rs"]};
+sourcesIndex["traffloat_vanilla"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["typed_builder"] = {"name":"","files":["field_info.rs","lib.rs","struct_info.rs","util.rs"]};
 sourcesIndex["typenum"] = {"name":"","files":["array.rs","bit.rs","int.rs","lib.rs","marker_traits.rs","operator_aliases.rs","private.rs","type_operators.rs","uint.rs"]};
 sourcesIndex["unicode_xid"] = {"name":"","files":["lib.rs","tables.rs"]};

@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["ALL","All building types."]],"struct":[["Def","Defines a building type."],["Shape","Shape of a building."]]});

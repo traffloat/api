@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["buildings","Vanilla building definitions."],["reactions","Vanilla reaction definitions."]]});

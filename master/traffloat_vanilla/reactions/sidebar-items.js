@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Reaction","Defines a reaction type."]]});
