@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["ALL","All cargo types."]],"enum":[["Category","Category of the cargo type, only for display purpose."]],"struct":[["CategoryIter",""],["Def","Defines a cargo type."]]});

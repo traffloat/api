@@ -256,6 +256,12 @@
 <span id="256">256</span>
 <span id="257">257</span>
 <span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell</span>;
 <span class="kw">use</span> <span class="ident">std::collections::BTreeMap</span>;
@@ -355,6 +361,9 @@
             <span class="ident">ShapeSprites::Cube</span>(<span class="ident">cube</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">buffer</span>.<span class="ident">update</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">tex_pos</span>(<span class="ident">cube</span>, <span class="self">self</span>.<span class="ident">width</span>, <span class="self">self</span>.<span class="ident">height</span>));
                 <span class="ident">attr</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">buffer</span>);
+            }
+            <span class="ident">ShapeSprites::Icon</span>(<span class="ident">sprite</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="macro">unimplemented!</span>()
             }
         }
     }
@@ -459,12 +468,15 @@
     }
 }
 
+<span class="doccomment">/// Sprites for one shape.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;snake_case&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">tag</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ShapeSprites</span> {
     <span class="doccomment">/// Cube</span>
     <span class="ident">Cube</span>(<span class="ident">CubeSprites</span>),
+    <span class="doccomment">/// An icon sprite with only one shape.</span>
+    <span class="ident">Icon</span>(<span class="ident">RectSprite</span>),
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>

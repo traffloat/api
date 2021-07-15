@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["buildings","Vanilla building definitions."],["reactions","Vanilla reaction definitions."]]});
+initSidebarItems({"mod":[["buildings","Vanilla building definitions."],["cargo","Vanilla cargo type definitions."],["reactions","Vanilla mechanism definitions."]]});

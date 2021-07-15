@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["ALL","All building types."]],"struct":[["Def","Defines a building type."],["Shape","Shape of a building."]]});
+initSidebarItems({"constant":[["ALL","All building types."]],"enum":[["Category","Category of the building, only for display purpose."]],"struct":[["CategoryIter",""],["Def","Defines a building type."],["Shape","Shape of a building."]]});

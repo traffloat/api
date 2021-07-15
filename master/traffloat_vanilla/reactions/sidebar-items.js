@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Reaction","Defines a reaction type."]]});
+initSidebarItems({"constant":[["ALL","All reaction types."]],"enum":[["Catalyst","A catalyst for a reaction."],["Category","Category of the reactions, only for display purpose."],["Put","An input or output for a reaction."]],"struct":[["CategoryIter",""],["Def","Defines a reaction type."]]});
