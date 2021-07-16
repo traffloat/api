@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["buildings","Vanilla building definitions."],["cargo","Vanilla cargo type definitions."],["reactions","Vanilla mechanism definitions."]]});
+initSidebarItems({"mod":[["buildings","Vanilla building definitions."],["cargo","Vanilla cargo type definitions."],["gas","Vanilla gas type definitions."],["liquid","Vanilla liquid type definitions."],["reactions","Vanilla mechanism definitions."]]});

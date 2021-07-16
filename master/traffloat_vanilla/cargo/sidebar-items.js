@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["ALL","All cargo types."]],"enum":[["Category","Category of the cargo type, only for display purpose."]],"fn":[["category_description","A short description for the category."]],"struct":[["CategoryIter",""],["Def","Defines a cargo type."]]});
+initSidebarItems({"enum":[["Category","Category of the cargo type, only for display purpose."]],"fn":[["category_description","A short description for the category."],["gas_bottle",""],["liquid_bottle",""]],"struct":[["ALL",""],["CategoryIter",""],["Def","Defines a cargo type."]]});

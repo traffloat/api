@@ -1,0 +1,1 @@
+initSidebarItems({"macro":[["concatcp","Concatenates constants of primitive types into a `&'static str`."],["formatcp","Formats constants of primitive types into a `&'static str`"]]});

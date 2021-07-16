@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["ALL","All gas types."]],"struct":[["Def","Defines a gas type."]]});
