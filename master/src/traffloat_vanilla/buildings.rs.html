@@ -61,23 +61,49 @@
 <span id="61">61</span>
 <span id="62">62</span>
 <span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla building definitions.</span>
+
+<span class="kw">use</span> <span class="ident">std::borrow::Cow</span>;
 
 <span class="doccomment">/// Shape of a building.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Shape</span> {
     <span class="doccomment">/// Name of the texture</span>
-    <span class="kw">pub</span> <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">texture</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// Defines a building type.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Def</span> {
     <span class="doccomment">/// Name of the building type.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Short description string for the building type.</span>
-    <span class="kw">pub</span> <span class="ident">summary</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">summary</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Long, multiline description string for the building type.</span>
-    <span class="kw">pub</span> <span class="ident">description</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Category of building.</span>
     <span class="kw">pub</span> <span class="ident">category</span>: <span class="ident">Category</span>,
     <span class="doccomment">/// Shape of the building.</span>
@@ -96,35 +122,57 @@
     <span class="ident">Defense</span>,
 }
 
-<span class="doccomment">/// All building types.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ALL</span>: <span class="kw-2">&amp;</span>[<span class="ident">Def</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[
-    <span class="ident">Def</span> {
+<span class="macro">macro_rules!</span> <span class="ident">buildings</span> {
+    (
+        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>:<span class="ident">ident</span> {
+            <span class="ident">name</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">literal</span>,
+            <span class="ident">summary</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>:<span class="ident">literal</span>,
+            <span class="ident">description</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>:<span class="ident">literal</span>,
+            <span class="ident">category</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">category</span>:<span class="ident">ident</span>,
+            <span class="ident">texture</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>:<span class="ident">literal</span>,
+        })<span class="op">*</span>
+    ) <span class="op">=</span><span class="op">&gt;</span> {
+        $(
+            <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>: <span class="ident">Def</span> <span class="op">=</span> <span class="ident">Def</span> {
+                <span class="ident">name</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>),
+                <span class="ident">summary</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>),
+                <span class="ident">description</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>),
+                <span class="ident">category</span>: <span class="ident">Category</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category</span>,
+                <span class="ident">shape</span>: <span class="ident">Shape</span> { <span class="ident">texture</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>) },
+            };
+        )<span class="op">*</span>
+
+        <span class="doccomment">/// All building types.</span>
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ALL</span>: <span class="kw-2">&amp;</span>[<span class="ident">Def</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>),<span class="kw-2">*</span>];
+    }
+}
+
+<span class="macro">buildings!</span> {
+    <span class="ident">CORE</span> {
         <span class="ident">name</span>: <span class="string">&quot;Core&quot;</span>,
         <span class="ident">summary</span>: <span class="string">&quot;The center of the whole colony&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;The core is the ultimate building to protect. \
             It provides basic resources, including a small amount of uninterrupted power, \
             some oxygen generation and a few population housing. \
             Destruction of the core ends the game.&quot;</span>,
-        <span class="ident">category</span>: <span class="ident">Category::Population</span>,
-        <span class="ident">shape</span>: <span class="ident">Shape</span> { <span class="ident">texture</span>: <span class="string">&quot;core&quot;</span> },
-    },
-    <span class="ident">Def</span> {
+        <span class="ident">category</span>: <span class="ident">Population</span>,
+        <span class="ident">texture</span>: <span class="string">&quot;core&quot;</span>,
+    }
+    <span class="ident">HOUSE</span> {
         <span class="ident">name</span>: <span class="string">&quot;House&quot;</span>,
         <span class="ident">summary</span>: <span class="string">&quot;Produces and supports the survival of inhabitants.&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
-        <span class="ident">category</span>: <span class="ident">Category::Population</span>,
-        <span class="ident">shape</span>: <span class="ident">Shape</span> { <span class="ident">texture</span>: <span class="string">&quot;house&quot;</span> },
-    },
-    <span class="ident">Def</span> {
+        <span class="ident">category</span>: <span class="ident">Population</span>,
+        <span class="ident">texture</span>: <span class="string">&quot;house&quot;</span>,
+    }
+    <span class="ident">SOLAR_PANEL</span> {
         <span class="ident">name</span>: <span class="string">&quot;Solar panel&quot;</span>,
         <span class="ident">summary</span>: <span class="string">&quot;Basic power production&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
-        <span class="ident">category</span>: <span class="ident">Category::Electricity</span>,
-        <span class="ident">shape</span>: <span class="ident">Shape</span> {
-            <span class="ident">texture</span>: <span class="string">&quot;solar-panel&quot;</span>,
-        },
-    },
-];
+        <span class="ident">category</span>: <span class="ident">Electricity</span>,
+        <span class="ident">texture</span>: <span class="string">&quot;solar-panel&quot;</span>,
+    }
+}
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat_vanilla" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>

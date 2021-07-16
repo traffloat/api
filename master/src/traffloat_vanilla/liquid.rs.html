@@ -64,73 +64,111 @@
 <span id="64">64</span>
 <span id="65">65</span>
 <span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla liquid type definitions.</span>
 
-<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">use</span> <span class="ident">std::borrow::Cow</span>;
 
 <span class="doccomment">/// Defines a liquid type.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Def</span> {
+    <span class="doccomment">/// String identifying the type, used for cross-referencing in vanilla definition.</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">id</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Name of the liquid type.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Short description string for the liquid type.</span>
-    <span class="kw">pub</span> <span class="ident">summary</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">summary</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Long, multiline description string for the liquid type.</span>
-    <span class="kw">pub</span> <span class="ident">description</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Base texture string of the liquid.</span>
-    <span class="kw">pub</span> <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">texture</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">ASTEROIDAL_WATER</span>: <span class="ident">Def</span> <span class="op">=</span> <span class="ident">Def</span> {
-    <span class="ident">name</span>: <span class="string">&quot;Asteroidal water&quot;</span>,
-    <span class="ident">summary</span>: <span class="string">&quot;Water found on asteroids&quot;</span>,
-    <span class="ident">description</span>: <span class="string">&quot;Deposits of water can sometimes be found in asteroids. \
-        Contaminated by asteroidal minerals, it must be filtered to be used in factories,
-        or deionized so that it is drinkable by inhabitants.&quot;</span>,
-    <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
-};
+<span class="macro">macro_rules!</span> <span class="ident">liquids</span> {
+    (
+        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>:<span class="ident">ident</span> {
+            <span class="ident">name</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">literal</span>,
+            <span class="ident">summary</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>:<span class="ident">literal</span>,
+            <span class="ident">description</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>:<span class="ident">literal</span>,
+            <span class="ident">texture</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>:<span class="ident">literal</span>,
+        })<span class="op">*</span>
+    ) <span class="op">=</span><span class="op">&gt;</span> {
+        $(
+            <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>: <span class="ident">Def</span> <span class="op">=</span> <span class="ident">Def</span> {
+                <span class="ident">id</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>)),
+                <span class="ident">name</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>),
+                <span class="ident">summary</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>),
+                <span class="ident">description</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>),
+                <span class="ident">texture</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>),
+            };
+        )<span class="op">*</span>
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">FILTERED_WATER</span>: <span class="ident">Def</span> <span class="op">=</span> <span class="ident">Def</span> {
-    <span class="ident">name</span>: <span class="string">&quot;Filtered water&quot;</span>,
-    <span class="ident">summary</span>: <span class="string">&quot;Water without insoluble impurities.&quot;</span>,
-    <span class="ident">description</span>: <span class="string">&quot;Filtered water is removed of insoluble impurities, \
-        so they can be used in other factories without clogging up the pipes.&quot;</span>,
-    <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
-};
+        <span class="doccomment">/// All liquid types.</span>
+        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ALL</span>: <span class="kw-2">&amp;</span>[<span class="ident">Def</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>),<span class="kw-2">*</span>];
+    }
+}
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">DEIONIZED_WATER</span>: <span class="ident">Def</span> <span class="op">=</span> <span class="ident">Def</span> {
-    <span class="ident">name</span>: <span class="string">&quot;Deionized water&quot;</span>,
-    <span class="ident">summary</span>: <span class="string">&quot;Drinking water&quot;</span>,
-    <span class="ident">description</span>: <span class="string">&quot;Soluble impurities in water are removed from water during deionization. \
-        This makes the water safe for inhabitant intake.&quot;</span>,
-    <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
-};
+<span class="macro">liquids!</span> {
+    <span class="ident">ASTEROIDAL_WATER</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Asteroidal water&quot;</span>,
+        <span class="ident">summary</span>: <span class="string">&quot;Water found on asteroids&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Deposits of water can sometimes be found in asteroids. \
+            Contaminated by asteroidal minerals, it must be filtered to be used in factories,
+            or deionized so that it is drinkable by inhabitants.&quot;</span>,
+        <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+    }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">URINE</span>: <span class="ident">Def</span> <span class="op">=</span> <span class="ident">Def</span> {
-    <span class="ident">name</span>: <span class="string">&quot;Urine&quot;</span>,
-    <span class="ident">summary</span>: <span class="string">&quot;Waste produced by inhabitants&quot;</span>,
-    <span class="ident">description</span>: <span class="string">&quot;Urines are organic waste produced by inhabitants in houses. \
-        Arrange sewage pipes to remove them from houses and \
-        recycle them by distillation into drinking water.&quot;</span>,
-    <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
-};
+    <span class="ident">FILTERED_WATER</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Filtered water&quot;</span>,
+        <span class="ident">summary</span>: <span class="string">&quot;Water without insoluble impurities.&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Filtered water is removed of insoluble impurities, \
+            so they can be used in other factories without clogging up the pipes.&quot;</span>,
+        <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+    }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">COOLANT</span>: <span class="ident">Def</span> <span class="op">=</span> <span class="ident">Def</span> {
-    <span class="ident">name</span>: <span class="string">&quot;Coolant&quot;</span>,
-    <span class="ident">summary</span>: <span class="string">&quot;A liquid at very low temperature&quot;</span>,
-    <span class="ident">description</span>: <span class="string">&quot;Coolants are produced by condensation of nitrogen. \
-        They are required in factories with highly exothermic reactions.&quot;</span>,
-    <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
-};
+    <span class="ident">DEIONIZED_WATER</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Deionized water&quot;</span>,
+        <span class="ident">summary</span>: <span class="string">&quot;Drinking water&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Soluble impurities in water are removed from water during deionization. \
+            This makes the water safe for inhabitant intake.&quot;</span>,
+        <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+    }
 
-<span class="doccomment">/// All liquid types.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ALL</span>: <span class="kw-2">&amp;</span>[<span class="ident">Def</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[
-    <span class="ident">ASTEROIDAL_WATER</span>,
-    <span class="ident">FILTERED_WATER</span>,
-    <span class="ident">DEIONIZED_WATER</span>,
-    <span class="ident">URINE</span>,
-    <span class="ident">COOLANT</span>,
-];
+    <span class="ident">URINE</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Urine&quot;</span>,
+        <span class="ident">summary</span>: <span class="string">&quot;Waste produced by inhabitants&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Urines are organic waste produced by inhabitants in houses. \
+            Arrange sewage pipes to remove them from houses and \
+            recycle them by distillation into drinking water.&quot;</span>,
+        <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+    }
+
+    <span class="ident">COOLANT</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Coolant&quot;</span>,
+        <span class="ident">summary</span>: <span class="string">&quot;A liquid at very low temperature&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Coolants are produced by condensation of nitrogen. \
+            They are required in factories with highly exothermic reactions.&quot;</span>,
+        <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+    }
+}
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat_vanilla" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
