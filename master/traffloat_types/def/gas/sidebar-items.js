@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Type","A type of gas."],["TypeId","Identifies a cargo category"]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["building","Building definitions"],["cargo","Cargo definitions."],["gas","Gas definitions."],["liquid","Liquid definitions."],["reaction","Reaction definitions"],["skill","Skill definitions."]],"struct":[["GameDefinition","Game mechanism definition."]]});

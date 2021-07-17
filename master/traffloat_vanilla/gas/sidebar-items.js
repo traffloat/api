@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["ALL","All gas types."]],"struct":[["Def","Defines a gas type."]]});
+initSidebarItems({"fn":[["populate","Populates a [`GameDefinition`] with gas definition."]],"struct":[["Ids","IDs assigned to the vanilla game definition."]]});

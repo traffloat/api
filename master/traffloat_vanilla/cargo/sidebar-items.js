@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Category","Category of the cargo type, only for display purpose."]],"fn":[["category_description","A short description for the category."],["gas_bottle",""],["liquid_bottle",""]],"struct":[["ALL",""],["CategoryIter",""],["Def","Defines a cargo type."]]});
+initSidebarItems({"fn":[["populate","Populates a [`GameDefinition`] with cargo definition."]],"struct":[["Ids","IDs assigned to the vanilla game definition."]]});

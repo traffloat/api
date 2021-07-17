@@ -67,26 +67,10 @@
 <span id="67">67</span>
 <span id="68">68</span>
 <span id="69">69</span>
-<span id="70">70</span>
-<span id="71">71</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla gas type definitions.</span>
 
-<span class="kw">use</span> <span class="ident">std::borrow::Cow</span>;
-
-<span class="doccomment">/// Defines a gas type.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Def</span> {
-    <span class="doccomment">/// String identifying the type, used for cross-referencing in vanilla definition.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">id</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Name of the gas type.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Short description string for the gas type.</span>
-    <span class="kw">pub</span> <span class="ident">summary</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Long, multiline description string for the gas type.</span>
-    <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Base texture string of the gas type.</span>
-    <span class="kw">pub</span> <span class="ident">texture</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
-}
+<span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">gas</span>, <span class="ident">GameDefinition</span>};
 
 <span class="macro">macro_rules!</span> <span class="ident">gases</span> {
     (
@@ -97,23 +81,35 @@
             <span class="ident">texture</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>:<span class="ident">literal</span>,
         })<span class="op">*</span>
     ) <span class="op">=</span><span class="op">&gt;</span> {
-        $(
-            <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>: <span class="ident">Def</span> <span class="op">=</span> <span class="ident">Def</span> {
-                <span class="ident">id</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>)),
-                <span class="ident">name</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>),
-                <span class="ident">summary</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>),
-                <span class="ident">description</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>),
-                <span class="ident">texture</span>: <span class="ident">Cow::Borrowed</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>),
-            };
-        )<span class="op">*</span>
+        <span class="doccomment">/// IDs assigned to the vanilla game definition.</span>
+        <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Ids</span> {
+            $(
+                <span class="kw">pub</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>: <span class="ident">gas::TypeId</span>,
+            )<span class="op">*</span>
+        }
 
-        <span class="doccomment">/// All gas types.</span>
-        <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ALL</span>: <span class="kw-2">&amp;</span>[<span class="ident">Def</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>),<span class="kw-2">*</span>];
+        <span class="doccomment">/// Populates a [`GameDefinition`] with gas definition.</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">populate</span>(<span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">GameDefinition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ids</span> {
+            $(
+                <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">add_gas</span>(
+                    <span class="ident">gas::Type::builder</span>()
+                        .<span class="ident">name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
+                        .<span class="ident">summary</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
+                        .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
+                        .<span class="ident">texture</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
+                        .<span class="ident">build</span>()
+                );
+            )<span class="op">*</span>
+
+            <span class="ident">Ids</span> {
+                $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span>,)<span class="op">*</span>
+            }
+        }
     }
 }
 
 <span class="macro">gases!</span> {
-    <span class="ident">OXYGEN</span> {
+    <span class="ident">oxygen</span> {
         <span class="ident">name</span>: <span class="string">&quot;Oxygen&quot;</span>,
         <span class="ident">summary</span>: <span class="string">&quot;Needed for breathing&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Oxygen is required for survival of inhabitants. \
@@ -123,7 +119,7 @@
         <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
     }
 
-    <span class="ident">CARBON_DIOXIDE</span> {
+    <span class="ident">carbon_dioxide</span> {
         <span class="ident">name</span>: <span class="string">&quot;Carbon dioxide&quot;</span>,
         <span class="ident">summary</span>: <span class="string">&quot;Photosynthesis material&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Carbon dioxide is produced in houses and consumed in oxygen farms. \
@@ -132,7 +128,7 @@
         <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
     }
 
-    <span class="ident">NITROGEN</span> {
+    <span class="ident">nitrogen</span> {
         <span class="ident">name</span>: <span class="string">&quot;Nitrogen&quot;</span>,
         <span class="ident">summary</span>: <span class="string">&quot;An abundant, safe gas for pressure regulation&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Nitrogen is found in abundant amounts. \
