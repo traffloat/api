@@ -40,10 +40,54 @@
 <span id="40">40</span>
 <span id="41">41</span>
 <span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
+
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::reaction</span>;
 
 <span class="doccomment">/// Identifies a building category</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
@@ -67,6 +111,46 @@
     <span class="doccomment">/// Name of the texture.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">texture</span>: <span class="ident">String</span>,
+    <span class="doccomment">/// Reactions associated with the building.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">reactions</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">reaction::TypeId</span>, <span class="ident">ReactionPolicy</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// Extra features associated with the building.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">features</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExtraFeature</span><span class="op">&gt;</span>,
+}
+
+<span class="doccomment">/// Whether the reaction can be configured by players</span>
+<span class="doccomment">/// and the behaviour when inputs underflow or outputs overflow.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="attribute">#[<span class="ident">builder</span>(<span class="ident">field_defaults</span>(<span class="ident">default</span>))]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReactionPolicy</span> {
+    <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
+    <span class="ident">configurable</span>: <span class="ident">bool</span>,
+    <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
+    <span class="ident">on_underflow</span>: <span class="ident">FlowPolicy</span>,
+    <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
+    <span class="ident">on_overflow</span>: <span class="ident">FlowPolicy</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FlowPolicy</span> {
+    <span class="doccomment">/// Reduce the rate of reaction such that the input/output capacity is just enough.</span>
+    <span class="ident">ReduceRate</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FlowPolicy</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span><span class="ident">::ReduceRate</span>
+    }
+}
+
+<span class="doccomment">/// Extra features of a building</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ExtraFeature</span> {
+    <span class="doccomment">/// The building is a core and must not be destroyed.</span>
+    <span class="ident">Core</span>,
+    <span class="doccomment">/// The building provides housing capacity, and inhabitants can be assigned to it.</span>
+    <span class="ident">ProvidesHousing</span>(<span class="ident">u32</span>),
 }
 
 <span class="doccomment">/// Identifies a building category</span>

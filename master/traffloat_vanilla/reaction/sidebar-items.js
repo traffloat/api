@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["populate","Populates a [`GameDefinition`] with cargo definition."]],"struct":[["ReactionIds","IDs assigned to the vanilla game definition."]]});
+initSidebarItems({"fn":[["populate","Populates a [`GameDefinition`] with cargo definition."]],"struct":[["Ids","IDs assigned to the vanilla game definition."]]});
