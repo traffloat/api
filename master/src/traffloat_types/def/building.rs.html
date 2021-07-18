@@ -82,6 +82,9 @@
 <span id="82">82</span>
 <span id="83">83</span>
 <span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -119,19 +122,22 @@
     <span class="ident">features</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExtraFeature</span><span class="op">&gt;</span>,
 }
 
-<span class="doccomment">/// Whether the reaction can be configured by players</span>
-<span class="doccomment">/// and the behaviour when inputs underflow or outputs overflow.</span>
+<span class="doccomment">/// Reaction behaviour specific to this building.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>)]</span>
 <span class="attribute">#[<span class="ident">builder</span>(<span class="ident">field_defaults</span>(<span class="ident">default</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReactionPolicy</span> {
+    <span class="doccomment">/// Whethre the reaction rate can be configured by the players.</span>
     <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
     <span class="ident">configurable</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// What happens when inputs underflow.</span>
     <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
     <span class="ident">on_underflow</span>: <span class="ident">FlowPolicy</span>,
+    <span class="doccomment">/// What happens when outputs overflow.</span>
     <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
     <span class="ident">on_overflow</span>: <span class="ident">FlowPolicy</span>,
 }
 
+<span class="doccomment">/// behaviour when inputs underflow or outputs overflow.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FlowPolicy</span> {
     <span class="doccomment">/// Reduce the rate of reaction such that the input/output capacity is just enough.</span>
