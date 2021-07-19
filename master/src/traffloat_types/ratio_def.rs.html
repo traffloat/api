@@ -184,6 +184,12 @@
 <span id="184">184</span>
 <span id="185">185</span>
 <span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
 </pre><pre class="rust">
 <span class="macro">macro_rules!</span> <span class="ident">units</span> {
     (
@@ -313,6 +319,12 @@
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
                 <span class="kw">fn</span> <span class="ident">rem_assign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
                     <span class="self">self</span>.<span class="number">0</span> <span class="op">%</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">value</span>();
+                }
+            }
+
+            <span class="kw">impl</span> <span class="ident">::std::iter::Sum</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
+                <span class="kw">fn</span> <span class="ident">sum</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                    <span class="ident">iter</span>.<span class="ident">fold</span>(<span class="self">Self</span><span class="ident">::default</span>(), <span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">a</span> <span class="op">+</span> <span class="ident">b</span>)
                 }
             }
         )<span class="op">*</span>
