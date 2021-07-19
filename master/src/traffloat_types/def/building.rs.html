@@ -100,6 +100,13 @@
 <span id="100">100</span>
 <span id="101">101</span>
 <span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -107,6 +114,7 @@
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::reaction</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space::Matrix</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
 
 <span class="doccomment">/// Identifies a building category</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
@@ -180,13 +188,19 @@
     }
 }
 
-<span class="doccomment">/// Extra features of a building</span>
+<span class="doccomment">/// Extra features of a building (in addition to reactions)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ExtraFeature</span> {
     <span class="doccomment">/// The building is a core and must not be destroyed.</span>
     <span class="ident">Core</span>,
     <span class="doccomment">/// The building provides housing capacity, and inhabitants can be assigned to it.</span>
     <span class="ident">ProvidesHousing</span>(<span class="ident">u32</span>),
+    <span class="doccomment">/// The building provides driving force for vehicles on adjacent rails.</span>
+    <span class="ident">RailTerminal</span>(<span class="ident">units::RailForce</span>),
+    <span class="doccomment">/// The building provides pumping force for adjacent liquid pipes.</span>
+    <span class="ident">LiquidPump</span>(<span class="ident">units::PipeForce</span>),
+    <span class="doccomment">/// The building provides pumping force for gas diffusion in adjacent corridors.</span>
+    <span class="ident">GasPump</span>(<span class="ident">units::FanForce</span>),
 }
 
 <span class="doccomment">/// Identifies a building category</span>

@@ -143,12 +143,30 @@
 <span id="143">143</span>
 <span id="144">144</span>
 <span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla building definitions.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::VANILLA_TEXTURE</span>;
 <span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">building</span>, <span class="ident">GameDefinition</span>};
-<span class="kw">use</span> <span class="ident">traffloat_types::space</span>;
+<span class="kw">use</span> <span class="ident">traffloat_types</span>::{<span class="ident">space</span>, <span class="ident">units</span>};
 
 <span class="macro">macro_rules!</span> <span class="ident">buildings</span> {
     (
@@ -262,7 +280,7 @@
             <span class="ident">cube</span>: <span class="number">1.</span>,
             <span class="ident">texture</span>: <span class="string">&quot;core&quot;</span>,
             <span class="ident">reactions</span>: [],
-            <span class="ident">features</span>: [<span class="ident">Core</span>],
+            <span class="ident">features</span>: [<span class="ident">Core</span>, <span class="ident">ProvidesHousing</span>(<span class="number">1</span>)],
         }
         <span class="ident">hut</span> {
             <span class="ident">name</span>: <span class="string">&quot;Hut&quot;</span>,
@@ -275,11 +293,29 @@
         }
     }
 
+    <span class="ident">traffic</span> <span class="string">&quot;Traffic&quot;</span> (<span class="string">&quot;Buildings for traffic control&quot;</span>) {
+        <span class="ident">terminal</span> {
+            <span class="ident">name</span>: <span class="string">&quot;Terminal&quot;</span>,
+            <span class="ident">summary</span>: <span class="string">&quot;Connects and drives corridors&quot;</span>,
+            <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
+            <span class="ident">cube</span>: <span class="number">0.2</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;dummy-building&quot;</span>,
+            <span class="ident">reactions</span>: [],
+            <span class="ident">features</span>: [
+                <span class="ident">RailTerminal</span>(<span class="ident">units::RailForce</span>(<span class="number">100.</span>)),
+                <span class="ident">LiquidPump</span>(<span class="ident">units::PipeForce</span>(<span class="number">100.</span>)),
+                <span class="ident">GasPump</span>(<span class="ident">units::FanForce</span>(<span class="number">100.</span>)),
+            ],
+        }
+    }
+
     <span class="ident">electricity</span> <span class="string">&quot;Electricity&quot;</span> (<span class="string">&quot;Buildings to manage electricity&quot;</span>) {
         <span class="ident">solar_panel</span> {
             <span class="ident">name</span>: <span class="string">&quot;Solar panel&quot;</span>,
             <span class="ident">summary</span>: <span class="string">&quot;Basic power production&quot;</span>,
-            <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
+            <span class="ident">description</span>: <span class="string">&quot;Solar power is an effective power generation mechanism. \
+                Unobstructed by planetary atmosphere, \
+                solar panels are the primary source of power in early to mid game.&quot;</span>,
             <span class="ident">cube</span>: <span class="number">1.</span>,
             <span class="ident">texture</span>: <span class="string">&quot;solar-panel&quot;</span>,
             <span class="ident">reactions</span>: [
