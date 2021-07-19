@@ -78,14 +78,6 @@
 <span id="78">78</span>
 <span id="79">79</span>
 <span id="80">80</span>
-<span id="81">81</span>
-<span id="82">82</span>
-<span id="83">83</span>
-<span id="84">84</span>
-<span id="85">85</span>
-<span id="86">86</span>
-<span id="87">87</span>
-<span id="88">88</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of cargo in buildings</span>
 
@@ -94,26 +86,18 @@
 <span class="kw">use</span> <span class="ident">smallvec::SmallVec</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::clock</span>::{<span class="ident">SimulationEvent</span>, <span class="ident">SIMULATION_PERIOD</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::config</span>::{<span class="ident">Config</span>, <span class="ident">Id</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::time::Time</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units::CargoSize</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
-
-<span class="doccomment">/// A configuration of cargo.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Attributes associated with the cargo is located in other components.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Cargo</span>;
-
-<span class="kw">impl</span> <span class="ident">Config</span> <span class="kw">for</span> <span class="ident">Cargo</span> {}
 
 <span class="doccomment">/// A component attached to entities that house cargo.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">getset::Getters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StorageList</span> {
     <span class="doccomment">/// The list of cargos stored in the entity.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">storages</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">Id</span><span class="op">&lt;</span><span class="ident">Cargo</span><span class="op">&gt;</span>, <span class="ident">Entity</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
+    <span class="ident">storages</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">def::cargo::TypeId</span>, <span class="ident">Entity</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// A component attached to storage entities.</span>
@@ -121,7 +105,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Storage</span> {
     <span class="doccomment">/// The type of cargo</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">cargo</span>: <span class="ident">Id</span><span class="op">&lt;</span><span class="ident">Cargo</span><span class="op">&gt;</span>,
+    <span class="ident">cargo</span>: <span class="ident">def::cargo::TypeId</span>,
     <span class="doccomment">/// The maximum amount of the cargo in the storage</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">capacity</span>: <span class="ident">CargoSize</span>,

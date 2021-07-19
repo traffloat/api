@@ -116,10 +116,39 @@
 <span id="116">116</span>
 <span id="117">117</span>
 <span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla building definitions.</span>
 
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::VANILLA_TEXTURE</span>;
 <span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">building</span>, <span class="ident">GameDefinition</span>};
+<span class="kw">use</span> <span class="ident">traffloat_types::space</span>;
 
 <span class="macro">macro_rules!</span> <span class="ident">buildings</span> {
     (
@@ -128,6 +157,16 @@
                 <span class="ident">name</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">literal</span>,
                 <span class="ident">summary</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>:<span class="ident">literal</span>,
                 <span class="ident">description</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>:<span class="ident">literal</span>,
+                $(<span class="ident">cube</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cube_size</span>:<span class="ident">literal</span>,)<span class="question-mark">?</span>
+                $(<span class="ident">cuboid</span>: [
+                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_x1</span>:<span class="ident">literal</span>,
+                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_y1</span>:<span class="ident">literal</span>,
+                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_z1</span>:<span class="ident">literal</span> $(,)<span class="question-mark">?</span>
+                ] .. [
+                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_x2</span>:<span class="ident">literal</span>,
+                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_y2</span>:<span class="ident">literal</span>,
+                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_z2</span>:<span class="ident">literal</span> $(,)<span class="question-mark">?</span>
+                ],)<span class="question-mark">?</span>
                 <span class="ident">texture</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>:<span class="ident">literal</span>,
                 <span class="ident">reactions</span>: [
                     $(
@@ -164,7 +203,19 @@
                             .<span class="ident">name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
                             .<span class="ident">summary</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
                             .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
-                            .<span class="ident">texture</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
+                            .<span class="ident">shape</span>(<span class="ident">building::Shape::builder</span>()
+                                $(
+                                    .<span class="ident">transform</span>(<span class="ident">space::Matrix::new_scaling</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cube_size</span>))
+                                )<span class="question-mark">?</span>
+                                $(
+                                    .<span class="ident">transform</span>(<span class="ident">space::transform_cuboid</span>(
+                                        <span class="ident">space::Vector::new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_x1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_y1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_z1</span>),
+                                        <span class="ident">space::Vector::new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_x2</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_y2</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_z2</span>),
+                                    ))
+                                )<span class="question-mark">?</span>
+                                .<span class="ident">texture_src</span>(<span class="ident">String::from</span>(<span class="ident">VANILLA_TEXTURE</span>))
+                                .<span class="ident">texture_name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
+                                .<span class="ident">build</span>())
                             .<span class="ident">category</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_ident</span>)
                             .<span class="ident">reactions</span>(<span class="macro">vec!</span>[
                                 $(
@@ -208,6 +259,7 @@
                 It provides basic resources, including a small amount of uninterrupted power, \
                 some oxygen generation and a few population housing. \
                 Destruction of the core ends the game.&quot;</span>,
+            <span class="ident">cube</span>: <span class="number">1.</span>,
             <span class="ident">texture</span>: <span class="string">&quot;core&quot;</span>,
             <span class="ident">reactions</span>: [],
             <span class="ident">features</span>: [<span class="ident">Core</span>],
@@ -216,6 +268,7 @@
             <span class="ident">name</span>: <span class="string">&quot;Hut&quot;</span>,
             <span class="ident">summary</span>: <span class="string">&quot;A small living quarter.&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
+            <span class="ident">cube</span>: <span class="number">1.</span>,
             <span class="ident">texture</span>: <span class="string">&quot;house&quot;</span>,
             <span class="ident">reactions</span>: [],
             <span class="ident">features</span>: [<span class="ident">ProvidesHousing</span>(<span class="number">6</span>)],
@@ -227,6 +280,7 @@
             <span class="ident">name</span>: <span class="string">&quot;Solar panel&quot;</span>,
             <span class="ident">summary</span>: <span class="string">&quot;Basic power production&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
+            <span class="ident">cube</span>: <span class="number">1.</span>,
             <span class="ident">texture</span>: <span class="string">&quot;solar-panel&quot;</span>,
             <span class="ident">reactions</span>: [
                 <span class="ident">solar_power</span> {},
