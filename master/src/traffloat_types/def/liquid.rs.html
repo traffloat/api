@@ -22,10 +22,17 @@
 <span id="22">22</span>
 <span id="23">23</span>
 <span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Liquid definitions.</span>
 
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
+
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
 
 <span class="doccomment">/// Identifies a cargo category</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
@@ -43,6 +50,9 @@
     <span class="doccomment">/// Long description of the liquid type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">description</span>: <span class="ident">String</span>,
+    <span class="doccomment">/// Viscosity of a liquid.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">viscosity</span>: <span class="ident">units::LiquidViscosity</span>,
     <span class="doccomment">/// Name of the texture.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">texture</span>: <span class="ident">String</span>,

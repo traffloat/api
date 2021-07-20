@@ -133,11 +133,16 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Defines the mechanism of a game.</span>
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">building</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cargo</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">crime</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">gas</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">liquid</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">reaction</span>;
@@ -173,6 +178,9 @@
     <span class="doccomment">/// Building categories.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">building_cats</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">building::Category</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// List of possible crimes.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">crime</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">crime::Type</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">GameDefinition</span> {

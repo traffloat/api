@@ -52,6 +52,25 @@
 <span id="52">52</span>
 <span id="53">53</span>
 <span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla skill type definitions.</span>
 
@@ -90,21 +109,40 @@
 }
 
 <span class="macro">skills!</span> {
+    <span class="ident">age</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Age&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Age of the inhabitant. Some jobs require operators of a specific age range. \
+            A high age increases the probability of health decrease.&quot;</span>,
+    }
+    <span class="ident">health</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Health&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Physical well-being of the inhabitant. The inhabitant dies when health drops to zero.&quot;</span>,
+    }
+    <span class="ident">morality</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Morality&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Inhabitants are educated with morality values to reduce the probability of committing crimes.&quot;</span>,
+    }
     <span class="ident">driving</span> {
-        <span class="ident">name</span>: <span class="string">&quot;Driving&quot;</span>,
+        <span class="ident">name</span>: <span class="string">&quot;Driving skill&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;When an inhabitant with good driving skill operates a vehicle, it can move faster across rails.&quot;</span>,
     }
     <span class="ident">mechanic</span> {
-        <span class="ident">name</span>: <span class="string">&quot;Mechanic&quot;</span>,
+        <span class="ident">name</span>: <span class="string">&quot;Mechanic skill&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Inhabitants are trained as mechanics to operate factories more effectively.&quot;</span>,
     }
     <span class="ident">construction</span> {
-        <span class="ident">name</span>: <span class="string">&quot;Construction&quot;</span>,
+        <span class="ident">name</span>: <span class="string">&quot;Construction skill&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Inhabitants are trained as builders to construct new buildings faster.&quot;</span>,
     }
     <span class="ident">teaching</span> {
-        <span class="ident">name</span>: <span class="string">&quot;Teaching&quot;</span>,
+        <span class="ident">name</span>: <span class="string">&quot;Teaching skill&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Inhabitants are trained as teachers so that the next generation can learn better in schools.&quot;</span>,
+    }
+    <span class="ident">military</span> {
+        <span class="ident">name</span>: <span class="string">&quot;Military skill&quot;</span>,
+        <span class="ident">description</span>: <span class="string">&quot;Inhabitants are trained as soldiers or police. \
+            Weapons they operate will be more effective, \
+            and they have higher chance of successfully arresting an outlaw.&quot;</span>,
     }
 }
 </pre></div>

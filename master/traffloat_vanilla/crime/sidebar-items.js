@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["populate","Populates the game definition with crime data."]]});

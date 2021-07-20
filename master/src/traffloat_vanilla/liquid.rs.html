@@ -81,6 +81,13 @@
 <span id="81">81</span>
 <span id="82">82</span>
 <span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla liquid type definitions.</span>
 
@@ -92,6 +99,7 @@
             <span class="ident">name</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">literal</span>,
             <span class="ident">summary</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>:<span class="ident">literal</span>,
             <span class="ident">description</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>:<span class="ident">literal</span>,
+            <span class="ident">viscosity</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">viscosity</span>:<span class="ident">literal</span>,
             <span class="ident">texture</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>:<span class="ident">literal</span>,
         })<span class="op">*</span>
     ) <span class="op">=</span><span class="op">&gt;</span> {
@@ -110,6 +118,7 @@
                         .<span class="ident">name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
                         .<span class="ident">summary</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
                         .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
+                        .<span class="ident">viscosity</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">viscosity</span>.<span class="ident">into</span>())
                         .<span class="ident">texture</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
                         .<span class="ident">build</span>()
                 );
@@ -129,6 +138,7 @@
         <span class="ident">description</span>: <span class="string">&quot;Deposits of water can sometimes be found in asteroids. \
             Contaminated by asteroidal minerals, it must be filtered to be used in factories,
             or deionized so that it is drinkable by inhabitants.&quot;</span>,
+        <span class="ident">viscosity</span>: <span class="number">1.</span>,
         <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
     }
 
@@ -137,6 +147,7 @@
         <span class="ident">summary</span>: <span class="string">&quot;Water without insoluble impurities.&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Filtered water is removed of insoluble impurities, \
             so they can be used in other factories without clogging up the pipes.&quot;</span>,
+        <span class="ident">viscosity</span>: <span class="number">1.</span>,
         <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
     }
 
@@ -145,6 +156,7 @@
         <span class="ident">summary</span>: <span class="string">&quot;Drinking water&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Soluble impurities in water are removed from water during deionization. \
             This makes the water safe for inhabitant intake.&quot;</span>,
+        <span class="ident">viscosity</span>: <span class="number">1.</span>,
         <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
     }
 
@@ -154,6 +166,7 @@
         <span class="ident">description</span>: <span class="string">&quot;Urines are organic waste produced by inhabitants in houses. \
             Arrange sewage pipes to remove them from houses and \
             recycle them by distillation into drinking water.&quot;</span>,
+        <span class="ident">viscosity</span>: <span class="number">5.</span>,
         <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
     }
 
@@ -162,6 +175,7 @@
         <span class="ident">summary</span>: <span class="string">&quot;A liquid at very low temperature&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Coolants are produced by condensation of nitrogen. \
             They are required in factories with highly exothermic reactions.&quot;</span>,
+        <span class="ident">viscosity</span>: <span class="number">1.</span>,
         <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
     }
 }
