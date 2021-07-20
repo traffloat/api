@@ -145,6 +145,12 @@
 <span id="145">145</span>
 <span id="146">146</span>
 <span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -179,6 +185,12 @@
     <span class="doccomment">/// Reactions associated with the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">reactions</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">reaction::TypeId</span>, <span class="ident">ReactionPolicy</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// Maximum hitpoint of a building.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The actual hitpoint is subject to asteroid and fire damage.</span>
+    <span class="doccomment">/// It can be restored by construction work.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">hitpoint</span>: <span class="ident">units::Hitpoint</span>,
     <span class="doccomment">/// Storage provided by a building</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">storage</span>: <span class="ident">Storage</span>,

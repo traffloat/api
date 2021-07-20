@@ -63,6 +63,9 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Crime definitions.</span>
 
@@ -74,6 +77,7 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def::skill</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
 
+<span class="doccomment">/// Consequence of a crime.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Action</span> {
     <span class="doccomment">/// Steal random cargo carried by inhabitants in the same node or vehicle.</span>
@@ -101,9 +105,11 @@
 <span class="doccomment">/// A criterion to sort inhabitants with.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">InhabitantCriterion</span> {
+    <span class="doccomment">/// Select the inhabitant with the highest skill.</span>
     <span class="ident">HighestSkill</span>(<span class="ident">skill::TypeId</span>),
 }
 
+<span class="doccomment">/// A type of crime customized for the game definition.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::CopyGetters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the crime.</span>

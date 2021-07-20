@@ -235,6 +235,14 @@
 <span id="235">235</span>
 <span id="236">236</span>
 <span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla building definitions.</span>
 
@@ -267,6 +275,7 @@
                         },
                     )<span class="op">*</span>
                 ],
+                <span class="ident">hitpoint</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">hitpoint</span>:<span class="ident">literal</span>,
                 <span class="ident">storage</span>: {
                     <span class="ident">cargo</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cargo_storage</span>:<span class="ident">literal</span>,
                     <span class="ident">liquid</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">liquid_storage</span>:<span class="ident">literal</span>,
@@ -326,6 +335,7 @@
                                     ),
                                 )<span class="op">*</span>
                             ])
+                            .<span class="ident">hitpoint</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">hitpoint</span>.<span class="ident">into</span>())
                             .<span class="ident">storage</span>(<span class="ident">building::Storage::builder</span>()
                                 .<span class="ident">cargo</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cargo_storage</span>.<span class="ident">into</span>())
                                 .<span class="ident">liquid</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">liquid_storage</span>.<span class="ident">into</span>())
@@ -364,6 +374,7 @@
             <span class="ident">cube</span>: <span class="number">1.</span>,
             <span class="ident">texture</span>: <span class="string">&quot;core&quot;</span>,
             <span class="ident">reactions</span>: [],
+            <span class="ident">hitpoint</span>: <span class="number">3000.</span>,
             <span class="ident">storage</span>: {
                 <span class="ident">cargo</span>: <span class="number">1000.</span>,
                 <span class="ident">liquid</span>: <span class="number">1000.</span>,
@@ -378,6 +389,7 @@
             <span class="ident">cube</span>: <span class="number">1.</span>,
             <span class="ident">texture</span>: <span class="string">&quot;house&quot;</span>,
             <span class="ident">reactions</span>: [],
+            <span class="ident">hitpoint</span>: <span class="number">150.</span>,
             <span class="ident">storage</span>: {
                 <span class="ident">cargo</span>: <span class="number">1000.</span>,
                 <span class="ident">liquid</span>: <span class="number">1000.</span>,
@@ -395,6 +407,7 @@
             <span class="ident">cube</span>: <span class="number">0.2</span>,
             <span class="ident">texture</span>: <span class="string">&quot;dummy-building&quot;</span>,
             <span class="ident">reactions</span>: [],
+            <span class="ident">hitpoint</span>: <span class="number">100.</span>,
             <span class="ident">storage</span>: {
                 <span class="ident">cargo</span>: <span class="number">1000.</span>,
                 <span class="ident">liquid</span>: <span class="number">1000.</span>,
@@ -420,6 +433,7 @@
             <span class="ident">reactions</span>: [
                 <span class="ident">solar_power</span> {<span class="ident">configurable</span>: <span class="bool-val">true</span>},
             ],
+            <span class="ident">hitpoint</span>: <span class="number">200.</span>,
             <span class="ident">storage</span>: {
                 <span class="ident">cargo</span>: <span class="number">1000.</span>,
                 <span class="ident">liquid</span>: <span class="number">1000.</span>,
@@ -439,6 +453,7 @@
             <span class="ident">reactions</span>: [
                 <span class="ident">driving_lesson</span> {},
             ],
+            <span class="ident">hitpoint</span>: <span class="number">150.</span>,
             <span class="ident">storage</span>: {
                 <span class="ident">cargo</span>: <span class="number">1000.</span>,
                 <span class="ident">liquid</span>: <span class="number">1000.</span>,
@@ -459,6 +474,7 @@
             <span class="ident">reactions</span>: [
                 <span class="ident">imprisonment</span> {},
             ],
+            <span class="ident">hitpoint</span>: <span class="number">200.</span>,
             <span class="ident">storage</span>: {
                 <span class="ident">cargo</span>: <span class="number">1000.</span>,
                 <span class="ident">liquid</span>: <span class="number">1000.</span>,
