@@ -29,6 +29,8 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla data definition</span>
 
@@ -41,6 +43,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">gas</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">liquid</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">reaction</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">skill</span>;
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VANILLA_TEXTURE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;textures.png&quot;</span>;
 
@@ -51,10 +54,11 @@
     <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>, <span class="ident">f64</span>)<span class="op">&gt;</span>,
 ) {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">def</span> <span class="op">=</span> <span class="ident">GameDefinition::default</span>();
+    <span class="kw">let</span> <span class="ident">skill</span> <span class="op">=</span> <span class="ident">skill::populate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">def</span>);
     <span class="kw">let</span> <span class="ident">liquid</span> <span class="op">=</span> <span class="ident">liquid::populate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">def</span>);
     <span class="kw">let</span> <span class="ident">gas</span> <span class="op">=</span> <span class="ident">gas::populate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">def</span>);
     <span class="kw">let</span> <span class="ident">cargo</span> <span class="op">=</span> <span class="ident">cargo::populate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">def</span>);
-    <span class="kw">let</span> <span class="ident">reaction</span> <span class="op">=</span> <span class="ident">reaction::populate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">def</span>, <span class="kw-2">&amp;</span><span class="ident">cargo</span>, <span class="kw-2">&amp;</span><span class="ident">liquid</span>, <span class="kw-2">&amp;</span><span class="ident">gas</span>);
+    <span class="kw">let</span> <span class="ident">reaction</span> <span class="op">=</span> <span class="ident">reaction::populate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">def</span>, <span class="kw-2">&amp;</span><span class="ident">cargo</span>, <span class="kw-2">&amp;</span><span class="ident">liquid</span>, <span class="kw-2">&amp;</span><span class="ident">gas</span>, <span class="kw-2">&amp;</span><span class="ident">skill</span>);
     <span class="kw">let</span> <span class="ident">building</span> <span class="op">=</span> <span class="ident">building::populate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">def</span>, <span class="kw-2">&amp;</span><span class="ident">reaction</span>);
 
     <span class="kw">let</span> (<span class="ident">nodes</span>, <span class="ident">edges</span>) <span class="op">=</span> <span class="ident">default::default_setup</span>(<span class="kw-2">&amp;</span><span class="ident">def</span>, <span class="kw-2">&amp;</span><span class="ident">building</span>);
