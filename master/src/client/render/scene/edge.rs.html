@@ -74,6 +74,18 @@
 <span id="74">74</span>
 <span id="75">75</span>
 <span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge rendering</span>
 
@@ -96,6 +108,7 @@
     <span class="ident">u_diffuse</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
     <span class="ident">u_specular</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
     <span class="ident">u_specular_coef</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="ident">u_inv_gain</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Program</span> {
@@ -119,6 +132,7 @@
         <span class="kw">let</span> <span class="ident">u_diffuse</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_diffuse&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_specular</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_specular&quot;</span>);
         <span class="kw">let</span> <span class="ident">u_specular_coef</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_specular_coef&quot;</span>);
+        <span class="kw">let</span> <span class="ident">u_inv_gain</span> <span class="op">=</span> <span class="ident">UniformLocation::new</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prog</span>, <span class="string">&quot;u_inv_gain&quot;</span>);
 
         <span class="self">Self</span> {
             <span class="ident">prog</span>,
@@ -132,11 +146,19 @@
             <span class="ident">u_diffuse</span>,
             <span class="ident">u_specular</span>,
             <span class="ident">u_specular_coef</span>,
+            <span class="ident">u_inv_gain</span>,
         }
     }
 
     <span class="doccomment">/// Draws an edge on the canvas.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">proj</span>: <span class="ident">Matrix</span>, <span class="ident">sun</span>: <span class="ident">Vector</span>, <span class="ident">rgba</span>: [<span class="ident">f32</span>; <span class="number">4</span>]) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
+        <span class="ident">proj</span>: <span class="ident">Matrix</span>,
+        <span class="ident">sun</span>: <span class="ident">Vector</span>,
+        <span class="ident">rgba</span>: [<span class="ident">f32</span>; <span class="number">4</span>],
+        <span class="ident">selected</span>: <span class="ident">bool</span>,
+    ) {
         <span class="ident">gl</span>.<span class="ident">use_program</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prog</span>));
         <span class="self">self</span>.<span class="ident">u_trans</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">proj</span>);
         <span class="self">self</span>.<span class="ident">u_trans_sun</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">sun</span>);
@@ -145,6 +167,8 @@
         <span class="self">self</span>.<span class="ident">u_diffuse</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">0.2</span>);
         <span class="self">self</span>.<span class="ident">u_specular</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">1.0</span>);
         <span class="self">self</span>.<span class="ident">u_specular_coef</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">10.0</span>);
+        <span class="self">self</span>.<span class="ident">u_inv_gain</span>
+            .<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="kw">if</span> <span class="ident">selected</span> { <span class="number">0.5f32</span> } <span class="kw">else</span> { <span class="number">1f32</span> });
 
         <span class="self">self</span>.<span class="ident">a_pos</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">positions</span>());
         <span class="self">self</span>.<span class="ident">a_normal</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">normals</span>());

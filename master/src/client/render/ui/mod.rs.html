@@ -33,7 +33,7 @@
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::Dimension</span>;
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">node</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">scene_object</span>;
 <span class="kw">mod</span> <span class="ident">wrapper</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">wrapper</span>::<span class="kw-2">*</span>;
 
@@ -53,7 +53,7 @@
 
 <span class="doccomment">/// Sets up legion ECS for UI rendering.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
-    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">node::setup_ecs</span>)
+    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">scene_object::setup_ecs</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="client" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>

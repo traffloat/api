@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Msg","Events for [`NodeInfo`]."]],"fn":[["setup_ecs","Sets up legion ECS for node info rendering."]],"struct":[["NodeInfo","Displays basic info about a node."],["Props","Yew properties for [`NodeInfo`]."]]});

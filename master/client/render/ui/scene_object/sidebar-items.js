@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Info","Node or edge info."],["Msg","Events for [`Comp`]."]],"fn":[["setup_ecs","Sets up legion ECS for scene object info rendering."]],"struct":[["Comp","Displays basic info about a scene object."],["Props","Yew properties for [`Comp`]."]]});
