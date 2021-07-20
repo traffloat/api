@@ -107,6 +107,26 @@
 <span id="107">107</span>
 <span id="108">108</span>
 <span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -141,6 +161,9 @@
     <span class="doccomment">/// Reactions associated with the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">reactions</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">reaction::TypeId</span>, <span class="ident">ReactionPolicy</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// Storage provided by a building</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">storage</span>: <span class="ident">Storage</span>,
     <span class="doccomment">/// Extra features associated with the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">features</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExtraFeature</span><span class="op">&gt;</span>,
@@ -186,6 +209,23 @@
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::ReduceRate</span>
     }
+}
+
+<span class="doccomment">/// Storage provided by a building.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This storage is also used as a buffer for liquid and gas transfer.</span>
+<span class="doccomment">/// The storage size is the maximum amount of liquid and gas that</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Storage</span> {
+    <span class="doccomment">/// Cargo storage provided</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">cargo</span>: <span class="ident">units::CargoSize</span>,
+    <span class="doccomment">/// Liquid storage provided</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">liquid</span>: <span class="ident">units::LiquidVolume</span>,
+    <span class="doccomment">/// Gas storage provided</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">gas</span>: <span class="ident">units::GasVolume</span>,
 }
 
 <span class="doccomment">/// Extra features of a building (in addition to reactions)</span>
