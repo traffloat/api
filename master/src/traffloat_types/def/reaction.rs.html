@@ -160,6 +160,22 @@
 <span id="160">160</span>
 <span id="161">161</span>
 <span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Reaction definitions</span>
 
@@ -295,17 +311,33 @@
         <span class="doccomment">/// Base (unmultiplied) rate of electricity consumed/generated</span>
         <span class="ident">base</span>: <span class="ident">Rate</span><span class="op">&lt;</span><span class="ident">units::ElectricPower</span><span class="op">&gt;</span>,
     },
+    <span class="doccomment">/// Change of happiness</span>
+    <span class="ident">Happiness</span> {
+        <span class="doccomment">/// Base (unmultiplied) rate of happiness change</span>
+        <span class="ident">base</span>: <span class="ident">Rate</span><span class="op">&lt;</span><span class="ident">units::Happiness</span><span class="op">&gt;</span>,
+    },
 }
 
 <span class="kw">impl</span> <span class="ident">Put</span> {
-    <span class="doccomment">/// Base put rate of the reaction.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">base</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
+    <span class="doccomment">/// Base put rate of the resource.</span>
+    <span class="kw">fn</span> <span class="ident">base</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="self">Self</span><span class="ident">::Cargo</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
             <span class="self">Self</span><span class="ident">::Liquid</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
             <span class="self">Self</span><span class="ident">::Gas</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
             <span class="self">Self</span><span class="ident">::Electricity</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
+            <span class="self">Self</span><span class="ident">::Happiness</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
         }
+    }
+
+    <span class="doccomment">/// Whether this is an output</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_output</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">base</span>() <span class="op">&gt;</span> <span class="number">0.</span>
+    }
+
+    <span class="doccomment">/// Whether this is an input</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_input</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">base</span>() <span class="op">&lt;</span> <span class="number">0.</span>
     }
 }
 
