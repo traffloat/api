@@ -137,6 +137,15 @@
 <span id="137">137</span>
 <span id="138">138</span>
 <span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Defines the mechanism of a game.</span>
 
@@ -147,6 +156,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">liquid</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">reaction</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">skill</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">vehicle</span>;
 
 <span class="doccomment">/// Game mechanism definition.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::MutGetters</span>)]</span>
@@ -166,6 +176,9 @@
     <span class="doccomment">/// Skill types.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">skill</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">skill::Type</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Vehicle types.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">vehicle</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">vehicle::Type</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Reaction types.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">reaction</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">reaction::Type</span><span class="op">&gt;</span>,
@@ -208,6 +221,11 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_skill</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">skill</span>: <span class="ident">skill::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">skill::TypeId</span> {
         <span class="self">self</span>.<span class="ident">skill</span>.<span class="ident">push</span>(<span class="ident">skill</span>);
         <span class="ident">skill::TypeId</span>(<span class="self">self</span>.<span class="ident">skill</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>)
+    }
+    <span class="doccomment">/// Adds a vehicle type.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_vehicle</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vehicle</span>: <span class="ident">vehicle::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">vehicle::TypeId</span> {
+        <span class="self">self</span>.<span class="ident">vehicle</span>.<span class="ident">push</span>(<span class="ident">vehicle</span>);
+        <span class="ident">vehicle::TypeId</span>(<span class="self">self</span>.<span class="ident">vehicle</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>)
     }
     <span class="doccomment">/// Adds a reaction category.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_reaction_category</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cat</span>: <span class="ident">reaction::Category</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">reaction::CategoryId</span> {
