@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"fn":[["setup_ecs","Sets up legion ECS for edge info rendering."]],"struct":[["Comp","Displays basic info about an edge at a corner of the screen."],["Props","Yew properties for [`Comp`]."]]});
