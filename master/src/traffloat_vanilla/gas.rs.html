@@ -67,8 +67,12 @@
 <span id="67">67</span>
 <span id="68">68</span>
 <span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla gas type definitions.</span>
+
+<span class="kw">use</span> <span class="ident">arcstr::literal</span>;
 
 <span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">gas</span>, <span class="ident">GameDefinition</span>};
 
@@ -93,10 +97,10 @@
             $(
                 <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">add_gas</span>(
                     <span class="ident">gas::Type::builder</span>()
-                        .<span class="ident">name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
-                        .<span class="ident">summary</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
-                        .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
-                        .<span class="ident">texture</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
+                        .<span class="ident">name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
+                        .<span class="ident">summary</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
+                        .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
+                        .<span class="ident">texture</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
                         .<span class="ident">build</span>()
                 );
             )<span class="op">*</span>

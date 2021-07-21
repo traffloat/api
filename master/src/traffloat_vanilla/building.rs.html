@@ -243,8 +243,12 @@
 <span id="243">243</span>
 <span id="244">244</span>
 <span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla building definitions.</span>
+
+<span class="kw">use</span> <span class="ident">arcstr::literal</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::VANILLA_TEXTURE</span>;
 <span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">building</span>, <span class="ident">GameDefinition</span>};
@@ -299,16 +303,16 @@
             $(
                 <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_ident</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">add_building_category</span>(
                     <span class="ident">building::Category::builder</span>()
-                        .<span class="ident">title</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category</span>))
-                        .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_description</span>))
+                        .<span class="ident">title</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category</span>))
+                        .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_description</span>))
                         .<span class="ident">build</span>()
                 );
                 $(
                     <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">add_building</span>(
                         <span class="ident">building::Type::builder</span>()
-                            .<span class="ident">name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
-                            .<span class="ident">summary</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
-                            .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
+                            .<span class="ident">name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
+                            .<span class="ident">summary</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
+                            .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
                             .<span class="ident">shape</span>(<span class="ident">building::Shape::builder</span>()
                                 $(
                                     .<span class="ident">transform</span>(<span class="ident">space::Matrix::new_scaling</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cube_size</span>))
@@ -319,8 +323,8 @@
                                         <span class="ident">space::Vector::new</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_x2</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_y2</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">cuboid_z2</span>),
                                     ))
                                 )<span class="question-mark">?</span>
-                                .<span class="ident">texture_src</span>(<span class="ident">String::from</span>(<span class="ident">VANILLA_TEXTURE</span>))
-                                .<span class="ident">texture_name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
+                                .<span class="ident">texture_src</span>(<span class="macro">literal!</span>(<span class="ident">VANILLA_TEXTURE</span>))
+                                .<span class="ident">texture_name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
                                 .<span class="ident">build</span>())
                             .<span class="ident">category</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_ident</span>)
                             .<span class="ident">reactions</span>(<span class="macro">vec!</span>[

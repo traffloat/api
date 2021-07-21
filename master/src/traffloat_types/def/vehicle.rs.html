@@ -52,11 +52,13 @@
 <span id="52">52</span>
 <span id="53">53</span>
 <span id="54">54</span>
+<span id="55">55</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vehicle definitions.</span>
 
 <span class="kw">use</span> <span class="ident">std::ops::Range</span>;
 
+<span class="kw">use</span> <span class="ident">arcstr::ArcStr</span>;
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>::{<span class="ident">reaction</span>, <span class="ident">skill</span>};
@@ -71,10 +73,10 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the vehicle type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">String</span>,
+    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Long description of the vehicle type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">description</span>: <span class="ident">String</span>,
+    <span class="ident">description</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Base speed of the vehicle.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Subject to terminal force and operator skill.</span>
@@ -91,7 +93,7 @@
     <span class="ident">skill</span>: <span class="ident">Skill</span>,
     <span class="doccomment">/// Name of the texture.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">texture</span>: <span class="ident">String</span>,
+    <span class="ident">texture</span>: <span class="ident">ArcStr</span>,
 }
 
 <span class="doccomment">/// A skill required for driving the vehicle.</span>

@@ -71,8 +71,12 @@
 <span id="71">71</span>
 <span id="72">72</span>
 <span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla skill type definitions.</span>
+
+<span class="kw">use</span> <span class="ident">arcstr::literal</span>;
 
 <span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">skill</span>, <span class="ident">GameDefinition</span>};
 
@@ -95,8 +99,8 @@
             $(
                 <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">add_skill</span>(
                     <span class="ident">skill::Type::builder</span>()
-                        .<span class="ident">name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
-                        .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
+                        .<span class="ident">name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
+                        .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
                         .<span class="ident">build</span>()
                 );
             )<span class="op">*</span>

@@ -2,6 +2,7 @@ var N = null;var sourcesIndex = {};
 sourcesIndex["anyhow"] = {"name":"","files":["backtrace.rs","chain.rs","context.rs","error.rs","fmt.rs","kind.rs","lib.rs","macros.rs","ptr.rs","wrapper.rs"]};
 sourcesIndex["anymap"] = {"name":"","files":["any.rs","lib.rs","raw.rs"]};
 sourcesIndex["approx"] = {"name":"","files":["abs_diff_eq.rs","lib.rs","macros.rs","relative_eq.rs","ulps_eq.rs"]};
+sourcesIndex["arcstr"] = {"name":"","files":["arc_str.rs","lib.rs","mac.rs","substr.rs"]};
 sourcesIndex["atomic_refcell"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["bit_set"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["bit_vec"] = {"name":"","files":["lib.rs"]};

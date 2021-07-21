@@ -189,11 +189,13 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
+<span id="192">192</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Reaction definitions</span>
 
 <span class="kw">use</span> <span class="ident">std::ops::Range</span>;
 
+<span class="kw">use</span> <span class="ident">arcstr::ArcStr</span>;
 <span class="kw">use</span> <span class="ident">smallvec::SmallVec</span>;
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
@@ -210,10 +212,10 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the reaction type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">String</span>,
+    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Description of the reaction type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">description</span>: <span class="ident">String</span>,
+    <span class="ident">description</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Category of the reaction type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">category</span>: <span class="ident">CategoryId</span>,
@@ -376,10 +378,10 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Category</span> {
     <span class="doccomment">/// Title of the reaction category.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">title</span>: <span class="ident">String</span>,
+    <span class="ident">title</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Description of the reaction category.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">description</span>: <span class="ident">String</span>,
+    <span class="ident">description</span>: <span class="ident">ArcStr</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="traffloat_types" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

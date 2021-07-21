@@ -211,12 +211,14 @@
 <span id="211">211</span>
 <span id="212">212</span>
 <span id="213">213</span>
+<span id="214">214</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Basic node and edge management</span>
 
 <span class="kw">use</span> <span class="ident">std::collections::BTreeMap</span>;
 <span class="kw">use</span> <span class="ident">std::num::NonZeroUsize</span>;
 
+<span class="kw">use</span> <span class="ident">arcstr::ArcStr</span>;
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">legion::Entity</span>;
 
@@ -238,7 +240,7 @@
     <span class="doccomment">/// Name of the node</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">String</span>,
+    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
 }
 
 <span class="doccomment">/// Component storing the endpoints of an edge</span>

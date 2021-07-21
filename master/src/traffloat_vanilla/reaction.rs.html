@@ -161,9 +161,11 @@
 <span id="161">161</span>
 <span id="162">162</span>
 <span id="163">163</span>
+<span id="164">164</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla mechanism definitions.</span>
 
+<span class="kw">use</span> <span class="ident">arcstr::literal</span>;
 <span class="kw">use</span> <span class="ident">smallvec::smallvec</span>;
 
 <span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">reaction</span>, <span class="ident">GameDefinition</span>};
@@ -212,15 +214,15 @@
             $(
                 <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_ident</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">add_reaction_category</span>(
                     <span class="ident">reaction::Category::builder</span>()
-                        .<span class="ident">title</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category</span>))
-                        .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_description</span>))
+                        .<span class="ident">title</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category</span>))
+                        .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_description</span>))
                         .<span class="ident">build</span>()
                 );
                 $(
                     <span class="kw">let</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ident</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">add_reaction</span>(
                         <span class="ident">reaction::Type::builder</span>()
-                            .<span class="ident">name</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
-                            .<span class="ident">description</span>(<span class="ident">String::from</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
+                            .<span class="ident">name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
+                            .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
                             .<span class="ident">catalysts</span>(<span class="macro">smallvec!</span>[
                                 $(
                                     <span class="ident">reaction::Catalyst::builder</span>()
