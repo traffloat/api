@@ -245,6 +245,79 @@
 <span id="245">245</span>
 <span id="246">246</span>
 <span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla building definitions.</span>
 
@@ -409,7 +482,7 @@
             <span class="ident">summary</span>: <span class="string">&quot;Connects and drives corridors&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
             <span class="ident">cube</span>: <span class="number">0.2</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy-building&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;terminal&quot;</span>,
             <span class="ident">reactions</span>: [],
             <span class="ident">hitpoint</span>: <span class="number">100.</span>,
             <span class="ident">storage</span>: {
@@ -447,13 +520,60 @@
         }
     }
 
-    <span class="ident">skill</span> <span class="string">&quot;Skill&quot;</span> (<span class="string">&quot;Buildings to train inhabitant skills&quot;</span>) {
+    <span class="ident">storage</span> <span class="string">&quot;Storage&quot;</span> (<span class="string">&quot;Buildings to store resources&quot;</span>) {
+        <span class="ident">vault</span> {
+            <span class="ident">name</span>: <span class="string">&quot;Vault&quot;</span>,
+            <span class="ident">summary</span>: <span class="string">&quot;Store lots of cargo&quot;</span>,
+            <span class="ident">description</span>: <span class="string">&quot;Large amounts of cargo can be stored here for future use. \
+                This can also be used as a temporary junkyard \
+                if junk launchers cannot catch up quickly enough.&quot;</span>,
+            <span class="ident">cube</span>: <span class="number">1.</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;vault&quot;</span>,
+            <span class="ident">reactions</span>: [],
+            <span class="ident">hitpoint</span>: <span class="number">500.</span>,
+            <span class="ident">storage</span>: {
+                <span class="ident">cargo</span>: <span class="number">20000.</span>,
+                <span class="ident">liquid</span>: <span class="number">1000.</span>,
+                <span class="ident">gas</span>: <span class="number">1000.</span>,
+            },
+            <span class="ident">features</span>: [],
+        }
+    }
+
+    <span class="ident">industrial</span> <span class="string">&quot;Industrial&quot;</span> (<span class="string">&quot;Buildings for processing intermediates&quot;</span>) {
+        <span class="ident">filtration_plant</span> {
+            <span class="ident">name</span>: <span class="string">&quot;Filtration plant&quot;</span>,
+            <span class="ident">summary</span>: <span class="string">&quot;Filter insoluble impurities from water&quot;</span>,
+            <span class="ident">description</span>: <span class="string">&quot;Asteroidal water is often mixed with different sorts of junk. \
+                These solid impurities will clog and damage conduits if passed directly. \
+                A filtration plant can separate the solid junk from the water.
+\n\
+                Although filtered water is still not edible for inhabitants, \
+                it demonstrates most of the physical properties of water, \
+                such as the high heat capacity and low viscosity. \
+                Therefore, filtered water is sufficient for most industrial uses.&quot;</span>,
+                <span class="ident">cube</span>: <span class="number">1.</span>,
+                <span class="ident">texture</span>: <span class="string">&quot;filtration-plant&quot;</span>,
+                <span class="ident">reactions</span>: [
+                    <span class="ident">asteroidal_water_filtration</span> {<span class="ident">configurable</span>: <span class="bool-val">true</span>},
+                ],
+                <span class="ident">hitpoint</span>: <span class="number">150.</span>,
+                <span class="ident">storage</span>: {
+                    <span class="ident">cargo</span>: <span class="number">3000.</span>,
+                    <span class="ident">liquid</span>: <span class="number">5000.</span>,
+                    <span class="ident">gas</span>: <span class="number">1000.</span>,
+                },
+                <span class="ident">features</span>: [],
+        }
+    }
+
+    <span class="ident">education</span> <span class="string">&quot;Education&quot;</span> (<span class="string">&quot;Buildings to train inhabitant skills&quot;</span>) {
         <span class="ident">driving_school</span> {
             <span class="ident">name</span>: <span class="string">&quot;Driving school&quot;</span>,
             <span class="ident">summary</span>: <span class="string">&quot;Train inhabitants to drive better&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;Train inhabitants to drive better.&quot;</span>,
             <span class="ident">cube</span>: <span class="number">1.</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy-building&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;driving-school&quot;</span>,
             <span class="ident">reactions</span>: [
                 <span class="ident">driving_lesson</span> {},
             ],
@@ -467,14 +587,17 @@
         }
     }
 
-    <span class="ident">happiness</span> <span class="string">&quot;Happiness&quot;</span> (<span class="string">&quot;Buildings related to happiness and security&quot;</span>) {
+    <span class="ident">entertainment</span> <span class="string">&quot;Entertainment&quot;</span> (<span class="string">&quot;Buildings to restore happiness&quot;</span>) {
+    }
+
+    <span class="ident">security</span> <span class="string">&quot;Security&quot;</span> (<span class="string">&quot;Buildings related to crimes&quot;</span>) {
         <span class="ident">prison</span> {
             <span class="ident">name</span>: <span class="string">&quot;Prison&quot;</span>,
             <span class="ident">summary</span>: <span class="string">&quot;Correctional services for criminals&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;Inhabitants with negative happiness are imprisoned here \
                 to recultivate morality and restore happiness.&quot;</span>,
             <span class="ident">cube</span>: <span class="number">1.</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy-building&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;prison&quot;</span>,
             <span class="ident">reactions</span>: [
                 <span class="ident">imprisonment</span> {},
             ],
@@ -488,6 +611,29 @@
                 <span class="ident">SecureExit</span> {
                     <span class="ident">min_happiness</span>: <span class="number">10f64</span>.<span class="ident">into</span>(),
                     <span class="ident">breach_probability</span>: <span class="number">0.001</span>,
+                },
+            ],
+        }
+        <span class="ident">customs</span> {
+            <span class="ident">name</span>: <span class="string">&quot;Customs&quot;</span>,
+            <span class="ident">summary</span>: <span class="string">&quot;Disallow outlaws from intrusion&quot;</span>,
+            <span class="ident">description</span>: <span class="string">&quot;Customs is a security checkpoint at which \
+                operators check all inhabitants passing through. \
+                Surround important buildings with customs \
+                so that outlaws cannot grief them.&quot;</span>,
+            <span class="ident">cube</span>: <span class="number">1.</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;customs&quot;</span>,
+            <span class="ident">reactions</span>: [],
+            <span class="ident">hitpoint</span>: <span class="number">300.</span>,
+            <span class="ident">storage</span>: {
+                <span class="ident">cargo</span>: <span class="number">1000.</span>,
+                <span class="ident">liquid</span>: <span class="number">1000.</span>,
+                <span class="ident">gas</span>: <span class="number">1000.</span>,
+            },
+            <span class="ident">features</span>: [
+                <span class="ident">SecureEntry</span> {
+                    <span class="ident">min_happiness</span>: <span class="number">10f64</span>.<span class="ident">into</span>(),
+                    <span class="ident">breach_probability</span>: <span class="number">0.005</span>,
                 },
             ],
         }

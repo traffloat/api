@@ -250,7 +250,7 @@
                         .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="string">&quot;Produced in gas bottlers and centrifuges, gas bottles can be used to \
                             transfer a small amount of gas to factories \
                             as a replacement of diffusing gas slowly through corridors.&quot;</span>))
-                        .<span class="ident">texture</span>(<span class="macro">format!</span>(<span class="string">&quot;{}-liquid-bottle&quot;</span>, <span class="ident">gas</span>.<span class="ident">texture</span>()))
+                        .<span class="ident">texture</span>(<span class="macro">format!</span>(<span class="string">&quot;{}-gas-bottle&quot;</span>, <span class="ident">gas</span>.<span class="ident">texture</span>()))
                         .<span class="ident">category</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">container</span>)
                         .<span class="ident">build</span>()
                 );
@@ -277,14 +277,14 @@
             <span class="ident">summary</span>: <span class="string">&quot;An organic mineral.&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;Amino acids are found in small amounts in asteroids. \
                 Use them to synthesize food and DNA.&quot;</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;amino-acid&quot;</span>,
         }
         <span class="ident">rock</span> {
             <span class="ident">name</span>: <span class="string">&quot;Rock&quot;</span>,
             <span class="ident">summary</span>: <span class="string">&quot;Chunks of rocks from asteroids.&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;Rocks are the cheapest type of material obtained from asteroids. \
                 They can be used as ammunition or disposed as junk.&quot;</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;rock&quot;</span>,
         }
     }
 
@@ -293,9 +293,9 @@
             <span class="ident">name</span>: <span class="string">&quot;DNA&quot;</span>,
             <span class="ident">summary</span>: <span class="string">&quot;Genetic material.&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;DNA is used to produce inhabitants through asexual reproduction. \
-                Although morally challenged, this is the most effective way \
+                Although morally challenged, this is the only way \
                 to start a new colony from scratch.&quot;</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;dna&quot;</span>,
         }
     }
 
@@ -305,7 +305,7 @@
             <span class="ident">summary</span>: <span class="string">&quot;Stone pepples used as ammunition.&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;Pepples are produced by decomposing rocks.\
                 They are the basic type of ammunition for defense.&quot;</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;pepples&quot;</span>,
         }
     }
 
@@ -317,7 +317,7 @@
             <span class="ident">description</span>: <span class="string">&quot;Sediments are waste produced during liquid processing. \
                 They cannot be used for anything, and should be ejected with junk launchers \
                 to avoid filling up storage space.&quot;</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;sediment&quot;</span>,
         }
     }
 
@@ -328,7 +328,7 @@
             <span class="ident">name</span>: <span class="string">&quot;Aluminium&quot;</span>,
             <span class="ident">summary</span>: <span class="string">&quot;A metal used for construction&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
-            <span class="ident">texture</span>: <span class="string">&quot;dummy&quot;</span>,
+            <span class="ident">texture</span>: <span class="string">&quot;aluminium&quot;</span>,
         }
     }
 
