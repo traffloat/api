@@ -184,12 +184,6 @@
 <span id="184">184</span>
 <span id="185">185</span>
 <span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Reaction definitions</span>
 
@@ -328,11 +322,6 @@
         <span class="doccomment">/// Base (unmultiplied) rate of electricity consumed/generated</span>
         <span class="ident">base</span>: <span class="ident">Rate</span><span class="op">&lt;</span><span class="ident">units::ElectricPower</span><span class="op">&gt;</span>,
     },
-    <span class="doccomment">/// Change in happiness</span>
-    <span class="ident">Happiness</span> {
-        <span class="doccomment">/// Base (unmultiplied) rate of happiness change</span>
-        <span class="ident">base</span>: <span class="ident">Rate</span><span class="op">&lt;</span><span class="ident">units::Happiness</span><span class="op">&gt;</span>,
-    },
     <span class="doccomment">/// Change in skill</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Operators used as catalyst do not receive the skill change.</span>
@@ -353,7 +342,6 @@
             <span class="self">Self</span><span class="ident">::Liquid</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
             <span class="self">Self</span><span class="ident">::Gas</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
             <span class="self">Self</span><span class="ident">::Electricity</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
-            <span class="self">Self</span><span class="ident">::Happiness</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
             <span class="self">Self</span><span class="ident">::Skill</span> { <span class="ident">base</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">base</span>.<span class="number">0</span>.<span class="ident">value</span>(),
         }
     }

@@ -64,6 +64,23 @@
 <span id="64">64</span>
 <span id="65">65</span>
 <span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Crime definitions</span>
 
@@ -76,26 +93,35 @@
 };
 
 <span class="macro">macro_rules!</span> <span class="ident">crimes</span> {
-    ($({
-        <span class="ident">name</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">literal</span>,
-        <span class="ident">description</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>:<span class="ident">literal</span>,
-        <span class="ident">action</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">action</span>:<span class="ident">expr</span>,
-        <span class="ident">trigger</span>: [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_min</span>:<span class="ident">literal</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_max</span>:<span class="ident">literal</span>],
-        <span class="ident">probability</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">probability</span>:<span class="ident">literal</span>,
-        <span class="ident">happiness_change</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">happiness_change</span>:<span class="ident">literal</span>,
-        <span class="ident">morality_change</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill_change</span>:<span class="ident">literal</span>,
-    })<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    (
+        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill</span>:<span class="ident">ident</span>;
+
+        $({
+            <span class="ident">name</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">literal</span>,
+            <span class="ident">description</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>:<span class="ident">literal</span>,
+            <span class="ident">action</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">action</span>:<span class="ident">expr</span>,
+            <span class="ident">trigger</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_which</span>:<span class="ident">ident</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_min</span>:<span class="ident">literal</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_max</span>:<span class="ident">literal</span>),
+            <span class="ident">probability</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">probability</span>:<span class="ident">literal</span>,
+            <span class="ident">skill_changes</span>: {
+                $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill_ty</span>:<span class="ident">expr</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill_change</span>:<span class="ident">literal</span>,)<span class="op">*</span>
+            },
+        })<span class="op">*</span>
+    ) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="doccomment">/// Populates the game definition with crime data.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">populate</span>(<span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">GameDefinition</span>, <span class="ident">skill</span>: <span class="kw-2">&amp;</span><span class="kw">super</span><span class="ident">::skill::Ids</span>) {
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">populate</span>(<span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">GameDefinition</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill</span>: <span class="kw-2">&amp;</span><span class="kw">super</span><span class="ident">::skill::Ids</span>) {
             $(
                 <span class="ident">def</span>.<span class="ident">crime_mut</span>().<span class="ident">push</span>(<span class="ident">crime::Type::builder</span>()
                     .<span class="ident">name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
                     .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
                     .<span class="ident">action</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">action</span>)
-                    .<span class="ident">trigger_happiness_range</span>((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_min</span>.<span class="ident">into</span>()..<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_max</span>.<span class="ident">into</span>()))
+                    .<span class="ident">trigger_skill</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill</span>.<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_which</span>)
+                    .<span class="ident">trigger_skill_range</span>((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_min</span>.<span class="ident">into</span>()..<span class="macro-nonterminal">$</span><span class="macro-nonterminal">trigger_max</span>.<span class="ident">into</span>()))
                     .<span class="ident">probability</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">probability</span>.<span class="ident">into</span>())
-                    .<span class="ident">happiness_change</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">happiness_change</span>.<span class="ident">into</span>())
-                    .<span class="ident">skill_change</span>(<span class="macro">smallvec!</span>[(<span class="ident">skill</span>.<span class="ident">morality</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill_change</span>.<span class="ident">into</span>())])
+                    .<span class="ident">skill_change</span>(<span class="macro">smallvec!</span>[
+                        $(
+                            (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill_ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill_change</span>.<span class="ident">into</span>()),
+                        )<span class="op">*</span>
+                    ])
                     .<span class="ident">build</span>());
             )<span class="op">*</span>
         }
@@ -103,32 +129,40 @@
 }
 
 <span class="macro">crimes!</span> {
+    <span class="ident">skill</span>;
+
     {
         <span class="ident">name</span>: <span class="string">&quot;Pickpocket&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Steal cargo carried by other inhabitants&quot;</span>,
         <span class="ident">action</span>: <span class="ident">InhabitantTheft</span>(<span class="number">5f64</span>.<span class="ident">into</span>()),
-        <span class="ident">trigger</span>: [<span class="op">-</span><span class="number">500f64</span>, <span class="number">0f64</span>],
+        <span class="ident">trigger</span>: <span class="ident">satisfaction</span>(<span class="op">-</span><span class="number">500f64</span>, <span class="number">0f64</span>),
         <span class="ident">probability</span>: <span class="number">0.01</span>,
-        <span class="ident">happiness_change</span>: <span class="op">-</span><span class="number">5.</span>,
-        <span class="ident">morality_change</span>: <span class="op">-</span><span class="number">1f64</span>,
+        <span class="ident">skill_changes</span>: {
+            <span class="ident">skill</span>.<span class="ident">happiness</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">-</span><span class="number">5.</span>,
+            <span class="ident">skill</span>.<span class="ident">morality</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">-</span><span class="number">1.</span>,
+        },
     }
     {
         <span class="ident">name</span>: <span class="string">&quot;Robbery&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Rob a building and remove the cargo stored inside&quot;</span>,
         <span class="ident">action</span>: <span class="ident">NodeTheft</span>(<span class="number">5f64</span>.<span class="ident">into</span>()),
-        <span class="ident">trigger</span>: [<span class="op">-</span><span class="number">1000f64</span>, <span class="op">-</span><span class="number">50f64</span>],
+        <span class="ident">trigger</span>: <span class="ident">satisfaction</span>(<span class="op">-</span><span class="number">1000f64</span>, <span class="op">-</span><span class="number">50f64</span>),
         <span class="ident">probability</span>: <span class="number">0.0001</span>,
-        <span class="ident">happiness_change</span>: <span class="op">-</span><span class="number">20.</span>,
-        <span class="ident">morality_change</span>: <span class="op">-</span><span class="number">1.5</span>,
+        <span class="ident">skill_changes</span>: {
+            <span class="ident">skill</span>.<span class="ident">happiness</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">-</span><span class="number">20.</span>,
+            <span class="ident">skill</span>.<span class="ident">morality</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">-</span><span class="number">1.5</span>,
+        },
     }
     {
         <span class="ident">name</span>: <span class="string">&quot;Arson&quot;</span>,
         <span class="ident">description</span>: <span class="string">&quot;Set a building on fire&quot;</span>,
         <span class="ident">action</span>: <span class="ident">Arson</span>,
-        <span class="ident">trigger</span>: [<span class="op">-</span><span class="number">1000f64</span>, <span class="op">-</span><span class="number">500f64</span>],
+        <span class="ident">trigger</span>: <span class="ident">satisfaction</span>(<span class="op">-</span><span class="number">1000f64</span>, <span class="op">-</span><span class="number">500f64</span>),
         <span class="ident">probability</span>: <span class="number">0.00005</span>,
-        <span class="ident">happiness_change</span>: <span class="op">-</span><span class="number">100.</span>,
-        <span class="ident">morality_change</span>: <span class="op">-</span><span class="number">2.5</span>,
+        <span class="ident">skill_changes</span>: {
+            <span class="ident">skill</span>.<span class="ident">happiness</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">-</span><span class="number">100.</span>,
+            <span class="ident">skill</span>.<span class="ident">morality</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">-</span><span class="number">2.5</span>,
+        },
     }
 }
 </pre></div>

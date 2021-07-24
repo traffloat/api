@@ -152,13 +152,17 @@
 <span id="152">152</span>
 <span id="153">153</span>
 <span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
 <span class="kw">use</span> <span class="ident">arcstr::ArcStr</span>;
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::reaction</span>;
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">reaction</span>, <span class="ident">skill</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space::Matrix</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
 
@@ -273,21 +277,25 @@
     <span class="ident">LiquidPump</span>(<span class="ident">units::PipeForce</span>),
     <span class="doccomment">/// The building provides pumping force for gas diffusion in adjacent corridors.</span>
     <span class="ident">GasPump</span>(<span class="ident">units::FanForce</span>),
-    <span class="doccomment">/// Inhabitants with low happiness may not be permitted to enter the node.</span>
+    <span class="doccomment">/// Inhabitants with low skill may not be permitted to enter the node.</span>
     <span class="ident">SecureEntry</span> {
-        <span class="doccomment">/// The minimum happiness required to enter the building.</span>
-        <span class="ident">min_happiness</span>: <span class="ident">units::Happiness</span>,
+        <span class="doccomment">/// The skill type to check.</span>
+        <span class="ident">skill</span>: <span class="ident">skill::TypeId</span>,
+        <span class="doccomment">/// The minimum skill level required to enter the building.</span>
+        <span class="ident">min_level</span>: <span class="ident">units::Skill</span>,
         <span class="doccomment">/// The probability per second per inhabitant that</span>
-        <span class="doccomment">/// the inhabitant has lower happiness than required</span>
+        <span class="doccomment">/// the inhabitant has lower skill level than required</span>
         <span class="doccomment">/// but still can enter the building.</span>
         <span class="ident">breach_probability</span>: <span class="ident">f64</span>,
     },
-    <span class="doccomment">/// Inhabitants with negative happiness may not be permitted to exit the node.</span>
+    <span class="doccomment">/// Inhabitants with low skill may not be permitted to exit the node.</span>
     <span class="ident">SecureExit</span> {
-        <span class="doccomment">/// The minimum happiness required to enter the building.</span>
-        <span class="ident">min_happiness</span>: <span class="ident">units::Happiness</span>,
+        <span class="doccomment">/// The skill type to check.</span>
+        <span class="ident">skill</span>: <span class="ident">skill::TypeId</span>,
+        <span class="doccomment">/// The minimum skill level required to exit the building.</span>
+        <span class="ident">min_level</span>: <span class="ident">units::Skill</span>,
         <span class="doccomment">/// The probability per second per operator that</span>
-        <span class="doccomment">/// the operator has lower happiness than required</span>
+        <span class="doccomment">/// the operator has lower skill level than required</span>
         <span class="doccomment">/// but still can exit the building.</span>
         <span class="ident">breach_probability</span>: <span class="ident">f64</span>,
     },
