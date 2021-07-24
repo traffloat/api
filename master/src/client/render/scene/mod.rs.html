@@ -222,6 +222,8 @@
 <span id="222">222</span>
 <span id="223">223</span>
 <span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders nodes, edges and vehicles.</span>
 
@@ -367,13 +369,15 @@
         <span class="kw">let</span> <span class="ident">sprite</span> <span class="op">=</span> <span class="ident">texture_pool</span>.<span class="ident">sprite</span>(<span class="ident">tex</span>, <span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>);
 
         <span class="ident">scene</span>.<span class="ident">node_prog</span>.<span class="ident">draw</span>(
-            <span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>,
-            <span class="ident">projection</span> <span class="op">*</span> <span class="ident">unit_to_real</span>,
-            <span class="ident">sun_dir</span>,
-            <span class="ident">brightness</span>,
-            <span class="ident">selected</span>,
-            <span class="kw-2">&amp;</span><span class="ident">sprite</span>,
-            <span class="ident">shape</span>.<span class="ident">unit</span>(),
+            <span class="ident">node::DrawArgs::builder</span>()
+                .<span class="ident">gl</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>)
+                .<span class="ident">proj</span>(<span class="ident">projection</span> <span class="op">*</span> <span class="ident">unit_to_real</span>)
+                .<span class="ident">sun</span>(<span class="ident">sun_dir</span>)
+                .<span class="ident">brightness</span>(<span class="ident">brightness</span>)
+                .<span class="ident">selected</span>(<span class="ident">selected</span>)
+                .<span class="ident">texture</span>(<span class="kw-2">&amp;</span><span class="ident">sprite</span>)
+                .<span class="ident">shape_unit</span>(<span class="ident">shape</span>.<span class="ident">unit</span>())
+                .<span class="ident">build</span>(),
         );
     }
 
