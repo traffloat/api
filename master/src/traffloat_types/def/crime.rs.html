@@ -63,10 +63,6 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
-<span id="66">66</span>
-<span id="67">67</span>
-<span id="68">68</span>
-<span id="69">69</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Crime definitions.</span>
 
@@ -95,13 +91,9 @@
     <span class="doccomment">/// The parameter is the maximum amount of cargo that the inhabitant may steal.</span>
     <span class="ident">NodeTheft</span>(<span class="ident">units::CargoSize</span>),
     <span class="doccomment">/// Reduce the skill level of other inhabitants.</span>
-    <span class="ident">Antagonize</span>(<span class="ident">InhabitantCriterion</span>),
+    <span class="ident">Antagonize</span>(<span class="ident">InhabitantCriterion</span>, <span class="ident">skill::TypeId</span>, <span class="ident">units::Skill</span>),
     <span class="doccomment">/// Set a node on fire.</span>
     <span class="ident">Arson</span>,
-    <span class="doccomment">/// Chase other inhabitants and delete them when located in the same node.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The parameter is the criteria to select inhabitants to murder.</span>
-    <span class="ident">Murder</span>(<span class="ident">InhabitantCriterion</span>),
 }
 
 <span class="doccomment">/// A criterion to sort inhabitants with.</span>
