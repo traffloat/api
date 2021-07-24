@@ -156,6 +156,9 @@
 <span id="156">156</span>
 <span id="157">157</span>
 <span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -164,7 +167,7 @@
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">reaction</span>, <span class="ident">skill</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space::Matrix</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">geometry</span>, <span class="ident">units</span>};
 
 <span class="doccomment">/// Identifies a building category</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
@@ -208,7 +211,10 @@
 <span class="doccomment">/// Shape of a building.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Shape</span> {
-    <span class="doccomment">/// The transformation matrix from the unit cube [0, 1]^3 to this shape.</span>
+    <span class="doccomment">/// The unit model type.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">unit</span>: <span class="ident">geometry::Unit</span>,
+    <span class="doccomment">/// The transformation matrix from the unit model to this shape.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">transform</span>: <span class="ident">Matrix</span>,
     <span class="doccomment">/// The texture source path of the building.</span>
