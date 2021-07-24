@@ -221,6 +221,7 @@
 <span id="221">221</span>
 <span id="222">222</span>
 <span id="223">223</span>
+<span id="224">224</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders nodes, edges and vehicles.</span>
 
@@ -245,7 +246,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">node</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">reticle</span>;
 
-<span class="kw">mod</span> <span class="ident">texture</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">texture</span>;
 
 <span class="doccomment">/// Stores the setup data of the scene canvas.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Canvas</span> {
@@ -372,6 +373,7 @@
             <span class="ident">brightness</span>,
             <span class="ident">selected</span>,
             <span class="kw-2">&amp;</span><span class="ident">sprite</span>,
+            <span class="ident">shape</span>.<span class="ident">unit</span>(),
         );
     }
 

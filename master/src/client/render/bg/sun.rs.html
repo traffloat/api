@@ -77,12 +77,6 @@
 <span id="77">77</span>
 <span id="78">78</span>
 <span id="79">79</span>
-<span id="80">80</span>
-<span id="81">81</span>
-<span id="82">82</span>
-<span id="83">83</span>
-<span id="84">84</span>
-<span id="85">85</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Sun rendering</span>
 
@@ -121,13 +115,7 @@
 <span class="kw">impl</span> <span class="ident">Program</span> {
     <span class="doccomment">/// Initializes sun canvas resources.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">prog</span> <span class="op">=</span> <span class="ident">create_program</span>(
-            <span class="ident">gl</span>,
-            <span class="string">&quot;sun.vert&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;sun.min.vert&quot;</span>),
-            <span class="string">&quot;sun.frag&quot;</span>,
-            <span class="macro">include_str!</span>(<span class="string">&quot;sun.min.frag&quot;</span>),
-        );
+        <span class="kw">let</span> <span class="ident">prog</span> <span class="op">=</span> <span class="ident">create_program</span>(<span class="ident">gl</span>, <span class="macro">glsl!</span>(<span class="string">&quot;sun&quot;</span>));
 
         <span class="kw">let</span> <span class="ident">pos_buf</span> <span class="op">=</span> <span class="ident">FloatBuffer::create</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">SUN_MODEL</span>, <span class="number">2</span>, <span class="ident">BufferUsage::WriteOnceReadMany</span>);
         <span class="attribute">#[<span class="ident">rustfmt::skip</span>]</span>

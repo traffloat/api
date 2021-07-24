@@ -262,7 +262,94 @@
 <span id="262">262</span>
 <span id="263">263</span>
 <span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
 </pre><pre class="rust">
+<span class="doccomment">//! Sprite sheet definition.</span>
+
 <span class="kw">use</span> <span class="ident">std::cell</span>;
 <span class="kw">use</span> <span class="ident">std::collections::BTreeMap</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -270,7 +357,7 @@
 <span class="kw">use</span> <span class="ident">wasm_bindgen::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">ImageBitmap</span>, <span class="ident">WebGlRenderingContext</span>, <span class="ident">WebGlTexture</span>};
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::scene::mesh::cube::tex_pos</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::scene::mesh</span>::{<span class="ident">cube</span>, <span class="ident">cylinder</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::util</span>::{<span class="ident">AttrLocation</span>, <span class="ident">FloatBuffer</span>, <span class="ident">UniformLocation</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util::ReifiedPromise</span>;
 <span class="kw">use</span> <span class="ident">safety::Safety</span>;
@@ -346,26 +433,37 @@
 }
 
 <span class="kw">impl</span> <span class="ident">PreparedTexture</span> {
+    <span class="doccomment">/// Applies a texture on the corresponding uniforms and attributes.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is mainly adapted for the `node.vert`/`node.frag` shaders.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">apply</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">sprite_numbers</span>: <span class="kw-2">&amp;</span>[<span class="ident">usize</span>],
         <span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="ident">FloatBuffer</span>,
         <span class="ident">attr</span>: <span class="ident">AttrLocation</span>,
-        <span class="ident">unif</span>: <span class="kw-2">&amp;</span><span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
+        <span class="ident">tex_unif</span>: <span class="kw-2">&amp;</span><span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
+        <span class="ident">tex_dim_unif</span>: <span class="kw-2">&amp;</span><span class="ident">UniformLocation</span><span class="op">&lt;</span>[<span class="ident">f32</span>; <span class="number">2</span>]<span class="op">&gt;</span>,
         <span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
     ) {
         <span class="ident">gl</span>.<span class="ident">active_texture</span>(<span class="ident">WebGlRenderingContext::TEXTURE0</span>);
         <span class="ident">gl</span>.<span class="ident">bind_texture</span>(<span class="ident">WebGlRenderingContext::TEXTURE_2D</span>, <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>.<span class="ident">gl_tex</span>));
-        <span class="ident">unif</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">0</span>);
+        <span class="ident">tex_unif</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">0</span>);
+        <span class="ident">tex_dim_unif</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, [<span class="self">self</span>.<span class="ident">width</span>, <span class="self">self</span>.<span class="ident">height</span>]);
 
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">sprites</span> {
-            <span class="ident">ShapeSprites::Cube</span>(<span class="ident">cube</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="ident">buffer</span>.<span class="ident">update</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">tex_pos</span>(<span class="ident">cube</span>, <span class="self">self</span>.<span class="ident">width</span>, <span class="self">self</span>.<span class="ident">height</span>));
-                <span class="ident">attr</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">buffer</span>);
-            }
-            <span class="ident">ShapeSprites::Icon</span>(<span class="ident">sprite</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="macro">unimplemented!</span>()
-            }
+        <span class="comment">// do we need to optimize this allocation away?</span>
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">prebuf</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">sprite_numbers</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="number">4</span>);
+        <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">number</span> <span class="kw">in</span> <span class="ident">sprite_numbers</span> {
+            <span class="kw">let</span> <span class="ident">sprite</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">sprites</span>.<span class="ident">sprite_number</span>(<span class="ident">number</span>);
+            <span class="ident">prebuf</span>.<span class="ident">extend</span>(<span class="kw-2">&amp;</span>[
+                <span class="ident">sprite</span>.<span class="ident">x</span>.<span class="ident">small_float</span>(),
+                <span class="ident">sprite</span>.<span class="ident">width</span>.<span class="ident">small_float</span>(),
+                <span class="ident">sprite</span>.<span class="ident">y</span>.<span class="ident">small_float</span>(),
+                <span class="ident">sprite</span>.<span class="ident">height</span>.<span class="ident">small_float</span>(),
+            ]);
         }
+        <span class="ident">buffer</span>.<span class="ident">update</span>(<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">prebuf</span>);
+
+        <span class="ident">attr</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">buffer</span>);
     }
 }
 
@@ -475,24 +573,96 @@
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ShapeSprites</span> {
     <span class="doccomment">/// Cube</span>
     <span class="ident">Cube</span>(<span class="ident">CubeSprites</span>),
+    <span class="doccomment">/// Cylinder</span>
+    <span class="ident">Cylinder</span>(<span class="ident">CylinderSprites</span>),
     <span class="doccomment">/// An icon sprite with only one shape.</span>
     <span class="ident">Icon</span>(<span class="ident">RectSprite</span>),
 }
 
+<span class="kw">impl</span> <span class="ident">ShapeSprites</span> {
+    <span class="doccomment">/// Retrieves the sprite of the set by sprite number used in `tex_pos`.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sprite_number</span>(<span class="self">self</span>, <span class="ident">number</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RectSprite</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="self">Self</span><span class="ident">::Cube</span>(<span class="ident">sprites</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sprites</span>.<span class="ident">sprite_number</span>(<span class="ident">number</span>),
+            <span class="self">Self</span><span class="ident">::Cylinder</span>(<span class="ident">sprites</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">sprites</span>.<span class="ident">sprite_number</span>(<span class="ident">number</span>),
+            <span class="self">Self</span><span class="ident">::Icon</span>(<span class="ident">sprite</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="macro">assert!</span>(<span class="ident">number</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>, <span class="string">&quot;Attempt to fetch sprite {:?} from an icon sprite. This may be caused by a texture or shape mismatch.&quot;</span>, <span class="ident">number</span>);
+                <span class="ident">sprite</span>
+            }
+        }
+    }
+}
+
+<span class="doccomment">/// Sprites for a cylinder.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CylinderSprites</span> {
+    <span class="doccomment">/// Top face.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - Position: `x^2 + y^2 &lt;= 1, z = 1`</span>
+    <span class="doccomment">/// - Normal: (0, 0, 1)</span>
+    <span class="doccomment">/// - Texture-to-world mapping: `f(x, y) = (x, y, 1)`</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">top</span>: <span class="ident">RectSprite</span>,
+    <span class="doccomment">/// Bottom face.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - Position: `x^2 + y^2 &lt;= 1, z = 0`</span>
+    <span class="doccomment">/// - Normal: (0, 0, -1)</span>
+    <span class="doccomment">/// - Texture-to-world mapping: `f(x, y) = (x, y, 0)`</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">bottom</span>: <span class="ident">RectSprite</span>,
+    <span class="doccomment">/// Curved face.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - Position: `x^2 + y^2 &lt;= 1, z = 0`</span>
+    <span class="doccomment">/// - Normal: (0, 0, -1)</span>
+    <span class="doccomment">/// - Texture-to-world mapping: `f(x, y) = (cos(2pi x), sin(2pi x), y)`</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">curved</span>: <span class="ident">RectSprite</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">CylinderSprites</span> {
+    <span class="doccomment">/// Retrieves a sprite by number.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sprite_number</span>(<span class="self">self</span>, <span class="ident">number</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RectSprite</span> {
+        <span class="kw">match</span> <span class="ident">number</span> {
+            <span class="ident">cylinder::FACE_CURVED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">curved</span>,
+            <span class="ident">cylinder::FACE_TOP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">top</span>,
+            <span class="ident">cylinder::FACE_BOTTOM</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">bottom</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;Attempt to fetch sprite {:?} from a cylinder sprite. This may be caused by a texture or shape mismatch.&quot;</span>, <span class="ident">number</span>),
+        }
+    }
+}
+
+<span class="doccomment">/// Sprites for a cube.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CubeSprites</span> {
+    <span class="doccomment">/// Positive X sprite.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">xp</span>: <span class="ident">RectSprite</span>,
+    <span class="doccomment">/// Negative X sprite.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">xn</span>: <span class="ident">RectSprite</span>,
+    <span class="doccomment">/// Positive Y sprite.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">yp</span>: <span class="ident">RectSprite</span>,
+    <span class="doccomment">/// Negative Y sprite.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">yn</span>: <span class="ident">RectSprite</span>,
+    <span class="doccomment">/// Positive Z sprite.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">zp</span>: <span class="ident">RectSprite</span>,
+    <span class="doccomment">/// Negative Z sprite.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">zn</span>: <span class="ident">RectSprite</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">CubeSprites</span> {
+    <span class="doccomment">/// Retrieves a sprite by number.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sprite_number</span>(<span class="self">self</span>, <span class="ident">number</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RectSprite</span> {
+        <span class="kw">let</span> <span class="ident">face</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">cube::FACES</span>.<span class="ident">get</span>(<span class="ident">number</span>) {
+            <span class="prelude-val">Some</span>(<span class="ident">face</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">face</span>,
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;Attempt to fetch sprite {:?} from a cylinder sprite. This may be caused by a texture or shape mismatch.&quot;</span>, <span class="ident">number</span>),
+        };
+        <span class="ident">face</span>.<span class="ident">cube_sprite</span>(<span class="self">self</span>)
+    }
 }
 
 <span class="doccomment">/// A rectangular sprite.</span>
