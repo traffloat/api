@@ -85,6 +85,7 @@ sourcesIndex["traffloat"] = {"name":"","files":["cargo.rs","clock.rs","config.rs
 sourcesIndex["traffloat_codegen_raw"] = {"name":"","files":["gen.rs","lib.rs","system.rs"]};
 sourcesIndex["traffloat_types"] = {"name":"","dirs":[{"name":"def","files":["building.rs","cargo.rs","crime.rs","gas.rs","liquid.rs","mod.rs","reaction.rs","skill.rs","vehicle.rs"]}],"files":["geometry.rs","lib.rs","ratio_def.rs","space.rs","time.rs","units.rs"]};
 sourcesIndex["traffloat_vanilla"] = {"name":"","files":["building.rs","cargo.rs","crime.rs","default.rs","gas.rs","lib.rs","liquid.rs","reaction.rs","skill.rs","vehicle.rs"]};
+sourcesIndex["traffloat_version"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["typed_builder"] = {"name":"","files":["field_info.rs","lib.rs","struct_info.rs","util.rs"]};
 sourcesIndex["typenum"] = {"name":"","files":["array.rs","bit.rs","int.rs","lib.rs","marker_traits.rs","operator_aliases.rs","private.rs","type_operators.rs","uint.rs"]};
 sourcesIndex["unicode_segmentation"] = {"name":"","files":["grapheme.rs","lib.rs","sentence.rs","tables.rs","word.rs"]};

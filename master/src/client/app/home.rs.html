@@ -136,6 +136,14 @@
 <span id="136">136</span>
 <span id="137">137</span>
 <span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 
@@ -185,7 +193,7 @@
 
     <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
         <span class="macro">html!</span> {
-            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0 auto; max-width: 720px;&quot;</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0 auto; max-width: 720px; font-family: &#39;Helvetica&#39;, &#39;Arial&#39;, sans-serif;&quot;</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">h1</span><span class="op">&gt;</span>{ <span class="string">&quot;Traffloat&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h1</span><span class="op">&gt;</span>
 
                 { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">error</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">error</span><span class="op">|</span> <span class="macro">html!</span> {
@@ -234,17 +242,25 @@
 
                 <span class="comment">// TODO handle multiplayer</span>
 
-                <span class="op">&lt;</span><span class="ident">footer</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;position: fixed; bottom: 0; left: 0;width: 100%;&quot;</span><span class="op">&gt;</span>
-                    <span class="op">&lt;</span><span class="ident">ul</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;text-align: center; display: block;&quot;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">footer</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;position: fixed; bottom: 0; left: 0; width: 100%;&quot;</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">ul</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;text-align: center; display: block; padding: 0;&quot;</span><span class="op">&gt;</span>
                         { <span class="kw">for</span> [
                             (<span class="string">&quot;Source code&quot;</span>, <span class="string">&quot;https://github.com/traffloat/traffloat&quot;</span>),
                             (<span class="string">&quot;User manual&quot;</span>, <span class="string">&quot;https://traffloat.github.io/guide/master/&quot;</span>),
                             (<span class="string">&quot;Discussion&quot;</span>, <span class="string">&quot;https://github.com/traffloat/traffloat/discussions&quot;</span>),
                         ].<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="kw-2">&amp;</span>(<span class="ident">name</span>, <span class="ident">url</span>)<span class="op">|</span> <span class="macro">html!</span> {
-                            <span class="op">&lt;</span><span class="ident">li</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;display: inline; margin: 1em;&quot;</span><span class="op">&gt;</span><span class="op">&lt;</span><span class="ident">a</span> <span class="ident">href</span><span class="op">=</span><span class="ident">url</span> <span class="ident">target</span><span class="op">=</span><span class="string">&quot;_blank&quot;</span><span class="op">&gt;</span>{ <span class="ident">name</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">a</span><span class="op">&gt;</span><span class="op">&lt;</span><span class="op">/</span><span class="ident">li</span><span class="op">&gt;</span>
+                            <span class="op">&lt;</span><span class="ident">li</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;display: inline; margin: 0.5em;&quot;</span><span class="op">&gt;</span><span class="op">&lt;</span><span class="ident">a</span> <span class="ident">href</span><span class="op">=</span><span class="ident">url</span> <span class="ident">target</span><span class="op">=</span><span class="string">&quot;_blank&quot;</span><span class="op">&gt;</span>{ <span class="ident">name</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">a</span><span class="op">&gt;</span><span class="op">&lt;</span><span class="op">/</span><span class="ident">li</span><span class="op">&gt;</span>
                         }) }
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">ul</span><span class="op">&gt;</span>
-                    <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;text-align: center;&quot;</span><span class="op">&gt;</span>{ <span class="string">&quot;Licensed under GNU Affero General Public License version 3.&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;text-align: center;&quot;</span><span class="op">&gt;</span>{
+                        <span class="macro">format_args!</span>( <span class="string">&quot;v{}&quot;</span>, <span class="ident">traffloat_version::VERSION</span>)
+                    }<span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;text-align: center;&quot;</span><span class="op">&gt;</span>
+                        { <span class="string">&quot;Licensed under &quot;</span> }
+                        <span class="op">&lt;</span><span class="ident">a</span> <span class="ident">href</span><span class="op">=</span><span class="string">&quot;https://www.gnu.org/licenses/agpl-3.0.en.html&quot;</span> <span class="ident">target</span><span class="op">=</span><span class="string">&quot;_blank&quot;</span><span class="op">&gt;</span>
+                            { <span class="string">&quot;GNU Affero General Public License&quot;</span> }
+                        <span class="op">&lt;</span><span class="op">/</span><span class="ident">a</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">footer</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         }
