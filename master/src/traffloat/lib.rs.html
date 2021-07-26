@@ -60,6 +60,8 @@
 <span id="60">60</span>
 <span id="61">61</span>
 <span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Common library for server and client</span>
 
@@ -99,10 +101,11 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cargo</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">clock</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">config</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">edge</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">factory</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">gas</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">graph</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">liquid</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">node</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">shape</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sun</span>;
 <span class="kw">mod</span> <span class="ident">util</span>;
@@ -117,7 +120,8 @@
         .<span class="ident">uses</span>(<span class="ident">clock::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">factory::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">shape::setup_ecs</span>)
-        .<span class="ident">uses</span>(<span class="ident">graph::setup_ecs</span>)
+        .<span class="ident">uses</span>(<span class="ident">node::setup_ecs</span>)
+        .<span class="ident">uses</span>(<span class="ident">edge::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">cargo::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">liquid::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">gas::setup_ecs</span>)

@@ -198,7 +198,7 @@
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::clock::Clock</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::config</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::graph</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::node</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::shape::Shape</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space</span>::{<span class="ident">Position</span>, <span class="ident">Vector</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units::Brightness</span>;
@@ -263,8 +263,8 @@
 <span class="kw">fn</span> <span class="ident">shadow_cast</span>(
     <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">legion::world::SubWorld</span>,
     <span class="attribute">#[<span class="ident">state</span>(<span class="bool-val">true</span>)]</span> <span class="ident">first</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bool</span>,
-    <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">node_additions</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">NodeAddEvent</span><span class="op">&gt;</span>,
-    <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">node_post_removals</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">PostNodeRemoveEvent</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">node_additions</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">node::AddEvent</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">node_post_removals</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">node::PostRemoveEvent</span><span class="op">&gt;</span>,
 ) {
     <span class="comment">// we must drain the whole iterator even though we just want to know if there is at least one</span>
     <span class="comment">// item!</span>

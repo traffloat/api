@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Initializes ECS"],["tf","Computes the transformation matrix from or to the unit cylinder"]],"struct":[["AddEvent","Indicates that an edge is added"],["Id","Component storing the endpoints of an edge"],["RemoveEvent","Indicates that an edge is flagged for removal"],["Size","Defines the size of an edge"]]});

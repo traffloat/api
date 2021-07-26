@@ -38,8 +38,8 @@
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla data definition</span>
 
-<span class="kw">use</span> <span class="ident">traffloat::graph</span>;
-<span class="kw">use</span> <span class="ident">traffloat_types::def::GameDefinition</span>;
+<span class="kw">use</span> <span class="ident">traffloat::def::GameDefinition</span>;
+<span class="kw">use</span> <span class="ident">traffloat::node</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">building</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cargo</span>;
@@ -56,7 +56,7 @@
 <span class="doccomment">/// Define vanilla game rules</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>() <span class="op">-</span><span class="op">&gt;</span> (
     <span class="ident">GameDefinition</span>,
-    <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">graph::NodeComponents</span><span class="op">&gt;</span>,
+    <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">node::Components</span><span class="op">&gt;</span>,
     <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>, <span class="ident">f64</span>)<span class="op">&gt;</span>,
 ) {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">def</span> <span class="op">=</span> <span class="ident">GameDefinition::default</span>();
