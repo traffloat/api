@@ -10,11 +10,11 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.fract" class="fnname">fract</a>(self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.abs" class="fnname">abs</a>(self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.signum" class="fnname">signum</a>(self) -&gt; Self;
-<div class="item-spacer"></div>    fn <a href="#tymethod.is_sign_positive" class="fnname">is_sign_positive</a>(self) -&gt; bool;
-<div class="item-spacer"></div>    fn <a href="#tymethod.is_sign_negative" class="fnname">is_sign_negative</a>(self) -&gt; bool;
+<div class="item-spacer"></div>    fn <a href="#tymethod.is_sign_positive" class="fnname">is_sign_positive</a>(self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+<div class="item-spacer"></div>    fn <a href="#tymethod.is_sign_negative" class="fnname">is_sign_negative</a>(self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
 <div class="item-spacer"></div>    fn <a href="#tymethod.mul_add" class="fnname">mul_add</a>(self, a: Self, b: Self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.recip" class="fnname">recip</a>(self) -&gt; Self;
-<div class="item-spacer"></div>    fn <a href="#tymethod.powi" class="fnname">powi</a>(self, n: i32) -&gt; Self;
+<div class="item-spacer"></div>    fn <a href="#tymethod.powi" class="fnname">powi</a>(self, n: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.powf" class="fnname">powf</a>(self, n: Self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.sqrt" class="fnname">sqrt</a>(self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.exp" class="fnname">exp</a>(self) -&gt; Self;
@@ -37,7 +37,7 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.acos" class="fnname">acos</a>(self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.atan" class="fnname">atan</a>(self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.atan2" class="fnname">atan2</a>(self, other: Self) -&gt; Self;
-<div class="item-spacer"></div>    fn <a href="#tymethod.sin_cos" class="fnname">sin_cos</a>(self) -&gt; (Self, Self);
+<div class="item-spacer"></div>    fn <a href="#tymethod.sin_cos" class="fnname">sin_cos</a>(self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>Self, Self<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
 <div class="item-spacer"></div>    fn <a href="#tymethod.exp_m1" class="fnname">exp_m1</a>(self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.ln_1p" class="fnname">ln_1p</a>(self) -&gt; Self;
 <div class="item-spacer"></div>    fn <a href="#tymethod.sinh" class="fnname">sinh</a>(self) -&gt; Self;
@@ -176,7 +176,7 @@ number is <code>Float::nan()</code>.</p>
 <span class="macro">assert_eq!</span>(<span class="ident">f64::NEG_INFINITY</span>.<span class="ident">signum</span>(), <span class="op">-</span><span class="number">1.0</span>);
 
 <span class="macro">assert!</span>(<span class="ident">f64::NAN</span>.<span class="ident">signum</span>().<span class="ident">is_nan</span>());</pre></div>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_sign_positive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/num_traits/real.rs.html#193" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.is_sign_positive" class="fnname">is_sign_positive</a>(self) -&gt; bool</code></div></summary><div class="docblock"><p>Returns <code>true</code> if <code>self</code> is positive, including <code>+0.0</code>,
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_sign_positive" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/num_traits/real.rs.html#193" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.is_sign_positive" class="fnname">is_sign_positive</a>(self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></div></summary><div class="docblock"><p>Returns <code>true</code> if <code>self</code> is positive, including <code>+0.0</code>,
 <code>Float::infinity()</code>, and with newer versions of Rust <code>f64::NAN</code>.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
@@ -191,7 +191,7 @@ number is <code>Float::nan()</code>.</p>
 <span class="macro">assert!</span>(<span class="ident">f</span>.<span class="ident">is_sign_positive</span>());
 <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">g</span>.<span class="ident">is_sign_positive</span>());
 <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">neg_nan</span>.<span class="ident">is_sign_positive</span>());</pre></div>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_sign_negative" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/num_traits/real.rs.html#211" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.is_sign_negative" class="fnname">is_sign_negative</a>(self) -&gt; bool</code></div></summary><div class="docblock"><p>Returns <code>true</code> if <code>self</code> is negative, including <code>-0.0</code>,
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.is_sign_negative" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/num_traits/real.rs.html#211" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.is_sign_negative" class="fnname">is_sign_negative</a>(self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></div></summary><div class="docblock"><p>Returns <code>true</code> if <code>self</code> is negative, including <code>-0.0</code>,
 <code>Float::neg_infinity()</code>, and with newer versions of Rust <code>-f64::NAN</code>.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
@@ -231,7 +231,7 @@ the target architecture has a dedicated <code>fma</code> CPU instruction.</p>
 <span class="kw">let</span> <span class="ident">abs_difference</span> <span class="op">=</span> (<span class="ident">x</span>.<span class="ident">recip</span>() <span class="op">-</span> (<span class="number">1.0</span><span class="op">/</span><span class="ident">x</span>)).<span class="ident">abs</span>();
 
 <span class="macro">assert!</span>(<span class="ident">abs_difference</span> <span class="op">&lt;</span> <span class="number">1e-10</span>);</pre></div>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.powi" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/num_traits/real.rs.html#257" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.powi" class="fnname">powi</a>(self, n: i32) -&gt; Self</code></div></summary><div class="docblock"><p>Raise a number to an integer power.</p>
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.powi" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/num_traits/real.rs.html#257" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.powi" class="fnname">powi</a>(self, n: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; Self</code></div></summary><div class="docblock"><p>Raise a number to an integer power.</p>
 <p>Using this function is generally faster than using <code>powf</code></p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
@@ -532,7 +532,7 @@ range [-pi/2, pi/2];</p>
 
 <span class="macro">assert!</span>(<span class="ident">abs_difference_1</span> <span class="op">&lt;</span> <span class="number">1e-10</span>);
 <span class="macro">assert!</span>(<span class="ident">abs_difference_2</span> <span class="op">&lt;</span> <span class="number">1e-10</span>);</pre></div>
-</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.sin_cos" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/num_traits/real.rs.html#646" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.sin_cos" class="fnname">sin_cos</a>(self) -&gt; (Self, Self)</code></div></summary><div class="docblock"><p>Simultaneously computes the sine and cosine of the number, <code>x</code>. Returns
+</div></details><details class="rustdoc-toggle" open><summary><div id="tymethod.sin_cos" class="method has-srclink"><div class="rightside"><a class="srclink" href="../../src/num_traits/real.rs.html#646" title="goto source code">[src]</a></div><code>fn <a href="#tymethod.sin_cos" class="fnname">sin_cos</a>(self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>Self, Self<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code></div></summary><div class="docblock"><p>Simultaneously computes the sine and cosine of the number, <code>x</code>. Returns
 <code>(sin(x), cos(x))</code>.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">

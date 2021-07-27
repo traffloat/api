@@ -160,6 +160,10 @@
 <span id="160">160</span>
 <span id="161">161</span>
 <span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -176,7 +180,9 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TypeId</span>(<span class="kw">pub</span> <span class="ident">usize</span>);
 
 <span class="doccomment">/// A type of building.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(
+    <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>,
+)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the building type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -211,7 +217,9 @@
 }
 
 <span class="doccomment">/// Shape of a building.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(
+    <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>,
+)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Shape</span> {
     <span class="doccomment">/// The unit model type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -228,7 +236,7 @@
 }
 
 <span class="doccomment">/// Reaction behaviour specific to this building.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="attribute">#[<span class="ident">builder</span>(<span class="ident">field_defaults</span>(<span class="ident">default</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReactionPolicy</span> {
     <span class="doccomment">/// Whethre the reaction rate can be configured by the players.</span>
@@ -259,7 +267,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This storage is also used as a buffer for liquid and gas transfer.</span>
 <span class="doccomment">/// The storage size is the maximum amount of liquid and gas that</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Storage</span> {
     <span class="doccomment">/// Cargo storage provided</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -314,7 +322,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CategoryId</span>(<span class="kw">pub</span> <span class="ident">usize</span>);
 
 <span class="doccomment">/// A category of building.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Category</span> {
     <span class="doccomment">/// Title of the building category.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>

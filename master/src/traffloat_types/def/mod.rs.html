@@ -163,7 +163,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">vehicle</span>;
 
 <span class="doccomment">/// Game mechanism definition.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::MutGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::MutGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GameDefinition</span> {
     <span class="doccomment">/// Cargo types.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>

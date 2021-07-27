@@ -222,6 +222,8 @@
 <span id="222">222</span>
 <span id="223">223</span>
 <span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge management.</span>
 <span class="doccomment">//!</span>
@@ -234,6 +236,7 @@
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
 
 <span class="doccomment">/// Component storing the endpoints of an edge</span>
@@ -437,6 +440,7 @@
         <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">to</span>: <span class="ident">node::Id</span>,
         <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">size</span>: <span class="kw">super</span><span class="ident">::Size</span>,
         <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">design</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SavedDuct</span><span class="op">&gt;</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">hitpoints</span>: <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
     }
 
     <span class="doccomment">/// Saves all data related to a duct.</span>

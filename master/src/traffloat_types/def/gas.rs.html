@@ -24,6 +24,8 @@
 <span id="24">24</span>
 <span id="25">25</span>
 <span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Gas definitions.</span>
 
@@ -36,7 +38,9 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TypeId</span>(<span class="kw">pub</span> <span class="ident">usize</span>);
 
 <span class="doccomment">/// A type of gas.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(
+    <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>,
+)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the gas type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>

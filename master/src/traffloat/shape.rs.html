@@ -56,6 +56,32 @@
 <span id="56">56</span>
 <span id="57">57</span>
 <span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Shape and appearance of an object</span>
 
@@ -69,7 +95,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">traffloat_types::geometry::Unit</span>;
 
 <span class="doccomment">/// Describes the shape and appearance of an object</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Shape</span> {
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="doccomment">/// Unit shape variant</span>
@@ -82,10 +108,36 @@
     <span class="attribute">#[<span class="ident">builder</span>(
         <span class="ident">default_code</span> <span class="op">=</span> <span class="string">r#&quot;matrix.try_inverse().expect(&quot;Transformation matrix is singular&quot;)&quot;#</span>
     )]</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
     <span class="ident">inv_matrix</span>: <span class="ident">Matrix</span>,
     <span class="doccomment">/// The texture for rendering the shape</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">texture</span>: <span class="ident">Texture</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="ident">Deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
+    <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">serde::Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">d</span>: <span class="ident">D</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">D::Error</span><span class="op">&gt;</span> {
+        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>)]</span>
+        <span class="kw">struct</span> <span class="ident">Simple</span> {
+            <span class="ident">unit</span>: <span class="ident">Unit</span>,
+            <span class="ident">matrix</span>: <span class="ident">Matrix</span>,
+            <span class="ident">texture</span>: <span class="ident">Texture</span>,
+        }
+
+        <span class="kw">let</span> <span class="ident">Simple</span> {
+            <span class="ident">unit</span>,
+            <span class="ident">matrix</span>,
+            <span class="ident">texture</span>,
+        } <span class="op">=</span> <span class="ident">Simple::deserialize</span>(<span class="ident">d</span>)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
+            <span class="ident">unit</span>,
+            <span class="ident">matrix</span>,
+            <span class="ident">inv_matrix</span>: <span class="ident">matrix</span>
+                .<span class="ident">try_inverse</span>()
+                .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">serde::de::Error::custom</span>(<span class="string">&quot;Transformation matrix is singular&quot;</span>))<span class="question-mark">?</span>,
+            <span class="ident">texture</span>,
+        })
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">Shape</span> {
@@ -101,7 +153,7 @@
 }
 
 <span class="doccomment">/// The texture of a rendered object</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">new</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">new</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Texture</span> {
     <span class="doccomment">/// A URL to an image file</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
