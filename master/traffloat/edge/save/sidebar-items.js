@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Edge","Saves all data related to an edge."],["SavedDuct","Saves all data related to a duct."]]});

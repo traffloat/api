@@ -198,6 +198,30 @@
 <span id="198">198</span>
 <span id="199">199</span>
 <span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge management.</span>
 <span class="doccomment">//!</span>
@@ -206,6 +230,7 @@
 
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">legion::Entity</span>;
+<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
@@ -223,7 +248,7 @@
 }
 
 <span class="doccomment">/// Defines the size of an edge</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Size</span> {
     <span class="doccomment">/// The radius of the corridor</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -231,7 +256,7 @@
 }
 
 <span class="doccomment">/// A direction across an edge.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Direction</span> {
     <span class="doccomment">/// A direction starting from [`Id::from`] and ending at [`Id::to`]</span>
     <span class="ident">FromTo</span>,
@@ -240,7 +265,7 @@
 }
 
 <span class="doccomment">/// A position on the cross section of an edge.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CrossSectionPosition</span>(<span class="ident">nalgebra::Vector2</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">CrossSectionPosition</span> {
@@ -297,7 +322,7 @@
 }
 
 <span class="doccomment">/// The type of a duct.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">DuctType</span> {
     <span class="doccomment">/// A rail that vehicles can move along.</span>
     <span class="doccomment">///</span>
@@ -398,6 +423,29 @@
 <span class="doccomment">/// Creates the components for a node entity.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_components</span>(<span class="ident">from</span>: <span class="ident">Entity</span>, <span class="ident">to</span>: <span class="ident">Entity</span>, <span class="ident">size</span>: <span class="ident">f64</span>, <span class="ident">design</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Duct</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Components</span> {
     (<span class="ident">Id::new</span>(<span class="ident">from</span>, <span class="ident">to</span>), <span class="ident">Size::new</span>(<span class="ident">size</span>), <span class="ident">Design::new</span>(<span class="ident">design</span>))
+}
+
+<span class="doccomment">/// Save type for edges.</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">save</span> {
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::node</span>;
+
+    <span class="doccomment">/// Saves all data related to an edge.</span>
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Edge</span> {
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">from</span>: <span class="ident">node::Id</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">to</span>: <span class="ident">node::Id</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">size</span>: <span class="kw">super</span><span class="ident">::Size</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">design</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SavedDuct</span><span class="op">&gt;</span>,
+    }
+
+    <span class="doccomment">/// Saves all data related to a duct.</span>
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SavedDuct</span> {
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">center</span>: <span class="ident">CrossSectionPosition</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">radius</span>: <span class="ident">f64</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">ty</span>: <span class="ident">DuctType</span>,
+    }
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>

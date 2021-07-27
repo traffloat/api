@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["GameState","The state of the game."],["SaveFile","The schema for a `.tflsav` file."]]});
