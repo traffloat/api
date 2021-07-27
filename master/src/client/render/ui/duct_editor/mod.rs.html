@@ -151,6 +151,21 @@
 <span id="151">151</span>
 <span id="152">152</span>
 <span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders duct editor.</span>
 
@@ -162,7 +177,7 @@
 
 <span class="kw">use</span> <span class="ident">traffloat::edge</span>;
 
-<span class="kw">mod</span> <span class="ident">duct</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">duct</span>;
 
 <span class="doccomment">/// Displays an editor for ducts in an edge.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Comp</span> {
@@ -218,7 +233,16 @@
     }
 
     <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident">Msg</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
-        <span class="kw">match</span> <span class="ident">msg</span> {}
+        <span class="kw">match</span> <span class="ident">msg</span> {
+            <span class="ident">Msg::DuctMouseDown</span>((<span class="ident">_index</span>, <span class="ident">_event</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="comment">// TODO</span>
+                <span class="bool-val">true</span>
+            }
+            <span class="ident">Msg::DuctMouseUp</span>((<span class="ident">_index</span>, <span class="ident">_event</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="comment">// TODO</span>
+                <span class="bool-val">true</span>
+            }
+        }
     }
 
     <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">props</span>: <span class="ident">Props</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
@@ -254,6 +278,10 @@
                             <span class="ident">radius</span><span class="op">=</span><span class="ident">duct</span>.<span class="ident">radius</span>
                             <span class="ident">center</span><span class="op">=</span><span class="ident">duct</span>.<span class="ident">center</span>
                             <span class="ident">ty</span><span class="op">=</span><span class="ident">duct</span>.<span class="ident">ty</span>
+
+                            <span class="ident">mouse_down</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">event</span><span class="op">|</span> <span class="ident">Msg::DuctMouseDown</span>((<span class="ident">index</span>, <span class="ident">event</span>)))
+                            <span class="ident">mouse_up</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">event</span><span class="op">|</span> <span class="ident">Msg::DuctMouseUp</span>((<span class="ident">index</span>, <span class="ident">event</span>)))
+
                             <span class="ident">index</span><span class="op">=</span><span class="ident">index</span>
                             <span class="op">/</span><span class="op">&gt;</span>
                     }) }
@@ -266,7 +294,12 @@
 }
 
 <span class="doccomment">/// Events for [`Comp`].</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Msg</span> {}
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Msg</span> {
+    <span class="doccomment">/// When the user presses down a duct.</span>
+    <span class="ident">DuctMouseDown</span>((<span class="ident">usize</span>, <span class="ident">MouseEvent</span>)),
+    <span class="doccomment">/// When the user releases mouse on a duct.</span>
+    <span class="ident">DuctMouseUp</span>((<span class="ident">usize</span>, <span class="ident">MouseEvent</span>)),
+}
 
 <span class="doccomment">/// Yew properties for [`Comp`].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Properties</span>)]</span>
@@ -284,26 +317,23 @@
     <span class="kw">pub</span> <span class="ident">entity</span>: <span class="ident">Entity</span>,
 }
 
-<span class="doccomment">/// Sets up legion ECS for duct editor rendering.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
-    <span class="ident">setup</span>
-}
-
 <span class="doccomment">/// The temporary state of edges in the duct</span>
 <span class="kw">struct</span> <span class="ident">State</span> {
     <span class="ident">size</span>: <span class="ident">f64</span>,
     <span class="ident">ducts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Circle</span><span class="op">&gt;</span>,
 }
 
+<span class="doccomment">/// A temporary circle in the edge.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">struct</span> <span class="ident">Circle</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Circle</span> {
     <span class="doccomment">/// Position of the cicle center</span>
-    <span class="ident">center</span>: <span class="ident">edge::CrossSectionPosition</span>,
+    <span class="kw">pub</span> <span class="ident">center</span>: <span class="ident">edge::CrossSectionPosition</span>,
     <span class="doccomment">/// Radius of the circle</span>
-    <span class="ident">radius</span>: <span class="ident">f64</span>,
-    <span class="ident">ty</span>: <span class="ident">edge::DuctType</span>,
+    <span class="kw">pub</span> <span class="ident">radius</span>: <span class="ident">f64</span>,
+    <span class="doccomment">/// Type of the circle.</span>
+    <span class="kw">pub</span> <span class="ident">ty</span>: <span class="ident">edge::DuctType</span>,
     <span class="doccomment">/// The index of this circle in [`edge::Design::ducts`] if it is not newly drawn.</span>
-    <span class="ident">original_index</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">original_index</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="client" data-search-index-js="../../../../../search-index.js" data-search-js="../../../../../search.js"></div>

@@ -398,6 +398,26 @@
 <span id="398">398</span>
 <span id="399">399</span>
 <span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla building definitions.</span>
 <span class="doccomment">//!</span>
@@ -619,8 +639,8 @@
             <span class="ident">summary</span>: <span class="string">&quot;A small living quarter.&quot;</span>,
             <span class="ident">description</span>: <span class="string">&quot;&quot;</span>,
             <span class="ident">cylinder</span>: {
-                <span class="ident">height</span>: [<span class="number">0.4</span>, <span class="number">0.4</span>],
-                <span class="ident">radius</span>: [<span class="number">0.6</span>, <span class="number">0.6</span>],
+                <span class="ident">height</span>: [<span class="number">0.8</span>, <span class="number">0.8</span>],
+                <span class="ident">radius</span>: [<span class="number">1.</span>, <span class="number">1.</span>],
             },
             <span class="ident">texture</span>: <span class="string">&quot;house&quot;</span>,
             <span class="ident">reactions</span>: [],
@@ -746,6 +766,26 @@
     }
 
     <span class="ident">entertainment</span> <span class="string">&quot;Entertainment&quot;</span> (<span class="string">&quot;Buildings to restore happiness&quot;</span>) {
+        <span class="ident">stadium</span> {
+            <span class="ident">name</span>: <span class="string">&quot;Stadium&quot;</span>,
+            <span class="ident">summary</span>: <span class="string">&quot;Inhabitants can exercise here&quot;</span>,
+            <span class="ident">description</span>: <span class="string">&quot;Inhabitants do exercise here, recovering happiness and improve athletic skills.&quot;</span>,
+            <span class="ident">cylinder</span>: {
+                <span class="ident">height</span>: [<span class="number">1.2</span>, <span class="number">1.2</span>],
+                <span class="ident">radius</span>: [<span class="number">0.8</span>, <span class="number">1.4</span>],
+            },
+            <span class="ident">texture</span>: <span class="string">&quot;stadium&quot;</span>,
+            <span class="ident">reactions</span>: [
+                <span class="ident">stadium</span> {},
+            ],
+            <span class="ident">hitpoint</span>: <span class="number">150.</span>,
+            <span class="ident">storage</span>: {
+                <span class="ident">cargo</span>: <span class="number">1000.</span>,
+                <span class="ident">liquid</span>: <span class="number">1000.</span>,
+                <span class="ident">gas</span>: <span class="number">1000.</span>,
+            },
+            <span class="ident">features</span>: [],
+        }
     }
 
     <span class="ident">security</span> <span class="string">&quot;Security&quot;</span> (<span class="string">&quot;Buildings related to crimes&quot;</span>) {

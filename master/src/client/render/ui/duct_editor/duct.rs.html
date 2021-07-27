@@ -134,6 +134,17 @@
 <span id="134">134</span>
 <span id="135">135</span>
 <span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders a single duct.</span>
 
@@ -157,8 +168,14 @@
 
     <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident">Msg</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
         <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Msg::MouseDown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
-            <span class="ident">Msg::MouseUp</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
+            <span class="ident">Msg::MouseDown</span>(<span class="ident">event</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">mouse_down</span>.<span class="ident">emit</span>(<span class="ident">event</span>);
+                <span class="bool-val">false</span>
+            }
+            <span class="ident">Msg::MouseUp</span>(<span class="ident">event</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">mouse_up</span>.<span class="ident">emit</span>(<span class="ident">event</span>);
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -262,6 +279,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is the *new* index, not the old index as in [`super::Circle::original_index`].</span>
     <span class="kw">pub</span> <span class="ident">index</span>: <span class="ident">usize</span>,
+
+    <span class="doccomment">/// When the user presses down the circle.</span>
+    <span class="kw">pub</span> <span class="ident">mouse_down</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">MouseEvent</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// When the user releases mouse on the circle.</span>
+    <span class="kw">pub</span> <span class="ident">mouse_up</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">MouseEvent</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">fn</span> <span class="ident">duct_fill</span>(<span class="ident">ty</span>: <span class="ident">edge::DuctType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
