@@ -367,13 +367,8 @@
 <span id="367">367</span>
 <span id="368">368</span>
 <span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
 </pre><pre class="rust">
+<span class="kw">use</span> <span class="ident">std::cell</span>::{<span class="self">self</span>, <span class="ident">RefCell</span>};
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
 
@@ -393,7 +388,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Game</span> {
     <span class="ident">_props</span>: <span class="ident">Props</span>,
     <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
-    <span class="ident">legion</span>: <span class="ident">traffloat::Legion</span>,
+    <span class="ident">legion</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">traffloat::Legion</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">_resize_task</span>: <span class="ident">resize::ResizeTask</span>,
     <span class="ident">_render_task</span>: <span class="ident">render_srv::RenderTask</span>,
     <span class="ident">_simulation_task</span>: <span class="ident">interval::IntervalTask</span>,
@@ -407,10 +402,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Game</span> {
+    <span class="kw">fn</span> <span class="ident">legion_mut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">cell::RefMut</span><span class="op">&lt;</span><span class="ident">traffloat::Legion</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">borrow_mut</span>()
+    }
+
     <span class="kw">fn</span> <span class="ident">simulate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">clock</span> <span class="op">=</span> <span class="self">self</span>
-                .<span class="ident">legion</span>
+            <span class="kw">let</span> <span class="ident">legion</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">legion_mut</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">clock</span> <span class="op">=</span> <span class="ident">legion</span>
                 .<span class="ident">resources</span>
                 .<span class="ident">get_mut</span>::<span class="op">&lt;</span><span class="ident">Clock</span><span class="op">&gt;</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;Clock was uninitialized&quot;</span>);
@@ -419,7 +418,10 @@
             <span class="ident">clock</span>.<span class="ident">set_time</span>(<span class="ident">Instant</span>(<span class="ident">Time</span>(<span class="ident">delta</span>.<span class="ident">trunc_int</span>())));
         }
 
-        <span class="kw">let</span> <span class="ident">time</span> <span class="op">=</span> <span class="ident">util::measure</span>(<span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">run</span>());
+        <span class="kw">let</span> <span class="ident">time</span> <span class="op">=</span> <span class="ident">util::measure</span>(<span class="op">|</span><span class="op">|</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legion</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">legion_mut</span>();
+            <span class="ident">legion</span>.<span class="ident">run</span>()
+        });
         <span class="self">self</span>.<span class="ident">render_comm</span>.<span class="ident">perf</span>.<span class="ident">push_exec_us</span>(<span class="ident">time</span>);
     }
 
@@ -428,19 +430,18 @@
             <span class="kw">let</span> <span class="ident">layers</span> <span class="op">=</span> <span class="ident">Rc::clone</span>(<span class="ident">layers</span>);
             <span class="kw">let</span> <span class="ident">dim</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">dim</span>;
 
-            <span class="kw">let</span> <span class="ident">layers_ref</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>
-                .<span class="ident">legion</span>
+            <span class="kw">let</span> <span class="ident">legion</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">legion_mut</span>();
+            <span class="kw">let</span> <span class="ident">layers_ref</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">legion</span>
                 .<span class="ident">resources</span>
                 .<span class="ident">get_mut</span>::<span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">render::Layers</span><span class="op">&gt;</span><span class="op">&gt;</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;render::Layers resource not initialized&quot;</span>);
             <span class="kw-2">*</span><span class="ident">layers_ref</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">layers</span>);
-            <span class="self">self</span>.<span class="ident">legion</span>
+            <span class="ident">legion</span>
                 .<span class="ident">resources</span>
                 .<span class="ident">get_mut</span>::<span class="op">&lt;</span><span class="ident">shrev::EventChannel</span><span class="op">&lt;</span><span class="ident">render::RenderFlag</span><span class="op">&gt;</span><span class="op">&gt;</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;RenderFlag EventChannel not initialized&quot;</span>)
                 .<span class="ident">single_write</span>(<span class="ident">render::RenderFlag</span>);
-            <span class="kw">let</span> <span class="ident">dim_ref</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="self">self</span>
-                .<span class="ident">legion</span>
+            <span class="kw">let</span> <span class="ident">dim_ref</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">legion</span>
                 .<span class="ident">resources</span>
                 .<span class="ident">get_mut</span>::<span class="op">&lt;</span><span class="ident">render::Dimension</span><span class="op">&gt;</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;Uninitialized Dimension resource&quot;</span>);
@@ -487,8 +488,8 @@
 
     <span class="kw">fn</span> <span class="ident">on_resize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">dim</span>: <span class="ident">resize::WindowDimensions</span>) {
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dim</span> <span class="op">=</span> <span class="self">self</span>
-                .<span class="ident">legion</span>
+            <span class="kw">let</span> <span class="ident">legion</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">legion_mut</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dim</span> <span class="op">=</span> <span class="ident">legion</span>
                 .<span class="ident">resources</span>
                 .<span class="ident">get_mut</span>::<span class="op">&lt;</span><span class="ident">render::Dimension</span><span class="op">&gt;</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;render::Dimension uninitialized&quot;</span>);
@@ -515,7 +516,8 @@
             .<span class="ident">key</span>(<span class="ident">input::keyboard::RawKey::Key</span>(<span class="ident">code</span>.<span class="ident">to_string</span>()))
             .<span class="ident">down</span>(<span class="ident">down</span>)
             .<span class="ident">build</span>();
-        <span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">publish</span>(<span class="ident">event</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legion</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">legion_mut</span>();
+        <span class="ident">legion</span>.<span class="ident">publish</span>(<span class="ident">event</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">on_mouse_move</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) {
@@ -527,8 +529,8 @@
         <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> (<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span>) <span class="op">/</span> (<span class="ident">canvas</span>.<span class="ident">width</span>() <span class="kw">as</span> <span class="ident">f64</span>);
         <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> (<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f64</span>) <span class="op">/</span> (<span class="ident">canvas</span>.<span class="ident">height</span>() <span class="kw">as</span> <span class="ident">f64</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pos</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">legion</span>
+        <span class="kw">let</span> <span class="ident">legion</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">legion_mut</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">legion</span>
             .<span class="ident">resources</span>
             .<span class="ident">get_mut</span>::<span class="op">&lt;</span><span class="ident">input::mouse::CursorPosition</span><span class="op">&gt;</span>()
             .<span class="ident">expect</span>(<span class="string">&quot;CursorPosition is uninitialized&quot;</span>);
@@ -540,18 +542,8 @@
             .<span class="ident">key</span>(<span class="ident">input::keyboard::RawKey::Mouse</span>(<span class="ident">button</span>))
             .<span class="ident">down</span>(<span class="ident">down</span>)
             .<span class="ident">build</span>();
-        <span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">publish</span>(<span class="ident">event</span>);
-        <span class="comment">// TODO!(&quot;Send the event to ECS&quot;)</span>
-        <span class="comment">/*
-        if let Some(event) = input::keyboard::KeyEvent::new_mouse(button, down) {
-            let mut channel = self
-                .legion
-                .resources
-                .get_mut::&lt;shrev::EventChannel&lt;input::keyboard::KeyEvent&gt;&gt;()
-                .expect(&quot;EventChannel&lt;KeyEvent&gt; uninitialized&quot;);
-            channel.single_write(event);
-        }
-        */</span>
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legion</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">legion_mut</span>();
+        <span class="ident">legion</span>.<span class="ident">publish</span>(<span class="ident">event</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">on_wheel</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_delta</span>: <span class="ident">f64</span>) {
@@ -604,7 +596,7 @@
 
         <span class="self">Self</span> {
             <span class="ident">_props</span>: <span class="ident">props</span>,
-            <span class="ident">legion</span>,
+            <span class="ident">legion</span>: <span class="ident">Rc::new</span>(<span class="ident">RefCell::new</span>(<span class="ident">legion</span>)),
             <span class="ident">_resize_task</span>: <span class="ident">resize::ResizeService::register</span>(<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::Resize</span>)),
             <span class="ident">_render_task</span>: <span class="ident">render_srv::RenderService::request_animation_frame</span>(
                 <span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::RenderFrame</span>),
@@ -685,11 +677,7 @@
                         x: 0; y: 0;
                     &quot;</span> <span class="op">/</span><span class="op">&gt;</span>
 
-                <span class="op">&lt;</span><span class="ident">render::ui::Wrapper</span>
-                    <span class="ident">updater_ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">resources</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">render::ui::UpdaterRef</span><span class="op">&gt;</span>()
-                        .<span class="ident">expect</span>(<span class="string">&quot;UpdaterRef was not initialized&quot;</span>)
-                        .<span class="ident">clone</span>()
-                <span class="op">/</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">render::ui::Wrapper</span> <span class="ident">legion</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">legion</span>) <span class="op">/</span><span class="op">&gt;</span>
 
                 <span class="op">&lt;</span><span class="ident">div</span>
                     <span class="kw-2">ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">debug_ref</span>.<span class="ident">clone</span>()

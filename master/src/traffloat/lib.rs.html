@@ -82,10 +82,10 @@
         <span class="ident">clippy::match_single_binding</span>,
     )
 )]</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">any</span>(<span class="ident">doc</span>, <span class="ident">not</span>(<span class="ident">debug_assertions</span>)), <span class="ident">deny</span>(<span class="ident">missing_docs</span>))]</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(
     <span class="ident">not</span>(<span class="ident">debug_assertions</span>),
     <span class="ident">deny</span>(
-        <span class="ident">missing_docs</span>,
         <span class="ident">clippy::cast_possible_truncation</span>,
         <span class="ident">clippy::cast_precision_loss</span>,
         <span class="ident">clippy::dbg_macro</span>,

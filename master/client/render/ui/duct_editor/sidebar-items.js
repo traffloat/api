@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"fn":[["setup_ecs","Sets up legion ECS for duct editor rendering."]],"struct":[["Args","Yew-independent properties."],["Comp","Displays an editor for ducts in an edge."],["Props","Yew properties for [`Comp`]."]]});
