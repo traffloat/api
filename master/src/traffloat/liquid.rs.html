@@ -78,9 +78,16 @@
 <span id="78">78</span>
 <span id="79">79</span>
 <span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of liquid in buildings</span>
 
+<span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">legion::world::SubWorld</span>;
 <span class="kw">use</span> <span class="ident">legion::Entity</span>;
 <span class="kw">use</span> <span class="ident">smallvec::SmallVec</span>;
@@ -92,37 +99,42 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
 
-<span class="doccomment">/// A component attached to entities that house cargo.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">getset::Getters</span>)]</span>
+<span class="doccomment">/// A component attached to entities that house liquid.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::Getters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StorageList</span> {
     <span class="doccomment">/// The list of liquids stored in the entity.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">storages</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">def::liquid::TypeId</span>, <span class="ident">Entity</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
 }
 
+<span class="doccomment">/// A component attached to nodes to inidcate cargo capacity of the node.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StorageCapacity</span> {
+    <span class="doccomment">/// The maximum total cargo size.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">total</span>: <span class="ident">LiquidVolume</span>,
+}
+
 <span class="doccomment">/// A component attached to storage entities.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">getset::CopyGetters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Storage</span> {
-    <span class="doccomment">/// The type of cargo</span>
+    <span class="doccomment">/// The type of liquid</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">liquid</span>: <span class="ident">def::cargo::TypeId</span>,
-    <span class="doccomment">/// The maximum amount of the liquid in the storage</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">capacity</span>: <span class="ident">LiquidVolume</span>,
+    <span class="ident">liquid</span>: <span class="ident">def::liquid::TypeId</span>,
 }
 
-<span class="doccomment">/// The size of a cargo storage in the current simulation frame.</span>
+<span class="doccomment">/// The size of a liquid storage in the current simulation frame.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">getset::CopyGetters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StorageSize</span> {
-    <span class="doccomment">/// The cargo size</span>
+    <span class="doccomment">/// The liquid size</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">size</span>: <span class="ident">LiquidVolume</span>,
 }
 
-<span class="doccomment">/// The size of a cargo storage in the next simulation frame.</span>
+<span class="doccomment">/// The size of a liquid storage in the next simulation frame.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">getset::CopyGetters</span>, <span class="ident">getset::MutGetters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NextStorageSize</span> {
-    <span class="doccomment">/// The cargo size</span>
+    <span class="doccomment">/// The liquid size</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">size</span>: <span class="ident">LiquidVolume</span>,

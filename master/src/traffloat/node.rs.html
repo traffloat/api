@@ -149,6 +149,17 @@
 <span id="149">149</span>
 <span id="150">150</span>
 <span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Node management.</span>
 <span class="doccomment">//!</span>
@@ -161,6 +172,7 @@
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">legion::Entity</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
+<span class="kw">use</span> <span class="ident">smallvec::smallvec</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>::{<span class="ident">building</span>, <span class="ident">GameDefinition</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::shape</span>::{<span class="self">self</span>, <span class="ident">Shape</span>};
@@ -168,6 +180,7 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::sun::LightStats</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">cargo</span>, <span class="ident">gas</span>, <span class="ident">liquid</span>};
 
 <span class="doccomment">/// Component storing an identifier for a node</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">new</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
@@ -277,6 +290,12 @@
             .<span class="ident">build</span>(),
         <span class="ident">LightStats::default</span>(),
         <span class="ident">units::Portion::full</span>(<span class="ident">building</span>.<span class="ident">hitpoint</span>()),
+        <span class="ident">cargo::StorageList::new</span>(<span class="macro">smallvec!</span>[]),
+        <span class="ident">cargo::StorageCapacity::new</span>(<span class="ident">building</span>.<span class="ident">storage</span>().<span class="ident">cargo</span>()),
+        <span class="ident">liquid::StorageList::new</span>(<span class="macro">smallvec!</span>[]),
+        <span class="ident">liquid::StorageCapacity::new</span>(<span class="ident">building</span>.<span class="ident">storage</span>().<span class="ident">liquid</span>()),
+        <span class="ident">gas::StorageList::new</span>(<span class="macro">smallvec!</span>[]),
+        <span class="ident">gas::StorageCapacity::new</span>(<span class="ident">building</span>.<span class="ident">storage</span>().<span class="ident">gas</span>()),
     ))
 }
 
@@ -295,9 +314,12 @@
         <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">name</span>: <span class="kw">super</span><span class="ident">::Name</span>,
         <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">position</span>: <span class="ident">Position</span>,
         <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">shape</span>: <span class="ident">Shape</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">cargo</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">def::cargo::TypeId</span>, <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::CargoSize</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">liquid</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">def::liquid::TypeId</span>, <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::LiquidVolume</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">gas</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">def::gas::TypeId</span>, <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::GasVolume</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">cargo</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">def::cargo::TypeId</span>, <span class="ident">units::CargoSize</span><span class="op">&gt;</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">cargo_capacity</span>: <span class="ident">units::CargoSize</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">liquid</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">def::liquid::TypeId</span>, <span class="ident">units::LiquidVolume</span><span class="op">&gt;</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">liquid_capacity</span>: <span class="ident">units::LiquidVolume</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">gas</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">def::gas::TypeId</span>, <span class="ident">units::GasVolume</span><span class="op">&gt;</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">gas_capacity</span>: <span class="ident">units::GasVolume</span>,
         <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">hitpoints</span>: <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
     }
 }
