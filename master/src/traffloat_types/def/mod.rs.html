@@ -148,9 +148,22 @@
 <span id="148">148</span>
 <span id="149">149</span>
 <span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Defines the mechanism of a game.</span>
 
+<span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">building</span>;
@@ -163,39 +176,50 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">vehicle</span>;
 
 <span class="doccomment">/// Game mechanism definition.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::MutGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">new</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::MutGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GameDefinition</span> {
     <span class="doccomment">/// Cargo types.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">cargo</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">cargo::Type</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Cargo categories.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">cargo_cats</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">cargo::Category</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Liquid types.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">liquid</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">liquid::Type</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Gas types.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">gas</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">gas::Type</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Skill types.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">skill</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">skill::Type</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Vehicle types.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">vehicle</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">vehicle::Type</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Reaction types.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">reaction</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">reaction::Type</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Reaction categories.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">reaction_cats</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">reaction::Category</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Building types.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">building</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">building::Type</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Building categories.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">building_cats</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">building::Category</span><span class="op">&gt;</span>,
     <span class="doccomment">/// List of possible crimes.</span>
+    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">crime</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">crime::Type</span><span class="op">&gt;</span>,
 }
