@@ -147,6 +147,17 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -206,6 +217,14 @@
                 <span class="self">self</span>.<span class="ident">duct_editor_args</span> <span class="op">=</span> <span class="ident">args</span>;
                 <span class="bool-val">true</span>
             }
+            <span class="ident">Update::Cancel</span> <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">args</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">duct_editor_args</span>.<span class="ident">as_ref</span>() {
+                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legion</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">legion</span>.<span class="ident">borrow_mut</span>();
+                    <span class="ident">args</span>.<span class="ident">save</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">legion</span>);
+                    <span class="self">self</span>.<span class="ident">duct_editor_args</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+                }
+                <span class="bool-val">true</span>
+            }
         }
     }
 
@@ -243,6 +262,7 @@
                 { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">display_toolbar</span>.<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">html!</span> {
                     <span class="op">&lt;</span><span class="ident">toolbar::Comp</span>
                         <span class="ident">legion</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">legion</span>)
+                        <span class="ident">cancel</span><span class="op">=</span><span class="self">self</span>.<span class="ident">duct_editor_args</span>.<span class="ident">is_some</span>().<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Update::Cancel</span>))
                         <span class="op">/</span><span class="op">&gt;</span>
                 }) }
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
@@ -258,6 +278,8 @@
     <span class="ident">SetEdgePreview</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">edge_preview::Args</span><span class="op">&gt;</span>),
     <span class="doccomment">/// Sets the duct editor args to display.</span>
     <span class="ident">SetDuctEditor</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">duct_editor::Args</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// Cancels the opened interfaces..</span>
+    <span class="ident">Cancel</span>,
 }
 
 <span class="doccomment">/// Yew properties for [`Wrapper`].</span>
