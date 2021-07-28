@@ -235,6 +235,18 @@
 <span id="235">235</span>
 <span id="236">236</span>
 <span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge management.</span>
 <span class="doccomment">//!</span>
@@ -431,23 +443,32 @@
     }
 }
 
-<span class="doccomment">/// Return type of [`create_components`].</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Components</span> <span class="op">=</span> (<span class="ident">Id</span>, <span class="ident">Size</span>, <span class="ident">Design</span>, <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>);
-
-<span class="doccomment">/// Creates the components for a node entity.</span>
+<span class="doccomment">/// Creates the components for an edge entity.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_components</span>(
+    <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">impl</span> <span class="ident">legion::PushEntity</span>,
     <span class="ident">from</span>: <span class="ident">Entity</span>,
     <span class="ident">to</span>: <span class="ident">Entity</span>,
     <span class="ident">size</span>: <span class="ident">f64</span>,
-    <span class="ident">design</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Duct</span><span class="op">&gt;</span>,
-    <span class="ident">hp</span>: <span class="ident">units::Hitpoint</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Components</span> {
-    (
+    <span class="ident">hp</span>: <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
+    <span class="ident">design</span>: <span class="kw">impl</span> <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">save::SavedDuct</span><span class="op">&gt;</span>,
+) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">legion::Entity</span> {
+    <span class="kw">let</span> <span class="ident">comps</span> <span class="op">=</span> (
         <span class="ident">Id::new</span>(<span class="ident">from</span>, <span class="ident">to</span>),
         <span class="ident">Size::new</span>(<span class="ident">size</span>),
-        <span class="ident">Design::new</span>(<span class="ident">design</span>),
-        <span class="ident">units::Portion::full</span>(<span class="ident">hp</span>),
-    )
+        <span class="ident">hp</span>,
+        <span class="ident">Design::new</span>(
+            <span class="ident">design</span>
+                .<span class="ident">into_iter</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">duct</span><span class="op">|</span> <span class="ident">Duct</span> {
+                    <span class="ident">center</span>: <span class="ident">duct</span>.<span class="ident">center</span>,
+                    <span class="ident">radius</span>: <span class="ident">duct</span>.<span class="ident">radius</span>,
+                    <span class="ident">ty</span>: <span class="ident">duct</span>.<span class="ident">ty</span>,
+                    <span class="ident">entity</span>: <span class="ident">world</span>.<span class="ident">push</span>(()),
+                })
+                .<span class="ident">collect</span>(),
+        ),
+    );
+    <span class="ident">world</span>.<span class="ident">push</span>(<span class="ident">comps</span>)
 }
 
 <span class="doccomment">/// Save type for edges.</span>
@@ -468,9 +489,12 @@
     <span class="doccomment">/// Saves all data related to a duct.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SavedDuct</span> {
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">center</span>: <span class="ident">CrossSectionPosition</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">radius</span>: <span class="ident">f64</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">ty</span>: <span class="ident">DuctType</span>,
+        <span class="doccomment">/// Center position of the duct.</span>
+        <span class="kw">pub</span> <span class="ident">center</span>: <span class="ident">CrossSectionPosition</span>,
+        <span class="doccomment">/// Radius of the duct.</span>
+        <span class="kw">pub</span> <span class="ident">radius</span>: <span class="ident">f64</span>,
+        <span class="doccomment">/// Type of the duct.</span>
+        <span class="kw">pub</span> <span class="ident">ty</span>: <span class="ident">DuctType</span>,
     }
 }
 </pre></div>

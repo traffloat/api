@@ -1,1 +1,0 @@
-initSidebarItems({"macro":[["indvec","A [`Vec`][alloc::vec::Vec] literal that assigns item indices."]]});
