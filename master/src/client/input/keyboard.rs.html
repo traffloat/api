@@ -310,6 +310,12 @@
 <span id="310">310</span>
 <span id="311">311</span>
 <span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles keyboard input.</span>
 
@@ -401,6 +407,10 @@
     <span class="ident">MiddleClick</span>,
     <span class="doccomment">/// The generic right click command</span>
     <span class="ident">RightClick</span>,
+    <span class="doccomment">/// Edits the targeted entity.</span>
+    <span class="ident">Edit</span>,
+    <span class="doccomment">/// Exits the active dialog.</span>
+    <span class="ident">Cancel</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Command</span> {
@@ -419,6 +429,8 @@
             <span class="ident">RawKey::Mouse</span>(<span class="number">0</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::LeftClick</span>,
             <span class="ident">RawKey::Mouse</span>(<span class="number">1</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::MiddleClick</span>,
             <span class="ident">RawKey::Mouse</span>(<span class="number">2</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::RightClick</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;KeyE&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::Edit</span>,
+            <span class="ident">RawKey::Key</span>(<span class="string">&quot;Escape&quot;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Command::Cancel</span>,
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">None</span>,
         })
     }

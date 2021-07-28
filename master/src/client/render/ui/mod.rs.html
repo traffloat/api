@@ -32,6 +32,7 @@
 <span id="32">32</span>
 <span id="33">33</span>
 <span id="34">34</span>
+<span id="35">35</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders user interface.</span>
 
@@ -63,6 +64,7 @@
 <span class="doccomment">/// Sets up legion ECS for UI rendering.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
     <span class="ident">setup</span>
+        .<span class="ident">uses</span>(<span class="ident">wrapper::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">node_preview::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">edge_preview::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">toolbar::setup_ecs</span>)

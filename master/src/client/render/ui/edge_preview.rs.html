@@ -139,7 +139,7 @@
 
     <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident">Msg</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
         <span class="kw">match</span> <span class="ident">msg</span> {
-            <span class="ident">Msg::EditDucts</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">Msg::EditDucts</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">edit_duct</span>.<span class="ident">emit</span>(<span class="prelude-val">Some</span>(<span class="ident">duct_editor::Args</span> {
                     <span class="ident">entity</span>: <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">entity</span>,
                 }));
@@ -167,7 +167,7 @@
         <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="ident">style</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>{ <span class="string">&quot;Corridor&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">button</span> <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::EditDucts</span>)<span class="op">&gt;</span>{ <span class="string">&quot;Edit&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">button</span> <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Msg::EditDucts</span>)<span class="op">&gt;</span>{ <span class="string">&quot;Edit&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         }
     }
@@ -176,7 +176,7 @@
 <span class="doccomment">/// Events for [`Comp`].</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Msg</span> {
     <span class="doccomment">/// Open the duct editor.</span>
-    <span class="ident">EditDucts</span>(<span class="ident">MouseEvent</span>),
+    <span class="ident">EditDucts</span>,
 }
 
 <span class="doccomment">/// Yew properties for [`Comp`].</span>
