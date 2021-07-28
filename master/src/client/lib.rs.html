@@ -66,8 +66,6 @@
 <span id="66">66</span>
 <span id="67">67</span>
 <span id="68">68</span>
-<span id="69">69</span>
-<span id="70">70</span>
 </pre><pre class="rust">
 <span class="doccomment">//! The webassembly client crate.</span>
 
@@ -106,7 +104,6 @@
 <span class="kw">mod</span> <span class="ident">app</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">camera</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">config</span>;
-<span class="kw">mod</span> <span class="ident">initial</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">input</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">render</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">util</span>;
@@ -135,7 +132,6 @@
     <span class="ident">setup</span>
         .<span class="ident">uses</span>(<span class="ident">traffloat::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">camera::setup_ecs</span>)
-        .<span class="ident">uses</span>(<span class="ident">initial::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">input::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">render::setup_ecs</span>)
 }

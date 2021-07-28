@@ -364,9 +364,6 @@
 <span id="364">364</span>
 <span id="365">365</span>
 <span id="366">366</span>
-<span id="367">367</span>
-<span id="368">368</span>
-<span id="369">369</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell</span>::{<span class="self">self</span>, <span class="ident">RefCell</span>};
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -381,7 +378,6 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
 <span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
-<span class="kw">use</span> <span class="ident">traffloat::time</span>::{<span class="ident">Instant</span>, <span class="ident">Time</span>};
 <span class="kw">use</span> <span class="ident">traffloat::SetupEcs</span>;
 
 <span class="doccomment">/// HTML interface of the game page</span>
@@ -398,7 +394,6 @@
     <span class="ident">scene_canvas_ref</span>: <span class="ident">NodeRef</span>,
     <span class="ident">debug_ref</span>: <span class="ident">NodeRef</span>,
     <span class="ident">layers_cache</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">render::Layers</span>, <span class="ident">render::Dimension</span>)<span class="op">&gt;</span>,
-    <span class="ident">clock_epoch</span>: <span class="ident">u64</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Game</span> {
@@ -414,8 +409,7 @@
                 .<span class="ident">get_mut</span>::<span class="op">&lt;</span><span class="ident">Clock</span><span class="op">&gt;</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;Clock was uninitialized&quot;</span>);
 
-            <span class="kw">let</span> <span class="ident">delta</span> <span class="op">=</span> (<span class="ident">util::high_res_time</span>() <span class="op">-</span> <span class="self">self</span>.<span class="ident">clock_epoch</span>).<span class="ident">small_float</span>() <span class="op">/</span> <span class="number">10000.</span>;
-            <span class="ident">clock</span>.<span class="ident">set_time</span>(<span class="ident">Instant</span>(<span class="ident">Time</span>(<span class="ident">delta</span>.<span class="ident">trunc_int</span>())));
+            <span class="ident">clock</span>.<span class="ident">update_micros</span>(<span class="ident">util::high_res_time</span>().<span class="ident">homosign</span>());
         }
 
         <span class="kw">let</span> <span class="ident">time</span> <span class="op">=</span> <span class="ident">util::measure</span>(<span class="op">|</span><span class="op">|</span> {
@@ -575,7 +569,7 @@
     <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident">Props</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">render_comm</span> <span class="op">=</span> <span class="ident">render::Comm::default</span>();
 
-        <span class="kw">let</span> <span class="ident">legion</span> <span class="op">=</span> <span class="ident">SetupEcs::default</span>()
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legion</span> <span class="op">=</span> <span class="ident">SetupEcs::default</span>()
             .<span class="ident">resource</span>(<span class="ident">render_comm</span>.<span class="ident">clone</span>())
             .<span class="ident">resource</span>({
                 <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">web_sys::window</span>().<span class="ident">expect</span>(<span class="string">&quot;Failed to get window object&quot;</span>);
@@ -585,8 +579,9 @@
                     <span class="ident">height</span>: <span class="ident">dim</span>.<span class="ident">height</span> <span class="kw">as</span> <span class="ident">u32</span>,
                 }
             })
-            .<span class="ident">uses</span>(<span class="kw">crate</span><span class="ident">::setup_ecs</span>)
-            .<span class="ident">build</span>(); <span class="comment">// TODO setup depending on gamemode</span>
+            .<span class="ident">uses</span>(<span class="kw">crate</span><span class="ident">::setup_ecs</span>);
+        <span class="ident">legion</span> <span class="op">=</span> <span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">init</span>(<span class="ident">legion</span>);
+        <span class="kw">let</span> <span class="ident">legion</span> <span class="op">=</span> <span class="ident">legion</span>.<span class="ident">build</span>();
 
         <span class="kw">let</span> <span class="ident">body</span> <span class="op">=</span> <span class="ident">body</span>();
         <span class="kw">let</span> <span class="ident">keyboard_task</span> <span class="op">=</span> [
@@ -611,7 +606,6 @@
             <span class="ident">scene_canvas_ref</span>: <span class="ident">NodeRef::default</span>(),
             <span class="ident">debug_ref</span>: <span class="ident">NodeRef::default</span>(),
             <span class="ident">layers_cache</span>: <span class="prelude-val">None</span>,
-            <span class="ident">clock_epoch</span>: <span class="ident">util::high_res_time</span>(),
             <span class="ident">link</span>,
         }
     }

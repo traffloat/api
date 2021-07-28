@@ -68,14 +68,36 @@
 <span id="68">68</span>
 <span id="69">69</span>
 <span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Game clock management</span>
 
+<span class="kw">use</span> <span class="ident">std::convert::TryFrom</span>;
+
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::time</span>::{<span class="ident">Instant</span>, <span class="ident">Time</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
+<span class="kw">use</span> <span class="ident">safety::Safety</span>;
 
 <span class="doccomment">/// The interval between simulation frames.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIMULATION_PERIOD</span>: <span class="ident">Time</span> <span class="op">=</span> <span class="ident">Time</span>(<span class="number">100</span>);
+
+<span class="doccomment">/// Number of microseconds per discrete unit time.</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MICROS_PER_TICK</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">10000</span>;
 
 <span class="doccomment">/// A resource for time read/write.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">getset::CopyGetters</span>)]</span>
@@ -86,19 +108,29 @@
     <span class="doccomment">/// Time since the last frame</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">delta</span>: <span class="ident">Time</span>,
+    <span class="doccomment">/// The reference time value at epoch.</span>
+    <span class="ident">epoch_instant</span>: <span class="ident">Instant</span>,
+    <span class="doccomment">/// The epoch in microseconds used for calibration.</span>
+    <span class="ident">epoch_micros</span>: <span class="ident">i64</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Clock</span> {
-    <span class="doccomment">/// Increases the time for the specified span.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">inc_time</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">time</span>: <span class="ident">Time</span>) {
-        <span class="self">self</span>.<span class="ident">now</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>;
-        <span class="self">self</span>.<span class="ident">delta</span> <span class="op">=</span> <span class="ident">time</span>;
-    }
-
     <span class="doccomment">/// Sets the time to the specified instant.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_time</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">now</span>: <span class="ident">Instant</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update_micros</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">micros</span>: <span class="ident">i64</span>) {
+        <span class="kw">let</span> <span class="ident">delta_micros</span> <span class="op">=</span> (<span class="ident">micros</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">epoch_micros</span>).<span class="ident">homosign</span>();
+        <span class="kw">let</span> <span class="ident">delta_time</span> <span class="op">=</span>
+            <span class="ident">Time</span>(<span class="ident">u32::try_from</span>(<span class="ident">delta_micros</span> <span class="op">/</span> <span class="ident">MICROS_PER_TICK</span>).<span class="ident">expect</span>(<span class="string">&quot;micros is not monotonic&quot;</span>));
+        <span class="kw">let</span> <span class="ident">now</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">epoch_instant</span> <span class="op">+</span> <span class="ident">delta_time</span>;
         <span class="self">self</span>.<span class="ident">delta</span> <span class="op">=</span> <span class="ident">now</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">now</span>;
         <span class="self">self</span>.<span class="ident">now</span> <span class="op">=</span> <span class="ident">now</span>;
+    }
+
+    <span class="doccomment">/// Reset the time without involving any simulation offset.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset_time</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">now</span>: <span class="ident">Instant</span>, <span class="ident">micros</span>: <span class="ident">i64</span>) {
+        <span class="self">self</span>.<span class="ident">now</span> <span class="op">=</span> <span class="ident">now</span>;
+        <span class="self">self</span>.<span class="ident">delta</span> <span class="op">=</span> <span class="ident">Time::zero</span>();
+        <span class="self">self</span>.<span class="ident">epoch_instant</span> <span class="op">=</span> <span class="ident">now</span>;
+        <span class="self">self</span>.<span class="ident">epoch_micros</span> <span class="op">=</span> <span class="ident">micros</span>;
     }
 }
 
