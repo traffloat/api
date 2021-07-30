@@ -112,10 +112,11 @@
 <span id="112">112</span>
 <span id="113">113</span>
 <span id="114">114</span>
+<span id="115">115</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla vehicle type definitions.</span>
 
-<span class="kw">use</span> <span class="ident">arcstr::literal</span>;
+<span class="kw">use</span> <span class="ident">arcstr</span>::{<span class="ident">format</span>, <span class="ident">literal</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::skill</span>;
 <span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">reaction</span>, <span class="ident">vehicle</span>, <span class="ident">GameDefinition</span>};
@@ -170,7 +171,8 @@
                                    .<span class="ident">overflow</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">skill_overflow_mul</span>)
                                    .<span class="ident">build</span>())
                                .<span class="ident">build</span>())
-                        .<span class="ident">texture</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
+                        .<span class="ident">texture_src</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="kw">crate</span><span class="ident">::VANILLA_TEXTURE</span>))
+                        .<span class="ident">texture_name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
                         .<span class="ident">build</span>()
                 );
             )<span class="op">*</span>

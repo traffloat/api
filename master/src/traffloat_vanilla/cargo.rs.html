@@ -172,6 +172,9 @@
 <span id="172">172</span>
 <span id="173">173</span>
 <span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla cargo type definitions.</span>
 
@@ -217,7 +220,8 @@
                             .<span class="ident">name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>))
                             .<span class="ident">summary</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
                             .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
-                            .<span class="ident">texture</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
+                            .<span class="ident">texture_src</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="kw">crate</span><span class="ident">::VANILLA_TEXTURE</span>))
+                            .<span class="ident">texture_name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
                             .<span class="ident">category</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">category_ident</span>)
                             .<span class="ident">build</span>()
                     );
@@ -234,7 +238,8 @@
                         .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="string">&quot;Produced in liquid bottlers and centrifuges, liquid bottles can be used to \
                             transfer a small amount of liquid to factories \
                             as a replacement of constructing dedicated pipes through corridors.&quot;</span>))
-                        .<span class="ident">texture</span>(<span class="macro">format!</span>(<span class="string">&quot;{}-liquid-bottle&quot;</span>, <span class="ident">liquid</span>.<span class="ident">texture</span>()))
+                        .<span class="ident">texture_src</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="kw">crate</span><span class="ident">::VANILLA_TEXTURE</span>))
+                        .<span class="ident">texture_name</span>(<span class="macro">format!</span>(<span class="string">&quot;{}-liquid-bottle&quot;</span>, <span class="ident">liquid</span>.<span class="ident">texture_name</span>()))
                         .<span class="ident">category</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">container</span>)
                         .<span class="ident">build</span>()
                 );
@@ -250,7 +255,8 @@
                         .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="string">&quot;Produced in gas bottlers and centrifuges, gas bottles can be used to \
                             transfer a small amount of gas to factories \
                             as a replacement of diffusing gas slowly through corridors.&quot;</span>))
-                        .<span class="ident">texture</span>(<span class="macro">format!</span>(<span class="string">&quot;{}-gas-bottle&quot;</span>, <span class="ident">gas</span>.<span class="ident">texture</span>()))
+                        .<span class="ident">texture_src</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="kw">crate</span><span class="ident">::VANILLA_TEXTURE</span>))
+                        .<span class="ident">texture_name</span>(<span class="macro">format!</span>(<span class="string">&quot;{}-gas-bottle&quot;</span>, <span class="ident">gas</span>.<span class="ident">texture_name</span>()))
                         .<span class="ident">category</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">container</span>)
                         .<span class="ident">build</span>()
                 );

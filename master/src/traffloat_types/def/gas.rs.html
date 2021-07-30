@@ -26,6 +26,9 @@
 <span id="26">26</span>
 <span id="27">27</span>
 <span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Gas definitions.</span>
 
@@ -51,9 +54,12 @@
     <span class="doccomment">/// Long description of the gas type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">description</span>: <span class="ident">ArcStr</span>,
-    <span class="doccomment">/// Name of the texture.</span>
+    <span class="doccomment">/// The texture source path of the gas.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">texture</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">texture_src</span>: <span class="ident">ArcStr</span>,
+    <span class="doccomment">/// The texture name of the gas.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">texture_name</span>: <span class="ident">ArcStr</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="traffloat_types" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

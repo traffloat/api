@@ -90,10 +90,11 @@
 <span id="90">90</span>
 <span id="91">91</span>
 <span id="92">92</span>
+<span id="93">93</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vanilla liquid type definitions.</span>
 
-<span class="kw">use</span> <span class="ident">arcstr::literal</span>;
+<span class="kw">use</span> <span class="ident">arcstr</span>::{<span class="ident">format</span>, <span class="ident">literal</span>};
 
 <span class="kw">use</span> <span class="ident">traffloat_types::def</span>::{<span class="ident">liquid</span>, <span class="ident">GameDefinition</span>};
 
@@ -123,7 +124,8 @@
                         .<span class="ident">summary</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">summary</span>))
                         .<span class="ident">description</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">description</span>))
                         .<span class="ident">viscosity</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">viscosity</span>.<span class="ident">into</span>())
-                        .<span class="ident">texture</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
+                        .<span class="ident">texture_src</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="kw">crate</span><span class="ident">::VANILLA_TEXTURE</span>))
+                        .<span class="ident">texture_name</span>(<span class="macro">literal!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">texture</span>))
                         .<span class="ident">build</span>()
                 );
             )<span class="op">*</span>
