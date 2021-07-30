@@ -107,6 +107,15 @@
 <span id="107">107</span>
 <span id="108">108</span>
 <span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders an icon in an atlas.</span>
 
@@ -142,24 +151,31 @@
 
     <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
         <span class="macro">html!</span> {
-            <span class="op">&lt;</span><span class="ident">span</span> <span class="ident">style</span><span class="op">=</span><span class="macro">format!</span>(
-                <span class="string">&quot;
-                    background-image: url(&#39;{url}&#39;);
-                    background-repeat: no-repeat;
-                    display: inline-block;
-                    background-size: {atlas_x}px {atlas_y}px;
-                    width: {size_x}px;
-                    height: {size_y}px;
-                    background-position: {pos_x}px {pos_y}px;
-                &quot;</span>,
-                <span class="ident">url</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">atlas_path</span>,
-                <span class="ident">atlas_x</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_atlas_x</span>(),
-                <span class="ident">atlas_y</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_atlas_y</span>(),
-                <span class="ident">size_x</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_size_x</span>(),
-                <span class="ident">size_y</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_size_y</span>(),
-                <span class="ident">pos_x</span><span class="op">=</span><span class="op">-</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_pos_x</span>().<span class="ident">homosign</span>(),
-                <span class="ident">pos_y</span><span class="op">=</span><span class="op">-</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_pos_y</span>().<span class="ident">homosign</span>(),
-            ) <span class="op">/</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="ident">span</span>
+                <span class="ident">style</span><span class="op">=</span><span class="macro">format!</span>(
+                    <span class="string">&quot;
+                        background-image: url(&#39;{url}&#39;);
+                        background-repeat: no-repeat;
+                        display: inline-block;
+                        background-size: {atlas_x}px {atlas_y}px;
+                        width: {size_x}px;
+                        height: {size_y}px;
+                        background-position: {pos_x}px {pos_y}px;
+                        font-size: 0;
+                        vertical-align: text-bottom;
+                    &quot;</span>,
+                    <span class="ident">url</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">atlas_path</span>,
+                    <span class="ident">atlas_x</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_atlas_x</span>(),
+                    <span class="ident">atlas_y</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_atlas_y</span>(),
+                    <span class="ident">size_x</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_size_x</span>(),
+                    <span class="ident">size_y</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_size_y</span>(),
+                    <span class="ident">pos_x</span><span class="op">=</span><span class="op">-</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_pos_x</span>().<span class="ident">homosign</span>(),
+                    <span class="ident">pos_y</span><span class="op">=</span><span class="op">-</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">scaled_pos_y</span>().<span class="ident">homosign</span>(),
+                )
+                <span class="ident">title</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">text</span>.<span class="ident">clone</span>()
+            <span class="op">&gt;</span>
+                { <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">text</span> }
+            <span class="op">&lt;</span><span class="op">/</span><span class="ident">span</span><span class="op">&gt;</span>
         }
     }
 }
@@ -188,6 +204,8 @@
     <span class="kw">pub</span> <span class="ident">out_width</span>: <span class="ident">u32</span>,
     <span class="doccomment">/// Rendered height.</span>
     <span class="kw">pub</span> <span class="ident">out_height</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// Copyable text.</span>
+    <span class="kw">pub</span> <span class="ident">text</span>: <span class="ident">String</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Props</span> {
