@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["yew_router"] = [{"text":"impl&lt;STATE&gt; <a class=\"trait\" href=\"yew/agent/trait.Agent.html\" title=\"trait yew::agent::Agent\">Agent</a> for <a class=\"struct\" href=\"yew_router/agent/struct.RouteAgent.html\" title=\"struct yew_router::agent::RouteAgent\">RouteAgent</a>&lt;STATE&gt; <span class=\"where fmt-newline\">where<br>&nbsp;&nbsp;&nbsp;&nbsp;STATE: <a class=\"trait\" href=\"yew_router/route/trait.RouteState.html\" title=\"trait yew_router::route::RouteState\">RouteState</a>,&nbsp;</span>","synthetic":false,"types":["yew_router::agent::RouteAgent"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

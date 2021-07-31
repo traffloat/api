@@ -273,7 +273,7 @@
 <span class="kw">use</span> <span class="ident">yew::services::fetch</span>;
 <span class="kw">use</span> <span class="ident">yew::services::reader</span>;
 
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::SpGameArgs</span>;
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">scenarios</span>, <span class="ident">SpGameArgs</span>};
 
 <span class="kw">mod</span> <span class="ident">scenario_choose</span>;
 
@@ -523,10 +523,10 @@
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Scenario</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::Url</span>(
-            <span class="ident">scenario_choose::SCENARIO_OPTIONS</span>
+            <span class="ident">scenarios::OPTIONS</span>
                 .<span class="ident">get</span>(<span class="number">0</span>)
-                .<span class="ident">expect</span>(<span class="string">&quot;SCENARIO_OPTIONS is empty&quot;</span>)
-                .<span class="number">1</span>,
+                .<span class="ident">expect</span>(<span class="string">&quot;scenarios::OPTIONS is empty&quot;</span>)
+                .<span class="ident">path</span>,
         )
     }
 }
