@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["populate","Populates a [`GameDefinition`] with building definition."]],"struct":[["Ids","IDs assigned to the vanilla game definition."]]});
