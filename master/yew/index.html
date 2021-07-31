@@ -66,7 +66,8 @@
 }</pre></div>
 </div></details><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
 <div class="item-table"><div class="item-left import-item"><code>pub use <a class="mod" href="../web_sys/index.html" title="mod web_sys">web_sys</a>;</code></div><div class="item-right docblock-short"></div><div class="item-left import-item"><code>pub use self::<a class="mod" href="prelude/index.html" title="mod yew::prelude">prelude</a>::*;</code></div><div class="item-right docblock-short"></div></div><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
-<div class="item-table"><div class="item-left module-item"><a class="mod" href="app/index.html" title="yew::app mod">app</a></div><div class="item-right docblock-short"><p>This module contains the <code>App</code> struct, which is used to bootstrap
+<div class="item-table"><div class="item-left module-item"><a class="mod" href="agent/index.html" title="yew::agent mod">agent</a></div><div class="item-right docblock-short"><p>This module contains types to support multi-threading and state management.</p>
+</div><div class="item-left module-item"><a class="mod" href="app/index.html" title="yew::app mod">app</a></div><div class="item-right docblock-short"><p>This module contains the <code>App</code> struct, which is used to bootstrap
 a component in an isolated scope.</p>
 </div><div class="item-left module-item"><a class="mod" href="callback/index.html" title="yew::callback mod">callback</a></div><div class="item-right docblock-short"><p>This module contains data types for interacting with <code>Scope</code>s.</p>
 </div><div class="item-left module-item"><a class="mod" href="events/index.html" title="yew::events mod">events</a></div><div class="item-right docblock-short"><p>The module that contains all events available in the framework.</p>
@@ -97,6 +98,11 @@ is used in conjunction with a type definition for a tuple struct
 with one (publically accessible) element of a generic type.  Since
 any type that can be encoded as Text can also be encoded as Binary,
 it should be used with the binary_format macro.</p>
+</div><div class="item-left module-item"><a class="macro" href="macro.text_format_is_an_error.html" title="yew::text_format_is_an_error macro">text_format_is_an_error</a></div><div class="item-right docblock-short"><p>This macro is used for a format that can be encoded as Binary but
+can’t be encoded as Text.  It is used in conjunction with a type
+definition for a tuple struct with one (publically accessible)
+element of a generic type.  This macro should be paired with the
+binary_format macro that defines the binary-only format.</p>
 </div></div><h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
 <div class="item-table"><div class="item-left module-item"><a class="fn" href="fn.initialize.html" title="yew::initialize fn">initialize</a></div><div class="item-right docblock-short"><p>Initializes yew framework. It should be called first.</p>
 </div><div class="item-left module-item"><a class="fn" href="fn.run_loop.html" title="yew::run_loop fn">run_loop</a></div><div class="item-right docblock-short"><p>Starts event loop.</p>

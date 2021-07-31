@@ -248,6 +248,24 @@
 <span id="248">248</span>
 <span id="249">249</span>
 <span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
@@ -350,9 +368,17 @@
             <span class="ident">Msg::StartSingle</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">let</span> <span class="ident">scenario</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">scenario</span> {
                     <span class="prelude-val">Some</span>(<span class="ident">scenario</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Rc::clone</span>(<span class="ident">scenario</span>),
-                    <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="bool-val">false</span>, <span class="comment">// or panic as unreachable?</span>
+                    <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="bool-val">false</span>,
                 };
                 <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">start_single_hook</span>.<span class="ident">emit</span>(<span class="ident">SpGameArgs</span> { <span class="ident">scenario</span> });
+                <span class="bool-val">false</span>
+            }
+            <span class="ident">Msg::EditScenario</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">let</span> <span class="ident">scenario</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">scenario</span> {
+                    <span class="prelude-val">Some</span>(<span class="ident">scenario</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Rc::clone</span>(<span class="ident">scenario</span>),
+                    <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="bool-val">false</span>,
+                };
+                <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">edit_scenario_hook</span>.<span class="ident">emit</span>(<span class="ident">scenario</span>);
                 <span class="bool-val">false</span>
             }
         }
@@ -413,6 +439,12 @@
                                 <span class="ident">tabindex</span><span class="op">=</span><span class="number">1</span> <span class="op">&gt;</span>
                                 { <span class="string">&quot;Start&quot;</span> }
                             <span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
+                            <span class="op">&lt;</span><span class="ident">button</span>
+                                <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::EditScenario</span>)
+                                <span class="ident">disabled</span><span class="op">=</span><span class="self">self</span>.<span class="ident">scenario</span>.<span class="ident">is_none</span>()
+                                <span class="ident">tabindex</span><span class="op">=</span><span class="number">2</span> <span class="op">&gt;</span>
+                                { <span class="string">&quot;Rules&quot;</span> }
+                            <span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
                         <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
                 }) }
@@ -458,6 +490,8 @@
     <span class="ident">ScenarioUrlLoaded</span>(<span class="ident">fetch::Response</span><span class="op">&lt;</span><span class="ident">yew::format::Binary</span><span class="op">&gt;</span>),
     <span class="doccomment">/// Starts a singleplayer game.</span>
     <span class="ident">StartSingle</span>(<span class="ident">MouseEvent</span>),
+    <span class="doccomment">/// Edit a scenario.</span>
+    <span class="ident">EditScenario</span>(<span class="ident">MouseEvent</span>),
 }
 
 <span class="doccomment">/// yew properties for [`Home`][Home].</span>
@@ -465,6 +499,8 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Props</span> {
     <span class="doccomment">/// Callback to start a singleplayer game.</span>
     <span class="kw">pub</span> <span class="ident">start_single_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">SpGameArgs</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Callback to edit a scenario.</span>
+    <span class="kw">pub</span> <span class="ident">edit_scenario_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Displays an error message.</span>
     <span class="kw">pub</span> <span class="ident">error</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
