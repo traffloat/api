@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for debug info rendering."]],"mod":[["fps","Counts the FPS of the last second."]],"struct":[["Canvas","Stores setup data for the debug layer."]]});

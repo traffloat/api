@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Instant","A specific point of time, represented as a duration since game epoch."],["Rate","The rate of change."],["Time","Synchronized time span."]],"trait":[["_TimeTrait","Internal trait just because declarative macros are stupid."]]});

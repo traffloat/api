@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for input handling."]],"mod":[["keyboard","Handles keyboard input."],["mouse","Handles mouse interaction."]],"struct":[["FocusTarget","Resource storing the entity focused."],["ScreenPosition","A position on the screen."]]});

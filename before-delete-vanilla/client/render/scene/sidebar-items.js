@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Sets up legion ECS for debug info rendering."]],"mod":[["edge","Edge rendering"],["mesh","Lazily generates meshes for complex objects."],["node","Node rendering"],["reticle","Reticle rendering"]],"struct":[["Canvas","Stores the setup data of the scene canvas."]]});

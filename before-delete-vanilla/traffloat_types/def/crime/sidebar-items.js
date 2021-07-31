@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Action","Consequence of a crime."],["InhabitantCriterion","A criterion to sort inhabitants with."]],"struct":[["Type","A type of crime customized for the game definition."]]});

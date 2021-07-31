@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Node","Saves all data related to a node."]]});

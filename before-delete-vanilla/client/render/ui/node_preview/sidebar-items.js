@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"fn":[["setup_ecs","Sets up legion ECS for node info rendering."]],"struct":[["Args","Yew-independent properties."],["Comp","Displays basic info about a node at a corner of the screen."],["Props","Yew properties for [`Comp`]."]]});

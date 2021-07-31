@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["GIT_BRANCH","The git branch name, or [`None`] if detached."],["GIT_IS_DIRTY","Whether the git workspace is dirty."],["GIT_REVISION","The git revision SHA."],["SEMVER","Semver version string of the crates."],["VERSION","The human-readable full version string."]]});

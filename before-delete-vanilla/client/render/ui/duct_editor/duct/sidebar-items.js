@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"struct":[["Comp","Displays an editor for ducts in an edge."],["Props","Yew properties for [`Comp`]."]]});

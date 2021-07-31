@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["client"] = [{"text":"impl&lt;V&gt; <a class=\"trait\" href=\"enum_map/internal/trait.Enum.html\" title=\"trait enum_map::internal::Enum\">Enum</a>&lt;V&gt; for <a class=\"enum\" href=\"client/input/keyboard/enum.Command.html\" title=\"enum client::input::keyboard::Command\">Command</a>","synthetic":false,"types":["client::input::keyboard::Command"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
