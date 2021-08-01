@@ -266,6 +266,69 @@
 <span id="266">266</span>
 <span id="267">267</span>
 <span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
@@ -273,7 +336,9 @@
 <span class="kw">use</span> <span class="ident">yew::services::fetch</span>;
 <span class="kw">use</span> <span class="ident">yew::services::reader</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">scenarios</span>, <span class="ident">SpGameArgs</span>};
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::route</span>::{<span class="ident">Route</span>, <span class="ident">SpRoute</span>};
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::scenarios</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::SpGameArgs</span>;
 
 <span class="kw">mod</span> <span class="ident">scenario_choose</span>;
 
@@ -284,6 +349,7 @@
     <span class="ident">game_mode</span>: <span class="ident">GameMode</span>,
     <span class="ident">_loader</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ScenarioLoader</span><span class="op">&gt;</span>,
     <span class="ident">scenario</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">chosen_scenario_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Component</span> <span class="kw">for</span> <span class="ident">Home</span> {
@@ -291,12 +357,19 @@
     <span class="kw">type</span> <span class="ident">Properties</span> <span class="op">=</span> <span class="ident">Props</span>;
 
     <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident">Props</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">let</span> (<span class="ident">game_mode</span>, <span class="ident">chosen_scenario_name</span>) <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">props</span>.<span class="ident">intent_route</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">Route::Scenario</span> { <span class="ident">name</span>, .. }) <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">GameMode::Single</span>, <span class="prelude-val">Some</span>(<span class="ident">name</span>.<span class="ident">into</span>())),
+            <span class="prelude-val">Some</span>(<span class="ident">Route::Custom</span> { .. }) <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">GameMode::Single</span>, <span class="prelude-val">None</span>),
+            <span class="prelude-val">Some</span>(<span class="ident">Route::Server</span>) <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">GameMode::Multi</span>, <span class="prelude-val">None</span>),
+            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">GameMode::Single</span>, <span class="prelude-val">Some</span>(<span class="string">&quot;vanilla&quot;</span>.<span class="ident">into</span>())),
+        };
         <span class="self">Self</span> {
             <span class="ident">props</span>,
             <span class="ident">link</span>,
-            <span class="ident">game_mode</span>: <span class="ident">GameMode::Single</span>,
+            <span class="ident">game_mode</span>,
             <span class="ident">_loader</span>: <span class="prelude-val">None</span>,
             <span class="ident">scenario</span>: <span class="prelude-val">None</span>,
+            <span class="ident">chosen_scenario_name</span>,
         }
     }
 
@@ -312,12 +385,13 @@
                 <span class="self">self</span>.<span class="ident">game_mode</span> <span class="op">=</span> <span class="ident">GameMode::Multi</span>;
                 <span class="bool-val">true</span>
             }
-            <span class="ident">Msg::ChooseScenario</span>(<span class="ident">scenario</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="ident">loader</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">scenario</span> {
+            <span class="ident">Msg::ChooseScenario</span>(<span class="ident">event</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="kw">let</span> <span class="ident">loader</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">event</span>.<span class="ident">scenario</span> {
                     <span class="prelude-val">Some</span>(<span class="ident">Scenario::Url</span>(<span class="ident">url</span>)) <span class="op">=</span><span class="op">&gt;</span> {
                         <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">fetch::Request::get</span>(<span class="ident">url</span>)
                             .<span class="ident">body</span>(<span class="ident">yew::format::Nothing</span>)
                             .<span class="ident">expect</span>(<span class="string">&quot;Failed to build request&quot;</span>);
+                        <span class="macro">log::debug!</span>(<span class="string">&quot;Fetching scenario from URL: {}&quot;</span>, <span class="ident">url</span>);
                         <span class="kw">match</span> <span class="ident">fetch::FetchService::fetch_binary</span>(
                             <span class="ident">request</span>,
                             <span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ScenarioUrlLoaded</span>),
@@ -331,6 +405,7 @@
                         }
                     }
                     <span class="prelude-val">Some</span>(<span class="ident">Scenario::File</span>(<span class="ident">file</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+                        <span class="macro">log::debug!</span>(<span class="string">&quot;Reading scenario from uploaded file: {}&quot;</span>, <span class="ident">file</span>.<span class="ident">name</span>());
                         <span class="kw">match</span> <span class="ident">reader::ReaderService::read_file</span>(
                             <span class="ident">file</span>,
                             <span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ScenarioFileLoaded</span>),
@@ -347,15 +422,48 @@
                 };
                 <span class="self">self</span>.<span class="ident">scenario</span> <span class="op">=</span> <span class="prelude-val">None</span>;
                 <span class="self">self</span>.<span class="ident">_loader</span> <span class="op">=</span> <span class="ident">loader</span>;
+
+                <span class="kw">if</span> <span class="ident">event</span>.<span class="ident">explicit</span> {
+                    <span class="kw">let</span> <span class="ident">route</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">event</span>.<span class="ident">name</span>.<span class="ident">as_ref</span>() {
+                        <span class="prelude-val">Some</span>(<span class="ident">name</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Route::Scenario</span> {
+                            <span class="ident">name</span>: <span class="ident">name</span>.<span class="ident">to_string</span>(),
+                            <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span>,
+                        },
+                        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Route::Custom</span> { <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span> },
+                    };
+                    <span class="ident">route</span>.<span class="ident">replace_state</span>();
+                }
+
+                <span class="self">self</span>.<span class="ident">chosen_scenario_name</span> <span class="op">=</span> <span class="ident">event</span>.<span class="ident">name</span>;
                 <span class="bool-val">true</span>
             }
             <span class="ident">Msg::ScenarioUrlLoaded</span>(<span class="ident">resp</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="self">self</span>.<span class="ident">_loader</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-                <span class="kw">let</span> (<span class="ident">_meta</span>, <span class="ident">body</span>) <span class="op">=</span> <span class="ident">resp</span>.<span class="ident">into_parts</span>();
-                <span class="comment">// TODO handle error if !meta.is_success() or body.is_err()</span>
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">body</span>) <span class="op">=</span> <span class="ident">body</span> {
-                    <span class="kw">let</span> <span class="ident">body</span> <span class="op">=</span> <span class="ident">Rc::from</span>(<span class="ident">body</span>);
-                    <span class="self">self</span>.<span class="ident">scenario</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">body</span>);
+                <span class="kw">let</span> <span class="ident">_loader</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">_loader</span>.<span class="ident">take</span>(); <span class="comment">// drop when function return</span>
+                <span class="kw">let</span> (<span class="ident">meta</span>, <span class="ident">body</span>) <span class="op">=</span> <span class="ident">resp</span>.<span class="ident">into_parts</span>();
+                <span class="kw">if</span> <span class="op">!</span><span class="ident">meta</span>.<span class="ident">status</span>.<span class="ident">is_success</span>() {
+                    <span class="macro">log::error!</span>(<span class="string">&quot;Error fetching URL: {:?}&quot;</span>, <span class="ident">meta</span>);
+                    <span class="kw">return</span> <span class="bool-val">true</span>;
+                }
+                <span class="kw">match</span> <span class="ident">body</span> {
+                    <span class="prelude-val">Ok</span>(<span class="ident">body</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                        <span class="kw">let</span> <span class="ident">body</span> <span class="op">=</span> <span class="ident">Rc::from</span>(<span class="ident">body</span>);
+                        <span class="self">self</span>.<span class="ident">scenario</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">body</span>);
+                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">Route::Scenario</span> {
+                            <span class="ident">sp</span>: <span class="ident">SpRoute::Game</span>, ..
+                        }) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">intent_route</span>
+                        {
+                            <span class="self">self</span>.<span class="ident">link</span>.<span class="ident">send_message</span>(<span class="ident">Msg::StartSingle</span>);
+                        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">Route::Scenario</span> {
+                            <span class="ident">sp</span>: <span class="ident">SpRoute::Rules</span>(<span class="kw">_</span>),
+                            ..
+                        }) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">intent_route</span>
+                        {
+                            <span class="self">self</span>.<span class="ident">link</span>.<span class="ident">send_message</span>(<span class="ident">Msg::EditScenario</span>);
+                        }
+                    }
+                    <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                        <span class="macro">log::error!</span>(<span class="string">&quot;Error reading scenario data: {:?}&quot;</span>, <span class="ident">err</span>);
+                    }
                 }
                 <span class="bool-val">true</span>
             }
@@ -365,20 +473,24 @@
                 <span class="self">self</span>.<span class="ident">scenario</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">body</span>);
                 <span class="bool-val">true</span>
             }
-            <span class="ident">Msg::StartSingle</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">Msg::StartSingle</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">let</span> <span class="ident">scenario</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">scenario</span> {
                     <span class="prelude-val">Some</span>(<span class="ident">scenario</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Rc::clone</span>(<span class="ident">scenario</span>),
                     <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="bool-val">false</span>,
                 };
-                <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">start_single_hook</span>.<span class="ident">emit</span>(<span class="ident">SpGameArgs</span> { <span class="ident">scenario</span> });
+                <span class="self">self</span>.<span class="ident">props</span>
+                    .<span class="ident">start_single_hook</span>
+                    .<span class="ident">emit</span>((<span class="ident">SpGameArgs</span> { <span class="ident">scenario</span> }, <span class="self">self</span>.<span class="ident">chosen_scenario_name</span>.<span class="ident">clone</span>()));
                 <span class="bool-val">false</span>
             }
-            <span class="ident">Msg::EditScenario</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">Msg::EditScenario</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">let</span> <span class="ident">scenario</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">scenario</span> {
                     <span class="prelude-val">Some</span>(<span class="ident">scenario</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Rc::clone</span>(<span class="ident">scenario</span>),
                     <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="bool-val">false</span>,
                 };
-                <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">edit_scenario_hook</span>.<span class="ident">emit</span>(<span class="ident">scenario</span>);
+                <span class="self">self</span>.<span class="ident">props</span>
+                    .<span class="ident">edit_scenario_hook</span>
+                    .<span class="ident">emit</span>((<span class="self">self</span>.<span class="ident">chosen_scenario_name</span>.<span class="ident">clone</span>(), <span class="ident">scenario</span>));
                 <span class="bool-val">false</span>
             }
         }
@@ -430,17 +542,18 @@
                 { <span class="kw">for</span> (<span class="self">self</span>.<span class="ident">game_mode</span> <span class="op">=</span><span class="op">=</span> <span class="ident">GameMode::Single</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">html!</span> {
                     <span class="op">&lt;</span><span class="op">&gt;</span>
                         <span class="op">&lt;</span><span class="ident">scenario_choose::Comp</span>
-                            <span class="ident">choose_scenario</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ChooseScenario</span>)
+                            <span class="ident">choose_scenario</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ChooseScenario</span> )
+                            <span class="ident">intent_route</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">intent_route</span>.<span class="ident">clone</span>()
                             <span class="op">/</span><span class="op">&gt;</span>
                         <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
                             <span class="op">&lt;</span><span class="ident">button</span>
-                                <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::StartSingle</span>)
+                                <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Msg::StartSingle</span>)
                                 <span class="ident">disabled</span><span class="op">=</span><span class="self">self</span>.<span class="ident">scenario</span>.<span class="ident">is_none</span>()
                                 <span class="ident">tabindex</span><span class="op">=</span><span class="number">1</span> <span class="op">&gt;</span>
                                 { <span class="string">&quot;Start&quot;</span> }
                             <span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
                             <span class="op">&lt;</span><span class="ident">button</span>
-                                <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::EditScenario</span>)
+                                <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Msg::EditScenario</span>)
                                 <span class="ident">disabled</span><span class="op">=</span><span class="self">self</span>.<span class="ident">scenario</span>.<span class="ident">is_none</span>()
                                 <span class="ident">tabindex</span><span class="op">=</span><span class="number">2</span> <span class="op">&gt;</span>
                                 { <span class="string">&quot;Rules&quot;</span> }
@@ -483,24 +596,37 @@
     <span class="doccomment">/// Selects the multi player mode.</span>
     <span class="ident">ModeMulti</span>(<span class="ident">MouseEvent</span>),
     <span class="doccomment">/// Chooses a singleplayer scenario.</span>
-    <span class="ident">ChooseScenario</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Scenario</span><span class="op">&gt;</span>),
+    <span class="ident">ChooseScenario</span>(<span class="ident">ChooseScenario</span>),
     <span class="doccomment">/// Scenario file has been uploaded.</span>
     <span class="ident">ScenarioFileLoaded</span>(<span class="ident">reader::FileData</span>),
     <span class="doccomment">/// Scenario URL has been downloaded.</span>
     <span class="ident">ScenarioUrlLoaded</span>(<span class="ident">fetch::Response</span><span class="op">&lt;</span><span class="ident">yew::format::Binary</span><span class="op">&gt;</span>),
     <span class="doccomment">/// Starts a singleplayer game.</span>
-    <span class="ident">StartSingle</span>(<span class="ident">MouseEvent</span>),
+    <span class="ident">StartSingle</span>,
     <span class="doccomment">/// Edit a scenario.</span>
-    <span class="ident">EditScenario</span>(<span class="ident">MouseEvent</span>),
+    <span class="ident">EditScenario</span>,
+}
+
+<span class="doccomment">/// An event of choosing a scenario.</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChooseScenario</span> {
+    <span class="doccomment">/// The source of scenario.</span>
+    <span class="kw">pub</span> <span class="ident">scenario</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Scenario</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The name of the scenario.</span>
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Whether the scenario was explicit chosen</span>
+    <span class="doccomment">/// (`false` if inferred from URL).</span>
+    <span class="kw">pub</span> <span class="ident">explicit</span>: <span class="ident">bool</span>,
 }
 
 <span class="doccomment">/// yew properties for [`Home`][Home].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Properties</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Props</span> {
     <span class="doccomment">/// Callback to start a singleplayer game.</span>
-    <span class="kw">pub</span> <span class="ident">start_single_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">SpGameArgs</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">start_single_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span>(<span class="ident">SpGameArgs</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
     <span class="doccomment">/// Callback to edit a scenario.</span>
-    <span class="kw">pub</span> <span class="ident">edit_scenario_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">edit_scenario_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// The intended route to navigate to.</span>
+    <span class="kw">pub</span> <span class="ident">intent_route</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Route</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Displays an error message.</span>
     <span class="kw">pub</span> <span class="ident">error</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
