@@ -151,15 +151,6 @@
 <span id="151">151</span>
 <span id="152">152</span>
 <span id="153">153</span>
-<span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Defines the mechanism of a game.</span>
 
@@ -206,10 +197,6 @@
     <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">reaction</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">reaction::Type</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Reaction categories.</span>
-    <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">reaction_cats</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">reaction::Category</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Building types.</span>
     <span class="attribute">#[<span class="ident">new</span>(<span class="ident">default</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -254,11 +241,6 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_vehicle</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">vehicle</span>: <span class="ident">vehicle::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">vehicle::TypeId</span> {
         <span class="self">self</span>.<span class="ident">vehicle</span>.<span class="ident">push</span>(<span class="ident">vehicle</span>);
         <span class="ident">vehicle::TypeId</span>(<span class="self">self</span>.<span class="ident">vehicle</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>)
-    }
-    <span class="doccomment">/// Adds a reaction category.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_reaction_category</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cat</span>: <span class="ident">reaction::Category</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">reaction::CategoryId</span> {
-        <span class="self">self</span>.<span class="ident">reaction_cats</span>.<span class="ident">push</span>(<span class="ident">cat</span>);
-        <span class="ident">reaction::CategoryId</span>(<span class="self">self</span>.<span class="ident">reaction_cats</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>)
     }
     <span class="doccomment">/// Adds a reaction type.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_reaction</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">reaction</span>: <span class="ident">reaction::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">reaction::TypeId</span> {

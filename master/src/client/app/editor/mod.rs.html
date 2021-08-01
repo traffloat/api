@@ -199,6 +199,25 @@
 <span id="199">199</span>
 <span id="200">200</span>
 <span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
 </pre><pre class="rust">
 <span class="doccomment">//! The scenraio viewer/editor.</span>
 
@@ -211,6 +230,7 @@
 <span class="kw">use</span> <span class="ident">traffloat::save</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">building</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cargo</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">nav</span>;
 
 <span class="kw">const</span> <span class="ident">SIDEBAR_WIDTH_PX</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">200</span>;
@@ -272,6 +292,11 @@
                 <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">switch</span>.<span class="ident">replace_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">name</span>);
                 <span class="bool-val">true</span>
             }
+            <span class="ident">Msg::ChooseCargo</span>(<span class="ident">id</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">switch</span> <span class="op">=</span> <span class="ident">Switch::Cargo</span>(<span class="ident">id</span>);
+                <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">switch</span>.<span class="ident">replace_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">name</span>);
+                <span class="bool-val">true</span>
+            }
         }
     }
 
@@ -286,6 +311,7 @@
                     <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file</span>)
                     <span class="ident">editor_home</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span>()<span class="op">|</span> <span class="ident">Msg::EditorHome</span>)
                     <span class="ident">choose_building</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ChooseBuilding</span>)
+                    <span class="ident">choose_cargo</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ChooseCargo</span>)
                     <span class="op">/</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">main</span> <span class="ident">style</span><span class="op">=</span><span class="macro">format!</span>(<span class="string">&quot;
                     margin-left: {}px;
@@ -322,6 +348,12 @@
                     <span class="ident">building_id</span><span class="op">=</span><span class="ident">building_id</span>
                     <span class="op">/</span><span class="op">&gt;</span>
             },
+            <span class="ident">Switch::Cargo</span>(<span class="ident">cargo_id</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+                <span class="op">&lt;</span><span class="ident">cargo::detail::Comp</span>
+                    <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file</span>)
+                    <span class="ident">cargo_id</span><span class="op">=</span><span class="ident">cargo_id</span>
+                    <span class="op">/</span><span class="op">&gt;</span>
+            },
         }
     }
 }
@@ -338,6 +370,8 @@
     <span class="ident">Home</span>,
     <span class="doccomment">/// Information for a building.</span>
     <span class="ident">Building</span>(<span class="ident">def::building::TypeId</span>),
+    <span class="doccomment">/// Information for a cargo.</span>
+    <span class="ident">Cargo</span>(<span class="ident">def::cargo::TypeId</span>),
 }
 
 <span class="kw">impl</span> <span class="ident">Switch</span> {
@@ -345,6 +379,7 @@
         <span class="kw">let</span> <span class="ident">rules</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span> {
             <span class="self">Self</span><span class="ident">::Home</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Rules::Home</span>,
             <span class="self">Self</span><span class="ident">::Building</span>(<span class="ident">id</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Rules::Building</span>(<span class="kw-2">*</span><span class="ident">id</span>),
+            <span class="self">Self</span><span class="ident">::Cargo</span>(<span class="ident">id</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Rules::Cargo</span>(<span class="kw-2">*</span><span class="ident">id</span>),
         };
         <span class="kw">let</span> <span class="ident">sp</span> <span class="op">=</span> <span class="ident">SpRoute::Rules</span>(<span class="ident">rules</span>);
         <span class="kw">let</span> <span class="ident">route</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">name</span>.<span class="ident">as_ref</span>() {
@@ -371,6 +406,7 @@
         <span class="prelude-val">Some</span>(<span class="kw">match</span> <span class="ident">rules</span> {
             <span class="ident">Rules::Home</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Home</span>,
             <span class="ident">Rules::Building</span>(<span class="ident">id</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Building</span>(<span class="kw-2">*</span><span class="ident">id</span>),
+            <span class="ident">Rules::Cargo</span>(<span class="ident">id</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Cargo</span>(<span class="kw-2">*</span><span class="ident">id</span>),
         })
     }
 }
@@ -387,6 +423,8 @@
     <span class="ident">EditorHome</span>,
     <span class="doccomment">/// Set the main body to a building.</span>
     <span class="ident">ChooseBuilding</span>(<span class="ident">def::building::TypeId</span>),
+    <span class="doccomment">/// Set the main body to a cargo.</span>
+    <span class="ident">ChooseCargo</span>(<span class="ident">def::cargo::TypeId</span>),
 }
 
 <span class="doccomment">/// Yew properties for [`Comp`].</span>

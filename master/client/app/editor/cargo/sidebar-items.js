@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["detail","Cargo list."],["nav","Navbar cargo."]]});

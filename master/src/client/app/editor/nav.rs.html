@@ -68,6 +68,13 @@
 <span id="68">68</span>
 <span id="69">69</span>
 <span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Editor navbar.</span>
 
@@ -76,9 +83,10 @@
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="ident">traffloat::def::building</span>;
+<span class="kw">use</span> <span class="ident">traffloat::def::cargo</span>;
 <span class="kw">use</span> <span class="ident">traffloat::save</span>;
 
-<span class="doccomment">/// Displays a list of buildings.</span>
+<span class="doccomment">/// Container for all nav items.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Comp</span> {
     <span class="ident">props</span>: <span class="ident">Props</span>,
 }
@@ -121,6 +129,10 @@
                     <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">file</span>)
                     <span class="ident">choose_building</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">choose_building</span>.<span class="ident">clone</span>()
                     <span class="op">/</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="kw">super</span><span class="ident">::cargo::nav::Comp</span>
+                    <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">file</span>)
+                    <span class="ident">choose_cargo</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">choose_cargo</span>.<span class="ident">clone</span>()
+                    <span class="op">/</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">nav</span><span class="op">&gt;</span>
         }
     }
@@ -138,6 +150,8 @@
     <span class="kw">pub</span> <span class="ident">editor_home</span>: <span class="ident">Callback</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
     <span class="doccomment">/// Set the main body to a building.</span>
     <span class="kw">pub</span> <span class="ident">choose_building</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">building::TypeId</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Set the main body to a cargo.</span>
+    <span class="kw">pub</span> <span class="ident">choose_cargo</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">cargo::TypeId</span><span class="op">&gt;</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="client" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
