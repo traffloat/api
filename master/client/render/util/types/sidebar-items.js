@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["Glize","A float-based type that can be lossily converted for WebGL compatibility."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["DEFAULT_PORT","The common port"]],"fn":[["is_valid_name","Checks whether the client name is valid."],["lerp","Linear interpolation from a to b, with ratio=0 as a and ratio=1 as b"]],"struct":[["Finite","A f64 wrapper that is guaranteed to be finite."]]});

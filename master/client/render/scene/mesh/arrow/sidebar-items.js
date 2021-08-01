@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["ARROW","Geometry data for a 3D arrow."]]});
+initSidebarItems({"constant":[["PRISM_HEIGHT",""],["PRISM_SCALE",""],["TIP_HEIGHT",""],["TIP_SCALE",""]],"struct":[["ARROW","Geometry data for a 3D arrow."]]});

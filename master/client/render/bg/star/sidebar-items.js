@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Program","Stores the setup data for node rendering."]]});
+initSidebarItems({"constant":[["NUM_STARS","Number of stars to generate."],["STAR_SCALE",""]],"fn":[["generate_vertices",""]],"struct":[["Program","Stores the setup data for node rendering."]]});

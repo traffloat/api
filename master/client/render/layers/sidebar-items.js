@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Dimension","The dimension of a canvas"],["LayersStruct","Information for the canvas."]],"type":[["Layers","A shared reference to a canvas."]]});

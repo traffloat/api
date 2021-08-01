@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["client"] = [{"text":"impl <a class=\"trait\" href=\"yew/html/conversion/trait.ImplicitClone.html\" title=\"trait yew::html::conversion::ImplicitClone\">ImplicitClone</a> for <a class=\"enum\" href=\"client/app/enum.GameArgs.html\" title=\"enum client::app::GameArgs\">GameArgs</a>","synthetic":false,"types":["client::app::GameArgs"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["GameArgs","Arguments for starting a game"]],"mod":[["editor","The scenraio viewer/editor."],["game",""],["home",""],["icon","Renders an icon in an atlas."],["mux",""],["route","The hash routes used for traffloat."],["scenarios",""]],"struct":[["SpGameArgs","Parameters for starting a game"]]});
