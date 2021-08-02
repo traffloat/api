@@ -582,7 +582,7 @@
             ));
             <span class="ident">state_values</span>.<span class="ident">push</span>(<span class="macro">quote!</span>(#<span class="ident">reader_var_name</span>));
             <span class="ident">assigns</span>.<span class="ident">push</span>(<span class="macro">quote!</span> {
-                <span class="kw">let</span> #<span class="ident">reader_var_name</span> <span class="op">=</span> <span class="ident">setup</span>.<span class="ident">subscribe</span>::<span class="op">&lt;</span>#<span class="ident">event</span><span class="op">&gt;</span>();
+                <span class="kw">let</span> #<span class="ident">reader_var_name</span> <span class="op">=</span> <span class="ident">setup</span>.<span class="ident">subscriber</span>::<span class="op">&lt;</span>#<span class="ident">event</span><span class="op">&gt;</span>();
             });
             <span class="ident">var_adapters</span>.<span class="ident">push</span>(<span class="macro">quote!</span> {
                 <span class="kw">let</span> <span class="kw-2">mut</span> #<span class="ident">pat</span> <span class="op">=</span> #<span class="ident">channel_var_name</span>.<span class="ident">read</span>(#<span class="ident">reader_var_name</span>);
