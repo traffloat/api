@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Category","A category of cargo."],["CategoryId","Identifies a cargo category"],["Type","A type of cargo."],["TypeId","Identifies a cargo category"]]});
+initSidebarItems({"struct":[["Category","A category of cargo."],["CategoryId","Identifies a cargo category."],["Type","A type of cargo."],["TypeId","Identifies a cargo type."]]});

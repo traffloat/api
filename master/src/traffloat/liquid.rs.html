@@ -116,11 +116,11 @@
 }
 
 <span class="doccomment">/// A component attached to storage entities.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::Getters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Storage</span> {
-    <span class="doccomment">/// The type of liquid</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">liquid</span>: <span class="ident">def::liquid::TypeId</span>,
+    <span class="doccomment">/// The type of liquid.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">liquid</span>: <span class="ident">def::liquid::TypeId</span>, <span class="comment">// TODO should we optimize this to a runtime integer ID?</span>
 }
 
 <span class="doccomment">/// The size of a liquid storage in the current simulation frame.</span>

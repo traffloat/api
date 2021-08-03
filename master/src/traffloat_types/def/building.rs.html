@@ -164,6 +164,17 @@
 <span id="164">164</span>
 <span id="165">165</span>
 <span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -175,9 +186,9 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space::Matrix</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">geometry</span>, <span class="ident">units</span>};
 
-<span class="doccomment">/// Identifies a building category</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TypeId</span>(<span class="kw">pub</span> <span class="ident">usize</span>);
+<span class="doccomment">/// Identifies a building type.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TypeId</span>(<span class="kw">pub</span> <span class="ident">ArcStr</span>);
 
 <span class="doccomment">/// A type of building.</span>
 <span class="attribute">#[<span class="ident">derive</span>(
@@ -194,14 +205,14 @@
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">description</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Category of the building type.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">category</span>: <span class="ident">CategoryId</span>,
     <span class="doccomment">/// Shape of the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">shape</span>: <span class="ident">Shape</span>,
     <span class="doccomment">/// Reactions associated with the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">reactions</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">reaction::TypeId</span>, <span class="ident">ReactionPolicy</span>)<span class="op">&gt;</span>,
+    <span class="ident">reactions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ReactionInstance</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Maximum hitpoint of a building.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The actual hitpoint is subject to asteroid and fire damage.</span>
@@ -233,6 +244,17 @@
     <span class="doccomment">/// The texture name of the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">texture_name</span>: <span class="ident">ArcStr</span>,
+}
+
+<span class="doccomment">/// An instance of reaction applied to a building.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReactionInstance</span> {
+    <span class="doccomment">/// The reaction ID.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">reaction</span>: <span class="ident">reaction::TypeId</span>,
+    <span class="doccomment">/// The instance-specific reaction behavior.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">policy</span>: <span class="ident">ReactionPolicy</span>,
 }
 
 <span class="doccomment">/// Reaction behaviour specific to this building.</span>
@@ -318,8 +340,8 @@
 }
 
 <span class="doccomment">/// Identifies a building category</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CategoryId</span>(<span class="kw">pub</span> <span class="ident">usize</span>);
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CategoryId</span>(<span class="kw">pub</span> <span class="ident">ArcStr</span>);
 
 <span class="doccomment">/// A category of building.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>

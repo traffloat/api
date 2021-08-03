@@ -66,6 +66,23 @@
 <span id="66">66</span>
 <span id="67">67</span>
 <span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Crime definitions.</span>
 
@@ -79,8 +96,12 @@
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def::skill</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
 
+<span class="doccomment">/// Identifies a crime type.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TypeId</span>(<span class="kw">pub</span> <span class="ident">ArcStr</span>);
+
 <span class="doccomment">/// Consequence of a crime.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Action</span> {
     <span class="doccomment">/// Steal random cargo carried by inhabitants in the same node or vehicle.</span>
     <span class="doccomment">///</span>
@@ -101,7 +122,7 @@
 }
 
 <span class="doccomment">/// A criterion to sort inhabitants with.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">InhabitantCriterion</span> {
     <span class="doccomment">/// Select the inhabitant with the highest skill.</span>
     <span class="ident">HighestSkill</span>(<span class="ident">skill::TypeId</span>),
@@ -122,7 +143,7 @@
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">action</span>: <span class="ident">Action</span>,
     <span class="doccomment">/// The skill type to trigger the crime.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">trigger_skill</span>: <span class="ident">skill::TypeId</span>,
     <span class="doccomment">/// The skill range at which this crime may happen.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -133,7 +154,20 @@
     <span class="ident">probability</span>: <span class="ident">f64</span>,
     <span class="doccomment">/// The change in skill levels after committing this crime.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">skill_change</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">skill::TypeId</span>, <span class="ident">units::Skill</span>); <span class="number">1</span>]<span class="op">&gt;</span>,
+    <span class="ident">skill_change</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">SkillChange</span>; <span class="number">1</span>]<span class="op">&gt;</span>,
+}
+
+<span class="doccomment">/// A change in skill level.</span>
+<span class="attribute">#[<span class="ident">derive</span>(
+    <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>,
+)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SkillChange</span> {
+    <span class="doccomment">/// The skill type to change.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">skill</span>: <span class="ident">skill::TypeId</span>,
+    <span class="doccomment">/// The amount changed.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">change</span>: <span class="ident">units::Skill</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="traffloat_types" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

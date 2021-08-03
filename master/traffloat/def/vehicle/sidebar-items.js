@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Skill","A skill required for driving the vehicle."],["Type","A type of vehicle."],["TypeId","Identifies a vehicle category"]]});
+initSidebarItems({"struct":[["Skill","A skill required for driving the vehicle."],["Type","A type of vehicle."],["TypeId","Identifies a vehicle type."]]});

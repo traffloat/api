@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Type","A type of skill."],["TypeId","Identifies a cargo category"]]});
+initSidebarItems({"struct":[["Type","A type of skill."],["TypeId","Identifies a skill type."]]});

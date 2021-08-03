@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Type","A type of liquid."],["TypeId","Identifies a liquid category"]]});
+initSidebarItems({"struct":[["Type","A type of liquid."],["TypeId","Identifies a liquid type."]]});

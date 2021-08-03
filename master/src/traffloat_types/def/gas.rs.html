@@ -36,9 +36,9 @@
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="doccomment">/// Identifies a gas category</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TypeId</span>(<span class="kw">pub</span> <span class="ident">usize</span>);
+<span class="doccomment">/// Identifies a gas type.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TypeId</span>(<span class="kw">pub</span> <span class="ident">ArcStr</span>);
 
 <span class="doccomment">/// A type of gas.</span>
 <span class="attribute">#[<span class="ident">derive</span>(
