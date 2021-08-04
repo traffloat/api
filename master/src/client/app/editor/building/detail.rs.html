@@ -460,7 +460,7 @@
                         ) }
                         { <span class="kw">for</span> (<span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">&gt;</span> <span class="number">0.</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(
                             <span class="string">&quot;{}% of the &quot;</span>,
-                            <span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">*</span> <span class="number">100.</span>,
+                            (<span class="number">1.</span> <span class="op">-</span> <span class="kw-2">*</span><span class="ident">breach_probability</span>) <span class="op">*</span> <span class="number">100.</span>,
                         )) }
                         { <span class="kw">for</span> (<span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">=</span><span class="op">=</span> <span class="number">0.</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;All &quot;</span>) }
                         { <span class="macro">format_args!</span>(
@@ -493,7 +493,7 @@
                         ) }
                         { <span class="kw">for</span> (<span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">&gt;</span> <span class="number">0.</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(
                             <span class="string">&quot;{}% of the &quot;</span>,
-                            <span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">*</span> <span class="number">100.</span>,
+                            (<span class="number">1.</span> <span class="op">-</span> <span class="kw-2">*</span><span class="ident">breach_probability</span>) <span class="op">*</span> <span class="number">100.</span>,
                         )) }
                         { <span class="kw">for</span> (<span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">=</span><span class="op">=</span> <span class="number">0.</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;All &quot;</span>) }
                         { <span class="macro">format_args!</span>(
