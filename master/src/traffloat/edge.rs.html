@@ -299,6 +299,16 @@
 <span id="299">299</span>
 <span id="300">300</span>
 <span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge management.</span>
 <span class="doccomment">//!</span>
@@ -324,6 +334,16 @@
     <span class="doccomment">/// The &quot;dest&quot; node</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">to</span>: <span class="ident">Entity</span>,
+}
+
+<span class="macro">codegen::component_depends!</span> {
+    <span class="ident">Id</span> <span class="op">=</span> (
+        <span class="ident">Id</span>,
+        <span class="ident">Size</span>,
+        <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
+        <span class="ident">Design</span>,
+    ) <span class="op">+</span> <span class="question-mark">?</span>(
+    )
 }
 
 <span class="doccomment">/// Defines the size of an edge</span>
