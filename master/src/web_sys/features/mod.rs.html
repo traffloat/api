@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;web-sys-0.3.51&#x2F;src&#x2F;features&#x2F;mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../web_sys/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;web-sys-0.3.52&#x2F;src&#x2F;features&#x2F;mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../web_sys/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -8253,6 +8253,180 @@
 <span id="8253">8253</span>
 <span id="8254">8254</span>
 <span id="8255">8255</span>
+<span id="8256">8256</span>
+<span id="8257">8257</span>
+<span id="8258">8258</span>
+<span id="8259">8259</span>
+<span id="8260">8260</span>
+<span id="8261">8261</span>
+<span id="8262">8262</span>
+<span id="8263">8263</span>
+<span id="8264">8264</span>
+<span id="8265">8265</span>
+<span id="8266">8266</span>
+<span id="8267">8267</span>
+<span id="8268">8268</span>
+<span id="8269">8269</span>
+<span id="8270">8270</span>
+<span id="8271">8271</span>
+<span id="8272">8272</span>
+<span id="8273">8273</span>
+<span id="8274">8274</span>
+<span id="8275">8275</span>
+<span id="8276">8276</span>
+<span id="8277">8277</span>
+<span id="8278">8278</span>
+<span id="8279">8279</span>
+<span id="8280">8280</span>
+<span id="8281">8281</span>
+<span id="8282">8282</span>
+<span id="8283">8283</span>
+<span id="8284">8284</span>
+<span id="8285">8285</span>
+<span id="8286">8286</span>
+<span id="8287">8287</span>
+<span id="8288">8288</span>
+<span id="8289">8289</span>
+<span id="8290">8290</span>
+<span id="8291">8291</span>
+<span id="8292">8292</span>
+<span id="8293">8293</span>
+<span id="8294">8294</span>
+<span id="8295">8295</span>
+<span id="8296">8296</span>
+<span id="8297">8297</span>
+<span id="8298">8298</span>
+<span id="8299">8299</span>
+<span id="8300">8300</span>
+<span id="8301">8301</span>
+<span id="8302">8302</span>
+<span id="8303">8303</span>
+<span id="8304">8304</span>
+<span id="8305">8305</span>
+<span id="8306">8306</span>
+<span id="8307">8307</span>
+<span id="8308">8308</span>
+<span id="8309">8309</span>
+<span id="8310">8310</span>
+<span id="8311">8311</span>
+<span id="8312">8312</span>
+<span id="8313">8313</span>
+<span id="8314">8314</span>
+<span id="8315">8315</span>
+<span id="8316">8316</span>
+<span id="8317">8317</span>
+<span id="8318">8318</span>
+<span id="8319">8319</span>
+<span id="8320">8320</span>
+<span id="8321">8321</span>
+<span id="8322">8322</span>
+<span id="8323">8323</span>
+<span id="8324">8324</span>
+<span id="8325">8325</span>
+<span id="8326">8326</span>
+<span id="8327">8327</span>
+<span id="8328">8328</span>
+<span id="8329">8329</span>
+<span id="8330">8330</span>
+<span id="8331">8331</span>
+<span id="8332">8332</span>
+<span id="8333">8333</span>
+<span id="8334">8334</span>
+<span id="8335">8335</span>
+<span id="8336">8336</span>
+<span id="8337">8337</span>
+<span id="8338">8338</span>
+<span id="8339">8339</span>
+<span id="8340">8340</span>
+<span id="8341">8341</span>
+<span id="8342">8342</span>
+<span id="8343">8343</span>
+<span id="8344">8344</span>
+<span id="8345">8345</span>
+<span id="8346">8346</span>
+<span id="8347">8347</span>
+<span id="8348">8348</span>
+<span id="8349">8349</span>
+<span id="8350">8350</span>
+<span id="8351">8351</span>
+<span id="8352">8352</span>
+<span id="8353">8353</span>
+<span id="8354">8354</span>
+<span id="8355">8355</span>
+<span id="8356">8356</span>
+<span id="8357">8357</span>
+<span id="8358">8358</span>
+<span id="8359">8359</span>
+<span id="8360">8360</span>
+<span id="8361">8361</span>
+<span id="8362">8362</span>
+<span id="8363">8363</span>
+<span id="8364">8364</span>
+<span id="8365">8365</span>
+<span id="8366">8366</span>
+<span id="8367">8367</span>
+<span id="8368">8368</span>
+<span id="8369">8369</span>
+<span id="8370">8370</span>
+<span id="8371">8371</span>
+<span id="8372">8372</span>
+<span id="8373">8373</span>
+<span id="8374">8374</span>
+<span id="8375">8375</span>
+<span id="8376">8376</span>
+<span id="8377">8377</span>
+<span id="8378">8378</span>
+<span id="8379">8379</span>
+<span id="8380">8380</span>
+<span id="8381">8381</span>
+<span id="8382">8382</span>
+<span id="8383">8383</span>
+<span id="8384">8384</span>
+<span id="8385">8385</span>
+<span id="8386">8386</span>
+<span id="8387">8387</span>
+<span id="8388">8388</span>
+<span id="8389">8389</span>
+<span id="8390">8390</span>
+<span id="8391">8391</span>
+<span id="8392">8392</span>
+<span id="8393">8393</span>
+<span id="8394">8394</span>
+<span id="8395">8395</span>
+<span id="8396">8396</span>
+<span id="8397">8397</span>
+<span id="8398">8398</span>
+<span id="8399">8399</span>
+<span id="8400">8400</span>
+<span id="8401">8401</span>
+<span id="8402">8402</span>
+<span id="8403">8403</span>
+<span id="8404">8404</span>
+<span id="8405">8405</span>
+<span id="8406">8406</span>
+<span id="8407">8407</span>
+<span id="8408">8408</span>
+<span id="8409">8409</span>
+<span id="8410">8410</span>
+<span id="8411">8411</span>
+<span id="8412">8412</span>
+<span id="8413">8413</span>
+<span id="8414">8414</span>
+<span id="8415">8415</span>
+<span id="8416">8416</span>
+<span id="8417">8417</span>
+<span id="8418">8418</span>
+<span id="8419">8419</span>
+<span id="8420">8420</span>
+<span id="8421">8421</span>
+<span id="8422">8422</span>
+<span id="8423">8423</span>
+<span id="8424">8424</span>
+<span id="8425">8425</span>
+<span id="8426">8426</span>
+<span id="8427">8427</span>
+<span id="8428">8428</span>
+<span id="8429">8429</span>
 </pre><pre class="rust">
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;AbortController&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
@@ -10492,18 +10666,6 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuAdapter&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuAdapter</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuAdapterFeatures&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-<span class="kw">mod</span> <span class="ident">gen_GpuAdapterFeatures</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuAdapterFeatures&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuAdapterFeatures</span>::<span class="kw-2">*</span>;
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuAdapterLimits&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-<span class="kw">mod</span> <span class="ident">gen_GpuAdapterLimits</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuAdapterLimits&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuAdapterLimits</span>::<span class="kw-2">*</span>;
-
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuAddressMode&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 <span class="kw">mod</span> <span class="ident">gen_GpuAddressMode</span>;
@@ -10606,11 +10768,11 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuBufferUsage&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuBufferUsage</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuCanvasContext&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuCanvasCompositingAlphaMode&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-<span class="kw">mod</span> <span class="ident">gen_GpuCanvasContext</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuCanvasContext&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuCanvasContext</span>::<span class="kw-2">*</span>;
+<span class="kw">mod</span> <span class="ident">gen_GpuCanvasCompositingAlphaMode</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuCanvasCompositingAlphaMode&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuCanvasCompositingAlphaMode</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuColorDict&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
@@ -10750,6 +10912,24 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuExtent3dDict&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuExtent3dDict</span>::<span class="kw-2">*</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuExternalTexture&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_GpuExternalTexture</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuExternalTexture&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuExternalTexture</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuExternalTextureBindingLayout&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_GpuExternalTextureBindingLayout</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuExternalTextureBindingLayout&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuExternalTextureBindingLayout</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuExternalTextureDescriptor&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_GpuExternalTextureDescriptor</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuExternalTextureDescriptor&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuExternalTextureDescriptor</span>::<span class="kw-2">*</span>;
+
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuFeatureName&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 <span class="kw">mod</span> <span class="ident">gen_GpuFeatureName</span>;
@@ -10780,17 +10960,23 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyBuffer&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuImageCopyBuffer</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyImageBitmap&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyExternalImage&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-<span class="kw">mod</span> <span class="ident">gen_GpuImageCopyImageBitmap</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyImageBitmap&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuImageCopyImageBitmap</span>::<span class="kw-2">*</span>;
+<span class="kw">mod</span> <span class="ident">gen_GpuImageCopyExternalImage</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyExternalImage&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuImageCopyExternalImage</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyTexture&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 <span class="kw">mod</span> <span class="ident">gen_GpuImageCopyTexture</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyTexture&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuImageCopyTexture</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyTextureTagged&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_GpuImageCopyTextureTagged</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageCopyTextureTagged&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuImageCopyTextureTagged</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuImageDataLayout&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
@@ -10881,6 +11067,24 @@
 <span class="kw">mod</span> <span class="ident">gen_GpuPowerPreference</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuPowerPreference&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuPowerPreference</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuPredefinedColorSpace&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_GpuPredefinedColorSpace</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuPredefinedColorSpace&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuPredefinedColorSpace</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuPresentationConfiguration&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_GpuPresentationConfiguration</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuPresentationConfiguration&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuPresentationConfiguration</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuPresentationContext&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_GpuPresentationContext</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuPresentationContext&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuPresentationContext</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuPrimitiveState&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
@@ -11062,17 +11266,17 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuStoreOp&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuStoreOp</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuSwapChain&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuSupportedFeatures&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-<span class="kw">mod</span> <span class="ident">gen_GpuSwapChain</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuSwapChain&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuSwapChain</span>::<span class="kw-2">*</span>;
+<span class="kw">mod</span> <span class="ident">gen_GpuSupportedFeatures</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuSupportedFeatures&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuSupportedFeatures</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuSwapChainDescriptor&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuSupportedLimits&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-<span class="kw">mod</span> <span class="ident">gen_GpuSwapChainDescriptor</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuSwapChainDescriptor&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuSwapChainDescriptor</span>::<span class="kw-2">*</span>;
+<span class="kw">mod</span> <span class="ident">gen_GpuSupportedLimits</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuSupportedLimits&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_GpuSupportedLimits</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;GpuTexture&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
@@ -11229,6 +11433,78 @@
 <span class="kw">mod</span> <span class="ident">gen_HeadersGuardEnum</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HeadersGuardEnum&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HeadersGuardEnum</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;Hid&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_Hid</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;Hid&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_Hid</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidCollectionInfo&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidCollectionInfo</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidCollectionInfo&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidCollectionInfo</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidConnectionEvent&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidConnectionEvent</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidConnectionEvent&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidConnectionEvent</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidConnectionEventInit&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidConnectionEventInit</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidConnectionEventInit&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidConnectionEventInit</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidDevice&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidDevice</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidDevice&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidDevice</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidDeviceFilter&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidDeviceFilter</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidDeviceFilter&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidDeviceFilter</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidDeviceRequestOptions&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidDeviceRequestOptions</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidDeviceRequestOptions&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidDeviceRequestOptions</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidInputReportEvent&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidInputReportEvent</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidInputReportEvent&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidInputReportEvent</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidInputReportEventInit&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidInputReportEventInit</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidInputReportEventInit&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidInputReportEventInit</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidReportInfo&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidReportInfo</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidReportInfo&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidReportInfo</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidReportItem&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidReportItem</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidReportItem&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidReportItem</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidUnitSystem&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_HidUnitSystem</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HidUnitSystem&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_HidUnitSystem</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HiddenPluginEventInit&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
@@ -13516,6 +13792,12 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;PushSubscriptionOptionsInit&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_PushSubscriptionOptionsInit</span>::<span class="kw-2">*</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;QueuingStrategy&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_QueuingStrategy</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;QueuingStrategy&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_QueuingStrategy</span>::<span class="kw-2">*</span>;
+
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;RadioNodeList&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 <span class="kw">mod</span> <span class="ident">gen_RadioNodeList</span>;
@@ -13546,6 +13828,30 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStream&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_ReadableStream</span>::<span class="kw-2">*</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamByobReadResult&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_ReadableStreamByobReadResult</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamByobReadResult&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_ReadableStreamByobReadResult</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamByobReader&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_ReadableStreamByobReader</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamByobReader&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_ReadableStreamByobReader</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamDefaultReadResult&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_ReadableStreamDefaultReadResult</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamDefaultReadResult&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_ReadableStreamDefaultReadResult</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamDefaultReader&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_ReadableStreamDefaultReader</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamDefaultReader&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_ReadableStreamDefaultReader</span>::<span class="kw-2">*</span>;
+
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamGetReaderOptions&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 <span class="kw">mod</span> <span class="ident">gen_ReadableStreamGetReaderOptions</span>;
@@ -13563,6 +13869,12 @@
 <span class="kw">mod</span> <span class="ident">gen_ReadableStreamReaderMode</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableStreamReaderMode&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_ReadableStreamReaderMode</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableWritablePair&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_ReadableWritablePair</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ReadableWritablePair&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_ReadableWritablePair</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;RecordingState&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
@@ -15502,6 +15814,12 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;TrackEventInit&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_TrackEventInit</span>::<span class="kw-2">*</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;TransformStream&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_TransformStream</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;TransformStream&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_TransformStream</span>::<span class="kw-2">*</span>;
+
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;TransitionEvent&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 <span class="kw">mod</span> <span class="ident">gen_TransitionEvent</span>;
@@ -15916,6 +16234,24 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;VttRegion&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_VttRegion</span>::<span class="kw-2">*</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WakeLock&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_WakeLock</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WakeLock&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_WakeLock</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WakeLockSentinel&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_WakeLockSentinel</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WakeLockSentinel&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_WakeLockSentinel</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WakeLockType&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_WakeLockType</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WakeLockType&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_WakeLockType</span>::<span class="kw-2">*</span>;
+
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WatchAdvertisementsOptions&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
 <span class="kw">mod</span> <span class="ident">gen_WatchAdvertisementsOptions</span>;
@@ -16245,6 +16581,18 @@
 <span class="kw">mod</span> <span class="ident">gen_WorkletOptions</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WorkletOptions&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_WorkletOptions</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WritableStream&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_WritableStream</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WritableStream&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_WritableStream</span>::<span class="kw-2">*</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WritableStreamDefaultWriter&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+<span class="kw">mod</span> <span class="ident">gen_WritableStreamDefaultWriter</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WritableStreamDefaultWriter&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gen_WritableStreamDefaultWriter</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;XPathExpression&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
