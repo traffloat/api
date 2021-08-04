@@ -213,6 +213,27 @@
 <span id="213">213</span>
 <span id="214">214</span>
 <span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders node info preview.</span>
 
@@ -262,50 +283,71 @@
     }
 
     <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
-        <span class="kw">let</span> <span class="ident">style</span> <span class="op">=</span> <span class="string">&quot;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 15em; height: 10em;
-            color: black;
-            pointer-events: auto;
-            background-color: white;
-            font-size: large;
-        &quot;</span>;
+        <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::texture::Icon</span>;
+        <span class="kw">use</span> <span class="ident">traffloat::units::RoundedUnit</span>;
+
+        <span class="kw">fn</span> <span class="ident">storage_display</span>(
+            <span class="ident">size</span>: <span class="kw">impl</span> <span class="ident">RoundedUnit</span> <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Html</span><span class="op">&gt;</span>,
+            <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">ArcStr</span>,
+            <span class="ident">icon</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Icon</span><span class="op">&gt;</span>,
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
+            <span class="macro">html!</span> {
+                <span class="op">&lt;</span><span class="op">&gt;</span>
+                    { <span class="ident">size</span>.<span class="ident">round</span>(<span class="number">2</span>) }
+                    { <span class="string">&quot; &quot;</span> }
+                    { <span class="kw">for</span> <span class="ident">icon</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">icon</span><span class="op">|</span> <span class="macro">html!</span> {
+                        <span class="op">&lt;</span><span class="ident">icon::Comp</span>
+                            <span class="ident">atlas_path</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">url</span>.<span class="ident">to_string</span>()
+                            <span class="ident">atlas_width</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">dim</span>.<span class="number">0</span>
+                            <span class="ident">atlas_height</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">dim</span>.<span class="number">1</span>
+                            <span class="ident">x0</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">x</span>()
+                            <span class="ident">y0</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">y</span>()
+                            <span class="ident">x1</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">x</span>() <span class="op">+</span> <span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">width</span>()
+                            <span class="ident">y1</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">y</span>() <span class="op">+</span> <span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">height</span>()
+                            <span class="ident">out_width</span><span class="op">=</span><span class="number">24</span>
+                            <span class="ident">out_height</span><span class="op">=</span><span class="number">24</span>
+                            <span class="ident">text</span><span class="op">=</span><span class="ident">name</span>.<span class="ident">to_string</span>()
+                            <span class="op">/</span><span class="op">&gt;</span>
+                    }) }
+                    { <span class="kw">for</span> <span class="ident">icon</span>.<span class="ident">is_none</span>().<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">name</span>) }
+                    <span class="op">&lt;</span><span class="ident">br</span> <span class="op">/</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+            }
+        }
+
         <span class="macro">html!</span> {
-            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="ident">style</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 15em; height: 10em;
+                color: black;
+                pointer-events: auto;
+                background-color: white;
+                font-size: large;
+                padding: 1em 0.2em;
+                overflow-y: auto;
+            &quot;</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span>
                     <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::HelpButton</span>)
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;cursor: help;&quot;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
+                        margin: 0.5em 0;
+                        cursor: help;
+                    &quot;</span>
                 <span class="op">&gt;</span>
                     { <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">node_name</span> }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0.5em 0;&quot;</span><span class="op">&gt;</span>
                     { <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">hitpoint</span> }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
-                    { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">cargo</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="macro">html!</span> {
-                        <span class="op">&lt;</span><span class="op">&gt;</span>
-                            { <span class="ident">size</span> }
-                            { <span class="string">&quot; &quot;</span> }
-                            { <span class="kw">for</span> <span class="ident">icon</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">icon</span><span class="op">|</span> <span class="macro">html!</span> {
-                                <span class="op">&lt;</span><span class="ident">icon::Comp</span>
-                                    <span class="ident">atlas_path</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">url</span>.<span class="ident">to_string</span>()
-                                    <span class="ident">atlas_width</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">dim</span>.<span class="number">0</span>
-                                    <span class="ident">atlas_height</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">dim</span>.<span class="number">1</span>
-                                    <span class="ident">x0</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">x</span>()
-                                    <span class="ident">y0</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">y</span>()
-                                    <span class="ident">x1</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">x</span>() <span class="op">+</span> <span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">width</span>()
-                                    <span class="ident">y1</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">y</span>() <span class="op">+</span> <span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">height</span>()
-                                    <span class="ident">out_width</span><span class="op">=</span><span class="number">24</span>
-                                    <span class="ident">out_height</span><span class="op">=</span><span class="number">24</span>
-                                    <span class="ident">text</span><span class="op">=</span><span class="ident">name</span>.<span class="ident">to_string</span>()
-                                    <span class="op">/</span><span class="op">&gt;</span>
-                            }) }
-                            { <span class="kw">for</span> <span class="ident">icon</span>.<span class="ident">is_none</span>().<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">name</span>) }
-                            <span class="op">&lt;</span><span class="ident">br</span> <span class="op">/</span><span class="op">&gt;</span>
-                        <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
-                    }) }
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0.5em 0;&quot;</span><span class="op">&gt;</span>
+                    { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">cargo</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
+                <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0.5em 0;&quot;</span><span class="op">&gt;</span>
+                    { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">liquid</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
+                <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0.5em 0;&quot;</span><span class="op">&gt;</span>
+                    { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">gas</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         }

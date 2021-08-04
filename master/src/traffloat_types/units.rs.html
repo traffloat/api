@@ -88,6 +88,15 @@
 <span id="88">88</span>
 <span id="89">89</span>
 <span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Defines common units</span>
 
@@ -102,43 +111,43 @@
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span> <span class="ident">f64</span>:
 
     <span class="doccomment">/// An amount of liquid.</span>
-    <span class="ident">LiquidVolume</span>(<span class="string">&quot;{} L&quot;</span>);
+    <span class="ident">LiquidVolume</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; L&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Viscosity of a liquid.</span>
-    <span class="ident">LiquidViscosity</span>(<span class="string">&quot;{} Pas&quot;</span>);
+    <span class="ident">LiquidViscosity</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; Pa.s&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// An absolute amount of gas.</span>
-    <span class="ident">GasVolume</span>(<span class="string">&quot;{} mol&quot;</span>);
+    <span class="ident">GasVolume</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; mol&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// The standard size for cargo.</span>
-    <span class="ident">CargoSize</span>(<span class="string">&quot;{} dm\u{b3}&quot;</span>);
+    <span class="ident">CargoSize</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; dm\u{b3}&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Dynamic electricity consumed immediately.</span>
-    <span class="ident">ElectricPower</span>(<span class="string">&quot;{} W&quot;</span>);
+    <span class="ident">ElectricPower</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; W&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Static electricity in stored form.</span>
-    <span class="ident">ElectricEnergy</span>(<span class="string">&quot;{} J&quot;</span>);
+    <span class="ident">ElectricEnergy</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; J&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Orthogonal area of a node receiving sunlight.</span>
-    <span class="ident">Brightness</span>(<span class="string">&quot;{} m\u{b2}&quot;</span>);
+    <span class="ident">Brightness</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; m\u{b2}&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Skill level of an inhabitant.</span>
-    <span class="ident">Skill</span>(<span class="string">&quot;{}pt&quot;</span>);
+    <span class="ident">Skill</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot;pt&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Driving force on a rail.</span>
-    <span class="ident">RailForce</span>(<span class="string">&quot;{} T&quot;</span>);
+    <span class="ident">RailForce</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; T&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Pumping force on a liquid pipe.</span>
-    <span class="ident">PipeForce</span>(<span class="string">&quot;{} Pa&quot;</span>);
+    <span class="ident">PipeForce</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; Pa&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Pumping force for gas diffusion.</span>
-    <span class="ident">FanForce</span>(<span class="string">&quot;{} Pa&quot;</span>);
+    <span class="ident">FanForce</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; Pa&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Speed of a vehicle on a rail.</span>
-    <span class="ident">VehicleSpeed</span>(<span class="string">&quot;{} m/s&quot;</span>);
+    <span class="ident">VehicleSpeed</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; m/s&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 
     <span class="doccomment">/// Hitpoint of a building.</span>
-    <span class="ident">Hitpoint</span>(<span class="string">&quot;{} HP&quot;</span>);
+    <span class="ident">Hitpoint</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; HP&quot;</span>)(<span class="ident">round</span>:<span class="ident">round</span>);
 }
 
 <span class="doccomment">/// A unit with a maximum capacity.</span>
@@ -178,6 +187,15 @@
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{} / {}&quot;</span>, <span class="self">self</span>.<span class="ident">current</span>, <span class="self">self</span>.<span class="ident">max</span>)
     }
+}
+
+<span class="doccomment">/// A unit that can be rounded off.</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RoundedUnit</span> {
+    <span class="doccomment">/// Round off the unit.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The precision is the number of decimal places.</span>
+    <span class="doccomment">/// A negative precision means the number of zeros.</span>
+    <span class="kw">fn</span> <span class="ident">round</span>(<span class="self">self</span>, <span class="ident">precision</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat_types" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
