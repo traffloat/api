@@ -325,6 +325,45 @@
 <span id="325">325</span>
 <span id="326">326</span>
 <span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">BTreeMap</span>, <span class="ident">VecDeque</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
@@ -507,6 +546,45 @@
             ),
         };
         <span class="ident">channel</span>.<span class="ident">single_write</span>(<span class="ident">event</span>);
+    }
+}
+
+<span class="doccomment">/// A marker trait for standard archetypes.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// If `A: ReqiuredComponent&lt;B&gt;`,</span>
+<span class="doccomment">/// this means that all entities with `B`</span>
+<span class="doccomment">/// should also have `A`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This dependency is not enforced anywhere.</span>
+<span class="doccomment">/// It merely serves for documentation purpose.</span>
+<span class="doccomment">/// This is used to annotate the standard component set of an entity,</span>
+<span class="doccomment">/// using the identification type as `B`.</span>
+<span class="doccomment">/// e.g. all required components for nodes implement `RequiredComponent&lt;node::Id&gt;`.</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RequiredComponent</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>: <span class="ident">Sized</span> {}
+
+<span class="doccomment">/// A marker trait for standard archetypes.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// If `A: OptionalComponent&lt;B&gt;`,</span>
+<span class="doccomment">/// this means that all entities with `B`</span>
+<span class="doccomment">/// should also have `A`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This dependency is not enforced anywhere.</span>
+<span class="doccomment">/// It merely serves for documentation purpose.</span>
+<span class="doccomment">/// This is used to annotate the standard component set of an entity,</span>
+<span class="doccomment">/// using the identification type as `B`.</span>
+<span class="doccomment">/// e.g. all optional components for nodes implement `OptionalComponent&lt;node::Id&gt;`.</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">OptionalComponent</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>: <span class="ident">Sized</span> {}
+
+<span class="doccomment">/// Concise syntax to implement [`RequiredComponent`] and [`OptionalComponent`] for many types.</span>
+<span class="attribute">#[<span class="ident">macro_export</span>]</span>
+<span class="macro">macro_rules!</span> <span class="ident">component_depends</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">id</span>:<span class="ident">ty</span> <span class="op">=</span> ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">required</span>:<span class="ident">ty</span>),<span class="op">*</span> $(,)<span class="question-mark">?</span>) <span class="op">+</span> <span class="question-mark">?</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">optional</span>:<span class="ident">ty</span>),<span class="op">*</span> $(,)<span class="question-mark">?</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+        $(
+            <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="kw">crate</span><span class="macro-nonterminal">::RequiredComponent</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">id</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">required</span> {}
+        )<span class="op">*</span>
+        $(
+            <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="kw">crate</span><span class="macro-nonterminal">::OptionalComponent</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">id</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">optional</span> {}
+        )<span class="op">*</span>
     }
 }
 

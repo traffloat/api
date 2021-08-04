@@ -68,6 +68,8 @@
 <span id="68">68</span>
 <span id="69">69</span>
 <span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Common library for server and client</span>
 
@@ -119,6 +121,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sun</span>;
 <span class="kw">mod</span> <span class="ident">util</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">util</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">vehicle</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">codegen</span>::{<span class="ident">Legion</span>, <span class="ident">SetupEcs</span>};
 
@@ -136,8 +139,9 @@
         .<span class="ident">uses</span>(<span class="ident">liquid::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">gas::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">population::setup_ecs</span>)
-        .<span class="ident">uses</span>(<span class="ident">save::setup_ecs</span>)
+        .<span class="ident">uses</span>(<span class="ident">vehicle::setup_ecs</span>)
         .<span class="ident">uses</span>(<span class="ident">sun::setup_ecs</span>)
+        .<span class="ident">uses</span>(<span class="ident">save::setup_ecs</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>

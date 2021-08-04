@@ -84,6 +84,15 @@
 <span id="84">84</span>
 <span id="85">85</span>
 <span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of gas in buildings</span>
 
@@ -91,11 +100,12 @@
 <span class="kw">use</span> <span class="ident">legion::world::SubWorld</span>;
 <span class="kw">use</span> <span class="ident">legion::Entity</span>;
 <span class="kw">use</span> <span class="ident">smallvec::SmallVec</span>;
+<span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::clock</span>::{<span class="ident">SimulationEvent</span>, <span class="ident">SIMULATION_PERIOD</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::time::Instant</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units::GasVolume</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>::{<span class="self">self</span>, <span class="ident">GasVolume</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
 
@@ -147,6 +157,14 @@
         <span class="ident">next</span>.<span class="ident">size</span>.<span class="ident">value</span>(),
         (<span class="ident">time</span>.<span class="ident">since_epoch</span>() <span class="op">%</span> <span class="ident">SIMULATION_PERIOD</span>).<span class="ident">as_secs</span>() <span class="op">/</span> <span class="ident">SIMULATION_PERIOD</span>.<span class="ident">as_secs</span>(),
     ))
+}
+
+<span class="doccomment">/// A component applied on a node that drives gas.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GasPump</span> {
+    <span class="doccomment">/// The force provided by the pump.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">force</span>: <span class="ident">units::FanForce</span>,
 }
 
 <span class="attribute">#[<span class="ident">codegen::system</span>]</span>
