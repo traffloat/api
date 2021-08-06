@@ -175,6 +175,8 @@
 <span id="175">175</span>
 <span id="176">176</span>
 <span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -289,14 +291,16 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This storage is also used as a buffer for liquid and gas transfer.</span>
 <span class="doccomment">/// The storage size is the maximum amount of liquid and gas that</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(
+    <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>,
+)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Storage</span> {
     <span class="doccomment">/// Cargo storage provided</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">cargo</span>: <span class="ident">units::CargoSize</span>,
     <span class="doccomment">/// Liquid storage provided</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">liquid</span>: <span class="ident">units::LiquidVolume</span>,
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">liquid</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">units::LiquidVolume</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Gas storage provided</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">gas</span>: <span class="ident">units::GasVolume</span>,

@@ -316,11 +316,21 @@
 <span id="316">316</span>
 <span id="317">317</span>
 <span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building list.</span>
 
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
+<span class="kw">use</span> <span class="ident">itertools::Itertools</span>;
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="ident">traffloat::def</span>::{<span class="ident">building</span>, <span class="ident">reaction</span>, <span class="ident">GameDefinition</span>};
@@ -374,7 +384,15 @@
                         <span class="op">&lt;</span><span class="ident">tbody</span><span class="op">&gt;</span>
                             { <span class="ident">table_entry</span>(<span class="string">&quot;Hitpoints&quot;</span>, <span class="ident">building</span>.<span class="ident">hitpoint</span>()) }
                             { <span class="ident">table_entry</span>(<span class="string">&quot;Cargo capacity&quot;</span>, <span class="ident">building</span>.<span class="ident">storage</span>().<span class="ident">cargo</span>()) }
-                            { <span class="ident">table_entry</span>(<span class="string">&quot;Liquid capacity&quot;</span>, <span class="ident">building</span>.<span class="ident">storage</span>().<span class="ident">liquid</span>()) }
+                            { <span class="ident">table_entry</span>(
+                                <span class="string">&quot;Liquid capacity&quot;</span>,
+                                <span class="ident">building</span>
+                                    .<span class="ident">storage</span>()
+                                    .<span class="ident">liquid</span>()
+                                    .<span class="ident">iter</span>()
+                                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">volume</span><span class="op">|</span> <span class="ident">volume</span>.<span class="ident">to_string</span>())
+                                    .<span class="ident">join</span>(<span class="string">&quot; + &quot;</span>)
+                            ) }
                             { <span class="ident">table_entry</span>(<span class="string">&quot;Gas capacity&quot;</span>, <span class="ident">building</span>.<span class="ident">storage</span>().<span class="ident">gas</span>()) }
                         <span class="op">&lt;</span><span class="op">/</span><span class="ident">tbody</span><span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">table</span><span class="op">&gt;</span>

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Node","Saves all data related to a node."]]});
+initSidebarItems({"struct":[["LiquidStorage",""],["Node","Saves all data related to a node."]]});
