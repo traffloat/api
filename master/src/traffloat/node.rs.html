@@ -326,6 +326,24 @@
 <span id="326">326</span>
 <span id="327">327</span>
 <span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Node management.</span>
 <span class="doccomment">//!</span>
@@ -338,7 +356,7 @@
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">systems::CommandBuffer</span>, <span class="ident">Entity</span>};
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
-<span class="kw">use</span> <span class="ident">smallvec::smallvec</span>;
+<span class="kw">use</span> <span class="ident">smallvec</span>::{<span class="ident">smallvec</span>, <span class="ident">SmallVec</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>::{<span class="ident">building</span>, <span class="ident">GameDefinition</span>};
@@ -355,15 +373,6 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">new</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Id</span> {
     <span class="ident">inner</span>: <span class="ident">u32</span>,
-}
-
-<span class="doccomment">/// Component storing the name of the node</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">new</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::Setters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Name</span> {
-    <span class="doccomment">/// Name of the node</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
 }
 
 <span class="macro">codegen::component_depends!</span> {
@@ -383,9 +392,26 @@
         <span class="ident">defense::Core</span>,
         <span class="ident">population::Housing</span>,
         <span class="ident">vehicle::RailPump</span>,
-        <span class="ident">liquid::LiquidPump</span>,
+        <span class="ident">liquid::Pump</span>,
         <span class="ident">gas::GasPump</span>,
     )
+}
+
+<span class="doccomment">/// Component storing the name of the node</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">new</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::Setters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Name</span> {
+    <span class="doccomment">/// Name of the node</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
+}
+
+<span class="doccomment">/// A component applied to child entities of a node.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Child</span> {
+    <span class="doccomment">/// The entity ID of the parent node entity.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">parent</span>: <span class="ident">Entity</span>,
 }
 
 <span class="doccomment">/// Indicates that a node is added</span>
@@ -486,7 +512,7 @@
         <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="ident">rand::random</span>());
 
         <span class="kw">let</span> <span class="ident">arbitrary_liquid_type</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">liquid</span>().<span class="ident">first</span>().<span class="ident">expect</span>(<span class="string">&quot;at least one liquid type&quot;</span>).<span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">liquids</span> <span class="op">=</span> <span class="ident">building</span>
+        <span class="kw">let</span> <span class="ident">liquids</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">building</span>
             .<span class="ident">storage</span>()
             .<span class="ident">liquid</span>()
             .<span class="ident">iter</span>()
@@ -516,10 +542,15 @@
             <span class="ident">units::Portion::full</span>(<span class="ident">building</span>.<span class="ident">hitpoint</span>()),
             <span class="ident">cargo::StorageList::new</span>(<span class="macro">smallvec!</span>[]),
             <span class="ident">cargo::StorageCapacity::new</span>(<span class="ident">building</span>.<span class="ident">storage</span>().<span class="ident">cargo</span>()),
-            <span class="ident">liquid::StorageList::new</span>(<span class="ident">liquids</span>),
+            <span class="ident">liquid::StorageList::new</span>(<span class="ident">liquids</span>.<span class="ident">clone</span>()),
             <span class="ident">gas::StorageList::new</span>(<span class="macro">smallvec!</span>[]),
             <span class="ident">gas::StorageCapacity::new</span>(<span class="ident">building</span>.<span class="ident">storage</span>().<span class="ident">gas</span>()),
         ));
+
+        <span class="kw">for</span> <span class="ident">liquid</span> <span class="kw">in</span> <span class="ident">liquids</span> {
+            <span class="ident">entities</span>.<span class="ident">add_component</span>(<span class="ident">liquid</span>, <span class="ident">Child::new</span>(<span class="ident">entity</span>));
+        }
+
         <span class="ident">index</span>.<span class="ident">index</span>.<span class="ident">insert</span>(<span class="ident">id</span>, <span class="ident">entity</span>);
 
         <span class="kw">for</span> <span class="ident">feature</span> <span class="kw">in</span> <span class="ident">building</span>.<span class="ident">features</span>() {
@@ -571,7 +602,7 @@
                 (<span class="ident">id</span>.<span class="ident">clone</span>(), <span class="ident">entity</span>)
             })
             .<span class="ident">collect</span>();
-        <span class="kw">let</span> <span class="ident">liquid_list</span> <span class="op">=</span> <span class="ident">save</span>
+        <span class="kw">let</span> <span class="ident">liquid_list</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">save</span>
             .<span class="ident">liquid</span>
             .<span class="ident">iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">storage</span><span class="op">|</span> {
@@ -605,10 +636,15 @@
             <span class="ident">save</span>.<span class="ident">hitpoint</span>,
             <span class="ident">cargo::StorageList::new</span>(<span class="ident">cargo_list</span>),
             <span class="ident">cargo::StorageCapacity::new</span>(<span class="ident">save</span>.<span class="ident">cargo_capacity</span>),
-            <span class="ident">liquid::StorageList::new</span>(<span class="ident">liquid_list</span>),
+            <span class="ident">liquid::StorageList::new</span>(<span class="ident">liquid_list</span>.<span class="ident">clone</span>()),
             <span class="ident">gas::StorageList::new</span>(<span class="ident">gas_list</span>),
             <span class="ident">gas::StorageCapacity::new</span>(<span class="ident">save</span>.<span class="ident">gas_capacity</span>),
         ));
+
+        <span class="kw">for</span> <span class="ident">liquid</span> <span class="kw">in</span> <span class="ident">liquid_list</span> {
+            <span class="ident">entities</span>.<span class="ident">add_component</span>(<span class="ident">liquid</span>, <span class="ident">Child::new</span>(<span class="ident">entity</span>));
+        }
+
         <span class="ident">index</span>.<span class="ident">index</span>.<span class="ident">insert</span>(<span class="ident">save</span>.<span class="ident">id</span>, <span class="ident">entity</span>);
         <span class="ident">add_events</span>(<span class="ident">AddEvent</span> {
             <span class="ident">node</span>: <span class="ident">save</span>.<span class="ident">id</span>,

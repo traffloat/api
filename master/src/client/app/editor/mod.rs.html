@@ -249,7 +249,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Comp</span> {
     <span class="ident">props</span>: <span class="ident">Props</span>,
     <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
-    <span class="ident">file</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">save::SaveFile</span><span class="op">&gt;</span>,
+    <span class="ident">file</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">save::SaveFile</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">state</span>: <span class="ident">State</span>,
 }
 
@@ -267,7 +267,7 @@
                 <span class="kw">return</span> <span class="self">Self</span> {
                     <span class="ident">props</span>,
                     <span class="ident">link</span>,
-                    <span class="ident">file</span>: <span class="ident">Default::default</span>(), <span class="comment">// this value shouldn&#39;t be used anyway.</span>
+                    <span class="ident">file</span>: <span class="prelude-val">None</span>, <span class="comment">// this value shouldn&#39;t be used anyway.</span>
                     <span class="ident">state</span>: <span class="ident">State::default</span>(),
                 };
             }
@@ -281,7 +281,7 @@
         <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="self">Self</span> {
             <span class="ident">props</span>,
             <span class="ident">link</span>,
-            <span class="ident">file</span>,
+            <span class="ident">file</span>: <span class="prelude-val">Some</span>(<span class="ident">file</span>),
             <span class="ident">state</span>,
         };
         <span class="ident">ret</span>.<span class="ident">state</span>.<span class="ident">switch</span>.<span class="ident">replace_state</span>(<span class="kw-2">&amp;</span><span class="ident">ret</span>.<span class="ident">props</span>.<span class="ident">name</span>);
@@ -316,7 +316,7 @@
         <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">nav::Comp</span>
-                    <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file</span>)
+                    <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="self">self</span>.<span class="ident">file</span>.<span class="ident">as_ref</span>().<span class="ident">expect</span>(<span class="string">&quot;Error case is unreachable&quot;</span>))
                     <span class="ident">editor_home</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span>()<span class="op">|</span> <span class="ident">Msg::EditorHome</span>)
                     <span class="ident">choose_building</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ChooseBuilding</span>)
                     <span class="ident">choose_cargo</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ChooseCargo</span>)
@@ -353,13 +353,13 @@
             },
             <span class="ident">Switch::Building</span>(<span class="ident">building_id</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
                 <span class="op">&lt;</span><span class="ident">building::detail::Comp</span>
-                    <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file</span>)
+                    <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="self">self</span>.<span class="ident">file</span>.<span class="ident">as_ref</span>().<span class="ident">expect</span>(<span class="string">&quot;Error case is unreacahable&quot;</span>))
                     <span class="ident">building_id</span><span class="op">=</span><span class="ident">building_id</span>.<span class="ident">clone</span>()
                     <span class="op">/</span><span class="op">&gt;</span>
             },
             <span class="ident">Switch::Cargo</span>(<span class="ident">cargo_id</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
                 <span class="op">&lt;</span><span class="ident">cargo::detail::Comp</span>
-                    <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file</span>)
+                    <span class="ident">file</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="self">self</span>.<span class="ident">file</span>.<span class="ident">as_ref</span>().<span class="ident">expect</span>(<span class="string">&quot;Error case is unreacahable&quot;</span>))
                     <span class="ident">cargo_id</span><span class="op">=</span><span class="ident">cargo_id</span>.<span class="ident">clone</span>()
                     <span class="op">/</span><span class="op">&gt;</span>
             },
