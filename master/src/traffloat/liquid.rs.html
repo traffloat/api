@@ -290,6 +290,10 @@
 <span id="290">290</span>
 <span id="291">291</span>
 <span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of liquid in buildings</span>
 
@@ -380,6 +384,9 @@
 }
 
 <span class="doccomment">/// A liquid pipe entity.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Note that [`src_entity`] and [`dest_entity`] are entities of the liquid storage, not the node</span>
+<span class="doccomment">/// itself.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pipe</span> {
     <span class="doccomment">/// Entity of the source storage</span>
@@ -438,6 +445,7 @@
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Storage</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">StorageCapacity</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">StorageSize</span>)]</span>
+<span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">node::Child</span>)]</span>
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">NextStorageSize</span>)]</span>
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">NextStorageType</span>)]</span>
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">PipeFlow</span>)]</span>

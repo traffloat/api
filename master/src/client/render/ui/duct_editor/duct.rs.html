@@ -288,9 +288,9 @@
 
 <span class="kw">fn</span> <span class="ident">duct_fill</span>(<span class="ident">ty</span>: <span class="ident">edge::DuctType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
     <span class="ident">String::from</span>(<span class="kw">match</span> <span class="ident">ty</span> {
-        <span class="ident">edge::DuctType::Rail</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;#aa44bb&quot;</span>,
-        <span class="ident">edge::DuctType::Liquid</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;#3322aa&quot;</span>,
-        <span class="ident">edge::DuctType::Electricity</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;#ccaa00&quot;</span>,
+        <span class="ident">edge::DuctType::Rail</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;#aa44bb&quot;</span>,
+        <span class="ident">edge::DuctType::Liquid</span> { .. } <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;#3322aa&quot;</span>,
+        <span class="ident">edge::DuctType::Electricity</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;#ccaa00&quot;</span>,
     })
 }
 </pre></div>
