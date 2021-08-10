@@ -380,7 +380,7 @@
 }
 
 <span class="doccomment">/// A liquid pipe entity.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pipe</span> {
     <span class="doccomment">/// Entity of the source storage</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -407,7 +407,7 @@
 }
 
 <span class="doccomment">/// A component storing the current flow of a pipe.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">Default</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PipeFlow</span> {
     <span class="doccomment">/// The flow over the pipe in the current simulation frame.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
