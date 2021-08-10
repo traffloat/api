@@ -366,6 +366,12 @@
 <span id="366">366</span>
 <span id="367">367</span>
 <span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">BTreeMap</span>, <span class="ident">VecDeque</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
@@ -460,6 +466,12 @@
     <span class="doccomment">/// Add a thread-local system</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system_local</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">sys</span>: <span class="kw">impl</span> <span class="ident">legion::systems::Runnable</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">add_thread_local</span>(<span class="ident">sys</span>);
+        <span class="self">self</span>
+    }
+
+    <span class="doccomment">/// Forces systems before this call to be executed before systems after this call</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system_partition</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">flush</span>();
         <span class="self">self</span>
     }
 
