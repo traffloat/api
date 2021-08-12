@@ -112,6 +112,8 @@
 <span id="112">112</span>
 <span id="113">113</span>
 <span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders the common toolbar.</span>
 
@@ -197,6 +199,7 @@
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">web_sys::BlobPropertyBag::new</span>();
         <span class="ident">options</span>.<span class="ident">type_</span>(<span class="kw">match</span> <span class="ident">resp</span>.<span class="ident">format</span>() {
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;load-tsvt&quot;</span>)]</span>
             <span class="ident">save::Format::Text</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;text/yaml&quot;</span>,
             <span class="ident">save::Format::Binary</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;application/octet-stream&quot;</span>,
         });
@@ -216,6 +219,7 @@
             .<span class="ident">expect</span>(<span class="string">&quot;&lt;a&gt; is not HtmlAnchorElement&quot;</span>);
         <span class="ident">elem</span>.<span class="ident">set_href</span>(<span class="kw-2">&amp;</span><span class="ident">url</span>);
         <span class="ident">elem</span>.<span class="ident">set_download</span>(<span class="kw">match</span> <span class="ident">resp</span>.<span class="ident">format</span>() {
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;load-tsvt&quot;</span>)]</span>
             <span class="ident">save::Format::Text</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;save.tsvt&quot;</span>,
             <span class="ident">save::Format::Binary</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;save.tsv&quot;</span>,
         });
