@@ -177,7 +177,7 @@
 
 <span class="doccomment">/// A component applied on a node that drives gas.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GasPump</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pump</span> {
     <span class="doccomment">/// The force provided by the pump.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">force</span>: <span class="ident">units::FanForce</span>,
