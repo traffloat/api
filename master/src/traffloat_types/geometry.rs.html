@@ -361,6 +361,22 @@
 <span id="361">361</span>
 <span id="362">362</span>
 <span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Common geometric shapes.</span>
 
@@ -445,17 +461,29 @@
                 <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">closest</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">w</span>)
             }
             <span class="self">Self</span><span class="ident">::Cylinder</span> <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="macro">log::debug!</span>(<span class="string">&quot;Cylinder.between({}, {})&quot;</span>, <span class="ident">start</span>, <span class="ident">end</span>);
+
+                <span class="comment">// Tests whether the line intersects with the unit circle on the XY plane</span>
+                <span class="comment">// Formula: https://www.wolframalpha.com/input/?i=%28x_1%2Bx_3+w%29%5E2+%2B+%28y_1%2B+y_3+w+%29%5E2%3D1</span>
+                <span class="comment">// where `x1` = `start.x`, `x3` = `delta.x`</span>
+                <span class="comment">// where `y1` = `start.y`, `y3` = `delta.y`</span>
                 <span class="kw">let</span> <span class="ident">delta</span> <span class="op">=</span> <span class="ident">end</span> <span class="op">-</span> <span class="ident">start</span>;
-                <span class="kw">let</span> <span class="ident">d2</span> <span class="op">=</span> <span class="ident">delta</span>.<span class="ident">norm_squared</span>();
-                <span class="kw">let</span> <span class="ident">discrim</span> <span class="op">=</span> <span class="ident">d2</span> <span class="op">-</span> (<span class="ident">start</span>.<span class="ident">x</span> <span class="op">*</span> <span class="ident">end</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">start</span>.<span class="ident">y</span> <span class="op">*</span> <span class="ident">end</span>.<span class="ident">x</span>).<span class="ident">powi</span>(<span class="number">2</span>);
+                <span class="kw">let</span> <span class="ident">dxy2</span> <span class="op">=</span> <span class="ident">delta</span>.<span class="ident">x</span>.<span class="ident">powi</span>(<span class="number">2</span>) <span class="op">+</span> <span class="ident">delta</span>.<span class="ident">y</span>.<span class="ident">powi</span>(<span class="number">2</span>);
+                <span class="kw">let</span> <span class="ident">discrim</span> <span class="op">=</span> (<span class="ident">start</span>.<span class="ident">x</span> <span class="op">*</span> <span class="ident">delta</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">start</span>.<span class="ident">y</span> <span class="op">*</span> <span class="ident">delta</span>.<span class="ident">y</span>).<span class="ident">powi</span>(<span class="number">2</span>)
+                    <span class="op">-</span> (<span class="ident">start</span>.<span class="ident">x</span>.<span class="ident">powi</span>(<span class="number">2</span>) <span class="op">+</span> <span class="ident">start</span>.<span class="ident">y</span>.<span class="ident">powi</span>(<span class="number">2</span>) <span class="op">-</span> <span class="number">1.</span>) <span class="op">*</span> <span class="ident">dxy2</span>;
 
                 <span class="kw">if</span> <span class="ident">discrim</span> <span class="op">&gt;</span> <span class="number">0.</span> {
                     <span class="kw">let</span> <span class="ident">dr</span> <span class="op">=</span> <span class="ident">discrim</span>.<span class="ident">sqrt</span>();
                     <span class="kw">let</span> <span class="ident">base</span> <span class="op">=</span> <span class="ident">start</span>.<span class="ident">x</span> <span class="op">*</span> <span class="ident">delta</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">start</span>.<span class="ident">y</span> <span class="op">*</span> <span class="ident">delta</span>.<span class="ident">y</span>;
-                    <span class="kw">let</span> <span class="ident">w1</span> <span class="op">=</span> (<span class="op">-</span><span class="ident">base</span> <span class="op">-</span> <span class="ident">dr</span>) <span class="op">/</span> <span class="ident">d2</span>;
-                    <span class="kw">let</span> <span class="ident">w2</span> <span class="op">=</span> (<span class="op">-</span><span class="ident">base</span> <span class="op">+</span> <span class="ident">dr</span>) <span class="op">/</span> <span class="ident">d2</span>;
 
+                    <span class="comment">// the less weight intersecting with the unit circle</span>
+                    <span class="kw">let</span> <span class="ident">w1</span> <span class="op">=</span> (<span class="op">-</span><span class="ident">base</span> <span class="op">-</span> <span class="ident">dr</span>) <span class="op">/</span> <span class="ident">dxy2</span>;
+                    <span class="comment">// the greater weight intersecting with the unit circle</span>
+                    <span class="kw">let</span> <span class="ident">w2</span> <span class="op">=</span> (<span class="op">-</span><span class="ident">base</span> <span class="op">+</span> <span class="ident">dr</span>) <span class="op">/</span> <span class="ident">dxy2</span>;
+
+                    <span class="comment">// the weight intersecting with the lower plane</span>
                     <span class="kw">let</span> <span class="ident">zw0</span> <span class="op">=</span> <span class="op">-</span><span class="ident">start</span>.<span class="ident">z</span> <span class="op">/</span> <span class="ident">delta</span>.<span class="ident">z</span>;
+                    <span class="comment">// the weight intersecting with the higher plane</span>
                     <span class="kw">let</span> <span class="ident">zw1</span> <span class="op">=</span> (<span class="number">1.</span> <span class="op">-</span> <span class="ident">start</span>.<span class="ident">z</span>) <span class="op">/</span> <span class="ident">delta</span>.<span class="ident">z</span>;
 
                     <span class="kw">fn</span> <span class="ident">intersect_ranges</span>(
@@ -469,6 +497,8 @@
                             <span class="ident">f64::max</span>(<span class="kw-2">*</span><span class="ident">a</span>.<span class="ident">start</span>(), <span class="kw-2">*</span><span class="ident">b</span>.<span class="ident">start</span>())..<span class="op">=</span><span class="ident">f64::min</span>(<span class="kw-2">*</span><span class="ident">a</span>.<span class="ident">end</span>(), <span class="kw-2">*</span><span class="ident">b</span>.<span class="ident">end</span>())
                         })
                     }
+
+                    <span class="macro">codegen::wasm_dbg!</span>((<span class="ident">discrim</span>, <span class="ident">dxy2</span>, <span class="ident">w1</span>, <span class="ident">w2</span>, <span class="ident">zw0</span>, <span class="ident">zw1</span>));
 
                     <span class="kw">let</span> <span class="ident">range</span> <span class="op">=</span> <span class="ident">intersect_ranges</span>(
                         <span class="ident">intersect_ranges</span>(<span class="number">0.</span> ..<span class="op">=</span><span class="number">1.</span>, <span class="ident">w1</span>..<span class="op">=</span><span class="ident">w2</span>)<span class="question-mark">?</span>,
@@ -717,12 +747,14 @@
         <span class="macro">assert_between!</span>((<span class="op">-</span><span class="number">1.</span>, <span class="op">-</span><span class="number">1.</span>, <span class="op">-</span><span class="number">0.5</span>)..(<span class="number">1.</span>, <span class="number">1.</span>, <span class="op">-</span><span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>);
         <span class="macro">assert_between!</span>((<span class="number">1.</span>, <span class="op">-</span><span class="number">1.</span>, <span class="number">0.5</span>)..(<span class="op">-</span><span class="number">1.</span>, <span class="number">1.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>((<span class="number">2f64</span>.<span class="ident">sqrt</span>() <span class="op">-</span> <span class="number">1.</span>) <span class="op">/</span> (<span class="number">2f64</span>.<span class="ident">sqrt</span>() <span class="op">*</span> <span class="number">2.</span>), <span class="number">1e-6</span>));
         <span class="macro">assert_between!</span>((<span class="op">-</span><span class="number">1.</span>, <span class="number">1.</span>, <span class="number">0.5</span>)..(<span class="number">1.</span>, <span class="op">-</span><span class="number">1.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>((<span class="number">2f64</span>.<span class="ident">sqrt</span>() <span class="op">-</span> <span class="number">1.</span>) <span class="op">/</span> (<span class="number">2f64</span>.<span class="ident">sqrt</span>() <span class="op">*</span> <span class="number">2.</span>), <span class="number">1e-6</span>));
-        <span class="macro">assert_between!</span>((<span class="op">-</span><span class="number">2.</span>, <span class="number">0.</span>, <span class="number">0.5</span>)..(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.5</span>, <span class="number">1e-6</span>));
-        <span class="macro">assert_between!</span>((<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.5</span>)..(<span class="number">2.</span>, <span class="number">0.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.</span>, <span class="number">1e-6</span>));
-        <span class="macro">assert_between!</span>((<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.5</span>)..(<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.5</span>, <span class="number">1e-6</span>));
-        <span class="macro">assert_between!</span>((<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.5</span>)..(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.5</span>, <span class="number">1e-6</span>));
-        <span class="macro">assert_between!</span>((<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.5</span>)..(<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.</span>, <span class="number">1e-6</span>));
-        <span class="macro">assert_between!</span>((<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.5</span>)..(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.</span>, <span class="number">1e-6</span>));
+        <span class="macro">assert_between!</span>((<span class="op">-</span><span class="number">2.</span>, <span class="number">0.</span>, <span class="number">0.5</span>)..(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.5</span>, <span class="number">1e-10</span>));
+        <span class="macro">assert_between!</span>((<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.5</span>)..(<span class="number">2.</span>, <span class="number">0.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.</span>, <span class="number">1e-10</span>));
+        <span class="macro">assert_between!</span>((<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.5</span>)..(<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.5</span>, <span class="number">1e-10</span>));
+        <span class="macro">assert_between!</span>((<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.5</span>)..(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.5</span>, <span class="number">1e-10</span>));
+        <span class="macro">assert_between!</span>((<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.5</span>)..(<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.</span>, <span class="number">1e-10</span>));
+        <span class="macro">assert_between!</span>((<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.5</span>)..(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.5</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="number">0.</span>, <span class="number">1e-10</span>));
+
+        <span class="macro">assert_between!</span>((<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">11.</span>)..(<span class="number">37.</span>, <span class="op">-</span><span class="number">12.</span>, <span class="op">-</span><span class="number">753.</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>((<span class="number">1.</span> <span class="op">-</span> <span class="number">11.</span>) <span class="op">/</span> (<span class="op">-</span><span class="number">753.</span> <span class="op">-</span> <span class="number">11.</span>), <span class="number">1e-10</span>));
     }
 }
 </pre></div>
