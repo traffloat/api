@@ -294,6 +294,11 @@
 <span id="294">294</span>
 <span id="295">295</span>
 <span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of liquid in buildings</span>
 
@@ -414,9 +419,13 @@
 }
 
 <span class="doccomment">/// A component storing the current flow of a pipe.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">Default</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PipeFlow</span> {
-    <span class="doccomment">/// The flow over the pipe in the current simulation frame.</span>
+    <span class="doccomment">/// The type of liquid flowing over the pipe in the current simulation frame.</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="ident">ty</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TypeId</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The flow rate over the pipe in the current simulation frame.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">value</span>: <span class="ident">LiquidVolume</span>,
@@ -533,6 +542,7 @@
         <span class="ident">rate</span> <span class="op">=</span> <span class="ident">rate</span>.<span class="ident">min</span>(<span class="ident">src</span>.<span class="ident">volume</span>.<span class="ident">value</span>()).<span class="ident">min</span>(<span class="ident">dest</span>.<span class="ident">empty</span>.<span class="ident">value</span>());
         <span class="kw">let</span> <span class="ident">rate</span> <span class="op">=</span> <span class="ident">units::LiquidVolume</span>(<span class="ident">rate</span>);
 
+        <span class="ident">flow</span>.<span class="ident">set_ty</span>(<span class="prelude-val">Some</span>(<span class="ident">src</span>.<span class="ident">ty</span>.<span class="ident">clone</span>()));
         <span class="ident">flow</span>.<span class="ident">set_value</span>(<span class="ident">rate</span>);
 
         {

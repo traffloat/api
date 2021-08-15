@@ -373,10 +373,6 @@
 <span id="373">373</span>
 <span id="374">374</span>
 <span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Common geometric shapes.</span>
 
@@ -461,8 +457,6 @@
                 <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">closest</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">w</span>)
             }
             <span class="self">Self</span><span class="ident">::Cylinder</span> <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="macro">log::debug!</span>(<span class="string">&quot;Cylinder.between({}, {})&quot;</span>, <span class="ident">start</span>, <span class="ident">end</span>);
-
                 <span class="comment">// Tests whether the line intersects with the unit circle on the XY plane</span>
                 <span class="comment">// Formula: https://www.wolframalpha.com/input/?i=%28x_1%2Bx_3+w%29%5E2+%2B+%28y_1%2B+y_3+w+%29%5E2%3D1</span>
                 <span class="comment">// where `x1` = `start.x`, `x3` = `delta.x`</span>
@@ -497,8 +491,6 @@
                             <span class="ident">f64::max</span>(<span class="kw-2">*</span><span class="ident">a</span>.<span class="ident">start</span>(), <span class="kw-2">*</span><span class="ident">b</span>.<span class="ident">start</span>())..<span class="op">=</span><span class="ident">f64::min</span>(<span class="kw-2">*</span><span class="ident">a</span>.<span class="ident">end</span>(), <span class="kw-2">*</span><span class="ident">b</span>.<span class="ident">end</span>())
                         })
                     }
-
-                    <span class="macro">codegen::wasm_dbg!</span>((<span class="ident">discrim</span>, <span class="ident">dxy2</span>, <span class="ident">w1</span>, <span class="ident">w2</span>, <span class="ident">zw0</span>, <span class="ident">zw1</span>));
 
                     <span class="kw">let</span> <span class="ident">range</span> <span class="op">=</span> <span class="ident">intersect_ranges</span>(
                         <span class="ident">intersect_ranges</span>(<span class="number">0.</span> ..<span class="op">=</span><span class="number">1.</span>, <span class="ident">w1</span>..<span class="op">=</span><span class="ident">w2</span>)<span class="question-mark">?</span>,
