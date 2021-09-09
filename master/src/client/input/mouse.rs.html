@@ -154,17 +154,6 @@
 <span id="154">154</span>
 <span id="155">155</span>
 <span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
-<span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
-<span id="166">166</span>
-<span id="167">167</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles mouse interaction.</span>
 
@@ -191,9 +180,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Parameters are identical to those of [`ScreenPosition::new`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">position</span>: <span class="ident">ScreenPosition::new</span>(<span class="ident">x</span>, <span class="ident">y</span>),
-        }
+        <span class="self">Self</span> { <span class="ident">position</span>: <span class="ident">ScreenPosition::new</span>(<span class="ident">x</span>, <span class="ident">y</span>) }
     }
 }
 
@@ -216,10 +203,7 @@
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Segment</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">proximal</span>: <span class="ident">Position::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>),
-            <span class="ident">distal</span>: <span class="ident">Position::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="op">-</span><span class="number">1.</span>),
-        }
+        <span class="self">Self</span> { <span class="ident">proximal</span>: <span class="ident">Position::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>), <span class="ident">distal</span>: <span class="ident">Position::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="op">-</span><span class="number">1.</span>) }
     }
 }
 
@@ -314,16 +298,10 @@
         <span class="macro">codegen::update_debug!</span>(<span class="ident">target_debug</span>, <span class="string">&quot;None&quot;</span>);
     }
 
-    <span class="ident">cursor_type</span>.<span class="ident">set_name</span>(<span class="kw">if</span> <span class="ident">hover_target</span>.<span class="ident">entity</span>().<span class="ident">is_some</span>() {
-        <span class="string">&quot;pointer&quot;</span>
-    } <span class="kw">else</span> {
-        <span class="string">&quot;initial&quot;</span>
-    });
+    <span class="ident">cursor_type</span>.<span class="ident">set_name</span>(<span class="kw">if</span> <span class="ident">hover_target</span>.<span class="ident">entity</span>().<span class="ident">is_some</span>() { <span class="string">&quot;pointer&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;initial&quot;</span> });
 
-    <span class="kw">let</span> <span class="ident">has_click</span> <span class="op">=</span> <span class="ident">click_sub</span>
-        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">click</span><span class="op">|</span> <span class="ident">click</span>.<span class="ident">command</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">keyboard::Command::LeftClick</span>)
-        .<span class="ident">count</span>()
-        <span class="op">&gt;</span> <span class="number">0</span>; <span class="comment">// consume the whole iterator without short-circuiting</span>
+    <span class="kw">let</span> <span class="ident">has_click</span> <span class="op">=</span>
+        <span class="ident">click_sub</span>.<span class="ident">filter</span>(<span class="op">|</span><span class="ident">click</span><span class="op">|</span> <span class="ident">click</span>.<span class="ident">command</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">keyboard::Command::LeftClick</span>).<span class="ident">count</span>() <span class="op">&gt;</span> <span class="number">0</span>; <span class="comment">// consume the whole iterator without short-circuiting</span>
     <span class="kw">if</span> <span class="ident">has_click</span> {
         <span class="ident">focus_target</span>.<span class="ident">set_entity</span>(<span class="ident">hover_target</span>.<span class="ident">entity</span>());
     }

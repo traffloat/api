@@ -80,10 +80,6 @@
 <span id="80">80</span>
 <span id="81">81</span>
 <span id="82">82</span>
-<span id="83">83</span>
-<span id="84">84</span>
-<span id="85">85</span>
-<span id="86">86</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Counts the FPS of the last second.</span>
 
@@ -160,11 +156,7 @@
 
     <span class="macro">codegen::update_debug!</span>(<span class="ident">graphics_debug</span>, <span class="string">&quot;{:.1}&quot;</span>, <span class="ident">render_fps</span>);
     <span class="macro">codegen::update_debug!</span>(<span class="ident">physics_debug</span>, <span class="string">&quot;{:.1}&quot;</span>, <span class="ident">simul_fps</span>);
-    <span class="macro">codegen::update_debug!</span>(
-        <span class="ident">cycle_time_debug</span>,
-        <span class="string">&quot;{:.2} \u{03bc}s&quot;</span>,
-        <span class="ident">comm</span>.<span class="ident">perf</span>.<span class="ident">average_exec_us</span>()
-    );
+    <span class="macro">codegen::update_debug!</span>(<span class="ident">cycle_time_debug</span>, <span class="string">&quot;{:.2} \u{03bc}s&quot;</span>, <span class="ident">comm</span>.<span class="ident">perf</span>.<span class="ident">average_exec_us</span>());
 }
 
 <span class="doccomment">/// Sets up legion ECS for debug info rendering.</span>

@@ -78,10 +78,6 @@
 <span id="78">78</span>
 <span id="79">79</span>
 <span id="80">80</span>
-<span id="81">81</span>
-<span id="82">82</span>
-<span id="83">83</span>
-<span id="84">84</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Shape and appearance of an object</span>
 
@@ -124,11 +120,7 @@
             <span class="ident">texture</span>: <span class="ident">Texture</span>,
         }
 
-        <span class="kw">let</span> <span class="ident">Simple</span> {
-            <span class="ident">unit</span>,
-            <span class="ident">matrix</span>,
-            <span class="ident">texture</span>,
-        } <span class="op">=</span> <span class="ident">Simple::deserialize</span>(<span class="ident">d</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">Simple</span> { <span class="ident">unit</span>, <span class="ident">matrix</span>, <span class="ident">texture</span> } <span class="op">=</span> <span class="ident">Simple::deserialize</span>(<span class="ident">d</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
             <span class="ident">unit</span>,
             <span class="ident">matrix</span>,

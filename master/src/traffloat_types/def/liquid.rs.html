@@ -186,10 +186,6 @@
 <span id="186">186</span>
 <span id="187">187</span>
 <span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Liquid definitions.</span>
 
@@ -339,11 +335,7 @@
                 .<span class="ident">iter</span>()
                 .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">pair</span>, <span class="ident">sum</span>)<span class="op">|</span> {
                     <span class="kw">let</span> [<span class="ident">augend</span>, <span class="ident">addend</span>] <span class="op">=</span> <span class="ident">pair</span>.<span class="ident">types</span>.<span class="ident">clone</span>();
-                    <span class="ident">Entry</span> {
-                        <span class="ident">augend</span>,
-                        <span class="ident">addend</span>,
-                        <span class="ident">sum</span>: <span class="ident">sum</span>.<span class="ident">clone</span>(),
-                    }
+                    <span class="ident">Entry</span> { <span class="ident">augend</span>, <span class="ident">addend</span>, <span class="ident">sum</span>: <span class="ident">sum</span>.<span class="ident">clone</span>() }
                 })
                 .<span class="ident">collect</span>(),
         };

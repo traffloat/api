@@ -99,13 +99,6 @@
 <span id="99"> 99</span>
 <span id="100">100</span>
 <span id="101">101</span>
-<span id="102">102</span>
-<span id="103">103</span>
-<span id="104">104</span>
-<span id="105">105</span>
-<span id="106">106</span>
-<span id="107">107</span>
-<span id="108">108</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
@@ -134,11 +127,7 @@
         <span class="kw">let</span> <span class="ident">route</span> <span class="op">=</span> <span class="kw">super</span><span class="ident">::route::Route::parse_path</span>(<span class="kw-2">&amp;</span><span class="ident">hash</span>);
         <span class="macro">log::debug!</span>(<span class="string">&quot;Path parsed as {:?}&quot;</span>, <span class="ident">route</span>);
 
-        <span class="self">Self</span> {
-            <span class="ident">link</span>,
-            <span class="ident">state</span>: <span class="ident">State::Home</span> { <span class="ident">error</span>: <span class="prelude-val">None</span> },
-            <span class="ident">intent_route</span>: <span class="prelude-val">Some</span>(<span class="ident">route</span>),
-        }
+        <span class="self">Self</span> { <span class="ident">link</span>, <span class="ident">state</span>: <span class="ident">State::Home</span> { <span class="ident">error</span>: <span class="prelude-val">None</span> }, <span class="ident">intent_route</span>: <span class="prelude-val">Some</span>(<span class="ident">route</span>) }
     }
 
     <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident">Msg</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
@@ -200,10 +189,7 @@
 <span class="doccomment">/// Switches the component state.</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Msg</span> {
     <span class="doccomment">/// Starts a singleplayer game.</span>
-    <span class="ident">StartSingle</span> {
-        <span class="ident">args</span>: <span class="ident">SpGameArgs</span>,
-        <span class="ident">scenario</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    },
+    <span class="ident">StartSingle</span> { <span class="ident">args</span>: <span class="ident">SpGameArgs</span>, <span class="ident">scenario</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> },
     <span class="doccomment">/// Edit a scenario..</span>
     <span class="ident">EditScenario</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>),
     <span class="doccomment">/// Ends a game with an optional error message.</span>

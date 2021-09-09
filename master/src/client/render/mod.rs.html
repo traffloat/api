@@ -42,10 +42,6 @@
 <span id="42">42</span>
 <span id="43">43</span>
 <span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Manages client-side graphics rendering.</span>
 
@@ -89,11 +85,7 @@
 
 <span class="doccomment">/// Sets up legion ECS for rendering.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
-    <span class="ident">setup</span>
-        .<span class="ident">uses</span>(<span class="ident">bg::setup_ecs</span>)
-        .<span class="ident">uses</span>(<span class="ident">scene::setup_ecs</span>)
-        .<span class="ident">uses</span>(<span class="ident">ui::setup_ecs</span>)
-        .<span class="ident">uses</span>(<span class="ident">debug::setup_ecs</span>)
+    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">bg::setup_ecs</span>).<span class="ident">uses</span>(<span class="ident">scene::setup_ecs</span>).<span class="ident">uses</span>(<span class="ident">ui::setup_ecs</span>).<span class="ident">uses</span>(<span class="ident">debug::setup_ecs</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="client" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

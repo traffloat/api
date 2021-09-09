@@ -49,9 +49,6 @@
 <span id="49">49</span>
 <span id="50">50</span>
 <span id="51">51</span>
-<span id="52">52</span>
-<span id="53">53</span>
-<span id="54">54</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
 
@@ -73,10 +70,7 @@
     <span class="doccomment">/// # Panic</span>
     <span class="doccomment">/// Panics if the parameter is not finite.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">f</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">assert!</span>(
-            <span class="ident">f</span>.<span class="ident">is_finite</span>(),
-            <span class="string">&quot;Attempt to create Finite with non-finite float&quot;</span>
-        );
+        <span class="macro">assert!</span>(<span class="ident">f</span>.<span class="ident">is_finite</span>(), <span class="string">&quot;Attempt to create Finite with non-finite float&quot;</span>);
         <span class="self">Self</span>(<span class="ident">f</span>)
     }
 

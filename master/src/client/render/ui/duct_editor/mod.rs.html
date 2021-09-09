@@ -167,12 +167,6 @@
 <span id="167">167</span>
 <span id="168">168</span>
 <span id="169">169</span>
-<span id="170">170</span>
-<span id="171">171</span>
-<span id="172">172</span>
-<span id="173">173</span>
-<span id="174">174</span>
-<span id="175">175</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders duct editor.</span>
 
@@ -201,26 +195,24 @@
         <span class="self">self</span>.<span class="ident">state</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">entry</span>) <span class="op">=</span> <span class="ident">legion</span>.<span class="ident">world</span>.<span class="ident">entry_ref</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">entity</span>) {
-            <span class="self">self</span>.<span class="ident">state</span> <span class="op">=</span> <span class="kw">match</span> (
-                <span class="ident">entry</span>.<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">edge::Size</span><span class="op">&gt;</span>(),
-                <span class="ident">entry</span>.<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">edge::Design</span><span class="op">&gt;</span>(),
-            ) {
-                (<span class="prelude-val">Ok</span>(<span class="ident">size</span>), <span class="prelude-val">Ok</span>(<span class="ident">design</span>)) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">State</span> {
-                    <span class="ident">size</span>: <span class="ident">size</span>.<span class="ident">radius</span>(),
-                    <span class="ident">ducts</span>: <span class="ident">design</span>
-                        .<span class="ident">ducts</span>()
-                        .<span class="ident">iter</span>()
-                        .<span class="ident">enumerate</span>()
-                        .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">index</span>, <span class="ident">duct</span>)<span class="op">|</span> <span class="ident">Circle</span> {
-                            <span class="ident">center</span>: <span class="ident">duct</span>.<span class="ident">center</span>(),
-                            <span class="ident">radius</span>: <span class="ident">duct</span>.<span class="ident">radius</span>(),
-                            <span class="ident">ty</span>: <span class="ident">duct</span>.<span class="ident">ty</span>(),
-                            <span class="ident">original_index</span>: <span class="prelude-val">Some</span>(<span class="ident">index</span>),
-                        })
-                        .<span class="ident">collect</span>(),
-                }),
-                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
-            }
+            <span class="self">self</span>.<span class="ident">state</span> <span class="op">=</span>
+                <span class="kw">match</span> (<span class="ident">entry</span>.<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">edge::Size</span><span class="op">&gt;</span>(), <span class="ident">entry</span>.<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">edge::Design</span><span class="op">&gt;</span>()) {
+                    (<span class="prelude-val">Ok</span>(<span class="ident">size</span>), <span class="prelude-val">Ok</span>(<span class="ident">design</span>)) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">State</span> {
+                        <span class="ident">size</span>: <span class="ident">size</span>.<span class="ident">radius</span>(),
+                        <span class="ident">ducts</span>: <span class="ident">design</span>
+                            .<span class="ident">ducts</span>()
+                            .<span class="ident">iter</span>()
+                            .<span class="ident">enumerate</span>()
+                            .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">index</span>, <span class="ident">duct</span>)<span class="op">|</span> <span class="ident">Circle</span> {
+                                <span class="ident">center</span>: <span class="ident">duct</span>.<span class="ident">center</span>(),
+                                <span class="ident">radius</span>: <span class="ident">duct</span>.<span class="ident">radius</span>(),
+                                <span class="ident">ty</span>: <span class="ident">duct</span>.<span class="ident">ty</span>(),
+                                <span class="ident">original_index</span>: <span class="prelude-val">Some</span>(<span class="ident">index</span>),
+                            })
+                            .<span class="ident">collect</span>(),
+                    }),
+                    <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+                }
         }
     }
 }
@@ -230,11 +222,7 @@
     <span class="kw">type</span> <span class="ident">Properties</span> <span class="op">=</span> <span class="ident">Props</span>;
 
     <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident">Props</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ret</span> <span class="op">=</span> <span class="self">Self</span> {
-            <span class="ident">props</span>,
-            <span class="ident">link</span>,
-            <span class="ident">state</span>: <span class="prelude-val">None</span>,
-        };
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ret</span> <span class="op">=</span> <span class="self">Self</span> { <span class="ident">props</span>, <span class="ident">link</span>, <span class="ident">state</span>: <span class="prelude-val">None</span> };
         <span class="ident">ret</span>.<span class="ident">update_props</span>();
         <span class="ident">ret</span>
     }

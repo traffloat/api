@@ -313,9 +313,6 @@
 <span id="313">313</span>
 <span id="314">314</span>
 <span id="315">315</span>
-<span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles keyboard input.</span>
 
@@ -578,10 +575,7 @@
             <span class="ident">move_direction</span> <span class="op">+</span><span class="op">=</span> <span class="ident">Vector::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="ident">config::WASD_LINEAR_VELOCITY</span> <span class="op">*</span> <span class="ident">dt</span>);
         }
         <span class="kw">if</span> <span class="ident">move_direction</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Vector::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>) {
-            <span class="kw">let</span> <span class="ident">dp</span> <span class="op">=</span> <span class="ident">camera</span>
-                .<span class="ident">rotation</span>()
-                .<span class="ident">transpose</span>()
-                .<span class="ident">transform_vector</span>(<span class="kw-2">&amp;</span><span class="ident">move_direction</span>);
+            <span class="kw">let</span> <span class="ident">dp</span> <span class="op">=</span> <span class="ident">camera</span>.<span class="ident">rotation</span>().<span class="ident">transpose</span>().<span class="ident">transform_vector</span>(<span class="kw-2">&amp;</span><span class="ident">move_direction</span>);
             <span class="ident">camera</span>.<span class="ident">set_focus</span>(<span class="ident">camera</span>.<span class="ident">focus</span>() <span class="op">+</span> <span class="ident">dp</span>);
         }
     }

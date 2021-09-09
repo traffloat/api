@@ -81,7 +81,6 @@
 <span id="81">81</span>
 <span id="82">82</span>
 <span id="83">83</span>
-<span id="84">84</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge rendering</span>
 
@@ -159,8 +158,7 @@
         <span class="self">self</span>.<span class="ident">u_diffuse</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">0.2</span>);
         <span class="self">self</span>.<span class="ident">u_specular</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">1.0</span>);
         <span class="self">self</span>.<span class="ident">u_specular_coef</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="number">10.0</span>);
-        <span class="self">self</span>.<span class="ident">u_inv_gain</span>
-            .<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="kw">if</span> <span class="ident">selected</span> { <span class="number">0.5f32</span> } <span class="kw">else</span> { <span class="number">1f32</span> });
+        <span class="self">self</span>.<span class="ident">u_inv_gain</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="kw">if</span> <span class="ident">selected</span> { <span class="number">0.5f32</span> } <span class="kw">else</span> { <span class="number">1f32</span> });
 
         <span class="self">self</span>.<span class="ident">a_pos</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">positions</span>());
         <span class="self">self</span>.<span class="ident">a_normal</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">normals</span>());

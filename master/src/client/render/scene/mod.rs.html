@@ -209,20 +209,6 @@
 <span id="209">209</span>
 <span id="210">210</span>
 <span id="211">211</span>
-<span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-<span id="215">215</span>
-<span id="216">216</span>
-<span id="217">217</span>
-<span id="218">218</span>
-<span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders nodes, edges and vehicles.</span>
 
@@ -269,12 +255,7 @@
         <span class="kw">let</span> <span class="ident">edge_prog</span> <span class="op">=</span> <span class="ident">edge::Program::new</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>);
         <span class="kw">let</span> <span class="ident">reticle_prog</span> <span class="op">=</span> <span class="ident">reticle::Program::new</span>(<span class="kw-2">&amp;</span><span class="ident">gl</span>);
 
-        <span class="self">Self</span> {
-            <span class="ident">gl</span>,
-            <span class="ident">node_prog</span>,
-            <span class="ident">edge_prog</span>,
-            <span class="ident">reticle_prog</span>,
-        }
+        <span class="self">Self</span> { <span class="ident">gl</span>, <span class="ident">node_prog</span>, <span class="ident">edge_prog</span>, <span class="ident">reticle_prog</span> }
     }
 
     <span class="doccomment">/// Clears the canvas.</span>
@@ -293,10 +274,7 @@
             .<span class="ident">expect</span>(<span class="string">&quot;UI does not have a canvas&quot;</span>)
             .<span class="ident">dyn_into</span>()
             .<span class="ident">expect</span>(<span class="string">&quot;Canvas is not a HtmlCanvasElement&quot;</span>);
-        <span class="ident">canvas</span>
-            .<span class="ident">style</span>()
-            .<span class="ident">set_property</span>(<span class="string">&quot;cursor&quot;</span>, <span class="ident">name</span>)
-            .<span class="ident">expect</span>(<span class="string">&quot;Failed to set canvas cursor property&quot;</span>);
+        <span class="ident">canvas</span>.<span class="ident">style</span>().<span class="ident">set_property</span>(<span class="string">&quot;cursor&quot;</span>, <span class="ident">name</span>).<span class="ident">expect</span>(<span class="string">&quot;Failed to set canvas cursor property&quot;</span>);
     }
 }
 
@@ -413,15 +391,9 @@
 
     <span class="ident">scene</span>.<span class="ident">gl</span>.<span class="ident">disable</span>(<span class="ident">WebGlRenderingContext::CULL_FACE</span>);
     <span class="ident">scene</span>.<span class="ident">gl</span>.<span class="ident">disable</span>(<span class="ident">WebGlRenderingContext::BLEND</span>);
-    <span class="ident">scene</span>
-        .<span class="ident">reticle_prog</span>
-        .<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span>, [<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>]);
-    <span class="ident">scene</span>
-        .<span class="ident">reticle_prog</span>
-        .<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span> <span class="op">*</span> <span class="ident">rot_y</span>, [<span class="number">0.</span>, <span class="number">1.</span>, <span class="number">0.</span>]);
-    <span class="ident">scene</span>
-        .<span class="ident">reticle_prog</span>
-        .<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span> <span class="op">*</span> <span class="ident">rot_z</span>, [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>]);
+    <span class="ident">scene</span>.<span class="ident">reticle_prog</span>.<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span>, [<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">0.</span>]);
+    <span class="ident">scene</span>.<span class="ident">reticle_prog</span>.<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span> <span class="op">*</span> <span class="ident">rot_y</span>, [<span class="number">0.</span>, <span class="number">1.</span>, <span class="number">0.</span>]);
+    <span class="ident">scene</span>.<span class="ident">reticle_prog</span>.<span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="ident">arrow_projection</span> <span class="op">*</span> <span class="ident">rot_z</span>, [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>]);
 }
 
 <span class="attribute">#[<span class="ident">codegen::system</span>]</span>

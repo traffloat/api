@@ -296,9 +296,6 @@
 <span id="296">296</span>
 <span id="297">297</span>
 <span id="298">298</span>
-<span id="299">299</span>
-<span id="300">300</span>
-<span id="301">301</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of liquid in buildings</span>
 
@@ -512,11 +509,8 @@
                 .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">StorageCapacity</span><span class="op">&gt;</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;Pipe endpoint does not have StorageCapacity component&quot;</span>);
 
-            <span class="kw">let</span> <span class="ident">viscosity</span> <span class="op">=</span> <span class="ident">def</span>
-                .<span class="ident">liquid</span>()
-                .<span class="ident">get</span>(<span class="ident">ty</span>)
-                .<span class="ident">expect</span>(<span class="string">&quot;Storage references undefined liquid&quot;</span>)
-                .<span class="ident">viscosity</span>();
+            <span class="kw">let</span> <span class="ident">viscosity</span> <span class="op">=</span>
+                <span class="ident">def</span>.<span class="ident">liquid</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Storage references undefined liquid&quot;</span>).<span class="ident">viscosity</span>();
 
             <span class="ident">FetchEndpoint</span> {
                 <span class="ident">ty</span>: <span class="ident">ty</span>.<span class="ident">clone</span>(),

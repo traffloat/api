@@ -117,15 +117,6 @@
 <span id="117">117</span>
 <span id="118">118</span>
 <span id="119">119</span>
-<span id="120">120</span>
-<span id="121">121</span>
-<span id="122">122</span>
-<span id="123">123</span>
-<span id="124">124</span>
-<span id="125">125</span>
-<span id="126">126</span>
-<span id="127">127</span>
-<span id="128">128</span>
 </pre><pre class="rust">
 <span class="doccomment">//! The hash routes used for traffloat.</span>
 
@@ -171,10 +162,7 @@
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Route</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::Scenario</span> {
-            <span class="ident">name</span>: <span class="ident">String::from</span>(<span class="string">&quot;vanilla&quot;</span>),
-            <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span>,
-        }
+        <span class="self">Self</span><span class="ident">::Scenario</span> { <span class="ident">name</span>: <span class="ident">String::from</span>(<span class="string">&quot;vanilla&quot;</span>), <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span> }
     }
 }
 
@@ -223,15 +211,9 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">path</span>) <span class="op">=</span> <span class="ident">path</span>.<span class="ident">strip_prefix</span>(<span class="string">&quot;scenario&quot;</span>) {
             <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">trim_start_matches</span>(<span class="string">&#39;/&#39;</span>);
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">name</span>, <span class="ident">sp</span>)) <span class="op">=</span> <span class="ident">path</span>.<span class="ident">split_once</span>(<span class="string">&#39;/&#39;</span>) {
-                <span class="ident">Route::Scenario</span> {
-                    <span class="ident">name</span>: <span class="ident">name</span>.<span class="ident">to_string</span>(),
-                    <span class="ident">sp</span>: <span class="ident">parse_sp</span>(<span class="ident">sp</span>),
-                }
+                <span class="ident">Route::Scenario</span> { <span class="ident">name</span>: <span class="ident">name</span>.<span class="ident">to_string</span>(), <span class="ident">sp</span>: <span class="ident">parse_sp</span>(<span class="ident">sp</span>) }
             } <span class="kw">else</span> {
-                <span class="ident">Route::Scenario</span> {
-                    <span class="ident">name</span>: <span class="ident">path</span>.<span class="ident">to_string</span>(),
-                    <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span>,
-                }
+                <span class="ident">Route::Scenario</span> { <span class="ident">name</span>: <span class="ident">path</span>.<span class="ident">to_string</span>(), <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span> }
             }
         } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">sp</span>) <span class="op">=</span> <span class="ident">path</span>.<span class="ident">strip_prefix</span>(<span class="string">&quot;custom&quot;</span>) {
             <span class="ident">Route::Custom</span> { <span class="ident">sp</span>: <span class="ident">parse_sp</span>(<span class="ident">sp</span>) }

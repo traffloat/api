@@ -130,15 +130,6 @@
 <span id="130">130</span>
 <span id="131">131</span>
 <span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Node rendering</span>
 
@@ -210,15 +201,7 @@
     <span class="doccomment">/// The projection matrix transforms unit model coordinates to projection coordinates directly.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">DrawArgs</span> {
-            <span class="ident">gl</span>,
-            <span class="ident">proj</span>,
-            <span class="ident">sun</span>,
-            <span class="ident">brightness</span>,
-            <span class="ident">selected</span>,
-            <span class="ident">texture</span>,
-            <span class="ident">shape_unit</span>,
-        }: <span class="ident">DrawArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+        <span class="ident">DrawArgs</span> { <span class="ident">gl</span>, <span class="ident">proj</span>, <span class="ident">sun</span>, <span class="ident">brightness</span>, <span class="ident">selected</span>, <span class="ident">texture</span>, <span class="ident">shape_unit</span> }: <span class="ident">DrawArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
     ) {
         <span class="kw">use</span> <span class="ident">mesh::AbstractPreparedMesh</span>;
 
@@ -226,8 +209,7 @@
         <span class="self">self</span>.<span class="ident">u_proj</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">proj</span>);
         <span class="self">self</span>.<span class="ident">u_sun</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">sun</span>);
         <span class="self">self</span>.<span class="ident">u_brightness</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">brightness</span>.<span class="ident">clamp</span>(<span class="number">0.5</span>, <span class="number">1.</span>));
-        <span class="self">self</span>.<span class="ident">u_inv_gain</span>
-            .<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="kw">if</span> <span class="ident">selected</span> { <span class="number">0.5f32</span> } <span class="kw">else</span> { <span class="number">1f32</span> });
+        <span class="self">self</span>.<span class="ident">u_inv_gain</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="kw">if</span> <span class="ident">selected</span> { <span class="number">0.5f32</span> } <span class="kw">else</span> { <span class="number">1f32</span> });
 
         <span class="comment">// The dynamic dispatch here is roughly equialent to</span>
         <span class="comment">// an enum matching on the unit type and should not impact performance.</span>
