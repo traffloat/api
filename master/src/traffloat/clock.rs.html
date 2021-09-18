@@ -142,7 +142,7 @@
 <span class="doccomment">/// ```no_run</span>
 <span class="doccomment">/// # use traffloat::clock::SimulationEvent;</span>
 <span class="doccomment">/// #</span>
-<span class="doccomment">/// #[codegen::system]</span>
+<span class="doccomment">/// #[codegen::system(Simulate)]</span>
 <span class="doccomment">/// fn execute(</span>
 <span class="doccomment">///     #[subscriber] simul_sub: impl Iterator&lt;Item = SimulationEvent&gt;,</span>
 <span class="doccomment">/// ) {</span>
@@ -153,7 +153,7 @@
 <span class="doccomment">/// ```</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SimulationEvent</span>;
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">Schedule</span>)]</span>
 <span class="kw">fn</span> <span class="ident">sim_trigger</span>(
     <span class="attribute">#[<span class="ident">publisher</span>]</span> <span class="ident">sim_pub</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="ident">SimulationEvent</span>),
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">clock</span>: <span class="kw-2">&amp;</span><span class="ident">Clock</span>,

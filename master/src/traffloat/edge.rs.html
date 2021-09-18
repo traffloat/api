@@ -689,7 +689,7 @@
     <span class="ident">design</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">save::SavedDuct</span><span class="op">&gt;</span>,
 }
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">CreateChild</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Position</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">liquid::StorageList</span>)]</span>
 <span class="kw">fn</span> <span class="ident">create_new_edge</span>(
@@ -728,7 +728,7 @@
     <span class="ident">save</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">save::Edge</span><span class="op">&gt;</span>,
 }
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">CreateChild</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Position</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">liquid::StorageList</span>)]</span>
 <span class="kw">fn</span> <span class="ident">create_saved_edge</span>(

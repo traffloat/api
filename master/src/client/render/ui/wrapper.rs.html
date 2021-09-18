@@ -369,7 +369,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">Response</span>)]</span>
 <span class="attribute">#[<span class="ident">thread_local</span>]</span>
 <span class="kw">fn</span> <span class="ident">cancel_trigger</span>(
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">click_sub</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">keyboard::SingleClick</span><span class="op">&gt;</span>,
@@ -382,7 +382,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">Response</span>)]</span>
 <span class="attribute">#[<span class="ident">thread_local</span>]</span>
 <span class="kw">fn</span> <span class="ident">edit_trigger</span>(
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">click_sub</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">keyboard::SingleClick</span><span class="op">&gt;</span>,

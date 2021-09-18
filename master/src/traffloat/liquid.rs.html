@@ -444,7 +444,7 @@
     <span class="ident">force</span>: <span class="ident">units::PipeForce</span>,
 }
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">Simulate</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Pipe</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">PipeResistance</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Pump</span>)]</span>
@@ -568,7 +568,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">PreSimulate</span>)]</span>
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">Storage</span>)]</span>
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">StorageSize</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">NextStorageType</span>)]</span>

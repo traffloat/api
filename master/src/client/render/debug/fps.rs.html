@@ -132,7 +132,7 @@
     <span class="kw">pub</span> <span class="ident">Counter</span>,
 );
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">PreVisualize</span>)]</span>
 <span class="attribute">#[<span class="ident">thread_local</span>]</span>
 <span class="kw">fn</span> <span class="ident">update</span>(
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">render_fps</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Render</span>,

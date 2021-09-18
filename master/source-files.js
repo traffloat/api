@@ -98,7 +98,6 @@ sourcesIndex["traffloat_version"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["typed_builder"] = {"name":"","files":["field_info.rs","lib.rs","struct_info.rs","util.rs"]};
 sourcesIndex["typenum"] = {"name":"","files":["array.rs","bit.rs","int.rs","lib.rs","marker_traits.rs","operator_aliases.rs","private.rs","type_operators.rs","uint.rs"]};
 sourcesIndex["unicode_xid"] = {"name":"","files":["lib.rs","tables.rs"]};
-sourcesIndex["uuid"] = {"name":"","dirs":[{"name":"adapter","files":["mod.rs"]},{"name":"builder","files":["error.rs","mod.rs"]},{"name":"parser","files":["error.rs","mod.rs"]}],"files":["error.rs","lib.rs","prelude.rs","v4.rs"]};
 sourcesIndex["wasm_bindgen"] = {"name":"","dirs":[{"name":"cache","files":["intern.rs","mod.rs"]},{"name":"convert","files":["closures.rs","impls.rs","mod.rs","slices.rs","traits.rs"]}],"files":["cast.rs","closure.rs","describe.rs","externref.rs","lib.rs"]};
 sourcesIndex["wasm_bindgen_backend"] = {"name":"","files":["ast.rs","codegen.rs","encode.rs","error.rs","lib.rs","util.rs"]};
 sourcesIndex["wasm_bindgen_futures"] = {"name":"","dirs":[{"name":"task","files":["singlethread.rs"]}],"files":["lib.rs","queue.rs"]};

@@ -92,6 +92,7 @@
 <span id="92">92</span>
 <span id="93">93</span>
 <span id="94">94</span>
+<span id="95">95</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of cargo in buildings</span>
 
@@ -165,7 +166,8 @@
     ))
 }
 
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="doccomment">/// Copy next.size into current.size</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">PreSimulate</span>)]</span>
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">StorageSize</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">NextStorageSize</span>)]</span>
 <span class="kw">fn</span> <span class="ident">update_storage</span>(

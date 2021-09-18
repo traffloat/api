@@ -372,6 +372,73 @@
 <span id="372">372</span>
 <span id="373">373</span>
 <span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">BTreeMap</span>, <span class="ident">VecDeque</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
@@ -381,6 +448,8 @@
 <span class="kw">use</span> <span class="ident">std::collections::btree_map</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render-debug&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+
+<span class="kw">use</span> <span class="ident">enum_map::EnumMap</span>;
 
 <span class="doccomment">/// [`std::dbg!`] equivalent for wasm log</span>
 <span class="attribute">#[<span class="ident">macro_export</span>]</span>
@@ -398,6 +467,8 @@
     }};
 }
 
+<span class="kw">use</span> <span class="ident">legion::systems</span>::{<span class="ident">ParallelRunnable</span>, <span class="ident">Runnable</span>};
+
 <span class="doccomment">/// Generates legion system setup procedure for.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Consider this example:</span>
@@ -414,7 +485,7 @@
 <span class="doccomment">/// #[derive(Default)]</span>
 <span class="doccomment">/// struct WaldoRes(u64);</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// #[codegen::system]</span>
+<span class="doccomment">/// #[codegen::system(Simulate)]</span>
 <span class="doccomment">/// #[read_component(QuxComp)]</span>
 <span class="doccomment">/// #[write_component(CorgeComp)]</span>
 <span class="doccomment">/// fn example(</span>
@@ -445,6 +516,8 @@
 <span class="doccomment">/// }</span>
 <span class="doccomment">/// ```</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// The parameter in the attribute is the [`SystemClass`] for the system.</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// If some of the parameters need to be thread-unsafe,</span>
 <span class="doccomment">/// apply the `#[thread_local]` attribute on the function.</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">traffloat_codegen_raw::system</span>;
@@ -463,6 +536,53 @@
     <span class="kw">pub</span> <span class="ident">world</span>: <span class="ident">legion::World</span>,
     <span class="doccomment">/// The resource set storing legion resources</span>
     <span class="kw">pub</span> <span class="ident">resources</span>: <span class="ident">legion::Resources</span>,
+    <span class="doccomment">/// The schedule of each class of systems</span>
+    <span class="ident">classes</span>: <span class="ident">EnumMap</span><span class="op">&lt;</span><span class="ident">SystemClass</span>, <span class="ident">ClassSchedule</span><span class="op">&gt;</span>,
+}
+
+<span class="doccomment">/// A discrete batch of systems to execute.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">enum_map::Enum</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SystemClass</span> {
+    <span class="doccomment">/// Receive inputs.</span>
+    <span class="ident">Input</span>,
+    <span class="doccomment">/// Respond to inputs.</span>
+    <span class="ident">Response</span>,
+    <span class="doccomment">/// Setup scheduler signals.</span>
+    <span class="ident">Schedule</span>,
+    <span class="doccomment">/// Prepare for simulation by initializing states.</span>
+    <span class="ident">PreSimulate</span>,
+    <span class="doccomment">/// Simulate game logic.</span>
+    <span class="ident">Simulate</span>,
+    <span class="doccomment">/// Flush changes in the game logic.</span>
+    <span class="ident">Flush</span>,
+    <span class="doccomment">/// Handle events dispatched during game logic.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Also handles deletion events, but not post-deletion events.</span>
+    <span class="ident">Handle</span>,
+    <span class="doccomment">/// Execute child entity deletion requests.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is used when parent and child entities are deleted in conjunction.</span>
+    <span class="ident">DeleteChild</span>,
+    <span class="doccomment">/// Execute entity creation/deletion requests.</span>
+    <span class="ident">Command</span>,
+    <span class="doccomment">/// Execute child entity creation requests.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is used when parent and child entities are created in conjunction.</span>
+    <span class="ident">CreateChild</span>,
+    <span class="doccomment">/// Execute entity post-creation/post-deletion requests.</span>
+    <span class="ident">PostCommand</span>,
+    <span class="doccomment">/// Prepare resources for visualization, including debug info.</span>
+    <span class="ident">PreVisualize</span>,
+    <span class="doccomment">/// Read-only access to core game logic.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is used for client rendering, backup creation process and other roundup systems.</span>
+    <span class="ident">Visualize</span>,
+}
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
+<span class="kw">struct</span> <span class="ident">ClassSchedule</span> {
+    <span class="ident">sync</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">ParallelRunnable</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">unsync</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Runnable</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">SetupEcs</span> {
@@ -472,19 +592,23 @@
     }
 
     <span class="doccomment">/// Add a system</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">sys</span>: <span class="kw">impl</span> <span class="ident">legion::systems::ParallelRunnable</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">add_system</span>(<span class="ident">sys</span>);
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::indexing_slicing</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system</span>(
+        <span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">sys</span>: <span class="kw">impl</span> <span class="ident">legion::systems::ParallelRunnable</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">class</span>: <span class="ident">SystemClass</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">classes</span>[<span class="ident">class</span>].<span class="ident">sync</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">sys</span>));
         <span class="self">self</span>
     }
     <span class="doccomment">/// Add a thread-local system</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system_local</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">sys</span>: <span class="kw">impl</span> <span class="ident">legion::systems::Runnable</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">add_thread_local</span>(<span class="ident">sys</span>);
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Forces systems before this call to be executed before systems after this call</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system_partition</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">flush</span>();
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::indexing_slicing</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">system_local</span>(
+        <span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">sys</span>: <span class="kw">impl</span> <span class="ident">legion::systems::Runnable</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">class</span>: <span class="ident">SystemClass</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">self</span>.<span class="ident">classes</span>[<span class="ident">class</span>].<span class="ident">unsync</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">sys</span>));
         <span class="self">self</span>
     }
 
@@ -533,6 +657,16 @@
 
     <span class="doccomment">/// Build the setup into a legion</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Legion</span> {
+        <span class="kw">for</span> (<span class="ident">_class</span>, <span class="ident">schedule</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">classes</span> {
+            <span class="kw">for</span> <span class="ident">system</span> <span class="kw">in</span> <span class="ident">schedule</span>.<span class="ident">sync</span> {
+                <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">add_system_boxed</span>(<span class="ident">system</span>);
+            }
+            <span class="kw">for</span> <span class="ident">system</span> <span class="kw">in</span> <span class="ident">schedule</span>.<span class="ident">unsync</span> {
+                <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">add_thread_local_boxed</span>(<span class="ident">system</span>);
+            }
+            <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">flush</span>();
+        }
+
         <span class="ident">Legion</span> { <span class="ident">world</span>: <span class="self">self</span>.<span class="ident">world</span>, <span class="ident">resources</span>: <span class="self">self</span>.<span class="ident">resources</span>, <span class="ident">schedule</span>: <span class="self">self</span>.<span class="ident">builder</span>.<span class="ident">build</span>() }
     }
 }

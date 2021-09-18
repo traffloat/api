@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["imp",""]],"struct":[["DebugName",""]]});
+initSidebarItems({"fn":[["imp",""]],"struct":[["AttrArgs",""],["DebugName",""]]});

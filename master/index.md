@@ -1,4 +1,6 @@
 # API documentation
+- [legion](./legion)
+- [legion_codegen](./legion_codegen)
 - [client](./client)
 - [codegen](./codegen)
 - [traffloat_codegen_raw](./traffloat_codegen_raw)
@@ -20,11 +22,11 @@
  Markdown                1          104            0           79           25
  Python                  1          248          199            2           47
  Ruby                    1          606          419           61          126
- Rust                   91        10054         8649          106         1299
+ Rust                   91        10109         8695          106         1308
  Plain Text              1            2            0            2            0
- TOML                   10          283          255            2           26
+ TOML                   10          287          259            2           26
 ===============================================================================
- Total                 123        11609         9774          268         1567
+ Total                 123        11668         9824          268         1576
 ===============================================================================
 ```
 

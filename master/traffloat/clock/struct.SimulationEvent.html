@@ -3,7 +3,7 @@
 i.e. with the following code:</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="attribute">#[<span class="ident">codegen::system</span>]</span>
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">Simulate</span>)]</span>
 <span class="kw">fn</span> <span class="ident">execute</span>(
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">simul_sub</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">SimulationEvent</span><span class="op">&gt;</span>,
 ) {
