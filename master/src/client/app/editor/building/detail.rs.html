@@ -304,13 +304,6 @@
 <span id="304">304</span>
 <span id="305">305</span>
 <span id="306">306</span>
-<span id="307">307</span>
-<span id="308">308</span>
-<span id="309">309</span>
-<span id="310">310</span>
-<span id="311">311</span>
-<span id="312">312</span>
-<span id="313">313</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building list.</span>
 
@@ -319,7 +312,8 @@
 <span class="kw">use</span> <span class="ident">itertools::Itertools</span>;
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 
-<span class="kw">use</span> <span class="ident">traffloat::def</span>::{<span class="ident">building</span>, <span class="ident">reaction</span>, <span class="ident">GameDefinition</span>};
+<span class="kw">use</span> <span class="ident">traffloat::def::feature</span>::{<span class="ident">reaction</span>, <span class="ident">security</span>, <span class="ident">Feature</span>};
+<span class="kw">use</span> <span class="ident">traffloat::def</span>::{<span class="ident">building</span>, <span class="ident">catalyst</span>, <span class="ident">GameDefinition</span>};
 <span class="kw">use</span> <span class="ident">traffloat::save::SaveFile</span>;
 
 <span class="doccomment">/// Displays a list of buildings.</span>
@@ -388,27 +382,20 @@
 
                 <span class="op">&lt;</span><span class="ident">h2</span><span class="op">&gt;</span>{ <span class="string">&quot;Mechanisms&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h2</span><span class="op">&gt;</span>
                 { <span class="kw">for</span> <span class="ident">building</span>.<span class="ident">features</span>().<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">feature</span><span class="op">|</span> <span class="ident">render_feature</span>(<span class="ident">feature</span>, <span class="ident">def</span>)) }
-                { <span class="kw">for</span> <span class="ident">building</span>.<span class="ident">reactions</span>().<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">instance</span><span class="op">|</span> {
-                    <span class="ident">render_reaction</span>(
-                        <span class="ident">def</span>.<span class="ident">reaction</span>().<span class="ident">get</span>(<span class="ident">instance</span>.<span class="ident">reaction</span>()).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined reaction&quot;</span>),
-                        <span class="ident">instance</span>.<span class="ident">policy</span>(),
-                        <span class="ident">def</span>,
-                    )
-                }) }
             <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">render_feature</span>(<span class="ident">feature</span>: <span class="kw-2">&amp;</span><span class="ident">building::ExtraFeature</span>, <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">GameDefinition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
+<span class="kw">fn</span> <span class="ident">render_feature</span>(<span class="ident">feature</span>: <span class="kw-2">&amp;</span><span class="ident">Feature</span>, <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">GameDefinition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
     <span class="kw">match</span> <span class="ident">feature</span> {
-        <span class="ident">building::ExtraFeature::Core</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+        <span class="ident">Feature::Core</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="string">&quot;Core&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>{ <span class="string">&quot;This is a core building. The game is lost if all core buildings are destroyed.&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         },
-        <span class="ident">building::ExtraFeature::ProvidesHousing</span>(<span class="ident">capacity</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+        <span class="ident">Feature::ProvidesHousing</span>(<span class="ident">capacity</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(<span class="string">&quot;Housing ({} capacity)&quot;</span>, <span class="ident">capacity</span>) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
@@ -419,100 +406,95 @@
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         },
-        <span class="ident">building::ExtraFeature::RailPump</span>(<span class="ident">force</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+        <span class="ident">Feature::Reaction</span>(<span class="ident">reaction</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">render_reaction</span>(<span class="ident">reaction</span>, <span class="ident">def</span>),
+        <span class="ident">Feature::RailPump</span>(<span class="ident">spec</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="string">&quot;Rail terminal&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
-                    { <span class="macro">format_args!</span>(<span class="string">&quot;Vehicles in adjacent corridors received a boost of {}.&quot;</span>, <span class="ident">force</span>) }
+                    { <span class="macro">format_args!</span>(<span class="string">&quot;Vehicles in adjacent corridors received a boost of {}.&quot;</span>, <span class="ident">spec</span>.<span class="ident">force</span>()) }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         },
-        <span class="ident">building::ExtraFeature::LiquidPump</span>(<span class="ident">force</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+        <span class="ident">Feature::LiquidPump</span>(<span class="ident">spec</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="string">&quot;Liquid pump&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
-                    { <span class="macro">format_args!</span>(<span class="string">&quot;Pipes in adjacent corridors receive a boost of {}.&quot;</span>, <span class="ident">force</span>) }
+                    { <span class="macro">format_args!</span>(<span class="string">&quot;Pipes in adjacent corridors receive a boost of {}.&quot;</span>, <span class="ident">spec</span>.<span class="ident">force</span>()) }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         },
-        <span class="ident">building::ExtraFeature::GasPump</span>(<span class="ident">force</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+        <span class="ident">Feature::GasPump</span>(<span class="ident">spec</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="string">&quot;Gas fan&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
                     { <span class="string">&quot;Fans can be installed on adjacent corridors to speed up gas diffusion. &quot;</span> }
-                    { <span class="macro">format_args!</span>(<span class="string">&quot;Each fan provides up to {} of pumping force.&quot;</span>, <span class="ident">force</span>) }
+                    { <span class="macro">format_args!</span>(<span class="string">&quot;Each fan provides up to {} of pumping force.&quot;</span>, <span class="ident">spec</span>.<span class="ident">force</span>()) }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         },
-        <span class="ident">building::ExtraFeature::SecureEntry</span> { <span class="ident">skill</span>, <span class="ident">min_level</span>, <span class="ident">breach_probability</span> } <span class="op">=</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">skill</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">skill</span>().<span class="ident">get</span>(<span class="ident">skill</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined skill&quot;</span>);
+        <span class="ident">Feature::SecureEntry</span>(<span class="ident">policy</span>) <span class="op">|</span> <span class="ident">Feature::SecureExit</span>(<span class="ident">policy</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="kw">let</span> <span class="ident">skill</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">skill</span>().<span class="ident">get</span>(<span class="ident">policy</span>.<span class="ident">skill</span>()).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined skill&quot;</span>);
             <span class="macro">html!</span> {
                 <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
-                    <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="string">&quot;Entry security&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="kw">match</span> <span class="ident">feature</span> {
+                        <span class="ident">Feature::SecureEntry</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Entry security&quot;</span>,
+                        <span class="ident">Feature::SecureExit</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Exit security&quot;</span>,
+                        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
+                    } }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
+
                     <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
-                        { <span class="macro">format_args!</span>(
-                            <span class="string">&quot;Inhabitants entering the building must have at least {} {}. &quot;</span>,
-                            <span class="kw-2">*</span><span class="ident">min_level</span>,
-                            <span class="ident">skill</span>.<span class="ident">name</span>(),
-                        ) }
-                        { <span class="kw">for</span> (<span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">&gt;</span> <span class="number">0.</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(
-                            <span class="string">&quot;{}% of the &quot;</span>,
-                            (<span class="number">1.</span> <span class="op">-</span> <span class="kw-2">*</span><span class="ident">breach_probability</span>) <span class="op">*</span> <span class="number">100.</span>,
-                        )) }
-                        { <span class="kw">for</span> (<span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">=</span><span class="op">=</span> <span class="number">0.</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;All &quot;</span>) }
-                        { <span class="macro">format_args!</span>(
-                            <span class="string">&quot;inhabitants trying to enter the building with less than {} {} &quot;</span>,
-                            <span class="kw-2">*</span><span class="ident">min_level</span>,
-                            <span class="ident">skill</span>.<span class="ident">name</span>(),
-                        ) }
-                        { <span class="string">&quot;are immediately teleported back to the previous building, &quot;</span> }
+                        { <span class="kw">match</span> <span class="ident">feature</span> {
+                            <span class="ident">Feature::SecureEntry</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Inhabitants entering the building &quot;</span>,
+                            <span class="ident">Feature::SecureExit</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Inhabitants leaving the building &quot;</span>,
+                            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
+                        } }
+                        { <span class="kw">match</span> <span class="ident">policy</span>.<span class="ident">deny_if</span>() {
+                            <span class="ident">security::SkillRequirement::AtLeast</span>(<span class="ident">level</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                                <span class="macro">format!</span>(<span class="string">&quot;should have at least {} {}.&quot;</span>, <span class="ident">level</span>, <span class="ident">skill</span>.<span class="ident">name</span>())
+                            },
+                            <span class="ident">security::SkillRequirement::AtMost</span>(<span class="ident">level</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                                <span class="macro">format!</span>(<span class="string">&quot;should have at most {} {}.&quot;</span>, <span class="ident">level</span>, <span class="ident">skill</span>.<span class="ident">name</span>())
+                            },
+                        } }
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
-            }
-        }
-        <span class="ident">building::ExtraFeature::SecureExit</span> { <span class="ident">skill</span>, <span class="ident">min_level</span>, <span class="ident">breach_probability</span> } <span class="op">=</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">skill</span> <span class="op">=</span> <span class="ident">def</span>.<span class="ident">skill</span>().<span class="ident">get</span>(<span class="ident">skill</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined skill&quot;</span>);
-            <span class="macro">html!</span> {
-                <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
-                    <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="string">&quot;Exit security&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
+
                     <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
-                        { <span class="macro">format_args!</span>(
-                            <span class="string">&quot;Inhabitants leaving the building must have at least {} {}. &quot;</span>,
-                            <span class="kw-2">*</span><span class="ident">min_level</span>,
-                            <span class="ident">skill</span>.<span class="ident">name</span>(),
-                        ) }
-                        { <span class="kw">for</span> (<span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">&gt;</span> <span class="number">0.</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(
-                            <span class="string">&quot;{}% of the &quot;</span>,
-                            (<span class="number">1.</span> <span class="op">-</span> <span class="kw-2">*</span><span class="ident">breach_probability</span>) <span class="op">*</span> <span class="number">100.</span>,
-                        )) }
-                        { <span class="kw">for</span> (<span class="kw-2">*</span><span class="ident">breach_probability</span> <span class="op">=</span><span class="op">=</span> <span class="number">0.</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;All &quot;</span>) }
-                        { <span class="macro">format_args!</span>(
-                            <span class="string">&quot;inhabitants trying to leave the building with less than {} {} &quot;</span>,
-                            <span class="kw-2">*</span><span class="ident">min_level</span>,
-                            <span class="ident">skill</span>.<span class="ident">name</span>(),
-                        ) }
-                        { <span class="string">&quot;cannot perform any actions for one minute.&quot;</span> }
+                        { <span class="kw">match</span> <span class="ident">feature</span> {
+                            <span class="ident">Feature::SecureEntry</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">format!</span>(<span class="string">&quot;\
+                                Unqualified inhabitants have {0}% probability to succeed breaking in.
+                                Rejected inhabitants are immediately teleported back to their original building. \
+                                The inhabitant will then attempt to find alternative paths to the destination. \
+                                If there is no alternative path, the inhabitant will try to travel across the corridor again \
+                                and get another {0}% chance to break in.&quot;</span>, <span class="ident">policy</span>.<span class="ident">breach_probability</span>() <span class="op">*</span> <span class="number">100.</span>),
+                            <span class="ident">Feature::SecureExit</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">format!</span>(<span class="string">&quot;\
+                                Unqualified inhabitants have {0}% probability to succed breaking out.
+                                Rejected inhabitants will stay immobile for one second \
+                                and get another {0}% chance to break out.&quot;</span>, <span class="ident">policy</span>.<span class="ident">breach_probability</span>() <span class="op">*</span> <span class="number">100.</span>),
+                            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
+                        } }
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
+
+                    { <span class="kw">for</span> (<span class="op">!</span><span class="ident">policy</span>.<span class="ident">catalysts</span>().<span class="ident">is_empty</span>()).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">html!</span> {
+                        <span class="op">&lt;</span><span class="op">&gt;</span>
+                            <span class="op">&lt;</span><span class="ident">h4</span><span class="op">&gt;</span>{ <span class="string">&quot;Boosts&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h4</span><span class="op">&gt;</span>
+                            { <span class="kw">for</span> <span class="ident">policy</span>.<span class="ident">catalysts</span>().<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">catalyst</span><span class="op">|</span> <span class="ident">render_catalyst</span>(<span class="ident">catalyst</span>, <span class="ident">def</span>)) }
+                        <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+                    }) }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
             }
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">render_reaction</span>(
-    <span class="ident">reaction</span>: <span class="kw-2">&amp;</span><span class="ident">reaction::Type</span>,
-    <span class="ident">policy</span>: <span class="kw-2">&amp;</span><span class="ident">building::ReactionPolicy</span>,
-    <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">GameDefinition</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
+<span class="kw">fn</span> <span class="ident">render_reaction</span>(<span class="ident">reaction</span>: <span class="kw-2">&amp;</span><span class="ident">reaction::Reaction</span>, <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">GameDefinition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
     <span class="macro">html!</span> {
         <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
-            <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="ident">reaction</span>.<span class="ident">name</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="ident">reaction</span>.<span class="ident">title</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>{ <span class="ident">reaction</span>.<span class="ident">description</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-
             <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
                 { <span class="macro">format_args!</span>(
                     <span class="string">&quot;The rate of reaction {} be configured.&quot;</span>,
-                    <span class="kw">if</span> <span class="ident">policy</span>.<span class="ident">configurable</span>() { <span class="string">&quot;can&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;cannot&quot;</span> }
+                    <span class="kw">if</span> <span class="ident">reaction</span>.<span class="ident">policy</span>().<span class="ident">configurable</span>() { <span class="string">&quot;can&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;cannot&quot;</span> }
                 ) }
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
             <span class="comment">// TODO document FlowPolicy</span>
@@ -532,71 +514,7 @@
 
                     { <span class="kw">for</span> <span class="ident">reaction</span>.<span class="ident">catalysts</span>().<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">catalyst</span><span class="op">|</span> <span class="macro">html!</span> {
                         <span class="op">&lt;</span><span class="ident">tr</span><span class="op">&gt;</span>
-                            { <span class="kw">match</span> <span class="ident">catalyst</span>.<span class="ident">range</span>() {
-                                    <span class="ident">reaction::CatalystRange::Cargo</span> { <span class="ident">ty</span>, <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
-                                        <span class="op">&lt;</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="ident">def</span>.<span class="ident">cargo</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined cargo&quot;</span>).<span class="ident">name</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
-                                                <span class="string">&quot;{} to {}&quot;</span>,
-                                                <span class="ident">levels</span>.<span class="ident">start</span>,
-                                                <span class="ident">levels</span>.<span class="ident">end</span>,
-                                            ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                        <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
-                                    },
-                                    <span class="ident">reaction::CatalystRange::Liquid</span> { <span class="ident">ty</span>, <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
-                                        <span class="op">&lt;</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="ident">def</span>.<span class="ident">liquid</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined liquid&quot;</span>).<span class="ident">name</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
-                                                <span class="string">&quot;{} to {}&quot;</span>,
-                                                <span class="ident">levels</span>.<span class="ident">start</span>,
-                                                <span class="ident">levels</span>.<span class="ident">end</span>,
-                                            ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                        <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
-                                    },
-                                    <span class="ident">reaction::CatalystRange::Gas</span> { <span class="ident">ty</span>, <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
-                                        <span class="op">&lt;</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="ident">def</span>.<span class="ident">gas</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined gas&quot;</span>).<span class="ident">name</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
-                                                <span class="string">&quot;{} to {}&quot;</span>,
-                                                <span class="ident">levels</span>.<span class="ident">start</span>,
-                                                <span class="ident">levels</span>.<span class="ident">end</span>,
-                                            ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                        <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
-                                    },
-                                    <span class="ident">reaction::CatalystRange::Electricity</span> { <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
-                                        <span class="op">&lt;</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="string">&quot;Electricity&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
-                                                <span class="string">&quot;{} to {}&quot;</span>,
-                                                <span class="ident">levels</span>.<span class="ident">start</span>,
-                                                <span class="ident">levels</span>.<span class="ident">end</span>,
-                                            ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                        <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
-                                    },
-                                    <span class="ident">reaction::CatalystRange::Light</span> { <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
-                                        <span class="op">&lt;</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="string">&quot;Sunlight&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
-                                                <span class="string">&quot;{} to {}&quot;</span>,
-                                                <span class="ident">levels</span>.<span class="ident">start</span>,
-                                                <span class="ident">levels</span>.<span class="ident">end</span>,
-                                            ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                        <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
-                                    },
-                                    <span class="ident">reaction::CatalystRange::Skill</span> { <span class="ident">ty</span>, <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
-                                        <span class="op">&lt;</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
-                                                <span class="string">&quot;Operator with {}&quot;</span>,
-                                                <span class="ident">def</span>.<span class="ident">skill</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined skill&quot;</span>).<span class="ident">name</span>(),
-                                            ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                            <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
-                                                <span class="string">&quot;{} to {}&quot;</span>,
-                                                <span class="ident">levels</span>.<span class="ident">start</span>,
-                                                <span class="ident">levels</span>.<span class="ident">end</span>,
-                                            ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                                        <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
-                                    },
-                            } }
+                        { <span class="ident">render_catalyst</span>(<span class="ident">catalyst</span>, <span class="ident">def</span>) }
                             <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(<span class="string">&quot;{}\u{d7}&quot;</span>, <span class="ident">catalyst</span>.<span class="ident">multipliers</span>().<span class="ident">underflow</span>()) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
                             <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
                                 <span class="string">&quot;{}\u{d7} to {}\u{d7}&quot;</span>,
@@ -611,6 +529,74 @@
 
             <span class="comment">// TODO render inputs/outputs</span>
         <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
+    }
+}
+
+<span class="kw">fn</span> <span class="ident">render_catalyst</span>(<span class="ident">catalyst</span>: <span class="kw-2">&amp;</span><span class="ident">catalyst::Catalyst</span>, <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">GameDefinition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
+    <span class="kw">match</span> <span class="ident">catalyst</span>.<span class="ident">range</span>() {
+        <span class="ident">catalyst::CatalystRange::Cargo</span> { <span class="ident">ty</span>, <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+            <span class="op">&lt;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="ident">def</span>.<span class="ident">cargo</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined cargo&quot;</span>).<span class="ident">name</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
+                    <span class="string">&quot;{} to {}&quot;</span>,
+                    <span class="ident">levels</span>.<span class="ident">start</span>,
+                    <span class="ident">levels</span>.<span class="ident">end</span>,
+                ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+        },
+        <span class="ident">catalyst::CatalystRange::Liquid</span> { <span class="ident">ty</span>, <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+            <span class="op">&lt;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="ident">def</span>.<span class="ident">liquid</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined liquid&quot;</span>).<span class="ident">name</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
+                    <span class="string">&quot;{} to {}&quot;</span>,
+                    <span class="ident">levels</span>.<span class="ident">start</span>,
+                    <span class="ident">levels</span>.<span class="ident">end</span>,
+                ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+        },
+        <span class="ident">catalyst::CatalystRange::Gas</span> { <span class="ident">ty</span>, <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+            <span class="op">&lt;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="ident">def</span>.<span class="ident">gas</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined gas&quot;</span>).<span class="ident">name</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
+                    <span class="string">&quot;{} to {}&quot;</span>,
+                    <span class="ident">levels</span>.<span class="ident">start</span>,
+                    <span class="ident">levels</span>.<span class="ident">end</span>,
+                ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+        },
+        <span class="ident">catalyst::CatalystRange::Electricity</span> { <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+            <span class="op">&lt;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="string">&quot;Electricity&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
+                    <span class="string">&quot;{} to {}&quot;</span>,
+                    <span class="ident">levels</span>.<span class="ident">start</span>,
+                    <span class="ident">levels</span>.<span class="ident">end</span>,
+                ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+        },
+        <span class="ident">catalyst::CatalystRange::Light</span> { <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+            <span class="op">&lt;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="string">&quot;Sunlight&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
+                    <span class="string">&quot;{} to {}&quot;</span>,
+                    <span class="ident">levels</span>.<span class="ident">start</span>,
+                    <span class="ident">levels</span>.<span class="ident">end</span>,
+                ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+        },
+        <span class="ident">catalyst::CatalystRange::Skill</span> { <span class="ident">ty</span>, <span class="ident">levels</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+            <span class="op">&lt;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
+                    <span class="string">&quot;Operator with {}&quot;</span>,
+                    <span class="ident">def</span>.<span class="ident">skill</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Save references undefined skill&quot;</span>).<span class="ident">name</span>(),
+                ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(
+                    <span class="string">&quot;{} to {}&quot;</span>,
+                    <span class="ident">levels</span>.<span class="ident">start</span>,
+                    <span class="ident">levels</span>.<span class="ident">end</span>,
+                ) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+        },
     }
 }
 

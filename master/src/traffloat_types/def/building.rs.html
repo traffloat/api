@@ -98,85 +98,6 @@
 <span id="98"> 98</span>
 <span id="99"> 99</span>
 <span id="100">100</span>
-<span id="101">101</span>
-<span id="102">102</span>
-<span id="103">103</span>
-<span id="104">104</span>
-<span id="105">105</span>
-<span id="106">106</span>
-<span id="107">107</span>
-<span id="108">108</span>
-<span id="109">109</span>
-<span id="110">110</span>
-<span id="111">111</span>
-<span id="112">112</span>
-<span id="113">113</span>
-<span id="114">114</span>
-<span id="115">115</span>
-<span id="116">116</span>
-<span id="117">117</span>
-<span id="118">118</span>
-<span id="119">119</span>
-<span id="120">120</span>
-<span id="121">121</span>
-<span id="122">122</span>
-<span id="123">123</span>
-<span id="124">124</span>
-<span id="125">125</span>
-<span id="126">126</span>
-<span id="127">127</span>
-<span id="128">128</span>
-<span id="129">129</span>
-<span id="130">130</span>
-<span id="131">131</span>
-<span id="132">132</span>
-<span id="133">133</span>
-<span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
-<span id="143">143</span>
-<span id="144">144</span>
-<span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
-<span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
-<span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
-<span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
-<span id="166">166</span>
-<span id="167">167</span>
-<span id="168">168</span>
-<span id="169">169</span>
-<span id="170">170</span>
-<span id="171">171</span>
-<span id="172">172</span>
-<span id="173">173</span>
-<span id="174">174</span>
-<span id="175">175</span>
-<span id="176">176</span>
-<span id="177">177</span>
-<span id="178">178</span>
-<span id="179">179</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -184,7 +105,7 @@
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">reaction</span>, <span class="ident">skill</span>};
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::feature::Feature</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space::Matrix</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">geometry</span>, <span class="ident">units</span>};
 
@@ -212,9 +133,6 @@
     <span class="doccomment">/// Shape of the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">shape</span>: <span class="ident">Shape</span>,
-    <span class="doccomment">/// Reactions associated with the building.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">reactions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ReactionInstance</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Maximum hitpoint of a building.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The actual hitpoint is subject to asteroid and fire damage.</span>
@@ -226,7 +144,7 @@
     <span class="ident">storage</span>: <span class="ident">Storage</span>,
     <span class="doccomment">/// Extra features associated with the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">features</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExtraFeature</span><span class="op">&gt;</span>,
+    <span class="ident">features</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Feature</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// Shape of a building.</span>
@@ -248,45 +166,6 @@
     <span class="ident">texture_name</span>: <span class="ident">ArcStr</span>,
 }
 
-<span class="doccomment">/// An instance of reaction applied to a building.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::Getters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReactionInstance</span> {
-    <span class="doccomment">/// The reaction ID.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">reaction</span>: <span class="ident">reaction::TypeId</span>,
-    <span class="doccomment">/// The instance-specific reaction behavior.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">policy</span>: <span class="ident">ReactionPolicy</span>,
-}
-
-<span class="doccomment">/// Reaction behaviour specific to this building.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="attribute">#[<span class="ident">builder</span>(<span class="ident">field_defaults</span>(<span class="ident">default</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReactionPolicy</span> {
-    <span class="doccomment">/// Whethre the reaction rate can be configured by the players.</span>
-    <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
-    <span class="ident">configurable</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// What happens when inputs underflow.</span>
-    <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
-    <span class="ident">on_underflow</span>: <span class="ident">FlowPolicy</span>,
-    <span class="doccomment">/// What happens when outputs overflow.</span>
-    <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
-    <span class="ident">on_overflow</span>: <span class="ident">FlowPolicy</span>,
-}
-
-<span class="doccomment">/// behaviour when inputs underflow or outputs overflow.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FlowPolicy</span> {
-    <span class="doccomment">/// Reduce the rate of reaction such that the input/output capacity is just enough.</span>
-    <span class="ident">ReduceRate</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FlowPolicy</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::ReduceRate</span>
-    }
-}
-
 <span class="doccomment">/// Storage provided by a building.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This storage is also used as a buffer for liquid and gas transfer.</span>
@@ -304,43 +183,6 @@
     <span class="doccomment">/// Gas storage provided</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">gas</span>: <span class="ident">units::GasVolume</span>,
-}
-
-<span class="doccomment">/// Extra features of a building (in addition to reactions)</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ExtraFeature</span> {
-    <span class="doccomment">/// The building is a core and must not be destroyed.</span>
-    <span class="ident">Core</span>,
-    <span class="doccomment">/// The building provides housing capacity, and inhabitants can be assigned to it.</span>
-    <span class="ident">ProvidesHousing</span>(<span class="ident">u32</span>),
-    <span class="doccomment">/// The building provides driving force for vehicles on adjacent rails.</span>
-    <span class="ident">RailPump</span>(<span class="ident">units::RailForce</span>),
-    <span class="doccomment">/// The building provides pumping force for adjacent liquid pipes.</span>
-    <span class="ident">LiquidPump</span>(<span class="ident">units::PipeForce</span>),
-    <span class="doccomment">/// The building provides pumping force for gas diffusion in adjacent corridors.</span>
-    <span class="ident">GasPump</span>(<span class="ident">units::FanForce</span>),
-    <span class="doccomment">/// Inhabitants with low skill may not be permitted to enter the node.</span>
-    <span class="ident">SecureEntry</span> {
-        <span class="doccomment">/// The skill type to check.</span>
-        <span class="ident">skill</span>: <span class="ident">skill::TypeId</span>,
-        <span class="doccomment">/// The minimum skill level required to enter the building.</span>
-        <span class="ident">min_level</span>: <span class="ident">units::Skill</span>,
-        <span class="doccomment">/// The probability per second per inhabitant that</span>
-        <span class="doccomment">/// the inhabitant has lower skill level than required</span>
-        <span class="doccomment">/// but still can enter the building.</span>
-        <span class="ident">breach_probability</span>: <span class="ident">f64</span>,
-    },
-    <span class="doccomment">/// Inhabitants with low skill may not be permitted to exit the node.</span>
-    <span class="ident">SecureExit</span> {
-        <span class="doccomment">/// The skill type to check.</span>
-        <span class="ident">skill</span>: <span class="ident">skill::TypeId</span>,
-        <span class="doccomment">/// The minimum skill level required to exit the building.</span>
-        <span class="ident">min_level</span>: <span class="ident">units::Skill</span>,
-        <span class="doccomment">/// The probability per second per operator that</span>
-        <span class="doccomment">/// the operator has lower skill level than required</span>
-        <span class="doccomment">/// but still can exit the building.</span>
-        <span class="ident">breach_probability</span>: <span class="ident">f64</span>,
-    },
 }
 
 <span class="doccomment">/// Identifies a building category</span>

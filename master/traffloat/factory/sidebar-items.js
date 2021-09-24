@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["setup_ecs","Initializes ECS"]],"struct":[["Factory","A component attached to buildings that can perform reactions."]]});
+initSidebarItems({"fn":[["setup_ecs","Initializes ECS"]]});

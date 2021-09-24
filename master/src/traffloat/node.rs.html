@@ -371,6 +371,10 @@
 <span id="371">371</span>
 <span id="372">372</span>
 <span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Node management.</span>
 <span class="doccomment">//!</span>
@@ -386,7 +390,7 @@
 <span class="kw">use</span> <span class="ident">smallvec</span>::{<span class="ident">smallvec</span>, <span class="ident">SmallVec</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>::{<span class="ident">building</span>, <span class="ident">GameDefinition</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>::{<span class="ident">building</span>, <span class="ident">feature::Feature</span>, <span class="ident">GameDefinition</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::defense</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::shape</span>::{<span class="self">self</span>, <span class="ident">Shape</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>};
@@ -574,28 +578,32 @@
 
         <span class="kw">for</span> <span class="ident">feature</span> <span class="kw">in</span> <span class="ident">building</span>.<span class="ident">features</span>() {
             <span class="kw">match</span> <span class="ident">feature</span> {
-                <span class="ident">building::ExtraFeature::Core</span> <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Feature::Core</span> <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">entities</span>.<span class="ident">add_component</span>(<span class="ident">entity</span>, <span class="ident">defense::Core</span>);
                 }
-                <span class="ident">building::ExtraFeature::ProvidesHousing</span>(<span class="ident">housing</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Feature::ProvidesHousing</span>(<span class="ident">housing</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">entities</span>.<span class="ident">add_component</span>(
                         <span class="ident">entity</span>,
                         <span class="ident">population::Housing::builder</span>().<span class="ident">capacity</span>(<span class="kw-2">*</span><span class="ident">housing</span>).<span class="ident">build</span>(),
                     );
                 }
-                <span class="ident">building::ExtraFeature::RailPump</span>(<span class="ident">force</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">entities</span>
-                    .<span class="ident">add_component</span>(<span class="ident">entity</span>, <span class="ident">vehicle::RailPump::builder</span>().<span class="ident">force</span>(<span class="kw-2">*</span><span class="ident">force</span>).<span class="ident">build</span>()),
-                <span class="ident">building::ExtraFeature::LiquidPump</span>(<span class="ident">force</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">entities</span>.<span class="ident">add_component</span>(<span class="ident">entity</span>, <span class="ident">liquid::Pump::builder</span>().<span class="ident">force</span>(<span class="kw-2">*</span><span class="ident">force</span>).<span class="ident">build</span>())
+                <span class="ident">Feature::Reaction</span>(<span class="ident">reaction</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                    <span class="macro">todo!</span>(<span class="string">&quot;Create factory for {:?}&quot;</span>, <span class="ident">reaction</span>)
                 }
-                <span class="ident">building::ExtraFeature::GasPump</span>(<span class="ident">force</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">entities</span>.<span class="ident">add_component</span>(<span class="ident">entity</span>, <span class="ident">gas::Pump::builder</span>().<span class="ident">force</span>(<span class="kw-2">*</span><span class="ident">force</span>).<span class="ident">build</span>())
+                <span class="ident">Feature::RailPump</span>(<span class="ident">spec</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">entities</span>.<span class="ident">add_component</span>(
+                    <span class="ident">entity</span>,
+                    <span class="ident">vehicle::RailPump::builder</span>().<span class="ident">force</span>(<span class="ident">spec</span>.<span class="ident">force</span>()).<span class="ident">build</span>(),
+                ),
+                <span class="ident">Feature::LiquidPump</span>(<span class="ident">spec</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">entities</span>
+                    .<span class="ident">add_component</span>(<span class="ident">entity</span>, <span class="ident">liquid::Pump::builder</span>().<span class="ident">force</span>(<span class="ident">spec</span>.<span class="ident">force</span>()).<span class="ident">build</span>()),
+                <span class="ident">Feature::GasPump</span>(<span class="ident">spec</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                    <span class="ident">entities</span>.<span class="ident">add_component</span>(<span class="ident">entity</span>, <span class="ident">gas::Pump::builder</span>().<span class="ident">force</span>(<span class="ident">spec</span>.<span class="ident">force</span>()).<span class="ident">build</span>())
                 }
-                <span class="ident">building::ExtraFeature::SecureEntry</span> { <span class="ident">skill</span>, <span class="ident">min_level</span>, <span class="ident">breach_probability</span> } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="macro">todo!</span>(<span class="string">&quot;Create entity with {:?} {:?} {:?}&quot;</span>, <span class="ident">skill</span>, <span class="ident">min_level</span>, <span class="ident">breach_probability</span>)
+                <span class="ident">Feature::SecureEntry</span>(<span class="ident">policy</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                    <span class="macro">todo!</span>(<span class="string">&quot;Create entity with {:?}&quot;</span>, <span class="ident">policy</span>)
                 }
-                <span class="ident">building::ExtraFeature::SecureExit</span> { <span class="ident">skill</span>, <span class="ident">min_level</span>, <span class="ident">breach_probability</span> } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="macro">todo!</span>(<span class="string">&quot;Create entity with {:?} {:?} {:?}&quot;</span>, <span class="ident">skill</span>, <span class="ident">min_level</span>, <span class="ident">breach_probability</span>)
+                <span class="ident">Feature::SecureExit</span>(<span class="ident">policy</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                    <span class="macro">todo!</span>(<span class="string">&quot;Create entity with {:?}&quot;</span>, <span class="ident">policy</span>)
                 }
             }
         }

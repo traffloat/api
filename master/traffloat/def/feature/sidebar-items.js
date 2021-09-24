@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Feature","Features of a building."]],"mod":[["reaction","Reaction definitions"],["security","Security-related node features."]],"struct":[["PumpSpec","Describes a generic pump."],["Reaction","A type of reaction."]]});

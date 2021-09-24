@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["CatalystRange","A type of resource whose existence affects a reaction."],["Put","The inputs and outputs of a reaction."]],"struct":[["Catalyst","A condition or catalyst which affects the rate of a reaction."],["Multipliers","The multipliers associated with a catalyst."],["Type","A type of reaction."],["TypeId","Identifies a reaction type."]]});
