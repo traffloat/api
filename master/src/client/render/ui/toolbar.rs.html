@@ -114,6 +114,18 @@
 <span id="114">114</span>
 <span id="115">115</span>
 <span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders the common toolbar.</span>
 
@@ -146,6 +158,10 @@
                 <span class="ident">legion</span>.<span class="ident">publish</span>(<span class="ident">traffloat::save::Request::builder</span>().<span class="ident">format</span>(<span class="ident">format</span>).<span class="ident">build</span>());
                 <span class="bool-val">false</span>
             }
+            <span class="ident">Msg::OpenOptions</span> <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">open_options</span>.<span class="ident">emit</span>(());
+                <span class="bool-val">false</span>
+            }
         }
     }
 
@@ -166,6 +182,10 @@
                     <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: auto;&quot;</span>
                     <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Msg::SaveButton</span>(<span class="ident">save::Format::Binary</span>))
                 <span class="op">&gt;</span>{ <span class="string">&quot;Save&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">button</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: auto;&quot;</span>
+                    <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Msg::OpenOptions</span>)
+                <span class="op">&gt;</span>{ <span class="string">&quot;Options&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
                 { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">cancel</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">cancel</span><span class="op">|</span> <span class="macro">html!</span> {
                     <span class="op">&lt;</span><span class="ident">button</span>
                         <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: auto;&quot;</span>
@@ -181,6 +201,8 @@
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Msg</span> {
     <span class="doccomment">/// The user clicks the save button.</span>
     <span class="ident">SaveButton</span>(<span class="ident">save::Format</span>),
+    <span class="doccomment">/// Open settings menu.</span>
+    <span class="ident">OpenOptions</span>,
 }
 
 <span class="doccomment">/// Yew properties for [`Comp`].</span>
@@ -190,6 +212,8 @@
     <span class="kw">pub</span> <span class="ident">legion</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">traffloat::Legion</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The cancel callback, or [`None`] if it should not be rendered.</span>
     <span class="kw">pub</span> <span class="ident">cancel</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">MouseEvent</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The callback to open options menu.</span>
+    <span class="kw">pub</span> <span class="ident">open_options</span>: <span class="ident">Callback</span><span class="op">&lt;</span>()<span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">Visualize</span>)]</span>

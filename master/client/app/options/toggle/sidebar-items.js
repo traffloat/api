@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"struct":[["Comp","Options menu for Traffloat client."],["Props","Yew properties for [`Comp`]."],["PropsWrapper",""]]});
