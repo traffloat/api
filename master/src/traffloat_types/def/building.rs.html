@@ -98,6 +98,8 @@
 <span id="98"> 98</span>
 <span id="99"> 99</span>
 <span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building definitions</span>
 
@@ -131,8 +133,10 @@
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">category</span>: <span class="ident">CategoryId</span>,
     <span class="doccomment">/// Shape of the building.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If multiple shapes are provided, they are all rendered together in order.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">shape</span>: <span class="ident">Shape</span>,
+    <span class="ident">shapes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Maximum hitpoint of a building.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The actual hitpoint is subject to asteroid and fire damage.</span>
