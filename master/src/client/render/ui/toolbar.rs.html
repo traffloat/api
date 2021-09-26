@@ -179,16 +179,16 @@
         <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="ident">nav</span> <span class="ident">style</span><span class="op">=</span><span class="ident">style</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">button</span>
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: auto;&quot;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;auto&quot;</span>)
                     <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Msg::SaveButton</span>(<span class="ident">save::Format::Binary</span>))
                 <span class="op">&gt;</span>{ <span class="string">&quot;Save&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">button</span>
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: auto;&quot;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;auto&quot;</span>)
                     <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Msg::OpenOptions</span>)
                 <span class="op">&gt;</span>{ <span class="string">&quot;Options&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
                 { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">cancel</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">cancel</span><span class="op">|</span> <span class="macro">html!</span> {
                     <span class="op">&lt;</span><span class="ident">button</span>
-                        <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: auto;&quot;</span>
+                        <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;auto&quot;</span>)
                         <span class="ident">onclick</span><span class="op">=</span><span class="ident">cancel</span>
                     <span class="op">&gt;</span>{ <span class="string">&quot;Cancel&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">button</span><span class="op">&gt;</span>
                 })}

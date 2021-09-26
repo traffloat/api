@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Style","A set of styles for an element."]]});

@@ -302,8 +302,6 @@
 <span id="302">302</span>
 <span id="303">303</span>
 <span id="304">304</span>
-<span id="305">305</span>
-<span id="306">306</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Building list.</span>
 
@@ -348,8 +346,8 @@
         <span class="kw">fn</span> <span class="ident">table_entry</span>(<span class="ident">name</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Html</span><span class="op">&gt;</span>, <span class="ident">value</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Html</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
             <span class="macro">html!</span> {
                 <span class="op">&lt;</span><span class="ident">tr</span><span class="op">&gt;</span>
-                    <span class="op">&lt;</span><span class="ident">td</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 4em; padding-right: 10px;&quot;</span><span class="op">&gt;</span>{ <span class="ident">name</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
-                    <span class="op">&lt;</span><span class="ident">td</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 8em;&quot;</span><span class="op">&gt;</span>{ <span class="ident">value</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">td</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;width&quot;</span>: <span class="string">&quot;4em&quot;</span>, <span class="string">&quot;padding-right&quot;</span>: <span class="string">&quot;10px&quot;</span>)<span class="op">&gt;</span>{ <span class="ident">name</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">td</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;width&quot;</span>: <span class="string">&quot;8em;&quot;</span>)<span class="op">&gt;</span>{ <span class="ident">value</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">tr</span><span class="op">&gt;</span>
             }
         }
@@ -357,9 +355,7 @@
         <span class="macro">html!</span> {
             <span class="op">&lt;</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">h1</span><span class="op">&gt;</span>{ <span class="ident">building</span>.<span class="ident">name</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h1</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
-                    float: right;
-                &quot;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;float&quot;</span>: <span class="string">&quot;right&quot;</span>)<span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="ident">table</span><span class="op">&gt;</span>
                         <span class="op">&lt;</span><span class="ident">tbody</span><span class="op">&gt;</span>
                             { <span class="ident">table_entry</span>(<span class="string">&quot;Hitpoints&quot;</span>, <span class="ident">building</span>.<span class="ident">hitpoint</span>()) }
@@ -377,7 +373,7 @@
                         <span class="op">&lt;</span><span class="op">/</span><span class="ident">tbody</span><span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">table</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;font-style: italic;&quot;</span><span class="op">&gt;</span>{ <span class="ident">building</span>.<span class="ident">summary</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;font-style&quot;</span>: <span class="string">&quot;italic&quot;</span>)<span class="op">&gt;</span>{ <span class="ident">building</span>.<span class="ident">summary</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>{ <span class="ident">building</span>.<span class="ident">description</span>() }<span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
 
                 <span class="op">&lt;</span><span class="ident">h2</span><span class="op">&gt;</span>{ <span class="string">&quot;Mechanisms&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h2</span><span class="op">&gt;</span>
@@ -399,7 +395,7 @@
             <span class="op">&lt;</span><span class="ident">div</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">h3</span><span class="op">&gt;</span>{ <span class="macro">format_args!</span>(<span class="string">&quot;Housing ({} capacity)&quot;</span>, <span class="ident">capacity</span>) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">h3</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span><span class="op">&gt;</span>
-                    { <span class="macro">format_args!</span>(<span class="string">&quot;This building provides {} housing capacity.&quot;</span>, <span class="ident">capacity</span>) }
+                    { <span class="macro">format_args!</span>(<span class="string">&quot;This building provides {} housing capacity. &quot;</span>, <span class="ident">capacity</span>) }
                     { <span class="string">&quot;Inhabitants assigned to this building will be affected by &quot;</span> }
                     { <span class="string">&quot;the skill-related mechanisms of this building, such as food, &quot;</span> }
                     { <span class="string">&quot;even if they are not currently inside the building.&quot;</span> }
@@ -500,16 +496,16 @@
             <span class="comment">// TODO document FlowPolicy</span>
 
             <span class="op">&lt;</span><span class="ident">table</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">tbody</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;text-align: center;&quot;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">tbody</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;text-align&quot;</span>: <span class="string">&quot;center&quot;</span>)<span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="ident">tr</span><span class="op">&gt;</span>
-                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 20%;&quot;</span> <span class="ident">rowspan</span><span class="op">=</span><span class="string">&quot;2&quot;</span><span class="op">&gt;</span>{ <span class="string">&quot;Condition&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
-                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 20%;&quot;</span> <span class="ident">rowspan</span><span class="op">=</span><span class="string">&quot;2&quot;</span><span class="op">&gt;</span>{ <span class="string">&quot;Optimal range&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
+                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;width&quot;</span>: <span class="string">&quot;20%&quot;</span>) <span class="ident">rowspan</span><span class="op">=</span><span class="string">&quot;2&quot;</span><span class="op">&gt;</span>{ <span class="string">&quot;Condition&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
+                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;width&quot;</span>: <span class="string">&quot;20%&quot;</span>) <span class="ident">rowspan</span><span class="op">=</span><span class="string">&quot;2&quot;</span><span class="op">&gt;</span>{ <span class="string">&quot;Optimal range&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
                         <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">colspan</span><span class="op">=</span><span class="string">&quot;3&quot;</span><span class="op">&gt;</span>{ <span class="string">&quot;Rate multiplier&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">tr</span><span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="ident">tr</span><span class="op">&gt;</span>
-                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 20%;&quot;</span><span class="op">&gt;</span>{ <span class="string">&quot;Below optimal range&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
-                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 20%;&quot;</span><span class="op">&gt;</span> { <span class="string">&quot;Within optimal range&quot;</span> } <span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
-                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;width: 20%;&quot;</span><span class="op">&gt;</span>{ <span class="string">&quot;Above optimal range&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
+                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;width&quot;</span>: <span class="string">&quot;20%&quot;</span>)<span class="op">&gt;</span>{ <span class="string">&quot;Below optimal range&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
+                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;width&quot;</span>: <span class="string">&quot;20%&quot;</span>)<span class="op">&gt;</span> { <span class="string">&quot;Within optimal range&quot;</span> } <span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
+                        <span class="op">&lt;</span><span class="ident">th</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;width&quot;</span>: <span class="string">&quot;20%&quot;</span>)<span class="op">&gt;</span>{ <span class="string">&quot;Above optimal range&quot;</span> }<span class="op">&lt;</span><span class="op">/</span><span class="ident">th</span><span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">tr</span><span class="op">&gt;</span>
 
                     { <span class="kw">for</span> <span class="ident">reaction</span>.<span class="ident">catalysts</span>().<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">catalyst</span><span class="op">|</span> <span class="macro">html!</span> {

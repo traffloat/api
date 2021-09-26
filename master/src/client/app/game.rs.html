@@ -355,6 +355,7 @@
 <span id="355">355</span>
 <span id="356">356</span>
 <span id="357">357</span>
+<span id="358">358</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell</span>::{<span class="self">self</span>, <span class="ident">RefCell</span>};
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -627,16 +628,19 @@
     }
 
     <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
+        <span class="macro">style!</span> { <span class="kw">static</span> <span class="ident">BASE_CANVAS</span> <span class="op">=</span>
+            <span class="string">&quot;width&quot;</span>: <span class="string">&quot;100vw&quot;</span>, <span class="string">&quot;height&quot;</span>: <span class="string">&quot;100vh&quot;</span>,
+            <span class="string">&quot;position&quot;</span>: <span class="string">&quot;absolute&quot;</span>,
+            <span class="string">&quot;x&quot;</span>: <span class="string">&quot;0&quot;</span>, <span class="string">&quot;y&quot;</span>: <span class="string">&quot;0&quot;</span>,
+        }
         <span class="macro">html!</span> {
-            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0; background-color: black;&quot;</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;margin&quot;</span>: <span class="string">&quot;0&quot;</span>, <span class="string">&quot;background-color&quot;</span>: <span class="string">&quot;black&quot;</span>)<span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">canvas</span>
                     <span class="kw-2">ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">bg_canvas_ref</span>.<span class="ident">clone</span>()
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
-                        width: 100vw; height: 100vh;
-                        z-index: 1;
-                        position: absolute;
-                        x: 0; y: 0;
-                    &quot;</span> <span class="op">/</span><span class="op">&gt;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                        ..<span class="ident">BASE_CANVAS</span>,
+                        <span class="string">&quot;z-index&quot;</span>: <span class="string">&quot;1&quot;</span>,
+                    ) <span class="op">/</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">canvas</span>
                     <span class="kw-2">ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">scene_canvas_ref</span>.<span class="ident">clone</span>()
                     <span class="ident">onmousemove</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::MouseMove</span>)
@@ -646,27 +650,25 @@
                     <span class="ident">ontouchmove</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::TouchMove</span>)
                     <span class="ident">ontouchstart</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::TouchDown</span>)
                     <span class="ident">ontouchend</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::TouchUp</span>)
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
-                        width: 100vw; height: 100vh;
-                        z-index: 2;
-                        position: absolute;
-                        x: 0; y: 0;
-                    &quot;</span> <span class="op">/</span><span class="op">&gt;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                        ..<span class="ident">BASE_CANVAS</span>,
+                        <span class="string">&quot;z-index&quot;</span>: <span class="string">&quot;2&quot;</span>,
+                    ) <span class="op">/</span><span class="op">&gt;</span>
 
                 <span class="op">&lt;</span><span class="ident">render::ui::Wrapper</span> <span class="ident">legion</span><span class="op">=</span><span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">legion</span>) <span class="op">/</span><span class="op">&gt;</span>
 
                 <span class="op">&lt;</span><span class="ident">div</span>
                     <span class="kw-2">ref</span><span class="op">=</span><span class="self">self</span>.<span class="ident">debug_ref</span>.<span class="ident">clone</span>()
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
-                        padding-left: 10px; padding-top: 10px;
-                        z-index: 4;
-                        position: absolute;
-                        x: 0; y: 0;
-                        color: white;
-                        pointer-events: none;
-                        font-family: Helvetica, sans-serif;
-                        font-size: x-small;
-                    &quot;</span> <span class="op">/</span><span class="op">&gt;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                        <span class="string">&quot;padding-left&quot;</span>: <span class="string">&quot;10px&quot;</span>, <span class="string">&quot;padding-top&quot;</span>: <span class="string">&quot;10px&quot;</span>,
+                        <span class="string">&quot;z-index&quot;</span>: <span class="string">&quot;4&quot;</span>,
+                        <span class="string">&quot;position&quot;</span>: <span class="string">&quot;absolute&quot;</span>,
+                        <span class="string">&quot;x&quot;</span>: <span class="string">&quot;0&quot;</span>, <span class="string">&quot;y&quot;</span>: <span class="string">&quot;0&quot;</span>,
+                        <span class="string">&quot;color&quot;</span>: <span class="string">&quot;white&quot;</span>,
+                        <span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;none&quot;</span>,
+                        <span class="string">&quot;font-family&quot;</span>: <span class="string">&quot;Helvetica, sans-serif&quot;</span>,
+                        <span class="string">&quot;font-size&quot;</span>: <span class="string">&quot;x-small&quot;</span>,
+                    ) <span class="op">/</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         }
     }

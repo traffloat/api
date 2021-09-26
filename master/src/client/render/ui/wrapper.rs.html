@@ -318,14 +318,14 @@
 
     <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
         <span class="macro">html!</span> {
-            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
-                z-index: 3;
-                position: absolute;
-                width: 100vw; height: 100vh;
-                pointer-events: none;
-                x: 0; y: 0;
-                font-family: Helvetica, sans-serif;
-            &quot;</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                <span class="string">&quot;z-index&quot;</span>: <span class="string">&quot;3&quot;</span>,
+                <span class="string">&quot;position&quot;</span>: <span class="string">&quot;absolute&quot;</span>,
+                <span class="string">&quot;width&quot;</span>: <span class="string">&quot;100vw&quot;</span>, <span class="string">&quot;height&quot;</span>: <span class="string">&quot;100vh&quot;</span>,
+                <span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;none&quot;</span>,
+                <span class="string">&quot;x&quot;</span>: <span class="string">&quot;0&quot;</span>, <span class="string">&quot;y&quot;</span>: <span class="string">&quot;0&quot;</span>,
+                <span class="string">&quot;font-family&quot;</span>: <span class="string">&quot;Helvetica, sans-serif&quot;</span>,
+            )<span class="op">&gt;</span>
                 { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">node_preview_args</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">args</span><span class="op">|</span> <span class="macro">html!</span> {
                     <span class="op">&lt;</span><span class="ident">node_preview::Comp</span>
                         <span class="ident">args</span><span class="op">=</span><span class="ident">args</span>.<span class="ident">clone</span>()
@@ -350,11 +350,11 @@
                         <span class="op">/</span><span class="op">&gt;</span>
                 }) }
                 { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">options_opened</span>.<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">html!</span> {
-                    <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
-                        background-color: white;
-                        width: 300px;
-                        pointer-events: auto;
-                    &quot;</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                        <span class="string">&quot;background-color&quot;</span>: <span class="string">&quot;white&quot;</span>,
+                        <span class="string">&quot;width&quot;</span>: <span class="string">&quot;300px&quot;</span>,
+                        <span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;auto&quot;</span>,
+                    )<span class="op">&gt;</span>
                         <span class="op">&lt;</span><span class="ident">options::Comp</span>
                             <span class="ident">legion</span><span class="op">=</span><span class="prelude-val">Some</span>(<span class="ident">Rc::clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">legion</span>))
                             <span class="op">/</span><span class="op">&gt;</span>

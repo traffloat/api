@@ -195,7 +195,7 @@
                     <span class="ident">cy</span><span class="op">=</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">origin</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">center</span>.<span class="ident">vector</span>().<span class="ident">y</span>).<span class="ident">to_string</span>()
                     <span class="ident">r</span><span class="op">=</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">radius</span>.<span class="ident">to_string</span>()
                     <span class="ident">fill</span><span class="op">=</span><span class="ident">duct_fill</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">ty</span>)
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;cursor: pointer;&quot;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;cursor&quot;</span>: <span class="string">&quot;pointer&quot;</span>)
                     <span class="ident">onmousedown</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::MouseDown</span>)
                     <span class="ident">onmouseup</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::MouseUp</span>)
                     <span class="op">/</span><span class="op">&gt;</span>
@@ -208,7 +208,7 @@
                             <span class="ident">stroke</span><span class="op">=</span><span class="string">&quot;red&quot;</span>
                             <span class="ident">stroke</span><span class="op">-</span><span class="ident">width</span><span class="op">=</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="ident">DISABLED_WIDTH</span>).<span class="ident">to_string</span>()
                             <span class="ident">fill</span><span class="op">=</span><span class="string">&quot;none&quot;</span>
-                            <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: none;&quot;</span>
+                            <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;none;&quot;</span>)
                             <span class="op">/</span><span class="op">&gt;</span>
                         <span class="op">&lt;</span><span class="ident">line</span>
                             <span class="ident">x1</span><span class="op">=</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">origin</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">center</span>.<span class="ident">vector</span>().<span class="ident">x</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="ident">DISABLED_RADIUS</span> <span class="op">*</span> <span class="ident">FRAC_1_SQRT_2</span>).<span class="ident">to_string</span>()
@@ -217,7 +217,7 @@
                             <span class="ident">y2</span><span class="op">=</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">origin</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">center</span>.<span class="ident">vector</span>().<span class="ident">y</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="ident">DISABLED_RADIUS</span> <span class="op">*</span> <span class="ident">FRAC_1_SQRT_2</span>).<span class="ident">to_string</span>()
                             <span class="ident">stroke</span><span class="op">=</span><span class="string">&quot;red&quot;</span>
                             <span class="ident">stroke</span><span class="op">-</span><span class="ident">width</span><span class="op">=</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="ident">DISABLED_WIDTH</span>).<span class="ident">to_string</span>()
-                            <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: none;&quot;</span>
+                            <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;none;&quot;</span>)
                             <span class="op">/</span><span class="op">&gt;</span>
                     <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
                 }) }
@@ -239,7 +239,7 @@
                             <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">origin</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">center</span>.<span class="ident">vector</span>().<span class="ident">y</span>,
                             <span class="number">0.2</span> <span class="op">*</span> <span class="ident">FRAC_1_SQRT_2</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">radius</span>,
                         )
-                        <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: none;&quot;</span>
+                        <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;none;&quot;</span>)
                         <span class="op">/</span><span class="op">&gt;</span>
                 }) }
                 { <span class="kw">for</span> (<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">ty</span>.<span class="ident">direction</span>() <span class="op">=</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">edge::Direction::ToFrom</span>)).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">html!</span> {
@@ -248,7 +248,7 @@
                         <span class="ident">cy</span><span class="op">=</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">origin</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">center</span>.<span class="ident">vector</span>().<span class="ident">y</span>).<span class="ident">to_string</span>()
                         <span class="ident">r</span><span class="op">=</span>(<span class="self">self</span>.<span class="ident">props</span>.<span class="ident">radius</span> <span class="op">*</span> <span class="number">0.25</span>).<span class="ident">to_string</span>()
                         <span class="ident">fill</span><span class="op">=</span><span class="string">&quot;black&quot;</span>
-                        <span class="ident">style</span><span class="op">=</span><span class="string">&quot;pointer-events: none;&quot;</span>
+                        <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(<span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;none;&quot;</span>)
                         <span class="op">/</span><span class="op">&gt;</span>
                 }) }
             <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>

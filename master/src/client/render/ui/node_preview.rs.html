@@ -257,6 +257,11 @@
 <span id="257">257</span>
 <span id="258">258</span>
 <span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders node info preview.</span>
 
@@ -339,38 +344,43 @@
             }
         }
 
+        <span class="macro">style!</span> { <span class="kw">static</span> <span class="ident">ROW_STYLE</span> <span class="op">=</span>
+            <span class="string">&quot;margin&quot;</span>: <span class="string">&quot;0.5em 0&quot;</span>,
+        }
+        <span class="kw">let</span> <span class="ident">row_style</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">ROW_STYLE</span>;
+
         <span class="macro">html!</span> {
-            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 15em; height: 10em;
-                color: black;
-                pointer-events: auto;
-                background-color: white;
-                font-size: large;
-                padding: 1em 0.2em;
-                overflow-y: auto;
-            &quot;</span><span class="op">&gt;</span>
+            <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                <span class="string">&quot;position&quot;</span>: <span class="string">&quot;absolute&quot;</span>,
+                <span class="string">&quot;bottom&quot;</span>: <span class="string">&quot;0&quot;</span>,
+                <span class="string">&quot;left&quot;</span>: <span class="string">&quot;0&quot;</span>,
+                <span class="string">&quot;width&quot;</span>: <span class="string">&quot;15em&quot;</span>, <span class="string">&quot;height&quot;</span>: <span class="string">&quot;10em&quot;</span>,
+                <span class="string">&quot;color&quot;</span>: <span class="string">&quot;black&quot;</span>,
+                <span class="string">&quot;pointer-events&quot;</span>: <span class="string">&quot;auto&quot;</span>,
+                <span class="string">&quot;background-color&quot;</span>: <span class="string">&quot;white&quot;</span>,
+                <span class="string">&quot;font-size&quot;</span>: <span class="string">&quot;large&quot;</span>,
+                <span class="string">&quot;padding&quot;</span>: <span class="string">&quot;1em 0.2em&quot;</span>,
+                <span class="string">&quot;overflow-y&quot;</span>: <span class="string">&quot;auto&quot;</span>,
+            )<span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="ident">p</span>
                     <span class="ident">onclick</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::HelpButton</span>)
-                    <span class="ident">style</span><span class="op">=</span><span class="string">&quot;
-                        margin: 0.5em 0;
-                        cursor: help;
-                    &quot;</span>
+                    <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                        ..<span class="ident">ROW_STYLE</span>,
+                        <span class="string">&quot;cursor&quot;</span>: <span class="string">&quot;help&quot;</span>,
+                    )
                 <span class="op">&gt;</span>
                     { <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">node_name</span> }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0.5em 0;&quot;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
                     { <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">hitpoint</span> }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0.5em 0;&quot;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
                     { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">cargo</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0.5em 0;&quot;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
                     { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">liquid</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="string">&quot;margin: 0.5em 0;&quot;</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
                     { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">gas</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>

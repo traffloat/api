@@ -300,19 +300,19 @@
                     <span class="ident">choose_cargo</span><span class="op">=</span><span class="self">self</span>.<span class="ident">link</span>.<span class="ident">callback</span>(<span class="ident">Msg::ChooseCargo</span>)
                     <span class="ident">route_prefix</span><span class="op">=</span><span class="self">self</span>.<span class="ident">route_prefix</span>()
                     <span class="op">/</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">main</span> <span class="ident">style</span><span class="op">=</span><span class="macro">format!</span>(<span class="string">&quot;
-                    margin-left: {}px;
-                    border-left: 1px solid;
-                    padding: 5px 10px;
-                    height: 100vh;
-                    font-family: &#39;Helvetica&#39;, &#39;Arial&#39;, sans-serif;
-                &quot;</span>, <span class="ident">SIDEBAR_WIDTH_PX</span> <span class="op">+</span> <span class="ident">SIDEBAR_PADDING_PX</span>)<span class="op">&gt;</span>
-                    <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="macro">format!</span>(<span class="string">&quot;
-                        margin-left: auto;
-                        margin-right: auto;
-                        max-width: {}px;
-                        overflow: auto;
-                    &quot;</span>, <span class="ident">MAIN_WIDTH_PX</span>)<span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">main</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                    <span class="string">&quot;margin-left&quot;</span>: <span class="macro">format!</span>(<span class="string">&quot;{}px&quot;</span>, <span class="ident">SIDEBAR_WIDTH_PX</span> <span class="op">+</span> <span class="ident">SIDEBAR_PADDING_PX</span>),
+                    <span class="string">&quot;border-left&quot;</span>: <span class="string">&quot;1px solid&quot;</span>,
+                    <span class="string">&quot;padding&quot;</span>: <span class="string">&quot;5px 10px&quot;</span>,
+                    <span class="string">&quot;height&quot;</span>: <span class="string">&quot;100vh&quot;</span>,
+                    <span class="string">&quot;font-family&quot;</span>: <span class="string">&quot;&#39;Helvetica&#39;, &#39;Arial&#39;, sans-serif&quot;</span>,
+                )<span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">div</span> <span class="ident">style</span><span class="op">=</span><span class="macro">style!</span>(
+                        <span class="string">&quot;margin-left&quot;</span>: <span class="string">&quot;auto&quot;</span>,
+                        <span class="string">&quot;margin-right&quot;</span>: <span class="string">&quot;auto&quot;</span>,
+                        <span class="string">&quot;max-width&quot;</span>: <span class="macro">format!</span>(<span class="string">&quot;{}px&quot;</span>, <span class="ident">MAIN_WIDTH_PX</span>),
+                        <span class="string">&quot;overflow&quot;</span>: <span class="string">&quot;auto&quot;</span>,
+                    )<span class="op">&gt;</span>
                         { <span class="self">self</span>.<span class="ident">switch</span>() }
                     <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">main</span><span class="op">&gt;</span>
