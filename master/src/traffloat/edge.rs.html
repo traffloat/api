@@ -405,11 +405,11 @@
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::liquid</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::node</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">cargo</span>, <span class="ident">gas</span>, <span class="ident">liquid</span>};
 
 <span class="doccomment">/// Component storing the endpoints of an edge</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
@@ -584,7 +584,7 @@
             <span class="ident">DuctType::Electricity</span>(<span class="bool-val">true</span>) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">entities</span>.<span class="ident">push</span>(()) <span class="comment">// TODO</span>
             }
-            <span class="ident">DuctType::Rail</span>(<span class="prelude-val">Some</span>(<span class="ident">direction</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">DuctType::Rail</span>(<span class="prelude-val">Some</span>(<span class="ident">_direction</span>)) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">entities</span>.<span class="ident">push</span>(()) <span class="comment">// TODO</span>
             }
             <span class="ident">DuctType::Liquid</span> { <span class="ident">dir</span>: <span class="prelude-val">Some</span>(<span class="ident">direction</span>), <span class="ident">from_storage</span>, <span class="ident">to_storage</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">entities</span>.<span class="ident">push</span>({
