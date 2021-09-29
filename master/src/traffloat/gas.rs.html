@@ -99,8 +99,6 @@
 <span id="99"> 99</span>
 <span id="100">100</span>
 <span id="101">101</span>
-<span id="102">102</span>
-<span id="103">103</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of gas in buildings</span>
 
@@ -111,11 +109,9 @@
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::clock</span>::{<span class="ident">SimulationEvent</span>, <span class="ident">SIMULATION_PERIOD</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::time::Instant</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>::{<span class="self">self</span>, <span class="ident">GasVolume</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">def</span>, <span class="ident">util</span>, <span class="ident">SetupEcs</span>};
 
 <span class="doccomment">/// A component attached to entities that house gas.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::Getters</span>)]</span>

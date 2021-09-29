@@ -354,8 +354,6 @@
 <span id="354">354</span>
 <span id="355">355</span>
 <span id="356">356</span>
-<span id="357">357</span>
-<span id="358">358</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell</span>::{<span class="self">self</span>, <span class="ident">RefCell</span>};
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -365,9 +363,7 @@
 <span class="kw">use</span> <span class="ident">yew::services</span>::{<span class="ident">interval</span>, <span class="ident">keyboard</span> <span class="kw">as</span> <span class="ident">kb_srv</span>, <span class="ident">render</span> <span class="kw">as</span> <span class="ident">render_srv</span>, <span class="ident">resize</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::GameArgs</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::input</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">input</span>, <span class="ident">render</span>, <span class="ident">util</span>};
 <span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
 <span class="kw">use</span> <span class="ident">traffloat::SetupEcs</span>;

@@ -294,8 +294,6 @@
 <span id="294">294</span>
 <span id="295">295</span>
 <span id="296">296</span>
-<span id="297">297</span>
-<span id="298">298</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Management of liquid in buildings</span>
 
@@ -306,13 +304,10 @@
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::clock</span>::{<span class="ident">SimulationEvent</span>, <span class="ident">SIMULATION_PERIOD</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::config</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>::{<span class="self">self</span>, <span class="ident">liquid::TypeId</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::node</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def::liquid::TypeId</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::time::Instant</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>::{<span class="self">self</span>, <span class="ident">LiquidVolume</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">config</span>, <span class="ident">def</span>, <span class="ident">node</span>, <span class="ident">util</span>, <span class="ident">SetupEcs</span>};
 
 <span class="doccomment">/// A component attached to entities that house liquid.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::Getters</span>)]</span>
@@ -461,7 +456,8 @@
     <span class="attribute">#[<span class="ident">resource</span>(<span class="ident">no_init</span>)]</span> <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">def::GameDefinition</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">sim_sub</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">SimulationEvent</span><span class="op">&gt;</span>,
 ) {
-    <span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">world::ComponentError</span>, <span class="ident">EntityStore</span>, <span class="ident">IntoQuery</span>};
+    <span class="kw">use</span> <span class="ident">legion::world::ComponentError</span>;
+    <span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">EntityStore</span>, <span class="ident">IntoQuery</span>};
 
     <span class="kw">if</span> <span class="ident">sim_sub</span>.<span class="ident">next</span>().<span class="ident">is_none</span>() {
         <span class="kw">return</span>;

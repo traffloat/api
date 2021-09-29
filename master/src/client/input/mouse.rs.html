@@ -156,8 +156,6 @@
 <span id="156">156</span>
 <span id="157">157</span>
 <span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles mouse interaction.</span>
 
@@ -166,10 +164,8 @@
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">keyboard</span>, <span class="ident">ScreenPosition</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::camera::Camera</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render</span>;
-<span class="kw">use</span> <span class="ident">traffloat::appearance</span>;
-<span class="kw">use</span> <span class="ident">traffloat::edge</span>;
-<span class="kw">use</span> <span class="ident">traffloat::node</span>;
 <span class="kw">use</span> <span class="ident">traffloat::space::Position</span>;
+<span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">appearance</span>, <span class="ident">edge</span>, <span class="ident">node</span>};
 
 <span class="doccomment">/// Resource storing the position of the mouse, in the range [0, 1]^2.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">getset::CopyGetters</span>)]</span>

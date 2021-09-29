@@ -110,12 +110,16 @@
 <span id="110">110</span>
 <span id="111">111</span>
 <span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Options menu for Traffloat client.</span>
 
-<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">cell::RefCell</span>, <span class="ident">rc::Rc</span>};
+<span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
+<span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
-<span class="kw">use</span> <span class="ident">yew</span>::{<span class="ident">prelude</span>::<span class="kw-2">*</span>, <span class="ident">services::storage</span>};
+<span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">yew::services::storage</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::options</span>::{<span class="self">self</span>, <span class="ident">Options</span>};
 

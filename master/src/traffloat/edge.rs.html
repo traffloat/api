@@ -393,7 +393,6 @@
 <span id="393">393</span>
 <span id="394">394</span>
 <span id="395">395</span>
-<span id="396">396</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge management.</span>
 <span class="doccomment">//!</span>
@@ -401,15 +400,14 @@
 <span class="doccomment">//! It connects two nodes together.</span>
 
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
-<span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">systems::CommandBuffer</span>, <span class="ident">world::SubWorld</span>, <span class="ident">Entity</span>};
+<span class="kw">use</span> <span class="ident">legion::systems::CommandBuffer</span>;
+<span class="kw">use</span> <span class="ident">legion::world::SubWorld</span>;
+<span class="kw">use</span> <span class="ident">legion::Entity</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::liquid</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::node</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">liquid</span>, <span class="ident">node</span>, <span class="ident">units</span>, <span class="ident">SetupEcs</span>};
 
 <span class="doccomment">/// Component storing the endpoints of an edge</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>

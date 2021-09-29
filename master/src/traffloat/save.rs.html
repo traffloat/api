@@ -386,35 +386,25 @@
 <span id="386">386</span>
 <span id="387">387</span>
 <span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Saving game definition and state.</span>
 
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 
 <span class="kw">use</span> <span class="ident">cfg_if::cfg_if</span>;
-<span class="kw">use</span> <span class="ident">legion::world::SubWorld</span>;
-<span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">world::ComponentError</span>, <span class="ident">Entity</span>, <span class="ident">EntityStore</span>, <span class="ident">IntoQuery</span>};
+<span class="kw">use</span> <span class="ident">legion::world</span>::{<span class="ident">ComponentError</span>, <span class="ident">SubWorld</span>};
+<span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">Entity</span>, <span class="ident">EntityStore</span>, <span class="ident">IntoQuery</span>};
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::appearance::Appearance</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::clock::Clock</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def::GameDefinition</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::defense</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::edge::save</span>::{<span class="ident">Edge</span>, <span class="ident">SavedDuct</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::node::save::Node</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::population</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space::Position</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::time::Instant</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">cargo</span>, <span class="ident">gas</span>, <span class="ident">liquid</span>, <span class="ident">vehicle</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">edge</span>, <span class="ident">node</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">cargo</span>, <span class="ident">defense</span>, <span class="ident">edge</span>, <span class="ident">gas</span>, <span class="ident">liquid</span>, <span class="ident">node</span>, <span class="ident">population</span>, <span class="ident">units</span>, <span class="ident">vehicle</span>, <span class="ident">SetupEcs</span>};
 <span class="kw">use</span> <span class="ident">safety::Safety</span>;
 
 <span class="doccomment">/// The save schema version.</span>

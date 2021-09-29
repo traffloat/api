@@ -71,13 +71,15 @@
 <span id="71">71</span>
 <span id="72">72</span>
 <span id="73">73</span>
+<span id="74">74</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Manages the background canvas.</span>
 
 <span class="kw">use</span> <span class="ident">web_sys::WebGlRenderingContext</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Dimension</span>, <span class="ident">RenderFlag</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">camera::Camera</span>, <span class="ident">options</span>};
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::camera::Camera</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::options</span>;
 <span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat::sun::Sun</span>;
 

@@ -16,14 +16,12 @@
 <span id="16">16</span>
 <span id="17">17</span>
 <span id="18">18</span>
-<span id="19">19</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Vehicle-related components.</span>
 
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">units</span>, <span class="ident">SetupEcs</span>};
 
 <span class="doccomment">/// A component applied on a node that drives a rail.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>, <span class="ident">getset::CopyGetters</span>)]</span>

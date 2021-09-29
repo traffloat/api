@@ -346,12 +346,10 @@
 <span id="346">346</span>
 <span id="347">347</span>
 <span id="348">348</span>
-<span id="349">349</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="ident">Ident</span>, <span class="ident">TokenStream</span>};
 <span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">format_ident</span>, <span class="ident">quote</span>};
-<span class="kw">use</span> <span class="ident">syn::parse</span>;
-<span class="kw">use</span> <span class="ident">syn::Result</span>;
+<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">parse</span>, <span class="prelude-ty">Result</span>};
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">imp</span>(<span class="ident">args</span>: <span class="ident">TokenStream</span>, <span class="ident">input</span>: <span class="ident">TokenStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">args</span> <span class="op">=</span> <span class="ident">syn::parse2</span>::<span class="op">&lt;</span><span class="ident">AttrArgs</span><span class="op">&gt;</span>(<span class="ident">args</span>)<span class="question-mark">?</span>;

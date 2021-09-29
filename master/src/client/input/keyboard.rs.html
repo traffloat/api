@@ -312,7 +312,6 @@
 <span id="312">312</span>
 <span id="313">313</span>
 <span id="314">314</span>
-<span id="315">315</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles keyboard input.</span>
 
@@ -323,8 +322,7 @@
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::camera::Camera</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::config</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">config</span>, <span class="ident">render</span>};
 <span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
 <span class="kw">use</span> <span class="ident">traffloat::space::Vector</span>;
 <span class="kw">use</span> <span class="ident">traffloat::time::Instant</span>;

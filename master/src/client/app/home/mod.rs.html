@@ -325,18 +325,14 @@
 <span id="325">325</span>
 <span id="326">326</span>
 <span id="327">327</span>
-<span id="328">328</span>
-<span id="329">329</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">yew::services::fetch</span>;
-<span class="kw">use</span> <span class="ident">yew::services::reader</span>;
+<span class="kw">use</span> <span class="ident">yew::services</span>::{<span class="ident">fetch</span>, <span class="ident">reader</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::route</span>::{<span class="ident">Route</span>, <span class="ident">SpRoute</span>};
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::scenarios</span>;
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::SpGameArgs</span>;
+<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">scenarios</span>, <span class="ident">SpGameArgs</span>};
 
 <span class="kw">mod</span> <span class="ident">scenario_choose</span>;
 

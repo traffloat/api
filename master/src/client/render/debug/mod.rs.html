@@ -91,15 +91,13 @@
 <span id="91">91</span>
 <span id="92">92</span>
 <span id="93">93</span>
-<span id="94">94</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders the user interface.</span>
 
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::comm::RenderFlag</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::options</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">options</span>, <span class="ident">util</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render-debug&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">fps</span>;

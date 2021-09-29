@@ -379,10 +379,6 @@
 <span id="379">379</span>
 <span id="380">380</span>
 <span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Node management.</span>
 <span class="doccomment">//!</span>
@@ -393,20 +389,17 @@
 
 <span class="kw">use</span> <span class="ident">arcstr::ArcStr</span>;
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
-<span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">systems::CommandBuffer</span>, <span class="ident">Entity</span>};
+<span class="kw">use</span> <span class="ident">legion::systems::CommandBuffer</span>;
+<span class="kw">use</span> <span class="ident">legion::Entity</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">smallvec</span>::{<span class="ident">smallvec</span>, <span class="ident">SmallVec</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::appearance</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>::{<span class="ident">building</span>, <span class="ident">feature::Feature</span>, <span class="ident">GameDefinition</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::defense</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def::feature::Feature</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>::{<span class="ident">building</span>, <span class="ident">GameDefinition</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::sun::LightStats</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">cargo</span>, <span class="ident">gas</span>, <span class="ident">liquid</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">population</span>, <span class="ident">vehicle</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">appearance</span>, <span class="ident">cargo</span>, <span class="ident">defense</span>, <span class="ident">gas</span>, <span class="ident">liquid</span>, <span class="ident">population</span>, <span class="ident">units</span>, <span class="ident">vehicle</span>, <span class="ident">SetupEcs</span>};
 
 <span class="doccomment">/// Component storing an identifier for a node</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">new</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
@@ -734,8 +727,7 @@
     <span class="kw">use</span> <span class="ident">std::collections::BTreeMap</span>;
 
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
+    <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">def</span>, <span class="ident">units</span>};
 
     <span class="doccomment">/// Saves all data related to a node.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
