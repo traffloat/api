@@ -133,31 +133,31 @@
 </pre><pre class="rust">
 <span class="doccomment">//! Node rendering</span>
 
+<span class="kw">use</span> <span class="ident">safety::Safety</span>;
+<span class="kw">use</span> <span class="ident">traffloat::appearance</span>;
+<span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Vector</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">WebGlProgram</span>, <span class="ident">WebGlRenderingContext</span>};
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::scene::mesh</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::texture</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::util</span>::{<span class="ident">create_program</span>, <span class="ident">AttrLocation</span>, <span class="ident">UniformLocation</span>};
-<span class="kw">use</span> <span class="ident">safety::Safety</span>;
-<span class="kw">use</span> <span class="ident">traffloat::appearance</span>;
-<span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Vector</span>};
 
 <span class="doccomment">/// Stores the setup data for node rendering.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Program</span> {
-    <span class="ident">prog</span>: <span class="ident">WebGlProgram</span>,
-    <span class="ident">cube</span>: <span class="ident">mesh::PreparedMesh</span>,
-    <span class="ident">cylinder</span>: <span class="ident">mesh::PreparedIndexedMesh</span>,
-    <span class="ident">a_pos</span>: <span class="ident">AttrLocation</span>,
-    <span class="ident">a_normal</span>: <span class="ident">AttrLocation</span>,
-    <span class="ident">a_tex_pos</span>: <span class="ident">AttrLocation</span>,
+    <span class="ident">prog</span>:         <span class="ident">WebGlProgram</span>,
+    <span class="ident">cube</span>:         <span class="ident">mesh::PreparedMesh</span>,
+    <span class="ident">cylinder</span>:     <span class="ident">mesh::PreparedIndexedMesh</span>,
+    <span class="ident">a_pos</span>:        <span class="ident">AttrLocation</span>,
+    <span class="ident">a_normal</span>:     <span class="ident">AttrLocation</span>,
+    <span class="ident">a_tex_pos</span>:    <span class="ident">AttrLocation</span>,
     <span class="ident">a_tex_offset</span>: <span class="ident">AttrLocation</span>,
-    <span class="ident">u_proj</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&gt;</span>,
-    <span class="ident">u_sun</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
-    <span class="ident">u_filter</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
-    <span class="ident">u_inv_gain</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">u_tex</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
-    <span class="ident">u_tex_dim</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span>[<span class="ident">f32</span>; <span class="number">2</span>]<span class="op">&gt;</span>,
+    <span class="ident">u_proj</span>:       <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&gt;</span>,
+    <span class="ident">u_sun</span>:        <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
+    <span class="ident">u_filter</span>:     <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
+    <span class="ident">u_inv_gain</span>:   <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="ident">u_tex</span>:        <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
+    <span class="ident">u_tex_dim</span>:    <span class="ident">UniformLocation</span><span class="op">&lt;</span>[<span class="ident">f32</span>; <span class="number">2</span>]<span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Program</span> {
@@ -248,18 +248,18 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DrawArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;t</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The WebGL context.</span>
-    <span class="ident">gl</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;t</span> <span class="ident">WebGlRenderingContext</span>,
+    <span class="ident">gl</span>:         <span class="kw-2">&amp;</span><span class="lifetime">&#39;t</span> <span class="ident">WebGlRenderingContext</span>,
     <span class="doccomment">/// The projection matrix transforming unit model coordinates to projection coordinates</span>
     <span class="doccomment">/// directly.</span>
-    <span class="ident">proj</span>: <span class="ident">Matrix</span>,
+    <span class="ident">proj</span>:       <span class="ident">Matrix</span>,
     <span class="doccomment">/// The world direction of the sun.</span>
-    <span class="ident">sun</span>: <span class="ident">Vector</span>,
+    <span class="ident">sun</span>:        <span class="ident">Vector</span>,
     <span class="doccomment">/// The RGB color filter on the node.</span>
-    <span class="ident">filter</span>: <span class="ident">Vector</span>,
+    <span class="ident">filter</span>:     <span class="ident">Vector</span>,
     <span class="doccomment">/// Whether this node is selected.</span>
-    <span class="ident">selected</span>: <span class="ident">bool</span>,
+    <span class="ident">selected</span>:   <span class="ident">bool</span>,
     <span class="doccomment">/// The spritesheet for the shape.</span>
-    <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;t</span> <span class="ident">texture::PreparedTexture</span>,
+    <span class="ident">texture</span>:    <span class="kw-2">&amp;</span><span class="lifetime">&#39;t</span> <span class="ident">texture::PreparedTexture</span>,
     <span class="doccomment">/// The shape to draw.</span>
     <span class="ident">shape_unit</span>: <span class="ident">appearance::Unit</span>,
 }

@@ -117,12 +117,6 @@
 <span id="117">117</span>
 <span id="118">118</span>
 <span id="119">119</span>
-<span id="120">120</span>
-<span id="121">121</span>
-<span id="122">122</span>
-<span id="123">123</span>
-<span id="124">124</span>
-<span id="125">125</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Reaction definitions</span>
 
@@ -143,19 +137,19 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Reaction</span> {
     <span class="doccomment">/// Title for the reaction.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">title</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">title</span>:       <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Description for the reaction.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">description</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Catalysts for the reaction.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">catalysts</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">Catalyst</span>; <span class="number">2</span>]<span class="op">&gt;</span>,
+    <span class="ident">catalysts</span>:   <span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">Catalyst</span>; <span class="number">2</span>]<span class="op">&gt;</span>,
     <span class="doccomment">/// Inputs and outputs for the reaction.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">puts</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">Put</span>; <span class="number">2</span>]<span class="op">&gt;</span>,
+    <span class="ident">puts</span>:        <span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">Put</span>; <span class="number">2</span>]<span class="op">&gt;</span>,
     <span class="doccomment">/// Policies for the reaction.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">policy</span>: <span class="ident">Policy</span>,
+    <span class="ident">policy</span>:      <span class="ident">Policy</span>,
 }
 
 <span class="doccomment">/// The inputs and outputs of a reaction.</span>
@@ -164,21 +158,21 @@
     <span class="doccomment">/// Consumption or production of cargo</span>
     <span class="ident">Cargo</span> {
         <span class="doccomment">/// Type of cargo consumed/produced</span>
-        <span class="ident">ty</span>: <span class="ident">cargo::TypeId</span>,
+        <span class="ident">ty</span>:   <span class="ident">cargo::TypeId</span>,
         <span class="doccomment">/// Base (unmultiplied) rate of gas consumed/produced</span>
         <span class="ident">base</span>: <span class="ident">Rate</span><span class="op">&lt;</span><span class="ident">units::CargoSize</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Consumption or production of liquid</span>
     <span class="ident">Liquid</span> {
         <span class="doccomment">/// Type of liquid consumed/produced</span>
-        <span class="ident">ty</span>: <span class="ident">liquid::TypeId</span>,
+        <span class="ident">ty</span>:   <span class="ident">liquid::TypeId</span>,
         <span class="doccomment">/// Base (unmultiplied) rate of liquid consumed/produced</span>
         <span class="ident">base</span>: <span class="ident">Rate</span><span class="op">&lt;</span><span class="ident">units::LiquidVolume</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Consumption or production of gas</span>
     <span class="ident">Gas</span> {
         <span class="doccomment">/// Type of gas consumed/produced</span>
-        <span class="ident">ty</span>: <span class="ident">gas::TypeId</span>,
+        <span class="ident">ty</span>:   <span class="ident">gas::TypeId</span>,
         <span class="doccomment">/// Base (unmultiplied) rate of gas consumed/produced</span>
         <span class="ident">base</span>: <span class="ident">Rate</span><span class="op">&lt;</span><span class="ident">units::GasVolume</span><span class="op">&gt;</span>,
     },
@@ -193,7 +187,7 @@
     <span class="doccomment">/// All other operators receive the same amount of change.</span>
     <span class="ident">Skill</span> {
         <span class="doccomment">/// Type of skill trained/lost</span>
-        <span class="ident">ty</span>: <span class="ident">skill::TypeId</span>,
+        <span class="ident">ty</span>:   <span class="ident">skill::TypeId</span>,
         <span class="doccomment">/// Base (unmultiplied) rate of gas consumed/produced</span>
         <span class="ident">base</span>: <span class="ident">Rate</span><span class="op">&lt;</span><span class="ident">units::Skill</span><span class="op">&gt;</span>,
     },
@@ -212,14 +206,10 @@
     }
 
     <span class="doccomment">/// Whether this is an output</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_output</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">base</span>() <span class="op">&gt;</span> <span class="number">0.</span>
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_output</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> { <span class="self">self</span>.<span class="ident">base</span>() <span class="op">&gt;</span> <span class="number">0.</span> }
 
     <span class="doccomment">/// Whether this is an input</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_input</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">base</span>() <span class="op">&lt;</span> <span class="number">0.</span>
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_input</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> { <span class="self">self</span>.<span class="ident">base</span>() <span class="op">&lt;</span> <span class="number">0.</span> }
 }
 
 <span class="doccomment">/// Reaction behaviour specific to this building.</span>
@@ -234,7 +224,7 @@
     <span class="ident">on_underflow</span>: <span class="ident">FlowPolicy</span>,
     <span class="doccomment">/// What happens when outputs overflow.</span>
     <span class="attribute">#[<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>]</span>
-    <span class="ident">on_overflow</span>: <span class="ident">FlowPolicy</span>,
+    <span class="ident">on_overflow</span>:  <span class="ident">FlowPolicy</span>,
 }
 
 <span class="doccomment">/// behaviour when inputs underflow or outputs overflow.</span>
@@ -245,9 +235,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FlowPolicy</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::ReduceRate</span>
-    }
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span><span class="ident">::ReduceRate</span> }
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="traffloat_types" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>

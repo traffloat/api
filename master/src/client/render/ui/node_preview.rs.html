@@ -257,9 +257,6 @@
 <span id="257">257</span>
 <span id="258">258</span>
 <span id="259">259</span>
-<span id="260">260</span>
-<span id="261">261</span>
-<span id="262">262</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders node info preview.</span>
 
@@ -267,30 +264,28 @@
 <span class="kw">use</span> <span class="ident">legion::world::SubWorld</span>;
 <span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">Entity</span>, <span class="ident">EntityStore</span>};
 <span class="kw">use</span> <span class="ident">smallvec::SmallVec</span>;
+<span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
+<span class="kw">use</span> <span class="ident">traffloat::config::Scalar</span>;
+<span class="kw">use</span> <span class="ident">traffloat::def::GameDefinition</span>;
+<span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">cargo</span>, <span class="ident">edge</span>, <span class="ident">gas</span>, <span class="ident">liquid</span>, <span class="ident">node</span>, <span class="ident">units</span>};
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Update</span>, <span class="ident">UpdaterRef</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::app::icon</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::input</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::texture</span>;
-<span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
-<span class="kw">use</span> <span class="ident">traffloat::config::Scalar</span>;
-<span class="kw">use</span> <span class="ident">traffloat::def::GameDefinition</span>;
-<span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">cargo</span>, <span class="ident">edge</span>, <span class="ident">gas</span>, <span class="ident">liquid</span>, <span class="ident">node</span>, <span class="ident">units</span>};
 
 <span class="doccomment">/// Displays basic info about a node at a corner of the screen.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Comp</span> {
     <span class="ident">props</span>: <span class="ident">Props</span>,
-    <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    <span class="ident">link</span>:  <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Component</span> <span class="kw">for</span> <span class="ident">Comp</span> {
     <span class="kw">type</span> <span class="ident">Message</span> <span class="op">=</span> <span class="ident">Msg</span>;
     <span class="kw">type</span> <span class="ident">Properties</span> <span class="op">=</span> <span class="ident">Props</span>;
 
-    <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident">Props</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">props</span>, <span class="ident">link</span> }
-    }
+    <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident">Props</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span> { <span class="ident">props</span>, <span class="ident">link</span> } }
 
     <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident">Msg</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -308,8 +303,9 @@
     }
 
     <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
-        <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::texture::Icon</span>;
         <span class="kw">use</span> <span class="ident">traffloat::units::RoundedUnit</span>;
+
+        <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::texture::Icon</span>;
 
         <span class="kw">fn</span> <span class="ident">storage_display</span>(
             <span class="ident">size</span>: <span class="kw">impl</span> <span class="ident">RoundedUnit</span> <span class="op">+</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Html</span><span class="op">&gt;</span>,
@@ -401,17 +397,17 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Args</span> {
     <span class="doccomment">/// Entity ID of the node.</span>
-    <span class="kw">pub</span> <span class="ident">entity</span>: <span class="ident">Entity</span>,
+    <span class="kw">pub</span> <span class="ident">entity</span>:    <span class="ident">Entity</span>,
     <span class="doccomment">/// Name of the targeted node.</span>
     <span class="kw">pub</span> <span class="ident">node_name</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Hitpoint value of the targeted node.</span>
-    <span class="kw">pub</span> <span class="ident">hitpoint</span>: <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">hitpoint</span>:  <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Cargo stored in the targeted node.</span>
-    <span class="kw">pub</span> <span class="ident">cargo</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">units::CargoSize</span>, <span class="ident">ArcStr</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">texture::Icon</span><span class="op">&gt;</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">cargo</span>:     <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">units::CargoSize</span>, <span class="ident">ArcStr</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">texture::Icon</span><span class="op">&gt;</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
     <span class="doccomment">/// Liquids stored in the targeted node.</span>
-    <span class="kw">pub</span> <span class="ident">liquid</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">units::LiquidVolume</span>, <span class="ident">ArcStr</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">texture::Icon</span><span class="op">&gt;</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">liquid</span>:    <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">units::LiquidVolume</span>, <span class="ident">ArcStr</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">texture::Icon</span><span class="op">&gt;</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
     <span class="doccomment">/// Gases stored in the targeted node.</span>
-    <span class="kw">pub</span> <span class="ident">gas</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">units::GasVolume</span>, <span class="ident">ArcStr</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">texture::Icon</span><span class="op">&gt;</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">gas</span>:       <span class="ident">SmallVec</span><span class="op">&lt;</span>[(<span class="ident">units::GasVolume</span>, <span class="ident">ArcStr</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">texture::Icon</span><span class="op">&gt;</span>); <span class="number">4</span>]<span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">Visualize</span>)]</span>
@@ -520,9 +516,7 @@
 }
 
 <span class="doccomment">/// Sets up legion ECS for node info rendering.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
-    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">draw_setup</span>)
-}
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> { <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">draw_setup</span>) }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="client" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
     <script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script>

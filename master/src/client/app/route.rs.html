@@ -114,16 +114,12 @@
 <span id="114">114</span>
 <span id="115">115</span>
 <span id="116">116</span>
-<span id="117">117</span>
-<span id="118">118</span>
-<span id="119">119</span>
 </pre><pre class="rust">
 <span class="doccomment">//! The hash routes used for traffloat.</span>
 
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
-<span class="kw">use</span> <span class="ident">wasm_bindgen::JsValue</span>;
-
 <span class="kw">use</span> <span class="ident">traffloat::def</span>;
+<span class="kw">use</span> <span class="ident">wasm_bindgen::JsValue</span>;
 
 <span class="doccomment">/// The top level route.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
@@ -133,7 +129,7 @@
         <span class="doccomment">/// Key name of the scenario.</span>
         <span class="ident">name</span>: <span class="ident">String</span>,
         <span class="doccomment">/// Scenario subroute.</span>
-        <span class="ident">sp</span>: <span class="ident">SpRoute</span>,
+        <span class="ident">sp</span>:   <span class="ident">SpRoute</span>,
     },
     <span class="doccomment">/// The subject is an uploaded scenario.</span>
     <span class="ident">Custom</span> {
@@ -161,9 +157,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Route</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::Scenario</span> { <span class="ident">name</span>: <span class="ident">String::from</span>(<span class="string">&quot;vanilla&quot;</span>), <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span> }
-    }
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span><span class="ident">::Scenario</span> { <span class="ident">name</span>: <span class="ident">String::from</span>(<span class="string">&quot;vanilla&quot;</span>), <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span> } }
 }
 
 <span class="kw">impl</span> <span class="ident">Route</span> {

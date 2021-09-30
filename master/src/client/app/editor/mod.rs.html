@@ -208,17 +208,15 @@
 <span id="208">208</span>
 <span id="209">209</span>
 <span id="210">210</span>
-<span id="211">211</span>
-<span id="212">212</span>
 </pre><pre class="rust">
 <span class="doccomment">//! The scenraio viewer/editor.</span>
 
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
+<span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">def</span>, <span class="ident">save</span>};
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::app::route</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">def</span>, <span class="ident">save</span>};
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">building</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cargo</span>;
@@ -231,8 +229,8 @@
 <span class="doccomment">/// Displays an editor for ducts in an edge.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Comp</span> {
     <span class="ident">props</span>: <span class="ident">Props</span>,
-    <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
-    <span class="ident">file</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">save::SaveFile</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">link</span>:  <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    <span class="ident">file</span>:  <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">save::SaveFile</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">state</span>: <span class="ident">State</span>,
 }
 
@@ -396,9 +394,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Switch</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::Home</span>
-    }
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span><span class="ident">::Home</span> }
 }
 
 <span class="doccomment">/// Events for [`Comp`].</span>
@@ -415,11 +411,11 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Properties</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Props</span> {
     <span class="doccomment">/// Name of the scenario, if it is default.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>:         <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Buffer storing the tsv buffer.</span>
-    <span class="kw">pub</span> <span class="ident">buf</span>: <span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">buf</span>:          <span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
     <span class="doccomment">/// Callback to return to home.</span>
-    <span class="kw">pub</span> <span class="ident">close_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">close_hook</span>:   <span class="ident">Callback</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The intended route to navigate to.</span>
     <span class="kw">pub</span> <span class="ident">intent_route</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Route</span><span class="op">&gt;</span>,
 }

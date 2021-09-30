@@ -39,9 +39,7 @@
     <span class="kw-2">*</span><span class="ident">local_counter</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
 }
 
-<span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">codegen::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">codegen::SetupEcs</span> {
-    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">example_setup</span>)
-}</pre></div>
+<span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">codegen::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">codegen::SetupEcs</span> { <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">example_setup</span>) }</pre></div>
 <p>The parameter in the attribute is the <a href="enum.SystemClass.html" title="SystemClass"><code>SystemClass</code></a> for the system.</p>
 <p>If some of the parameters need to be thread-unsafe,
 apply the <code>#[thread_local]</code> attribute on the function.</p>

@@ -135,26 +135,26 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the crime.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">name</span>:                <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Description of the crime.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">description</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">description</span>:         <span class="ident">ArcStr</span>,
     <span class="doccomment">/// The actual consequence of the crime.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">action</span>: <span class="ident">Action</span>,
+    <span class="ident">action</span>:              <span class="ident">Action</span>,
     <span class="doccomment">/// The skill type to trigger the crime.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">trigger_skill</span>: <span class="ident">skill::TypeId</span>,
+    <span class="ident">trigger_skill</span>:       <span class="ident">skill::TypeId</span>,
     <span class="doccomment">/// The skill range at which this crime may happen.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">trigger_skill_range</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">units::Skill</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The base (unmultiplied) probability per second that an inhabitant starts to commit this</span>
     <span class="doccomment">/// crime.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">probability</span>: <span class="ident">f64</span>,
+    <span class="ident">probability</span>:         <span class="ident">f64</span>,
     <span class="doccomment">/// The change in skill levels after committing this crime.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">skill_change</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">SkillChange</span>; <span class="number">1</span>]<span class="op">&gt;</span>,
+    <span class="ident">skill_change</span>:        <span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">SkillChange</span>; <span class="number">1</span>]<span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// A change in skill level.</span>
@@ -164,7 +164,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SkillChange</span> {
     <span class="doccomment">/// The skill type to change.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">skill</span>: <span class="ident">skill::TypeId</span>,
+    <span class="ident">skill</span>:  <span class="ident">skill::TypeId</span>,
     <span class="doccomment">/// The amount changed.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">change</span>: <span class="ident">units::Skill</span>,

@@ -88,27 +88,27 @@
 <span class="doccomment">//! Edge rendering</span>
 
 <span class="kw">use</span> <span class="ident">safety::Safety</span>;
+<span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Vector</span>};
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">WebGlProgram</span>, <span class="ident">WebGlRenderingContext</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::mesh</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::options</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::util</span>::{<span class="ident">create_program</span>, <span class="ident">AttrLocation</span>, <span class="ident">UniformLocation</span>};
-<span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Vector</span>};
 
 <span class="doccomment">/// Stores the setup data for edge rendering.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Program</span> {
-    <span class="ident">prog</span>: <span class="ident">WebGlProgram</span>,
-    <span class="ident">cylinder</span>: <span class="ident">mesh::PreparedIndexedMesh</span>,
-    <span class="ident">a_pos</span>: <span class="ident">AttrLocation</span>,
-    <span class="ident">a_normal</span>: <span class="ident">AttrLocation</span>,
-    <span class="ident">u_trans</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&gt;</span>,
-    <span class="ident">u_trans_sun</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
-    <span class="ident">u_color</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">nalgebra::Vector4</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">u_ambient</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">u_diffuse</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">u_specular</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="ident">prog</span>:            <span class="ident">WebGlProgram</span>,
+    <span class="ident">cylinder</span>:        <span class="ident">mesh::PreparedIndexedMesh</span>,
+    <span class="ident">a_pos</span>:           <span class="ident">AttrLocation</span>,
+    <span class="ident">a_normal</span>:        <span class="ident">AttrLocation</span>,
+    <span class="ident">u_trans</span>:         <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Matrix</span><span class="op">&gt;</span>,
+    <span class="ident">u_trans_sun</span>:     <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
+    <span class="ident">u_color</span>:         <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">nalgebra::Vector4</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">u_ambient</span>:       <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="ident">u_diffuse</span>:       <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="ident">u_specular</span>:      <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
     <span class="ident">u_specular_coef</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">u_inv_gain</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="ident">u_inv_gain</span>:      <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Program</span> {

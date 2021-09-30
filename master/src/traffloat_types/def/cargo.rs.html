@@ -65,19 +65,19 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the cargo type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">name</span>:         <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Short summary of the cargo type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">summary</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">summary</span>:      <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Long description of the cargo type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">description</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">description</span>:  <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Category of the cargo type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">category</span>: <span class="ident">CategoryId</span>,
+    <span class="ident">category</span>:     <span class="ident">CategoryId</span>,
     <span class="doccomment">/// The texture source path of the cargo.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">texture_src</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">texture_src</span>:  <span class="ident">ArcStr</span>,
     <span class="doccomment">/// The texture name of the cargo.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">texture_name</span>: <span class="ident">ArcStr</span>,
@@ -92,7 +92,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Category</span> {
     <span class="doccomment">/// Title of the cargo category.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">title</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">title</span>:       <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Description of the cargo category.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">description</span>: <span class="ident">ArcStr</span>,

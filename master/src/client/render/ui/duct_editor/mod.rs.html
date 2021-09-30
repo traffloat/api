@@ -166,7 +166,6 @@
 <span id="166">166</span>
 <span id="167">167</span>
 <span id="168">168</span>
-<span id="169">169</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders duct editor.</span>
 
@@ -174,16 +173,15 @@
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
 <span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">Entity</span>, <span class="ident">EntityStore</span>};
-<span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
-
 <span class="kw">use</span> <span class="ident">traffloat::edge</span>;
+<span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">duct</span>;
 
 <span class="doccomment">/// Displays an editor for ducts in an edge.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Comp</span> {
     <span class="ident">props</span>: <span class="ident">Props</span>,
-    <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    <span class="ident">link</span>:  <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
     <span class="ident">state</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span>,
 }
 
@@ -198,15 +196,15 @@
             <span class="self">self</span>.<span class="ident">state</span> <span class="op">=</span>
                 <span class="kw">match</span> (<span class="ident">entry</span>.<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">edge::Size</span><span class="op">&gt;</span>(), <span class="ident">entry</span>.<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">edge::Design</span><span class="op">&gt;</span>()) {
                     (<span class="prelude-val">Ok</span>(<span class="ident">size</span>), <span class="prelude-val">Ok</span>(<span class="ident">design</span>)) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">State</span> {
-                        <span class="ident">size</span>: <span class="ident">size</span>.<span class="ident">radius</span>(),
+                        <span class="ident">size</span>:  <span class="ident">size</span>.<span class="ident">radius</span>(),
                         <span class="ident">ducts</span>: <span class="ident">design</span>
                             .<span class="ident">ducts</span>()
                             .<span class="ident">iter</span>()
                             .<span class="ident">enumerate</span>()
                             .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">index</span>, <span class="ident">duct</span>)<span class="op">|</span> <span class="ident">Circle</span> {
-                                <span class="ident">center</span>: <span class="ident">duct</span>.<span class="ident">center</span>(),
-                                <span class="ident">radius</span>: <span class="ident">duct</span>.<span class="ident">radius</span>(),
-                                <span class="ident">ty</span>: <span class="ident">duct</span>.<span class="ident">ty</span>(),
+                                <span class="ident">center</span>:         <span class="ident">duct</span>.<span class="ident">center</span>(),
+                                <span class="ident">radius</span>:         <span class="ident">duct</span>.<span class="ident">radius</span>(),
+                                <span class="ident">ty</span>:             <span class="ident">duct</span>.<span class="ident">ty</span>(),
                                 <span class="ident">original_index</span>: <span class="prelude-val">Some</span>(<span class="ident">index</span>),
                             })
                             .<span class="ident">collect</span>(),
@@ -300,7 +298,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Properties</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Props</span> {
     <span class="doccomment">/// The yew-independent properties.</span>
-    <span class="kw">pub</span> <span class="ident">args</span>: <span class="ident">Args</span>,
+    <span class="kw">pub</span> <span class="ident">args</span>:   <span class="ident">Args</span>,
     <span class="doccomment">/// The legion setup.</span>
     <span class="kw">pub</span> <span class="ident">legion</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">traffloat::Legion</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
@@ -321,7 +319,7 @@
 
 <span class="doccomment">/// The temporary state of edges in the duct</span>
 <span class="kw">struct</span> <span class="ident">State</span> {
-    <span class="ident">size</span>: <span class="ident">f64</span>,
+    <span class="ident">size</span>:  <span class="ident">f64</span>,
     <span class="ident">ducts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Circle</span><span class="op">&gt;</span>,
 }
 
@@ -329,11 +327,11 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Circle</span> {
     <span class="doccomment">/// Position of the cicle center</span>
-    <span class="kw">pub</span> <span class="ident">center</span>: <span class="ident">edge::CrossSectionPosition</span>,
+    <span class="kw">pub</span> <span class="ident">center</span>:         <span class="ident">edge::CrossSectionPosition</span>,
     <span class="doccomment">/// Radius of the circle</span>
-    <span class="kw">pub</span> <span class="ident">radius</span>: <span class="ident">f64</span>,
+    <span class="kw">pub</span> <span class="ident">radius</span>:         <span class="ident">f64</span>,
     <span class="doccomment">/// Type of the circle.</span>
-    <span class="kw">pub</span> <span class="ident">ty</span>: <span class="ident">edge::DuctType</span>,
+    <span class="kw">pub</span> <span class="ident">ty</span>:             <span class="ident">edge::DuctType</span>,
     <span class="doccomment">/// The index of this circle in [`edge::Design::ducts`] if it is not newly drawn.</span>
     <span class="kw">pub</span> <span class="ident">original_index</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
 }

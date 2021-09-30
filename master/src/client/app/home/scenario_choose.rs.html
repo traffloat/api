@@ -149,8 +149,8 @@
 
 <span class="doccomment">/// Displays a form for choosing a scenario.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Comp</span> {
-    <span class="ident">props</span>: <span class="ident">Props</span>,
-    <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    <span class="ident">props</span>:  <span class="ident">Props</span>,
+    <span class="ident">link</span>:   <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
     <span class="ident">choice</span>: <span class="ident">usize</span>,
 }
 
@@ -165,7 +165,7 @@
                     <span class="prelude-val">Some</span>((<span class="ident">ord</span>, <span class="ident">def</span>)) <span class="op">=</span><span class="op">&gt;</span> {
                         <span class="ident">props</span>.<span class="ident">choose_scenario</span>.<span class="ident">emit</span>(<span class="kw">super</span><span class="ident">::ChooseScenario</span> {
                             <span class="ident">scenario</span>: <span class="prelude-val">Some</span>(<span class="kw">super</span><span class="ident">::Scenario::Url</span>(<span class="ident">def</span>.<span class="ident">path</span>)),
-                            <span class="ident">name</span>: <span class="prelude-val">Some</span>(<span class="ident">def</span>.<span class="ident">id</span>.<span class="ident">into</span>()),
+                            <span class="ident">name</span>:     <span class="prelude-val">Some</span>(<span class="ident">def</span>.<span class="ident">id</span>.<span class="ident">into</span>()),
                             <span class="ident">explicit</span>: <span class="bool-val">false</span>,
                         });
                         <span class="ident">ord</span>
@@ -176,7 +176,7 @@
             <span class="prelude-val">Some</span>(<span class="ident">Route::Custom</span> { .. }) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">props</span>.<span class="ident">choose_scenario</span>.<span class="ident">emit</span>(<span class="kw">super</span><span class="ident">::ChooseScenario</span> {
                     <span class="ident">scenario</span>: <span class="prelude-val">None</span>,
-                    <span class="ident">name</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">name</span>:     <span class="prelude-val">None</span>,
                     <span class="ident">explicit</span>: <span class="bool-val">false</span>,
                 });
                 <span class="ident">scenarios::OPTIONS</span>.<span class="ident">len</span>()
@@ -186,7 +186,7 @@
                     <span class="ident">scenario</span>: <span class="prelude-val">Some</span>(<span class="kw">super</span><span class="ident">::Scenario::Url</span>(
                         <span class="ident">scenarios::OPTIONS</span>.<span class="ident">get</span>(<span class="number">0</span>).<span class="ident">expect</span>(<span class="string">&quot;scenarios::OPTIONS is empty&quot;</span>).<span class="ident">path</span>,
                     )),
-                    <span class="ident">name</span>: <span class="prelude-val">Some</span>(<span class="string">&quot;vanilla&quot;</span>.<span class="ident">into</span>()),
+                    <span class="ident">name</span>:     <span class="prelude-val">Some</span>(<span class="string">&quot;vanilla&quot;</span>.<span class="ident">into</span>()),
                     <span class="ident">explicit</span>: <span class="bool-val">false</span>,
                 });
                 <span class="number">0</span>
@@ -223,7 +223,7 @@
                 };
                 <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">choose_scenario</span>.<span class="ident">emit</span>(<span class="kw">super</span><span class="ident">::ChooseScenario</span> {
                     <span class="ident">scenario</span>: <span class="ident">file</span>.<span class="ident">map</span>(<span class="kw">super</span><span class="ident">::Scenario::File</span>),
-                    <span class="ident">name</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">name</span>:     <span class="prelude-val">None</span>,
                     <span class="ident">explicit</span>: <span class="bool-val">true</span>,
                 });
                 <span class="bool-val">false</span>
@@ -275,7 +275,7 @@
     <span class="doccomment">/// The callback for updating chosen scenario.</span>
     <span class="kw">pub</span> <span class="ident">choose_scenario</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="kw">super</span><span class="ident">::ChooseScenario</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The intended route to navigate to.</span>
-    <span class="kw">pub</span> <span class="ident">intent_route</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Route</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">intent_route</span>:    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Route</span><span class="op">&gt;</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="client" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>

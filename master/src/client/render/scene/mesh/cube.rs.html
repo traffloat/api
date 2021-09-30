@@ -183,12 +183,6 @@
 <span id="183">183</span>
 <span id="184">184</span>
 <span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
 </pre><pre class="rust">
 <span class="doccomment">//! This module generates geometry data for a cube.</span>
 
@@ -224,9 +218,7 @@
     }
 
     <span class="doccomment">/// Inverts this sign in-place.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">invert_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
-        <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">invert</span>();
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">invert_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) { <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">invert</span>(); }
 }
 
 <span class="doccomment">/// A directed axis.</span>
@@ -259,9 +251,9 @@
     <span class="doccomment">/// The direction of the face normal.</span>
     <span class="kw">pub</span> <span class="ident">normal</span>: <span class="ident">DirectedAxis</span>,
     <span class="doccomment">/// The texture down direction.</span>
-    <span class="kw">pub</span> <span class="ident">down</span>: <span class="ident">DirectedAxis</span>,
+    <span class="kw">pub</span> <span class="ident">down</span>:   <span class="ident">DirectedAxis</span>,
     <span class="doccomment">/// The texture right direction.</span>
-    <span class="kw">pub</span> <span class="ident">right</span>: <span class="ident">DirectedAxis</span>,
+    <span class="kw">pub</span> <span class="ident">right</span>:  <span class="ident">DirectedAxis</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Face</span> {
@@ -289,13 +281,9 @@
         <span class="self">self</span>
     }
     <span class="doccomment">/// The position of the upper right coordinates.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upper_right_coords</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">3</span>] {
-        <span class="self">self</span>.<span class="ident">flip_down</span>().<span class="ident">lower_right_coords</span>()
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upper_right_coords</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">3</span>] { <span class="self">self</span>.<span class="ident">flip_down</span>().<span class="ident">lower_right_coords</span>() }
     <span class="doccomment">/// The position of the lower left coordinates.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lower_left_coords</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">3</span>] {
-        <span class="self">self</span>.<span class="ident">flip_right</span>().<span class="ident">lower_right_coords</span>()
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lower_left_coords</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">3</span>] { <span class="self">self</span>.<span class="ident">flip_right</span>().<span class="ident">lower_right_coords</span>() }
     <span class="doccomment">/// The position of the upper left coordinates.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upper_left_coords</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">f32</span>; <span class="number">3</span>] {
         <span class="self">self</span>.<span class="ident">flip_down</span>().<span class="ident">flip_right</span>().<span class="ident">lower_right_coords</span>()

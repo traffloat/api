@@ -338,11 +338,11 @@
 
 <span class="doccomment">/// The homepage for selecting gamemode.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Home</span> {
-    <span class="ident">props</span>: <span class="ident">Props</span>,
-    <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
-    <span class="ident">game_mode</span>: <span class="ident">GameMode</span>,
-    <span class="ident">_loader</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ScenarioLoader</span><span class="op">&gt;</span>,
-    <span class="ident">scenario</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">props</span>:                <span class="ident">Props</span>,
+    <span class="ident">link</span>:                 <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    <span class="ident">game_mode</span>:            <span class="ident">GameMode</span>,
+    <span class="ident">_loader</span>:              <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ScenarioLoader</span><span class="op">&gt;</span>,
+    <span class="ident">scenario</span>:             <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">chosen_scenario_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
 
@@ -413,7 +413,9 @@
 
                 <span class="kw">if</span> <span class="ident">event</span>.<span class="ident">explicit</span> {
                     <span class="kw">let</span> <span class="ident">route</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">event</span>.<span class="ident">name</span>.<span class="ident">as_ref</span>() {
-                        <span class="prelude-val">Some</span>(<span class="ident">name</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Route::Scenario</span> { <span class="ident">name</span>: <span class="ident">name</span>.<span class="ident">to_string</span>(), <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span> },
+                        <span class="prelude-val">Some</span>(<span class="ident">name</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                            <span class="ident">Route::Scenario</span> { <span class="ident">name</span>: <span class="ident">name</span>.<span class="ident">to_string</span>(), <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span> }
+                        }
                         <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Route::Custom</span> { <span class="ident">sp</span>: <span class="ident">SpRoute::Home</span> },
                     };
                     <span class="ident">route</span>.<span class="ident">replace_state</span>();
@@ -476,9 +478,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Props</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
-        <span class="macro">unreachable!</span>()
-    }
+    <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Props</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> { <span class="macro">unreachable!</span>() }
 
     <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
         <span class="macro">html!</span> {
@@ -609,7 +609,7 @@
     <span class="doccomment">/// The source of scenario.</span>
     <span class="kw">pub</span> <span class="ident">scenario</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Scenario</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The name of the scenario.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>:     <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Whether the scenario was explicit chosen</span>
     <span class="doccomment">/// (`false` if inferred from URL).</span>
     <span class="kw">pub</span> <span class="ident">explicit</span>: <span class="ident">bool</span>,
@@ -619,13 +619,13 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Properties</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Props</span> {
     <span class="doccomment">/// Callback to start a singleplayer game.</span>
-    <span class="kw">pub</span> <span class="ident">start_single_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span>(<span class="ident">SpGameArgs</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">start_single_hook</span>:  <span class="ident">Callback</span><span class="op">&lt;</span>(<span class="ident">SpGameArgs</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
     <span class="doccomment">/// Callback to edit a scenario.</span>
     <span class="kw">pub</span> <span class="ident">edit_scenario_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">Rc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>)<span class="op">&gt;</span>,
     <span class="doccomment">/// The intended route to navigate to.</span>
-    <span class="kw">pub</span> <span class="ident">intent_route</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Route</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">intent_route</span>:       <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Route</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Displays an error message.</span>
-    <span class="kw">pub</span> <span class="ident">error</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">error</span>:              <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>

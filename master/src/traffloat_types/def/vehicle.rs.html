@@ -84,27 +84,27 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the vehicle type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">name</span>:         <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Long description of the vehicle type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">description</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">description</span>:  <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Base speed of the vehicle.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Subject to terminal force and operator skill.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">speed</span>: <span class="ident">units::VehicleSpeed</span>,
+    <span class="ident">speed</span>:        <span class="ident">units::VehicleSpeed</span>,
     <span class="doccomment">/// The amount of cargo that the vehicle can carry.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">capacity</span>: <span class="ident">units::CargoSize</span>,
+    <span class="ident">capacity</span>:     <span class="ident">units::CargoSize</span>,
     <span class="doccomment">/// The number of non-driver inhabitants carried by the vehicle.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">passengers</span>: <span class="ident">u32</span>,
+    <span class="ident">passengers</span>:   <span class="ident">u32</span>,
     <span class="doccomment">/// The skill required to operate this vehicle.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">skill</span>: <span class="ident">Skill</span>,
+    <span class="ident">skill</span>:        <span class="ident">Skill</span>,
     <span class="doccomment">/// The texture source path of the vehicle.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">texture_src</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">texture_src</span>:  <span class="ident">ArcStr</span>,
     <span class="doccomment">/// The texture name of the vehicle.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">texture_name</span>: <span class="ident">ArcStr</span>,
@@ -117,10 +117,10 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Skill</span> {
     <span class="doccomment">/// The skill type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">skill</span>: <span class="ident">skill::TypeId</span>,
+    <span class="ident">skill</span>:       <span class="ident">skill::TypeId</span>,
     <span class="doccomment">/// The skill level range of varying speed multipliers.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">levels</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">units::Skill</span><span class="op">&gt;</span>,
+    <span class="ident">levels</span>:      <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">units::Skill</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The multipliers applied on the driving speed.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">multipliers</span>: <span class="ident">catalyst::Multipliers</span>,

@@ -100,7 +100,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Catalyst</span> {
     <span class="doccomment">/// The lerp endpoints of the catalyst.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">range</span>: <span class="ident">CatalystRange</span>,
+    <span class="ident">range</span>:       <span class="ident">CatalystRange</span>,
     <span class="doccomment">/// The multipliers associated with the catalyst.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">multipliers</span>: <span class="ident">Multipliers</span>,
@@ -112,21 +112,21 @@
     <span class="doccomment">/// Existence of cargo</span>
     <span class="ident">Cargo</span> {
         <span class="doccomment">/// Type of cargo catalyst</span>
-        <span class="ident">ty</span>: <span class="ident">cargo::TypeId</span>,
+        <span class="ident">ty</span>:     <span class="ident">cargo::TypeId</span>,
         <span class="doccomment">/// Min and max levels of cargo catalyst</span>
         <span class="ident">levels</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">units::CargoSize</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Existence of liquid</span>
     <span class="ident">Liquid</span> {
         <span class="doccomment">/// Type of liquid catalyst</span>
-        <span class="ident">ty</span>: <span class="ident">liquid::TypeId</span>,
+        <span class="ident">ty</span>:     <span class="ident">liquid::TypeId</span>,
         <span class="doccomment">/// Min and max levels of liquid catalyst</span>
         <span class="ident">levels</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">units::LiquidVolume</span><span class="op">&gt;</span>,
     },
     <span class="doccomment">/// Existence of gas</span>
     <span class="ident">Gas</span> {
         <span class="doccomment">/// Type of gas catalyst</span>
-        <span class="ident">ty</span>: <span class="ident">gas::TypeId</span>,
+        <span class="ident">ty</span>:     <span class="ident">gas::TypeId</span>,
         <span class="doccomment">/// Min and max levels of gas catalyst</span>
         <span class="ident">levels</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">units::GasVolume</span><span class="op">&gt;</span>,
     },
@@ -145,7 +145,7 @@
     <span class="doccomment">/// Only the most skilled operator is counted as a catalyst.</span>
     <span class="ident">Skill</span> {
         <span class="doccomment">/// Type of skill catalyst</span>
-        <span class="ident">ty</span>: <span class="ident">skill::TypeId</span>,
+        <span class="ident">ty</span>:     <span class="ident">skill::TypeId</span>,
         <span class="doccomment">/// Min and max levels of skill catalyst</span>
         <span class="ident">levels</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">units::Skill</span><span class="op">&gt;</span>,
     },
@@ -159,13 +159,13 @@
     <span class="ident">underflow</span>: <span class="ident">f64</span>,
     <span class="doccomment">/// Multiplier to the reaction rate when the catalyst is at the min lerp endpoint.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">min</span>: <span class="ident">f64</span>,
+    <span class="ident">min</span>:       <span class="ident">f64</span>,
     <span class="doccomment">/// Multiplier to the reaction rate when the catalyst is at the max lerp endpoint.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">max</span>: <span class="ident">f64</span>,
+    <span class="ident">max</span>:       <span class="ident">f64</span>,
     <span class="doccomment">/// Multiplier to the reaction rate when the catalyst is in excess.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">overflow</span>: <span class="ident">f64</span>,
+    <span class="ident">overflow</span>:  <span class="ident">f64</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="traffloat_types" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

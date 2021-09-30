@@ -81,12 +81,12 @@
 <span class="doccomment">//! Sun rendering</span>
 
 <span class="kw">use</span> <span class="ident">lazy_static::lazy_static</span>;
+<span class="kw">use</span> <span class="ident">traffloat::space::Vector</span>;
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">WebGlProgram</span>, <span class="ident">WebGlRenderingContext</span>};
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render::util</span>::{
     <span class="ident">create_program</span>, <span class="ident">AttrLocation</span>, <span class="ident">BufferUsage</span>, <span class="ident">FloatBuffer</span>, <span class="ident">IndexBuffer</span>, <span class="ident">UniformLocation</span>,
 };
-<span class="kw">use</span> <span class="ident">traffloat::space::Vector</span>;
 
 <span class="attribute">#[<span class="ident">rustfmt::skip</span>]</span>
 <span class="comment">// f32::sqrt() is not const yet</span>
@@ -101,15 +101,15 @@
 
 <span class="doccomment">/// Stores the setup data for node rendering.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Program</span> {
-    <span class="ident">prog</span>: <span class="ident">WebGlProgram</span>,
-    <span class="ident">pos_buf</span>: <span class="ident">FloatBuffer</span>,
-    <span class="ident">index_buf</span>: <span class="ident">IndexBuffer</span>,
-    <span class="ident">a_pos</span>: <span class="ident">AttrLocation</span>,
-    <span class="ident">u_screen_pos</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
-    <span class="ident">u_color</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span>[<span class="ident">f32</span>; <span class="number">3</span>]<span class="op">&gt;</span>,
+    <span class="ident">prog</span>:          <span class="ident">WebGlProgram</span>,
+    <span class="ident">pos_buf</span>:       <span class="ident">FloatBuffer</span>,
+    <span class="ident">index_buf</span>:     <span class="ident">IndexBuffer</span>,
+    <span class="ident">a_pos</span>:         <span class="ident">AttrLocation</span>,
+    <span class="ident">u_screen_pos</span>:  <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">Vector</span><span class="op">&gt;</span>,
+    <span class="ident">u_color</span>:       <span class="ident">UniformLocation</span><span class="op">&lt;</span>[<span class="ident">f32</span>; <span class="number">3</span>]<span class="op">&gt;</span>,
     <span class="ident">u_body_radius</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
     <span class="ident">u_aura_radius</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">u_aspect</span>: <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="ident">u_aspect</span>:      <span class="ident">UniformLocation</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Program</span> {

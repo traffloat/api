@@ -152,20 +152,16 @@
 <span id="152">152</span>
 <span id="153">153</span>
 <span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Handles mouse interaction.</span>
 
 <span class="kw">use</span> <span class="ident">legion::Entity</span>;
+<span class="kw">use</span> <span class="ident">traffloat::space::Position</span>;
+<span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">appearance</span>, <span class="ident">edge</span>, <span class="ident">node</span>};
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">keyboard</span>, <span class="ident">ScreenPosition</span>};
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::camera::Camera</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render</span>;
-<span class="kw">use</span> <span class="ident">traffloat::space::Position</span>;
-<span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">appearance</span>, <span class="ident">edge</span>, <span class="ident">node</span>};
 
 <span class="doccomment">/// Resource storing the position of the mouse, in the range [0, 1]^2.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">getset::CopyGetters</span>)]</span>
@@ -179,15 +175,11 @@
     <span class="doccomment">/// Creates a new cursor position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Parameters are identical to those of [`ScreenPosition::new`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">position</span>: <span class="ident">ScreenPosition::new</span>(<span class="ident">x</span>, <span class="ident">y</span>) }
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span> { <span class="ident">position</span>: <span class="ident">ScreenPosition::new</span>(<span class="ident">x</span>, <span class="ident">y</span>) } }
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">CursorPosition</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::new</span>(<span class="number">0.5</span>, <span class="number">0.5</span>)
-    }
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span><span class="ident">::new</span>(<span class="number">0.5</span>, <span class="number">0.5</span>) }
 }
 
 <span class="doccomment">/// Resource storing the line segment below the cursor.</span>
@@ -198,7 +190,7 @@
     <span class="ident">proximal</span>: <span class="ident">Position</span>,
     <span class="doccomment">/// The point furthest from but still visible to the camera.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">distal</span>: <span class="ident">Position</span>,
+    <span class="ident">distal</span>:   <span class="ident">Position</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Segment</span> {

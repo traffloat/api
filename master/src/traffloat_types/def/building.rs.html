@@ -122,33 +122,33 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the building type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">name</span>:        <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Short summary of the building type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">summary</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">summary</span>:     <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Long description of the building type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">description</span>: <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Category of the building type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">category</span>: <span class="ident">CategoryId</span>,
+    <span class="ident">category</span>:    <span class="ident">CategoryId</span>,
     <span class="doccomment">/// Shape of the building.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If multiple shapes are provided, they are all rendered together in order.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">shapes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>,
+    <span class="ident">shapes</span>:      <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Maximum hitpoint of a building.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The actual hitpoint is subject to asteroid and fire damage.</span>
     <span class="doccomment">/// It can be restored by construction work.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">hitpoint</span>: <span class="ident">units::Hitpoint</span>,
+    <span class="ident">hitpoint</span>:    <span class="ident">units::Hitpoint</span>,
     <span class="doccomment">/// Storage provided by a building</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">storage</span>: <span class="ident">Storage</span>,
+    <span class="ident">storage</span>:     <span class="ident">Storage</span>,
     <span class="doccomment">/// Extra features associated with the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">features</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Feature</span><span class="op">&gt;</span>,
+    <span class="ident">features</span>:    <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Feature</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// Shape of a building.</span>
@@ -158,13 +158,13 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Shape</span> {
     <span class="doccomment">/// The unit model type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">unit</span>: <span class="ident">geometry::Unit</span>,
+    <span class="ident">unit</span>:         <span class="ident">geometry::Unit</span>,
     <span class="doccomment">/// The transformation matrix from the unit model to this shape.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">transform</span>: <span class="ident">Matrix</span>,
+    <span class="ident">transform</span>:    <span class="ident">Matrix</span>,
     <span class="doccomment">/// The texture source path of the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">texture_src</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">texture_src</span>:  <span class="ident">ArcStr</span>,
     <span class="doccomment">/// The texture name of the building.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">texture_name</span>: <span class="ident">ArcStr</span>,
@@ -180,13 +180,13 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Storage</span> {
     <span class="doccomment">/// Cargo storage provided</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">cargo</span>: <span class="ident">units::CargoSize</span>,
+    <span class="ident">cargo</span>:  <span class="ident">units::CargoSize</span>,
     <span class="doccomment">/// Liquid storage provided</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">liquid</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">units::LiquidVolume</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Gas storage provided</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">gas</span>: <span class="ident">units::GasVolume</span>,
+    <span class="ident">gas</span>:    <span class="ident">units::GasVolume</span>,
 }
 
 <span class="doccomment">/// Identifies a building category</span>
@@ -198,7 +198,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Category</span> {
     <span class="doccomment">/// Title of the building category.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">title</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">title</span>:       <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Description of the building category.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">description</span>: <span class="ident">ArcStr</span>,

@@ -29,10 +29,6 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
 </pre><pre class="rust">
 <span class="doccomment">//! A configuration is the special rules defined by the game host in a world.</span>
 <span class="doccomment">//!</span>
@@ -43,15 +39,13 @@
 
 <span class="kw">use</span> <span class="ident">std::f64::consts::PI</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>;
-
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::time</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::SetupEcs</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">units</span>, <span class="ident">SetupEcs</span>};
 
 <span class="doccomment">/// Scalar configuration values</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Scalar</span> {
     <span class="doccomment">/// The angle the sun moves per tick</span>
-    <span class="kw">pub</span> <span class="ident">sun_speed</span>: <span class="ident">time::Rate</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">sun_speed</span>:         <span class="ident">time::Rate</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The threshold below which liquid storages are considered zero.</span>
     <span class="kw">pub</span> <span class="ident">negligible_volume</span>: <span class="ident">units::LiquidVolume</span>,
 }
@@ -59,16 +53,14 @@
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Scalar</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span> {
-            <span class="ident">sun_speed</span>: <span class="ident">time::Rate</span>(<span class="ident">PI</span> <span class="op">*</span> <span class="number">2.</span> <span class="op">/</span> <span class="number">300.</span> <span class="op">/</span> <span class="number">10.</span>), <span class="comment">// 5 minutes = 1 year</span>
+            <span class="ident">sun_speed</span>:         <span class="ident">time::Rate</span>(<span class="ident">PI</span> <span class="op">*</span> <span class="number">2.</span> <span class="op">/</span> <span class="number">300.</span> <span class="op">/</span> <span class="number">10.</span>), <span class="comment">// 5 minutes = 1 year</span>
             <span class="ident">negligible_volume</span>: <span class="ident">units::LiquidVolume</span>(<span class="number">1.</span>),
         }
     }
 }
 
 <span class="doccomment">/// Initializes ECS</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SetupEcs</span> {
-    <span class="ident">setup</span>
-}
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SetupEcs</span> { <span class="ident">setup</span> }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>

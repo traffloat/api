@@ -55,8 +55,6 @@
 <span id="55">55</span>
 <span id="56">56</span>
 <span id="57">57</span>
-<span id="58">58</span>
-<span id="59">59</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -70,16 +68,14 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Dimension</span> {
     <span class="doccomment">/// Number of pixels horizontally.</span>
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">width</span>:  <span class="ident">u32</span>,
     <span class="doccomment">/// Number of pixels vertically.</span>
     <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">u32</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Dimension</span> {
     <span class="doccomment">/// Aspect ratio of the dimension</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aspect</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-        (<span class="self">self</span>.<span class="ident">width</span> <span class="kw">as</span> <span class="ident">f64</span>) <span class="op">/</span> (<span class="self">self</span>.<span class="ident">height</span> <span class="kw">as</span> <span class="ident">f64</span>)
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aspect</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> { (<span class="self">self</span>.<span class="ident">width</span> <span class="kw">as</span> <span class="ident">f64</span>) <span class="op">/</span> (<span class="self">self</span>.<span class="ident">height</span> <span class="kw">as</span> <span class="ident">f64</span>) }
 }
 
 <span class="doccomment">/// A shared reference to a canvas.</span>
@@ -93,7 +89,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LayersStruct</span> {
     <span class="doccomment">/// The background render layer</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">bg</span>: <span class="ident">bg::Canvas</span>,
+    <span class="ident">bg</span>:    <span class="ident">bg::Canvas</span>,
     <span class="doccomment">/// The object render layer</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">scene</span>: <span class="ident">scene::Canvas</span>,

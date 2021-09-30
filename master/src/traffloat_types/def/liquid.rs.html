@@ -168,24 +168,6 @@
 <span id="168">168</span>
 <span id="169">169</span>
 <span id="170">170</span>
-<span id="171">171</span>
-<span id="172">172</span>
-<span id="173">173</span>
-<span id="174">174</span>
-<span id="175">175</span>
-<span id="176">176</span>
-<span id="177">177</span>
-<span id="178">178</span>
-<span id="179">179</span>
-<span id="180">180</span>
-<span id="181">181</span>
-<span id="182">182</span>
-<span id="183">183</span>
-<span id="184">184</span>
-<span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Liquid definitions.</span>
 
@@ -210,19 +192,19 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Type</span> {
     <span class="doccomment">/// Name of the liquid type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">name</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">name</span>:         <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Short summary of the liquid type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">summary</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">summary</span>:      <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Long description of the liquid type.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">description</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">description</span>:  <span class="ident">ArcStr</span>,
     <span class="doccomment">/// Viscosity of a liquid.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">viscosity</span>: <span class="ident">units::LiquidViscosity</span>,
+    <span class="ident">viscosity</span>:    <span class="ident">units::LiquidViscosity</span>,
     <span class="doccomment">/// The texture source path of the liquid.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">texture_src</span>: <span class="ident">ArcStr</span>,
+    <span class="ident">texture_src</span>:  <span class="ident">ArcStr</span>,
     <span class="doccomment">/// The texture name of the liquid.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">texture_name</span>: <span class="ident">ArcStr</span>,
@@ -233,7 +215,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Mixer</span> {
     <span class="doccomment">/// The default type for mixing.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">default</span>: <span class="ident">TypeId</span>,
+    <span class="ident">default</span>:   <span class="ident">TypeId</span>,
     <span class="doccomment">/// Specific addition formulas.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">specifics</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">Pair</span>, <span class="ident">TypeId</span><span class="op">&gt;</span>,
@@ -246,39 +228,25 @@
             <span class="kw">fn</span> <span class="ident">less</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span>;
             <span class="kw">fn</span> <span class="ident">greater</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span>;
 
-            <span class="kw">fn</span> <span class="ident">tuple</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">&amp;</span><span class="ident">TypeId</span>, <span class="kw-2">&amp;</span><span class="ident">TypeId</span>) {
-                (<span class="self">self</span>.<span class="ident">less</span>(), <span class="self">self</span>.<span class="ident">greater</span>())
-            }
+            <span class="kw">fn</span> <span class="ident">tuple</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">&amp;</span><span class="ident">TypeId</span>, <span class="kw-2">&amp;</span><span class="ident">TypeId</span>) { (<span class="self">self</span>.<span class="ident">less</span>(), <span class="self">self</span>.<span class="ident">greater</span>()) }
         }
 
         <span class="kw">impl</span> <span class="ident">PairRef</span> <span class="kw">for</span> <span class="ident">Pair</span> {
-            <span class="kw">fn</span> <span class="ident">less</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span> {
-                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">types</span>[<span class="number">0</span>]
-            }
-            <span class="kw">fn</span> <span class="ident">greater</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span> {
-                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">types</span>[<span class="number">1</span>]
-            }
+            <span class="kw">fn</span> <span class="ident">less</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span> { <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">types</span>[<span class="number">0</span>] }
+            <span class="kw">fn</span> <span class="ident">greater</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span> { <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">types</span>[<span class="number">1</span>] }
         }
 
         <span class="kw">impl</span> <span class="ident">PairRef</span> <span class="kw">for</span> (<span class="kw-2">&amp;</span><span class="ident">TypeId</span>, <span class="kw-2">&amp;</span><span class="ident">TypeId</span>) {
-            <span class="kw">fn</span> <span class="ident">less</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span> {
-                <span class="self">self</span>.<span class="number">0</span>
-            }
-            <span class="kw">fn</span> <span class="ident">greater</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span> {
-                <span class="self">self</span>.<span class="number">1</span>
-            }
+            <span class="kw">fn</span> <span class="ident">less</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span> { <span class="self">self</span>.<span class="number">0</span> }
+            <span class="kw">fn</span> <span class="ident">greater</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">TypeId</span> { <span class="self">self</span>.<span class="number">1</span> }
         }
 
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">Borrow</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Pair</span> {
-            <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;b</span>) {
-                <span class="self">self</span>
-            }
+            <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;b</span>) { <span class="self">self</span> }
         }
 
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">Borrow</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="kw">for</span> (<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">TypeId</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">TypeId</span>) {
-            <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;b</span>) {
-                <span class="self">self</span>
-            }
+            <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;b</span>) { <span class="self">self</span> }
         }
 
         <span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {
@@ -289,14 +257,10 @@
         <span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {}
 
         <span class="kw">impl</span> <span class="ident">PartialOrd</span> <span class="kw">for</span> <span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {
-            <span class="kw">fn</span> <span class="ident">partial_cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cmp::Ordering</span><span class="op">&gt;</span> {
-                <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">cmp</span>(<span class="ident">other</span>))
-            }
+            <span class="kw">fn</span> <span class="ident">partial_cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cmp::Ordering</span><span class="op">&gt;</span> { <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">cmp</span>(<span class="ident">other</span>)) }
         }
         <span class="kw">impl</span> <span class="ident">Ord</span> <span class="kw">for</span> <span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {
-            <span class="kw">fn</span> <span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">cmp::Ordering</span> {
-                <span class="self">self</span>.<span class="ident">tuple</span>().<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">other</span>.<span class="ident">tuple</span>())
-            }
+            <span class="kw">fn</span> <span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">cmp::Ordering</span> { <span class="self">self</span>.<span class="ident">tuple</span>().<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">other</span>.<span class="ident">tuple</span>()) }
         }
 
         <span class="self">self</span>.<span class="ident">specifics</span>.<span class="ident">get</span>::<span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">PairRef</span> <span class="op">+</span> <span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span>(<span class="ident">a</span>, <span class="ident">b</span>))
@@ -315,7 +279,7 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">struct</span> <span class="ident">Serde</span> {
-    <span class="ident">default</span>: <span class="ident">TypeId</span>,
+    <span class="ident">default</span>:  <span class="ident">TypeId</span>,
     <span class="ident">formulas</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Entry</span><span class="op">&gt;</span>,
 }
 
@@ -323,13 +287,13 @@
 <span class="kw">struct</span> <span class="ident">Entry</span> {
     <span class="ident">augend</span>: <span class="ident">TypeId</span>,
     <span class="ident">addend</span>: <span class="ident">TypeId</span>,
-    <span class="ident">sum</span>: <span class="ident">TypeId</span>,
+    <span class="ident">sum</span>:    <span class="ident">TypeId</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Serialize</span> <span class="kw">for</span> <span class="ident">Mixer</span> {
     <span class="kw">fn</span> <span class="ident">serialize</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Serializer</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ser</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S::Ok</span>, <span class="ident">S::Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">serde</span> <span class="op">=</span> <span class="ident">Serde</span> {
-            <span class="ident">default</span>: <span class="self">self</span>.<span class="ident">default</span>.<span class="ident">clone</span>(),
+            <span class="ident">default</span>:  <span class="self">self</span>.<span class="ident">default</span>.<span class="ident">clone</span>(),
             <span class="ident">formulas</span>: <span class="self">self</span>
                 .<span class="ident">specifics</span>
                 .<span class="ident">iter</span>()
@@ -346,7 +310,7 @@
     <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">de</span>: <span class="ident">D</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">D::Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">serde</span> <span class="op">=</span> <span class="ident">Serde::deserialize</span>(<span class="ident">de</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
-            <span class="ident">default</span>: <span class="ident">serde</span>.<span class="ident">default</span>,
+            <span class="ident">default</span>:   <span class="ident">serde</span>.<span class="ident">default</span>,
             <span class="ident">specifics</span>: <span class="ident">serde</span>
                 .<span class="ident">formulas</span>
                 .<span class="ident">into_iter</span>()

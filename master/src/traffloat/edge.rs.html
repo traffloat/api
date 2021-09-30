@@ -385,14 +385,6 @@
 <span id="385">385</span>
 <span id="386">386</span>
 <span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
-<span id="394">394</span>
-<span id="395">395</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Edge management.</span>
 <span class="doccomment">//!</span>
@@ -417,7 +409,7 @@
     <span class="ident">from</span>: <span class="ident">Entity</span>,
     <span class="doccomment">/// The &quot;dest&quot; node</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">to</span>: <span class="ident">Entity</span>,
+    <span class="ident">to</span>:   <span class="ident">Entity</span>,
 }
 
 <span class="macro">codegen::component_depends!</span> {
@@ -453,24 +445,16 @@
 
 <span class="kw">impl</span> <span class="ident">CrossSectionPosition</span> {
     <span class="doccomment">/// Create a new position from the two components.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">nalgebra::Vector2::new</span>(<span class="ident">x</span>, <span class="ident">y</span>))
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span>(<span class="ident">nalgebra::Vector2::new</span>(<span class="ident">x</span>, <span class="ident">y</span>)) }
 
     <span class="doccomment">/// The vector from the center to the position.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vector</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">nalgebra::Vector2</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vector</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">nalgebra::Vector2</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> { <span class="self">self</span>.<span class="number">0</span> }
 
     <span class="doccomment">/// The X-coordinate of [`Self::vector`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">x</span>
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> { <span class="self">self</span>.<span class="number">0</span>.<span class="ident">x</span> }
 
     <span class="doccomment">/// The Y-coordinate of [`Self::vector`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">y</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">y</span>
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">y</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> { <span class="self">self</span>.<span class="number">0</span>.<span class="ident">y</span> }
 }
 
 <span class="doccomment">/// The geometric design of the edge.</span>
@@ -498,7 +482,7 @@
     <span class="ident">radius</span>: <span class="ident">f64</span>,
     <span class="doccomment">/// The type of duct.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">ty</span>: <span class="ident">DuctType</span>,
+    <span class="ident">ty</span>:     <span class="ident">DuctType</span>,
     <span class="doccomment">/// The entity storing the duct attributes.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">entity</span>: <span class="ident">Entity</span>,
@@ -521,7 +505,7 @@
     <span class="doccomment">/// They refer to the &quot;from&quot; and &quot;to&quot; IDs, and do not change when direction is flipped.</span>
     <span class="ident">Liquid</span> {
         <span class="doccomment">/// The direction that the pipe runs in</span>
-        <span class="ident">dir</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Direction</span><span class="op">&gt;</span>,
+        <span class="ident">dir</span>:          <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Direction</span><span class="op">&gt;</span>,
         <span class="doccomment">/// The storage ordinal in the &quot;from&quot; node.</span>
         <span class="doccomment">///</span>
         <span class="doccomment">/// This value does **not** swap with [`to_storage`] when the direction is flipped.</span>
@@ -529,7 +513,7 @@
         <span class="doccomment">/// The storage ordinal in the &quot;to&quot; node.</span>
         <span class="doccomment">///</span>
         <span class="doccomment">/// This value does **not** swap with [`from_storage`] when the direction is flipped.</span>
-        <span class="ident">to_storage</span>: <span class="ident">usize</span>,
+        <span class="ident">to_storage</span>:   <span class="ident">usize</span>,
     },
     <span class="doccomment">/// A cable that electricity can pass through.</span>
     <span class="doccomment">///</span>
@@ -629,7 +613,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AddEvent</span> {
     <span class="doccomment">/// The added edge ID.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">edge</span>: <span class="ident">Id</span>,
+    <span class="ident">edge</span>:   <span class="ident">Id</span>,
     <span class="doccomment">/// The added edge entity.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="ident">entity</span>: <span class="ident">Entity</span>,
@@ -680,10 +664,10 @@
 <span class="doccomment">/// An event to schedule requests to initialize new edges.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateRequest</span> {
-    <span class="ident">from</span>: <span class="ident">Entity</span>,
-    <span class="ident">to</span>: <span class="ident">Entity</span>,
-    <span class="ident">size</span>: <span class="ident">f64</span>,
-    <span class="ident">hp</span>: <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
+    <span class="ident">from</span>:   <span class="ident">Entity</span>,
+    <span class="ident">to</span>:     <span class="ident">Entity</span>,
+    <span class="ident">size</span>:   <span class="ident">f64</span>,
+    <span class="ident">hp</span>:     <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
     <span class="ident">design</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">save::SavedDuct</span><span class="op">&gt;</span>,
 }
 
@@ -703,7 +687,7 @@
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">duct</span><span class="op">|</span> <span class="ident">Duct</span> {
                 <span class="ident">center</span>: <span class="ident">duct</span>.<span class="ident">center</span>,
                 <span class="ident">radius</span>: <span class="ident">duct</span>.<span class="ident">radius</span>,
-                <span class="ident">ty</span>: <span class="ident">duct</span>.<span class="ident">ty</span>,
+                <span class="ident">ty</span>:     <span class="ident">duct</span>.<span class="ident">ty</span>,
                 <span class="ident">entity</span>: <span class="ident">duct</span>.<span class="ident">ty</span>.<span class="ident">create_entity</span>(
                     <span class="ident">entities</span>,
                     <span class="ident">world</span>,
@@ -747,7 +731,7 @@
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">duct</span><span class="op">|</span> <span class="ident">Duct</span> {
                 <span class="ident">center</span>: <span class="ident">duct</span>.<span class="ident">center</span>,
                 <span class="ident">radius</span>: <span class="ident">duct</span>.<span class="ident">radius</span>,
-                <span class="ident">ty</span>: <span class="ident">duct</span>.<span class="ident">ty</span>,
+                <span class="ident">ty</span>:     <span class="ident">duct</span>.<span class="ident">ty</span>,
                 <span class="ident">entity</span>: <span class="ident">duct</span>.<span class="ident">ty</span>.<span class="ident">create_entity</span>(<span class="ident">entities</span>, <span class="ident">world</span>, <span class="ident">from</span>, <span class="ident">to</span>, <span class="ident">duct</span>.<span class="ident">radius</span>),
             })
             .<span class="ident">collect</span>();
@@ -771,10 +755,10 @@
     <span class="doccomment">/// Saves all data related to an edge.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Edge</span> {
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">from</span>: <span class="ident">node::Id</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">to</span>: <span class="ident">node::Id</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">size</span>: <span class="kw">super</span><span class="ident">::Size</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">design</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SavedDuct</span><span class="op">&gt;</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">from</span>:     <span class="ident">node::Id</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">to</span>:       <span class="ident">node::Id</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">size</span>:     <span class="kw">super</span><span class="ident">::Size</span>,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">design</span>:   <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SavedDuct</span><span class="op">&gt;</span>,
         <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">hitpoint</span>: <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
     }
 
@@ -786,7 +770,7 @@
         <span class="doccomment">/// Radius of the duct.</span>
         <span class="kw">pub</span> <span class="ident">radius</span>: <span class="ident">f64</span>,
         <span class="doccomment">/// Type of the duct.</span>
-        <span class="kw">pub</span> <span class="ident">ty</span>: <span class="ident">DuctType</span>,
+        <span class="kw">pub</span> <span class="ident">ty</span>:     <span class="ident">DuctType</span>,
     }
 }
 </pre></div>

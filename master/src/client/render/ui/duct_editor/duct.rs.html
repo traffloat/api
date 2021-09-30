@@ -143,8 +143,6 @@
 <span id="143">143</span>
 <span id="144">144</span>
 <span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders a single duct.</span>
 
@@ -155,16 +153,14 @@
 <span class="doccomment">/// Displays an editor for ducts in an edge.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Comp</span> {
     <span class="ident">props</span>: <span class="ident">Props</span>,
-    <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    <span class="ident">link</span>:  <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Component</span> <span class="kw">for</span> <span class="ident">Comp</span> {
     <span class="kw">type</span> <span class="ident">Message</span> <span class="op">=</span> <span class="ident">Msg</span>;
     <span class="kw">type</span> <span class="ident">Properties</span> <span class="op">=</span> <span class="ident">Props</span>;
 
-    <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident">Props</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">props</span>, <span class="ident">link</span> }
-    }
+    <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident">Props</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span> { <span class="ident">props</span>, <span class="ident">link</span> } }
 
     <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident">Msg</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
         <span class="kw">match</span> <span class="ident">msg</span> {
@@ -274,16 +270,16 @@
     <span class="doccomment">/// The radius of the duct.</span>
     <span class="kw">pub</span> <span class="ident">center</span>: <span class="ident">edge::CrossSectionPosition</span>,
     <span class="doccomment">/// The type of the duct.</span>
-    <span class="kw">pub</span> <span class="ident">ty</span>: <span class="ident">edge::DuctType</span>,
+    <span class="kw">pub</span> <span class="ident">ty</span>:     <span class="ident">edge::DuctType</span>,
     <span class="doccomment">/// The index of the duct in `super::Comp::state`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is the *new* index, not the old index as in [`super::Circle::original_index`].</span>
-    <span class="kw">pub</span> <span class="ident">index</span>: <span class="ident">usize</span>,
+    <span class="kw">pub</span> <span class="ident">index</span>:  <span class="ident">usize</span>,
 
     <span class="doccomment">/// When the user presses down the circle.</span>
     <span class="kw">pub</span> <span class="ident">mouse_down</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">MouseEvent</span><span class="op">&gt;</span>,
     <span class="doccomment">/// When the user releases mouse on the circle.</span>
-    <span class="kw">pub</span> <span class="ident">mouse_up</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">MouseEvent</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">mouse_up</span>:   <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">MouseEvent</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">fn</span> <span class="ident">duct_fill</span>(<span class="ident">ty</span>: <span class="ident">edge::DuctType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {

@@ -224,8 +224,6 @@
 <span id="224">224</span>
 <span id="225">225</span>
 <span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -238,13 +236,13 @@
 
 <span class="doccomment">/// Wrapper for UI elements.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Wrapper</span> {
-    <span class="ident">props</span>: <span class="ident">Props</span>,
-    <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    <span class="ident">props</span>:             <span class="ident">Props</span>,
+    <span class="ident">link</span>:              <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
     <span class="ident">node_preview_args</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">node_preview::Args</span><span class="op">&gt;</span>,
     <span class="ident">edge_preview_args</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">edge_preview::Args</span><span class="op">&gt;</span>,
-    <span class="ident">duct_editor_args</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">duct_editor::Args</span><span class="op">&gt;</span>,
-    <span class="ident">options_opened</span>: <span class="ident">bool</span>,
-    <span class="ident">display_toolbar</span>: <span class="ident">bool</span>,
+    <span class="ident">duct_editor_args</span>:  <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">duct_editor::Args</span><span class="op">&gt;</span>,
+    <span class="ident">options_opened</span>:    <span class="ident">bool</span>,
+    <span class="ident">display_toolbar</span>:   <span class="ident">bool</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Component</span> <span class="kw">for</span> <span class="ident">Wrapper</span> {
@@ -413,9 +411,7 @@
 
 <span class="kw">impl</span> <span class="ident">UpdaterRef</span> {
     <span class="doccomment">/// Updates the callback.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Update</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">cell</span>.<span class="ident">replace</span>(<span class="prelude-val">Some</span>(<span class="ident">callback</span>));
-    }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Update</span><span class="op">&gt;</span>) { <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">cell</span>.<span class="ident">replace</span>(<span class="prelude-val">Some</span>(<span class="ident">callback</span>)); }
 
     <span class="doccomment">/// Invokes the callback if it exists.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">call</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">update</span>: <span class="ident">Update</span>) {

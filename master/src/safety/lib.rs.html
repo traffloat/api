@@ -147,8 +147,6 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Safety wrappers</span>
 
@@ -195,9 +193,7 @@
     <span class="kw">fn</span> <span class="ident">lossy_trunc_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>;
 }
 <span class="kw">impl</span> <span class="ident">LossyTrunc</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">f64</span> {
-    <span class="kw">fn</span> <span class="ident">lossy_trunc_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
-        <span class="self">self</span> <span class="kw">as</span> <span class="ident">f32</span>
-    }
+    <span class="kw">fn</span> <span class="ident">lossy_trunc_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> { <span class="self">self</span> <span class="kw">as</span> <span class="ident">f32</span> }
 }
 
 <span class="doccomment">/// Converts an integer to a float probably losslessly</span>

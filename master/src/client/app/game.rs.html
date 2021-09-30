@@ -350,44 +350,38 @@
 <span id="350">350</span>
 <span id="351">351</span>
 <span id="352">352</span>
-<span id="353">353</span>
-<span id="354">354</span>
-<span id="355">355</span>
-<span id="356">356</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">std::cell</span>::{<span class="self">self</span>, <span class="ident">RefCell</span>};
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
 
+<span class="kw">use</span> <span class="ident">safety::Safety</span>;
+<span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
+<span class="kw">use</span> <span class="ident">traffloat::SetupEcs</span>;
 <span class="kw">use</span> <span class="ident">yew::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">yew::services</span>::{<span class="ident">interval</span>, <span class="ident">keyboard</span> <span class="kw">as</span> <span class="ident">kb_srv</span>, <span class="ident">render</span> <span class="kw">as</span> <span class="ident">render_srv</span>, <span class="ident">resize</span>};
 
 <span class="kw">use</span> <span class="kw">super</span><span class="ident">::GameArgs</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">input</span>, <span class="ident">render</span>, <span class="ident">util</span>};
-<span class="kw">use</span> <span class="ident">safety::Safety</span>;
-<span class="kw">use</span> <span class="ident">traffloat::clock::Clock</span>;
-<span class="kw">use</span> <span class="ident">traffloat::SetupEcs</span>;
 
 <span class="doccomment">/// HTML interface of the game page</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Game</span> {
-    <span class="ident">_props</span>: <span class="ident">Props</span>,
-    <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
-    <span class="ident">legion</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">traffloat::Legion</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">_resize_task</span>: <span class="ident">resize::ResizeTask</span>,
-    <span class="ident">_render_task</span>: <span class="ident">render_srv::RenderTask</span>,
+    <span class="ident">_props</span>:           <span class="ident">Props</span>,
+    <span class="ident">link</span>:             <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>,
+    <span class="ident">legion</span>:           <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">traffloat::Legion</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">_resize_task</span>:     <span class="ident">resize::ResizeTask</span>,
+    <span class="ident">_render_task</span>:     <span class="ident">render_srv::RenderTask</span>,
     <span class="ident">_simulation_task</span>: <span class="ident">interval::IntervalTask</span>,
-    <span class="ident">_keyboard_task</span>: [<span class="ident">kb_srv::KeyListenerHandle</span>; <span class="number">2</span>],
-    <span class="ident">render_comm</span>: <span class="ident">render::Comm</span>,
-    <span class="ident">bg_canvas_ref</span>: <span class="ident">NodeRef</span>,
+    <span class="ident">_keyboard_task</span>:   [<span class="ident">kb_srv::KeyListenerHandle</span>; <span class="number">2</span>],
+    <span class="ident">render_comm</span>:      <span class="ident">render::Comm</span>,
+    <span class="ident">bg_canvas_ref</span>:    <span class="ident">NodeRef</span>,
     <span class="ident">scene_canvas_ref</span>: <span class="ident">NodeRef</span>,
-    <span class="ident">debug_ref</span>: <span class="ident">NodeRef</span>,
-    <span class="ident">layers_cache</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">render::Layers</span>, <span class="ident">render::Dimension</span>)<span class="op">&gt;</span>,
+    <span class="ident">debug_ref</span>:        <span class="ident">NodeRef</span>,
+    <span class="ident">layers_cache</span>:     <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">render::Layers</span>, <span class="ident">render::Dimension</span>)<span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Game</span> {
-    <span class="kw">fn</span> <span class="ident">legion_mut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">cell::RefMut</span><span class="op">&lt;</span><span class="ident">traffloat::Legion</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">borrow_mut</span>()
-    }
+    <span class="kw">fn</span> <span class="ident">legion_mut</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">cell::RefMut</span><span class="op">&lt;</span><span class="ident">traffloat::Legion</span><span class="op">&gt;</span> { <span class="self">self</span>.<span class="ident">legion</span>.<span class="ident">borrow_mut</span>() }
 
     <span class="kw">fn</span> <span class="ident">simulate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         {
@@ -619,9 +613,7 @@
         <span class="bool-val">false</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Props</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
-        <span class="macro">unreachable!</span>()
-    }
+    <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Props</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> { <span class="macro">unreachable!</span>() }
 
     <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
         <span class="macro">style!</span> { <span class="kw">static</span> <span class="ident">BASE_CANVAS</span> <span class="op">=</span>
@@ -707,7 +699,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Properties</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Props</span> {
     <span class="doccomment">/// Arguments for the game.</span>
-    <span class="kw">pub</span> <span class="ident">args</span>: <span class="ident">GameArgs</span>,
+    <span class="kw">pub</span> <span class="ident">args</span>:       <span class="ident">GameArgs</span>,
     <span class="doccomment">/// Error handler.</span>
     <span class="kw">pub</span> <span class="ident">error_hook</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
