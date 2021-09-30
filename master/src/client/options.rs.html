@@ -318,6 +318,8 @@
 <span id="318">318</span>
 <span id="319">319</span>
 <span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Client settings</span>
 
@@ -364,7 +366,9 @@
 }
 
 <span class="doccomment">/// Node rendering settings.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(
+    <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::MutGetters</span>,
+)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Node</span> {
     <span class="doccomment">/// Whether nodes should be rendered.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>, <span class="ident">get_mut</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
