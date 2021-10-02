@@ -45,7 +45,7 @@
 </pre><pre class="rust">
 <span class="doccomment">//! Manages client-side graphics rendering.</span>
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">debug_assertions</span>)]</span>
+<span class="comment">// #[cfg(debug_assertions)]</span>
 <span class="macro">macro_rules!</span> <span class="ident">glsl</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">literal</span>) <span class="op">=</span><span class="op">&gt;</span> {
         [
@@ -57,17 +57,17 @@
     };
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">debug_assertions</span>))]</span>
-<span class="macro">macro_rules!</span> <span class="ident">glsl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">literal</span>) <span class="op">=</span><span class="op">&gt;</span> {
-        [
-            <span class="macro">concat!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>, <span class="string">&quot;.vert&quot;</span>),
-            <span class="macro">include_str!</span>(<span class="macro">concat!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>, <span class="string">&quot;.min.vert&quot;</span>)),
-            <span class="macro">concat!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>, <span class="string">&quot;.frag&quot;</span>),
-            <span class="macro">include_str!</span>(<span class="macro">concat!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>, <span class="string">&quot;.min.frag&quot;</span>)),
-        ]
-    };
-}
+<span class="comment">// #[cfg(not(debug_assertions))]</span>
+<span class="comment">// macro_rules! glsl {</span>
+<span class="comment">//     ($name:literal) =&gt; {</span>
+<span class="comment">//         [</span>
+<span class="comment">//             concat!($name, &quot;.vert&quot;),</span>
+<span class="comment">//             include_str!(concat!($name, &quot;.min.vert&quot;)),</span>
+<span class="comment">//             concat!($name, &quot;.frag&quot;),</span>
+<span class="comment">//             include_str!(concat!($name, &quot;.min.frag&quot;)),</span>
+<span class="comment">//         ]</span>
+<span class="comment">//     };</span>
+<span class="comment">// }</span>
 
 <span class="kw">mod</span> <span class="ident">layers</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">layers</span>::{<span class="ident">Dimension</span>, <span class="ident">Layers</span>, <span class="ident">LayersStruct</span>};
