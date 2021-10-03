@@ -255,8 +255,6 @@
 <span id="255">255</span>
 <span id="256">256</span>
 <span id="257">257</span>
-<span id="258">258</span>
-<span id="259">259</span>
 </pre><pre class="rust">
 <span class="doccomment">//! Renders node info preview.</span>
 
@@ -313,26 +311,28 @@
             <span class="ident">icon</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Icon</span><span class="op">&gt;</span>,
         ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
             <span class="macro">html!</span> {
-                <span class="op">&lt;</span><span class="op">&gt;</span>
-                    { <span class="ident">size</span>.<span class="ident">round</span>(<span class="number">2</span>) }
-                    { <span class="string">&quot; &quot;</span> }
-                    { <span class="kw">for</span> <span class="ident">icon</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">icon</span><span class="op">|</span> <span class="macro">html!</span> {
-                        <span class="op">&lt;</span><span class="ident">icon::Comp</span>
-                            <span class="ident">atlas_path</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">url</span>.<span class="ident">to_string</span>()
-                            <span class="ident">atlas_width</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">dim</span>.<span class="number">0</span>
-                            <span class="ident">atlas_height</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">dim</span>.<span class="number">1</span>
-                            <span class="ident">x0</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">x</span>()
-                            <span class="ident">y0</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">y</span>()
-                            <span class="ident">x1</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">x</span>() <span class="op">+</span> <span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">width</span>()
-                            <span class="ident">y1</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">y</span>() <span class="op">+</span> <span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">height</span>()
-                            <span class="ident">out_width</span><span class="op">=</span><span class="number">24</span>
-                            <span class="ident">out_height</span><span class="op">=</span><span class="number">24</span>
-                            <span class="ident">text</span><span class="op">=</span><span class="ident">name</span>.<span class="ident">to_string</span>()
-                            <span class="op">/</span><span class="op">&gt;</span>
-                    }) }
-                    { <span class="kw">for</span> <span class="ident">icon</span>.<span class="ident">is_none</span>().<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">name</span>) }
-                    <span class="op">&lt;</span><span class="ident">br</span> <span class="op">/</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="op">/</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">tr</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>{ <span class="ident">size</span>.<span class="ident">round</span>(<span class="number">2</span>) }<span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                    <span class="op">&lt;</span><span class="ident">td</span><span class="op">&gt;</span>
+                        { <span class="kw">match</span> <span class="ident">icon</span> {
+                            <span class="prelude-val">Some</span>(<span class="ident">icon</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">html!</span> {
+                                <span class="op">&lt;</span><span class="ident">icon::Comp</span>
+                                    <span class="ident">atlas_path</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">url</span>.<span class="ident">to_string</span>()
+                                    <span class="ident">atlas_width</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">dim</span>.<span class="number">0</span>
+                                    <span class="ident">atlas_height</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">dim</span>.<span class="number">1</span>
+                                    <span class="ident">x0</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">x</span>()
+                                    <span class="ident">y0</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">y</span>()
+                                    <span class="ident">x1</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">x</span>() <span class="op">+</span> <span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">width</span>()
+                                    <span class="ident">y1</span><span class="op">=</span><span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">y</span>() <span class="op">+</span> <span class="ident">icon</span>.<span class="ident">pos</span>.<span class="ident">height</span>()
+                                    <span class="ident">out_width</span><span class="op">=</span><span class="number">24</span>
+                                    <span class="ident">out_height</span><span class="op">=</span><span class="number">24</span>
+                                    <span class="ident">text</span><span class="op">=</span><span class="ident">name</span>.<span class="ident">to_string</span>()
+                                    <span class="op">/</span><span class="op">&gt;</span>
+                            },
+                            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">name</span>.<span class="ident">into</span>(),
+                        }}
+                    <span class="op">&lt;</span><span class="op">/</span><span class="ident">td</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="op">/</span><span class="ident">tr</span><span class="op">&gt;</span>
             }
         }
 
@@ -366,15 +366,11 @@
                 <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
                     { <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">hitpoint</span> }
                 <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="ident">table</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
                     { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">cargo</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
-                <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
                     { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">liquid</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
-                <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
-                <span class="op">&lt;</span><span class="ident">p</span> <span class="ident">style</span><span class="op">=</span><span class="ident">row_style</span><span class="op">&gt;</span>
                     { <span class="kw">for</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">args</span>.<span class="ident">gas</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)<span class="op">|</span> <span class="ident">storage_display</span>(<span class="kw-2">*</span><span class="ident">size</span>, <span class="ident">name</span>, <span class="ident">icon</span>)) }
-                <span class="op">&lt;</span><span class="op">/</span><span class="ident">p</span><span class="op">&gt;</span>
+                <span class="op">&lt;</span><span class="op">/</span><span class="ident">table</span><span class="op">&gt;</span>
             <span class="op">&lt;</span><span class="op">/</span><span class="ident">div</span><span class="op">&gt;</span>
         }
     }
