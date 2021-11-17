@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["detail","Building list."],["nav","Navbar buildings."]]});

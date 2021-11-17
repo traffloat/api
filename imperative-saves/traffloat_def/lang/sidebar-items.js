@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["xy","Xylem-specific objects."]],"struct":[["Def","A bundle of language files."],["DefXylem","See [`DefXylem`]"],["Item","A translatable message template."],["Listener","A listener for new language bundles."]],"type":[["Id","Identifies a language bundle."],["ListenerHook","See [`Listener::hook`]"]]});

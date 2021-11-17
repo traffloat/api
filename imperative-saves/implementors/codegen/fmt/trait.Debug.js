@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["codegen"] = [{"text":"impl <a class=\"trait\" href=\"codegen/fmt/trait.Debug.html\" title=\"trait codegen::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"codegen/enum.SystemClass.html\" title=\"enum codegen::SystemClass\">SystemClass</a>","synthetic":false,"types":["codegen::SystemClass"]},{"text":"impl <a class=\"trait\" href=\"codegen/fmt/trait.Debug.html\" title=\"trait codegen::fmt::Debug\">Debug</a> for <a class=\"struct\" href=\"codegen/struct.DebugEntry.html\" title=\"struct codegen::DebugEntry\">DebugEntry</a>","synthetic":false,"types":["codegen::DebugEntry"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

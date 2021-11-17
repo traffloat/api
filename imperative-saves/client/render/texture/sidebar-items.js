@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["AtlasFsm",""]],"fn":[["load_textures",""]],"struct":[["Atlas",""],["AtlasId","Identifies a loaded spritesheet."],["Pool","Storage for all loaded spritesheets."],["Texture","A texture loaded onto WebGL."]]});

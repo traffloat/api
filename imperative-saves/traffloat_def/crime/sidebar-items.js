@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Action","Consequence of a crime."]],"struct":[["Def","A type of crime customized for the game definition."],["SkillChange","A change in skill level."],["TriggerSkill","Triggering condition for a crime."]],"type":[["Id","Identifies a gas type."]]});

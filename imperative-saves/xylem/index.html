@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="xylem"><meta name="keywords" content="rust, rustlang, rust-lang, xylem"><title>xylem - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../xylem/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate xylem</h2><div class="block version"><div class="narrow-helper"></div><p>Version 0.2.6</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all xylem's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#structs">Structs</a></li><li><a href="#traits">Traits</a></li></ul></div><div id="sidebar-vars" data-name="xylem" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">xylem</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/xylem/lib.rs.html#1-427" title="goto source code">[src]</a></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xylem" class="section-header"><a href="#xylem">xylem</a></h2>
+<p><a href="https://github.com/SOF3/xylem/actions?query=workflow%3ACI"><img src="https://github.com/SOF3/xylem/workflows/CI/badge.svg" alt="GitHub actions" /></a>
+<a href="https://crates.io/crates/xylem"><img src="https://img.shields.io/crates/v/xylem.svg" alt="crates.io" /></a>
+<a href="https://crates.io/crates/xylem"><img src="https://img.shields.io/crates/d/xylem.svg" alt="crates.io" /></a>
+<a href="https://docs.rs/xylem"><img src="https://docs.rs/xylem/badge.svg" alt="docs.rs" /></a>
+<a href="https://github.com/SOF3/xylem"><img src="https://img.shields.io/github/last-commit/SOF3/xylem" alt="GitHub" /></a>
+<a href="https://github.com/SOF3/xylem"><img src="https://img.shields.io/github/stars/SOF3/xylem?style=social" alt="GitHub" /></a></p>
+<p>Xylem is a stateful type conversion framework for Rust.</p>
+<h3 id="concepts" class="section-header"><a href="#concepts">Concepts</a></h3>
+<p>Xylem provides the <a href="trait.Xylem.html" title="Xylem"><code>Xylem</code></a> trait,
+which is similar to the <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="std::convert::TryFrom"><code>std::convert::TryFrom</code></a> trait,
+but with the following differences:</p>
+<h4 id="stateful-context" class="section-header"><a href="#stateful-context">Stateful context</a></h4>
+<p><a href="trait.Xylem.html#method.convert" title="Xylem::convert"><code>Xylem::convert</code></a> passes a mutable <a href="trait.Context.html" title="Context"><code>Context</code></a>,
+enabling stateful operations throughout the conversion process.
+See <a href="trait.Context.html" title="Context"><code>Context</code></a> documentation for details.</p>
+<h4 id="fixed-concersion-source" class="section-header"><a href="#fixed-concersion-source">Fixed concersion source</a></h4>
+<p>Unlike <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="std::convert::TryFrom"><code>std::convert::TryFrom</code></a>,
+<a href="trait.Xylem.html" title="Xylem"><code>Xylem</code></a> takes the conversion source type
+as an associated type <a href="trait.Xylem.html#associatedtype.From" title="Xylem::From"><code>Xylem::From</code></a>
+instead of a generic parameter.
+This means each type can only be converted
+from exactly one other specific type under a given <a href="trait.Schema.html" title="Schema"><code>Schema</code></a>.</p>
+<h4 id="schemas" class="section-header"><a href="#schemas">Schemas</a></h4>
+<p><a href="trait.Xylem.html" title="Xylem"><code>Xylem</code></a> accepts a type parameter <code>S</code> (“schema”),
+which acts as a namespace defining the set of conversion rules.
+This allows different downstream crates
+to define their own conversion rules
+without conflicting with each other.
+For example, if crate <code>foo</code> wants to convert <code>bool</code> from <code>String</code>
+and crate <code>bar</code> wants to convert <code>bool</code> from <code>i32</code>,
+they can separately define schema types <code>foo::Xylem</code> and <code>bar::Xylem</code>,
+then separately implement</p>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">impl</span> <span class="ident">Xylem</span><span class="op">&lt;</span><span class="ident">foo::Schema</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">bool</span> {
+    <span class="kw">type</span> <span class="ident">From</span> <span class="op">=</span> <span class="ident">String</span>;
+    <span class="comment">// fn convert() omitted</span>
+}
+<span class="kw">impl</span> <span class="ident">Xylem</span><span class="op">&lt;</span><span class="ident">bar::Schema</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">bool</span> {
+    <span class="kw">type</span> <span class="ident">From</span> <span class="op">=</span> <span class="ident">i32</span>;
+    <span class="comment">// fn convert() omitted</span>
+}</code></pre></div>
+<p>Furthermore, since <code>foo::Schema</code> and <code>bar::Schema</code>
+are declared in their own crates,
+<code>Xylem&lt;S&gt;</code> is not considered a foreign trait,
+so implementing custom conversion rules for <a href="https://doc.rust-lang.org/nightly/std/index.html" title="std"><code>std</code></a> types
+will not result in
+<a href="https://doc.rust-lang.org/error-index.html#E0220">error E0220</a> or
+<a href="https://doc.rust-lang.org/error-index.html#E0119">error E0119</a>.</p>
+<p>To use the default conversion rules defined by xylem,
+make the schema implement the <a href="trait.SchemaExt.html" title="SchemaExt"><code>SchemaExt</code></a> trait.
+There is a convenience macro <a href="macro.declare_schema.html" title="declare_schema"><code>declare_schema</code></a> for this:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="macro">xylem::declare_schema!</span>(<span class="ident">Schema</span>: <span class="ident">xylem::SchemaExt</span>);
+
+<span class="comment">// we defined a schema type called `Schema`.</span></code></pre></div>
+<p>It is recommended to use <code>Schema</code> as the schema name
+and declare it at the crate level,
+because the <a href="derive.Xylem.html" title="xylem_codegen::Xylem"><code>Xylem</code></a> macro
+uses <code>crate::Schema</code> as the default schema type.</p>
+<h3 id="the-xylem-macro" class="section-header"><a href="#the-xylem-macro">The <code>Xylem</code> macro</a></h3>
+<p>Xylem provides a <a href="derive.Xylem.html" title="xylem_codegen::Xylem"><code>Xylem</code></a> macro,
+which derives the corresponding <a href="trait.Xylem.html#associatedtype.From" title="Xylem::From"><code>Xylem::From</code></a> type
+from a struct or enum
+by replacing each type with the corresponding <a href="trait.Xylem.html#associatedtype.From" title="Xylem::From"><code>Xylem::From</code></a> type,
+as well as a <a href="trait.Xylem.html" title="Xylem"><code>Xylem</code></a> implementation.
+See the <a href="derive.Xylem.html" title="xylem_codegen::Xylem"><code>Xylem</code></a> documentation for details.</p>
+<p>Note that the order of fields matters
+because xylem type conversion is stateful,
+i.e. previous conversions may affect subsequent ones.</p>
+<h3 id="the-id-feature" class="section-header"><a href="#the-id-feature">The <code>id</code> feature</a></h3>
+<p>With the <code>id</code> feature enabled,
+xylem provides the <a href="id/struct.Id.html" title="Id"><code>Id</code></a> type,
+which is the motivational use case for xylem:
+Deserialize a config file that references other fields by string ID,
+replace each declaring ID with an integer storing its occurrence order,
+and replace each referencing ID with the occurrence order of the declaring ID.</p>
+<p>The <a href="id/struct.Id.html" title="Id"><code>Id</code></a> type takes two generic parameters, <code>S</code> and <code>X</code>.
+The type <code>S</code> is just the schema type,
+while the type <code>X</code> is the subject of identification.
+<code>X</code> must also implement the <a href="id/trait.Identifiable.html" title="Identifiable"><code>Identifiable</code></a> trait,
+which has an associated type <a href="id/trait.Identifiable.html#associatedtype.Scope" title="Identifiable::Scope"><code>Identifiable::Scope</code></a>
+used to provide a namespace for the ID.
+The declaring <a href="id/struct.Id.html" title="Id"><code>Id</code></a> field must be declared under <code>X</code>,
+and <code>X</code> must occur as a (transitive) child of the scope.
+Further references to the ID of <code>X</code>
+must occur also as transitive children of the scope,
+because the scope is dropped when it completes parsing.</p>
+<p>Declaring IDs are marked with the argument <code>new = true</code>.
+If the ID is to be cross-referenced after the scope drops,
+also mark <code>track = true</code>.
+Referencing IDs do not need to be marked,
+but if they serve to import a scope,
+they should be marked as <code>import = true</code>.</p>
+<p>See <a href="https://docs.rs/crate/xylem/*/source/tests/id.rs">tests/id.rs</a> and
+<a href="https://docs.rs/crate/xylem/*/source/tests/cross_id.rs">tests/cross_id.rs</a> for example usage.</p>
+<p>Note that it is not a design goal for xylem to support lookahead IDs.
+Due to the stateful nature of xylem,
+IDs are only indexed when the declaration has been scanned.
+There is currently no plan to implement multiple passes
+to pre-index IDs.</p>
+</div></details><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left import-item"><code>pub use id::<a class="struct" href="id/struct.Id.html" title="struct xylem::id::Id">Id</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item"><code>pub use id::<a class="struct" href="id/struct.IdArgs.html" title="struct xylem::id::IdArgs">IdArgs</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item"><code>pub use id::<a class="struct" href="id/struct.IdString.html" title="struct xylem::id::IdString">IdString</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item"><code>pub use id::<a class="trait" href="id/trait.Identifiable.html" title="trait xylem::id::Identifiable">Identifiable</a>;</code></div><div class="item-right docblock-short"></div></div></div><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="id/index.html" title="xylem::id mod">id</a></div><div class="item-right docblock-short"><p>Generates dynamically resolved identifiers.</p>
+</div></div></div><h2 id="macros" class="section-header"><a href="#macros">Macros</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.declare_schema.html" title="xylem::declare_schema macro">declare_schema</a></div><div class="item-right docblock-short"><p>Declare a normal schema type.</p>
+</div></div></div><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.DefaultContext.html" title="xylem::DefaultContext struct">DefaultContext</a></div><div class="item-right docblock-short"><p>A <a href="trait.Context.html" title="Context"><code>Context</code></a> implementation based on <a href="../typemap/struct.TypeMap.html" title="typemap::TypeMap"><code>typemap::TypeMap</code></a>.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.NoArgs.html" title="xylem::NoArgs struct">NoArgs</a></div><div class="item-right docblock-short"><p>The default empty argument type.</p>
+</div></div></div><h2 id="traits" class="section-header"><a href="#traits">Traits</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.AbstractError.html" title="xylem::AbstractError trait">AbstractError</a></div><div class="item-right docblock-short"><p>The error type for a schema.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.ArcSchemaExt.html" title="xylem::ArcSchemaExt trait">ArcSchemaExt</a></div><div class="item-right docblock-short"><p>Implement this trait for a schema type to support standard <a href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="Arc"><code>Arc</code></a> conversion.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.BTreeMapSchemaExt.html" title="xylem::BTreeMapSchemaExt trait">BTreeMapSchemaExt</a></div><div class="item-right docblock-short"><p>Implement this trait for a schema type to support standard <a href="https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html" title="HashMap"><code>HashMap</code></a> conversion.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.BoxSchemaExt.html" title="xylem::BoxSchemaExt trait">BoxSchemaExt</a></div><div class="item-right docblock-short"><p>Implement this trait for a schema type to support standard box conversion.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.Context.html" title="xylem::Context trait">Context</a></div><div class="item-right docblock-short"><p>The context of a conversion.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.HashMapSchemaExt.html" title="xylem::HashMapSchemaExt trait">HashMapSchemaExt</a></div><div class="item-right docblock-short"><p>Implement this trait for a schema type to support standard <a href="https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html" title="HashMap"><code>HashMap</code></a> conversion.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.OptionSchemaExt.html" title="xylem::OptionSchemaExt trait">OptionSchemaExt</a></div><div class="item-right docblock-short"><p>Implement this trait for a schema type to support standard <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="Option"><code>Option</code></a> conversion.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.Processable.html" title="xylem::Processable trait">Processable</a></div><div class="item-right docblock-short"><p>Preprocessor and postprocessor extensions for <a href="trait.Xylem.html" title="Xylem"><code>Xylem</code></a>.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.RcSchemaExt.html" title="xylem::RcSchemaExt trait">RcSchemaExt</a></div><div class="item-right docblock-short"><p>Implement this trait for a schema type to support standard <a href="https://doc.rust-lang.org/nightly/alloc/rc/struct.Rc.html" title="Rc"><code>Rc</code></a> conversion.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.Schema.html" title="xylem::Schema trait">Schema</a></div><div class="item-right docblock-short"><p>The schema type for a specific set of conversion rules.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.SchemaExt.html" title="xylem::SchemaExt trait">SchemaExt</a></div><div class="item-right docblock-short"><p>Implement this trait for a schema type to implement “standard” conversions.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.VecSchemaExt.html" title="xylem::VecSchemaExt trait">VecSchemaExt</a></div><div class="item-right docblock-short"><p>Implement this trait for a schema type to support standard <a href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="Vec"><code>Vec</code></a> conversion.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.Xylem.html" title="xylem::Xylem trait">Xylem</a></div><div class="item-right docblock-short"><p>Implementors of this trait have a special conversion rule under the schema <code>Schema</code>.</p>
+</div></div></div><h2 id="derives" class="section-header"><a href="#derives">Derive Macros</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="derive" href="derive.Xylem.html" title="xylem::Xylem derive">Xylem</a></div><div class="item-right docblock-short"><p>Derives a <a href="trait.Xylem.html" title="Xylem"><code>Xylem</code></a> implementation for a struct or enum
+and the corresponding <a href="trait.Xylem.html#associatedtype.From" title="Xylem::From"><code>Xylem::From</code></a> type.</p>
+</div></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="xylem" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+    <script src="../main.js"></script>
+</body></html>

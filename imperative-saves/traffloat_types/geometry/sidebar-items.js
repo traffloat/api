@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Unit","A unit shape variant"]],"fn":[["sprite_location","Returns the coordinates of a sprite in the spritesheet of a given size."],["spritesheet_side","Returns the side length of a spritesheet given the number of items."]]});

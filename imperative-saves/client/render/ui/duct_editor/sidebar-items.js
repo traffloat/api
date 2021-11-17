@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"mod":[["duct","Renders a single duct."]],"struct":[["Args","Yew-independent properties."],["Circle","A temporary circle in the edge."],["Comp","Displays an editor for ducts in an edge."],["Props","Yew properties for [`Comp`]."],["PropsWrapper",""],["State","The temporary state of edges in the duct"]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"macro":[["impl_glize",""]],"trait":[["Glize","A float-based type that can be lossily converted for WebGL compatibility."]]});

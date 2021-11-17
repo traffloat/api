@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["CurrentId","Tracks the current ID."],["GlobalIdStore","Stores the globally tracked IDs."],["Id","An identifier for type `X`."],["IdArgs","Arguments for [`Id`]."],["IdString","Retrieves the original string ID for an identifiable object."]],"trait":[["Identifiable","A trait for types that can be identified."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["TransformPrimitive","A primitive linear transformation operation."]],"fn":[["serde_one",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"fn":[["post_save",""],["post_save_setup",""],["post_save_system",""],["setup_ecs","Sets up legion ECS for node info rendering."]],"struct":[["Comp","Displays common toolbar buttons."],["Props","Yew properties for [`Comp`]."],["PropsWrapper",""]]});

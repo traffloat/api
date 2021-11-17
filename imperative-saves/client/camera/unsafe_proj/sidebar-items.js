@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Camera","A resource that stores the view perspective of the user."]]});

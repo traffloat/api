@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["CurrentDir","Stores the context directory."],["PathArgs","Xylem arguments for [`PathBuf`]."]]});

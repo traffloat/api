@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["category","Categories of buildings."],["storage","Storages in buildings."],["xy","Xylem-specific objects."]],"struct":[["Def","A type of building."],["Shape","Shape of a building."],["Storage","Storage provided by a building."]],"type":[["Id","Identifies a building type."]]});

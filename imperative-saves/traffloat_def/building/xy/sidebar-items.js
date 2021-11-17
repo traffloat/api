@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["BuildingNameMap","A mapping of building type IDs to their names."]]});

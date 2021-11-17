@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Initializes ECS"]],"struct":[["Housing","Copmonent applied on nodes to indicate housing provision."],["Storage","A storage of population."],["StorageList","List of population storages in a node."]]});

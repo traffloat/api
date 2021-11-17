@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["setup_ecs","Initializes ECS"]],"struct":[["Scalar","Scalar configuration values"]]});

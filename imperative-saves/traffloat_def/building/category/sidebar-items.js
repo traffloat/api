@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Def","A category of building."]],"type":[["Id","Identifies a building category."]]});

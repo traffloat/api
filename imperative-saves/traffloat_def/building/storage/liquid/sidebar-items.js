@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Def","A liquid storage."]],"type":[["Id","Identifies a liquid storage."]]});
