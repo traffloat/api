@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Def","A population storage, allowing inhabitants to temporarily stay in a node."]],"type":[["Id","Identifies a population storage."]]});

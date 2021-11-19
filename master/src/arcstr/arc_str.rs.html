@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;arcstr-1.1.1&#x2F;src&#x2F;arc_str.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>arc_str.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../arcstr/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;arcstr-1.1.1&#x2F;src&#x2F;arc_str.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>arc_str.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../arcstr/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1226,8 +1226,7 @@
 <span id="1226">1226</span>
 <span id="1227">1227</span>
 <span id="1228">1228</span>
-</pre><pre class="rust">
-<span class="attribute">#![<span class="ident">allow</span>(
+</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">allow</span>(
 <span class="comment">// We follow libstd&#39;s lead and prefer to define both.</span>
     <span class="ident">clippy::partialeq_ne_impl</span>,
 <span class="comment">// This is a really annoying clippy lint, since it&#39;s required for so many cases...</span>
@@ -1244,7 +1243,7 @@
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident">loom::sync::atomic</span>::{<span class="ident">AtomicUsize</span>, <span class="ident">Ordering</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;substr&quot;</span>)]</span>
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Substr</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Substr</span>;
 <span class="kw">use</span> <span class="ident">alloc::borrow::Cow</span>;
 <span class="kw">use</span> <span class="ident">alloc::boxed::Box</span>;
 <span class="kw">use</span> <span class="ident">alloc::string::String</span>;
@@ -1366,7 +1365,7 @@
     <span class="doccomment">/// assert_eq!(s, &quot;&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="ident">EMPTY</span>
     }
 
@@ -1384,7 +1383,7 @@
     <span class="doccomment">/// assert_eq!(s.as_str(), &quot;abc&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="self">self</span>
     }
 
@@ -1398,7 +1397,7 @@
     <span class="doccomment">/// assert_eq!(a.len(), 3);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
         <span class="kw">unsafe</span> { <span class="ident">ThinInner::get_len_flags</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>()).<span class="ident">len</span>() }
     }
 
@@ -1412,8 +1411,8 @@
     <span class="doccomment">/// assert!(ArcStr::new().is_empty());</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">0</span>
     }
 
     <span class="doccomment">/// Convert us to a `std::string::String`.</span>
@@ -1430,7 +1429,7 @@
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::inherent_to_string_shadow_display</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span>
         <span class="kw">use</span> <span class="ident">alloc::borrow::ToOwned</span>;
         <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">to_owned</span>()
@@ -1446,14 +1445,14 @@
     <span class="doccomment">/// assert_eq!(foobar.as_bytes(), b&quot;foobar&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
         <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>();
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">ThinInner::get_len_flags</span>(<span class="ident">p</span>).<span class="ident">len</span>();
 
-            <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> (<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">add</span>(<span class="ident">OFFSET_DATA</span>);
+            <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> (<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>).<span class="ident">add</span>(<span class="ident">OFFSET_DATA</span>);
 
-            <span class="macro">debug_assert_eq!</span>(<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">p</span>).<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">u8</span>; <span class="number">0</span>] <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">data</span> <span class="kw">as</span> <span class="ident">usize</span>);
+            <span class="macro">debug_assert_eq!</span>(<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">p</span>).<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*const</span> [<span class="ident">u8</span>; <span class="number">0</span>] <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">data</span> <span class="kw">as</span> <span class="ident">usize</span>);
 
             <span class="ident">core::slice::from_raw_parts</span>(<span class="ident">data</span>, <span class="ident">len</span>)
         }
@@ -1476,7 +1475,7 @@
     <span class="doccomment">/// assert_eq!(s, &quot;abcd&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="ident">this</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NonNull</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="ident">this</span>: <span class="self">Self</span>) -&gt; <span class="ident">NonNull</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">this</span>.<span class="number">0</span>;
         <span class="ident">core::mem::forget</span>(<span class="ident">this</span>);
         <span class="ident">p</span>.<span class="ident">cast</span>()
@@ -1502,7 +1501,7 @@
     <span class="doccomment">/// assert_eq!(s, &quot;abcd&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">ptr</span>: <span class="ident">NonNull</span><span class="op">&lt;</span>()<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">ptr</span>: <span class="ident">NonNull</span><span class="op">&lt;</span>()<span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="self">Self</span>(<span class="ident">ptr</span>.<span class="ident">cast</span>())
     }
 
@@ -1533,7 +1532,7 @@
     <span class="doccomment">/// assert!(ArcStr::ptr_eq(&amp;strange_new_foobar, &amp;wild_blue_foobar));</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr_eq</span>(<span class="ident">lhs</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ptr_eq</span>(<span class="ident">lhs</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="ident">bool</span> {
         <span class="ident">core::ptr::eq</span>(<span class="ident">lhs</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>(), <span class="ident">rhs</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>())
     }
 
@@ -1580,7 +1579,7 @@
     <span class="doccomment">/// assert_eq!(None, ArcStr::strong_count(&amp;ArcStr::default()));</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strong_count</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strong_count</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">this</span> <span class="op">=</span> <span class="ident">this</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>();
         <span class="kw">if</span> <span class="kw">unsafe</span> { <span class="ident">ThinInner::get_len_flags</span>(<span class="ident">this</span>).<span class="ident">is_static</span>() } {
             <span class="prelude-val">None</span>
@@ -1615,7 +1614,7 @@
     <span class="doccomment">/// assert!(!ArcStr::is_static(&amp;nonstatic));</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_static</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_static</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">ThinInner::get_len_flags</span>(<span class="ident">this</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>()).<span class="ident">is_static</span>() }
     }
 
@@ -1645,10 +1644,10 @@
     <span class="doccomment">/// assert_eq!(ArcStr::as_static(&amp;nonstatic), None);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_static</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_static</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="kw">unsafe</span> { <span class="ident">ThinInner::get_len_flags</span>(<span class="ident">this</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>()).<span class="ident">is_static</span>() } {
             <span class="comment">// We know static strings live forever, so they can have a static lifetime.</span>
-            <span class="prelude-val">Some</span>(<span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">this</span>.<span class="ident">as_str</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">str</span>) })
+            <span class="prelude-val">Some</span>(<span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">this</span>.<span class="ident">as_str</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">str</span>) })
         } <span class="kw">else</span> {
             <span class="prelude-val">None</span>
         }
@@ -1659,8 +1658,8 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">_private_new_from_static_data</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span>(
         <span class="ident">ptr</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">StaticArcStrInner</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">NonNull::new_unchecked</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ThinInner</span>))
+    ) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span>(<span class="ident">NonNull::new_unchecked</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ThinInner</span>))
     }
 
     <span class="doccomment">/// `feature = &quot;substr&quot;` Returns a substr of `self` over the given range.</span>
@@ -1685,7 +1684,7 @@
     <span class="doccomment">///   `self.get(start..end).is_some()` if needed.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;substr&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">substr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw">impl</span> <span class="ident">core::ops::RangeBounds</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Substr</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">substr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw">impl</span> <span class="ident">core::ops::RangeBounds</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) -&gt; <span class="ident">Substr</span> {
         <span class="ident">Substr::from_parts</span>(<span class="self">self</span>, <span class="ident">range</span>)
     }
 
@@ -1720,7 +1719,7 @@
     <span class="doccomment">/// bytes away from our start, if we&#39;re a 64-bit machine and</span>
     <span class="doccomment">/// `substr-usize-indices` is not enabled.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;substr&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">substr_from</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">substr</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Substr</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">substr_from</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">substr</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">Substr</span> {
         <span class="kw">if</span> <span class="ident">substr</span>.<span class="ident">is_empty</span>() {
             <span class="kw">return</span> <span class="ident">Substr::new</span>();
         }
@@ -1771,7 +1770,7 @@
     <span class="doccomment">/// away from our start, if we&#39;re a 64-bit machine and</span>
     <span class="doccomment">/// `substr-usize-indices` is not enabled.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;substr&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_substr_from</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">substr</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Substr</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_substr_from</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">substr</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Substr</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">substr</span>.<span class="ident">is_empty</span>() {
             <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">Substr::new</span>());
         }
@@ -1814,7 +1813,7 @@
     <span class="doccomment">/// assert_eq!(empty.unwrap(), &quot;&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;substr&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_substr_using</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Substr</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_substr_using</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Substr</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">try_substr_from</span>(<span class="ident">f</span>(<span class="self">self</span>.<span class="ident">as_str</span>()))
     }
 
@@ -1841,7 +1840,7 @@
     <span class="doccomment">/// assert_eq!(empty, &quot;&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;substr&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">substr_using</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Substr</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">substr_using</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">Substr</span> {
         <span class="self">self</span>.<span class="ident">substr_from</span>(<span class="ident">f</span>(<span class="self">self</span>.<span class="ident">as_str</span>()))
     }
 }
@@ -1849,23 +1848,23 @@
 <span class="attribute">#[<span class="ident">cold</span>]</span>
 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">never</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;substr&quot;</span>)]</span>
-<span class="kw">fn</span> <span class="ident">out_of_range</span>(<span class="ident">arc</span>: <span class="kw-2">&amp;</span><span class="ident">ArcStr</span>, <span class="ident">substr</span>: <span class="op">&amp;&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
+<span class="kw">fn</span> <span class="ident">out_of_range</span>(<span class="ident">arc</span>: <span class="kw-2">&amp;</span><span class="ident">ArcStr</span>, <span class="ident">substr</span>: <span class="op">&amp;&amp;</span><span class="ident">str</span>) -&gt; <span class="op">!</span> {
     <span class="kw">let</span> <span class="ident">arc_start</span> <span class="op">=</span> <span class="ident">arc</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="ident">usize</span>;
     <span class="kw">let</span> <span class="ident">arc_end</span> <span class="op">=</span> <span class="ident">arc_start</span> <span class="op">+</span> <span class="ident">arc</span>.<span class="ident">len</span>();
     <span class="kw">let</span> <span class="ident">substr_start</span> <span class="op">=</span> <span class="ident">substr</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="ident">usize</span>;
     <span class="kw">let</span> <span class="ident">substr_end</span> <span class="op">=</span> <span class="ident">substr_start</span> <span class="op">+</span> <span class="ident">substr</span>.<span class="ident">len</span>();
     <span class="macro">panic!</span>(
         <span class="string">&quot;ArcStr over ({:p}..{:p}) does not contain substr over ({:p}..{:p})&quot;</span>,
-        <span class="ident">arc_start</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
-        <span class="ident">arc_end</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
-        <span class="ident">substr_start</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
-        <span class="ident">substr_end</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+        <span class="ident">arc_start</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>,
+        <span class="ident">arc_end</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>,
+        <span class="ident">substr_start</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>,
+        <span class="ident">substr_end</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>,
     )
 }
 
 <span class="kw">impl</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">this</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>();
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">is_static</span> <span class="op">=</span> <span class="ident">ThinInner::get_len_flags</span>(<span class="ident">this</span>).<span class="ident">is_static</span>();
@@ -1890,13 +1889,13 @@
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">let</span> <span class="ident">this</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_ptr</span>();
         <span class="kw">unsafe</span> {
             <span class="kw">if</span> <span class="ident">ThinInner::get_len_flags</span>(<span class="ident">this</span>).<span class="ident">is_static</span>() {
                 <span class="kw">return</span>;
             }
-            <span class="kw">if</span> (<span class="kw-2">*</span><span class="ident">this</span>).<span class="ident">strong</span>.<span class="ident">fetch_sub</span>(<span class="number">1</span>, <span class="ident">Ordering::Release</span>) <span class="op">=</span><span class="op">=</span> <span class="number">1</span> {
+            <span class="kw">if</span> (<span class="kw-2">*</span><span class="ident">this</span>).<span class="ident">strong</span>.<span class="ident">fetch_sub</span>(<span class="number">1</span>, <span class="ident">Ordering::Release</span>) <span class="op">==</span> <span class="number">1</span> {
                 <span class="comment">// `libstd` uses a full acquire fence here but notes that it&#39;s</span>
                 <span class="comment">// possibly overkill. `triomphe`/`servo_arc` some of firefox ref</span>
                 <span class="comment">// counting uses a load like this.</span>
@@ -1995,20 +1994,20 @@
 
 <span class="kw">impl</span> <span class="ident">LenFlags</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="self">self</span>) -&gt; <span class="ident">usize</span> {
         <span class="self">self</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>
     }
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_static</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">1</span>) <span class="op">=</span><span class="op">=</span> <span class="number">0</span>
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">is_static</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">1</span>) <span class="op">==</span> <span class="number">0</span>
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_len_static</span>(<span class="ident">l</span>: <span class="ident">usize</span>, <span class="ident">is_static</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from_len_static</span>(<span class="ident">l</span>: <span class="ident">usize</span>, <span class="ident">is_static</span>: <span class="ident">bool</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="ident">l</span>.<span class="ident">checked_mul</span>(<span class="number">2</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">l</span><span class="op">|</span> <span class="self">Self</span>(<span class="ident">l</span> <span class="op">|</span> (<span class="op">!</span><span class="ident">is_static</span> <span class="kw">as</span> <span class="ident">usize</span>)))
     }
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_len_static_raw</span>(<span class="ident">l</span>: <span class="ident">usize</span>, <span class="ident">is_static</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_len_static_raw</span>(<span class="ident">l</span>: <span class="ident">usize</span>, <span class="ident">is_static</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="self">Self</span>(<span class="ident">l</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span> <span class="op">|</span> (<span class="op">!</span><span class="ident">is_static</span> <span class="kw">as</span> <span class="ident">usize</span>))
     }
 }
@@ -2016,7 +2015,7 @@
 <span class="kw">const</span> <span class="ident">EMPTY</span>: <span class="ident">ArcStr</span> <span class="op">=</span> <span class="macro">literal!</span>(<span class="string">&quot;&quot;</span>);
 
 <span class="kw">impl</span> <span class="ident">ThinInner</span> {
-    <span class="kw">fn</span> <span class="ident">allocate</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NonNull</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">allocate</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">NonNull</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">const</span> <span class="ident">ALIGN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">align_of</span>::<span class="op">&lt;</span><span class="ident">ThinInner</span><span class="op">&gt;</span>();
 
         <span class="kw">let</span> <span class="ident">num_bytes</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">len</span>();
@@ -2035,7 +2034,7 @@
                 <span class="ident">alloc::alloc::handle_alloc_error</span>(<span class="ident">layout</span>);
             }
 
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">alloced</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ThinInner</span>;
+            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">alloced</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">ThinInner</span>;
 
             <span class="comment">// we actually already checked this above...</span>
             <span class="macro">debug_assert!</span>(<span class="ident">LenFlags::from_len_static</span>(<span class="ident">num_bytes</span>, <span class="bool-val">false</span>).<span class="ident">is_some</span>());
@@ -2043,14 +2042,14 @@
             <span class="macro">debug_assert_eq!</span>(<span class="ident">lf</span>.<span class="ident">len</span>(), <span class="ident">num_bytes</span>);
             <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">lf</span>.<span class="ident">is_static</span>());
 
-            <span class="ident">core::ptr::write</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">len_flags</span>, <span class="ident">lf</span>);
-            <span class="ident">core::ptr::write</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">strong</span>, <span class="ident">AtomicUsize::new</span>(<span class="number">1</span>));
+            <span class="ident">core::ptr::write</span>(<span class="kw-2">&amp;mut</span> (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">len_flags</span>, <span class="ident">lf</span>);
+            <span class="ident">core::ptr::write</span>(<span class="kw-2">&amp;mut</span> (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">strong</span>, <span class="ident">AtomicUsize::new</span>(<span class="number">1</span>));
 
             <span class="macro">debug_assert_eq!</span>(
-                (<span class="ident">alloced</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="ident">mo</span>),
+                (<span class="ident">alloced</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>).<span class="ident">wrapping_add</span>(<span class="ident">mo</span>),
                 (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">data</span>.<span class="ident">as_ptr</span>(),
             );
-            <span class="macro">debug_assert_eq!</span>(<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">data</span>.<span class="ident">as_ptr</span>());
+            <span class="macro">debug_assert_eq!</span>(<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">data</span>.<span class="ident">as_ptr</span>());
 
             <span class="ident">core::ptr::copy_nonoverlapping</span>(<span class="ident">data</span>.<span class="ident">as_ptr</span>(), <span class="ident">alloced</span>.<span class="ident">add</span>(<span class="ident">mo</span>), <span class="ident">num_bytes</span>);
 
@@ -2058,14 +2057,14 @@
         }
     }
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_len_flags</span>(<span class="ident">p</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ThinInner</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LenFlags</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_len_flags</span>(<span class="ident">p</span>: <span class="kw-2">*const</span> <span class="ident">ThinInner</span>) -&gt; <span class="ident">LenFlags</span> {
         <span class="macro">debug_assert_eq!</span>(<span class="ident">OFFSET_LENFLAGS</span>, <span class="number">0</span>);
         <span class="kw-2">*</span><span class="ident">p</span>.<span class="ident">cast</span>()
     }
 
     <span class="attribute">#[<span class="ident">cold</span>]</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">destroy_cold</span>(<span class="ident">p</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ThinInner</span>) {
-        <span class="kw">let</span> <span class="ident">lf</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::get_len_flags</span>(<span class="ident">p</span>);
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">destroy_cold</span>(<span class="ident">p</span>: <span class="kw-2">*mut</span> <span class="ident">ThinInner</span>) {
+        <span class="kw">let</span> <span class="ident">lf</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::get_len_flags</span>(<span class="ident">p</span>);
         <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">lf</span>.<span class="ident">is_static</span>());
         <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">lf</span>.<span class="ident">len</span>();
         <span class="kw">let</span> <span class="ident">layout</span> <span class="op">=</span> {
@@ -2073,21 +2072,21 @@
             <span class="kw">let</span> <span class="ident">align</span> <span class="op">=</span> <span class="ident">align_of</span>::<span class="op">&lt;</span><span class="ident">ThinInner</span><span class="op">&gt;</span>();
             <span class="ident">Layout::from_size_align_unchecked</span>(<span class="ident">size</span>, <span class="ident">align</span>)
         };
-        <span class="ident">alloc::alloc::dealloc</span>(<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>, <span class="ident">layout</span>);
+        <span class="ident">alloc::alloc::dealloc</span>(<span class="ident">p</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="ident">layout</span>);
     }
 }
 
 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">never</span>)]</span>
 <span class="attribute">#[<span class="ident">cold</span>]</span>
-<span class="kw">fn</span> <span class="ident">alloc_overflow</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
+<span class="kw">fn</span> <span class="ident">alloc_overflow</span>() -&gt; <span class="op">!</span> {
     <span class="macro">panic!</span>(<span class="string">&quot;overflow during Layout computation&quot;</span>)
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">is_empty</span>() {
-            <span class="self">Self</span><span class="ident">::new</span>()
+            <span class="ident"><span class="self">Self</span>::new</span>()
         } <span class="kw">else</span> {
             <span class="self">Self</span>(<span class="ident">ThinInner::allocate</span>(<span class="ident">s</span>))
         }
@@ -2097,88 +2096,88 @@
 <span class="kw">impl</span> <span class="ident">core::ops::Deref</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">str</span>;
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="kw">unsafe</span> { <span class="ident">core::str::from_utf8_unchecked</span>(<span class="self">self</span>.<span class="ident">as_bytes</span>()) }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::new</span>()
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
+        <span class="ident"><span class="self">Self</span>::new</span>()
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">v</span>: <span class="ident">String</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">v</span>.<span class="ident">as_str</span>().<span class="ident">into</span>()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;mut</span> <span class="ident">str</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="ident">s</span>;
-        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">s</span>)
+        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">s</span>)
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::from</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>[..])
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident"><span class="self">Self</span>::from</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>[..])
     }
 }
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ArcStr</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">ArcStr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">ArcStr</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">s</span>.<span class="ident">as_str</span>().<span class="ident">into</span>()
     }
 }
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ArcStr</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">alloc::rc::Rc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">ArcStr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">ArcStr</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">s</span>.<span class="ident">as_str</span>().<span class="ident">into</span>()
     }
 }
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ArcStr</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">alloc::sync::Arc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">ArcStr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">ArcStr</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">s</span>.<span class="ident">as_str</span>().<span class="ident">into</span>()
     }
 }
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">alloc::rc::Rc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">alloc::rc::Rc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">alloc::rc::Rc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">s</span>;
-        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">s</span>)
+        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">s</span>)
     }
 }
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">alloc::sync::Arc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">alloc::sync::Arc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">alloc::sync::Arc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">s</span>;
-        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">s</span>)
+        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">s</span>)
     }
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">str</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">s</span>;
-        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">s</span>)
+        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">s</span>)
     }
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ArcStr</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">str</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ArcStr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ArcStr</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">Cow::Borrowed</span>(<span class="ident">s</span>)
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ArcStr</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">str</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">ArcStr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">ArcStr</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">st</span>) <span class="op">=</span> <span class="ident">ArcStr::as_static</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>) {
             <span class="ident">Cow::Borrowed</span>(<span class="ident">st</span>)
         } <span class="kw">else</span> {
@@ -2189,38 +2188,38 @@
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::from</span>(<span class="ident">s</span>.<span class="ident">as_str</span>())
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">String</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">s</span>.<span class="ident">as_str</span>())
     }
 }
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ArcStr</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">ArcStr</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">ArcStr</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">s</span>.<span class="ident">clone</span>()
     }
 }
 
 <span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">core::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">core::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">core::fmt::Result</span> {
         <span class="ident">core::fmt::Debug::fmt</span>(<span class="self">self</span>.<span class="ident">as_str</span>(), <span class="ident">f</span>)
     }
 }
 
 <span class="kw">impl</span> <span class="ident">core::fmt::Display</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">core::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">core::fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">core::fmt::Result</span> {
         <span class="ident">core::fmt::Display::fmt</span>(<span class="self">self</span>.<span class="ident">as_str</span>(), <span class="ident">f</span>)
     }
 }
 
 <span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">o</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">o</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="ident">bool</span> {
         <span class="ident">ArcStr::ptr_eq</span>(<span class="self">self</span>, <span class="ident">o</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">PartialEq::eq</span>(<span class="self">self</span>.<span class="ident">as_str</span>(), <span class="ident">o</span>.<span class="ident">as_str</span>())
     }
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">ne</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">o</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">ne</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">o</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="ident">bool</span> {
         <span class="op">!</span><span class="ident">ArcStr::ptr_eq</span>(<span class="self">self</span>, <span class="ident">o</span>) <span class="op">&amp;&amp;</span> <span class="ident">PartialEq::ne</span>(<span class="self">self</span>.<span class="ident">as_str</span>(), <span class="ident">o</span>.<span class="ident">as_str</span>())
     }
 }
@@ -2228,19 +2227,19 @@
 <span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {}
 
 <span class="macro">macro_rules!</span> <span class="ident">impl_peq</span> {
-    (@<span class="ident">one</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    (@<span class="ident">one</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">ty</span>) =&gt; {
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span> {
             <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+            <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) -&gt; <span class="ident">bool</span> {
                 <span class="ident">PartialEq::eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>[..], <span class="kw-2">&amp;</span><span class="ident">s</span>[..])
             }
             <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">ne</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+            <span class="kw">fn</span> <span class="ident">ne</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) -&gt; <span class="ident">bool</span> {
                 <span class="ident">PartialEq::ne</span>(<span class="kw-2">&amp;</span><span class="self">self</span>[..], <span class="kw-2">&amp;</span><span class="ident">s</span>[..])
             }
         }
     };
-    ($((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">ty</span>),)<span class="op">+</span>) <span class="op">=</span><span class="op">&gt;</span> {$(
+    ($((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">ty</span>),)<span class="op">+</span>) =&gt; {$(
         <span class="macro">impl_peq!</span>(@<span class="ident">one</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>);
         <span class="macro">impl_peq!</span>(@<span class="ident">one</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>);
     )<span class="op">+</span>};
@@ -2258,31 +2257,31 @@
 
 <span class="kw">impl</span> <span class="ident">PartialOrd</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">partial_cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">core::cmp::Ordering</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">partial_cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">core::cmp::Ordering</span><span class="op">&gt;</span> {
         <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">cmp</span>(<span class="ident">s</span>.<span class="ident">as_str</span>()))
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Ord</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">core::cmp::Ordering</span> {
+    <span class="kw">fn</span> <span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="ident">core::cmp::Ordering</span> {
         <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">cmp</span>(<span class="ident">s</span>.<span class="ident">as_str</span>())
     }
 }
 
 <span class="kw">impl</span> <span class="ident">core::hash::Hash</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">hash</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">core::hash::Hasher</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">h</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">H</span>) {
+    <span class="kw">fn</span> <span class="ident">hash</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">core::hash::Hasher</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">h</span>: <span class="kw-2">&amp;mut</span> <span class="ident">H</span>) {
         <span class="self">self</span>.<span class="ident">as_str</span>().<span class="ident">hash</span>(<span class="ident">h</span>)
     }
 }
 
 <span class="macro">macro_rules!</span> <span class="ident">impl_index</span> {
-    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">IdxT</span>:<span class="ident">ty</span>,)<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {$(
+    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">IdxT</span>:<span class="ident">ty</span>,)<span class="kw-2">*</span>) =&gt; {$(
         <span class="kw">impl</span> <span class="ident">core::ops::Index</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">IdxT</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
             <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">str</span>;
             <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">IdxT</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Output</span> {
+            <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">IdxT</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Output</span> {
                 <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">as_str</span>()[<span class="ident">i</span>]
             }
         }
@@ -2300,21 +2299,21 @@
 
 <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="self">self</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
         <span class="self">self</span>.<span class="ident">as_bytes</span>()
     }
 }
 
 <span class="kw">impl</span> <span class="ident">core::borrow::Borrow</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">str</span> {
+    <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
         <span class="self">self</span>
     }
 }
@@ -2322,18 +2321,18 @@
 <span class="kw">impl</span> <span class="ident">core::str::FromStr</span> <span class="kw">for</span> <span class="ident">ArcStr</span> {
     <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> <span class="ident">core::convert::Infallible</span>;
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_str</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="self">Self</span><span class="ident">::Err</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::from</span>(<span class="ident">s</span>))
+    <span class="kw">fn</span> <span class="ident">from_str</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident"><span class="self">Self</span>::Err</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">s</span>))
     }
 }
 
 <span class="attribute">#[<span class="ident">cold</span>]</span>
 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">never</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span>
-<span class="kw">fn</span> <span class="ident">abort</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="op">!</span> {
+<span class="kw">fn</span> <span class="ident">abort</span>() -&gt; <span class="op">!</span> {
     <span class="kw">struct</span> <span class="ident">PanicOnDrop</span>;
     <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">PanicOnDrop</span> {
-        <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+        <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
             <span class="macro">panic!</span>(<span class="string">&quot;fatal error: second panic&quot;</span>)
         }
     }
@@ -2402,7 +2401,7 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">loom</span>))]</span>
 <span class="kw">mod</span> <span class="ident">loomtest</span> {
-    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::ArcStr</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::ArcStr</span>;
     <span class="kw">use</span> <span class="ident">loom::sync::Arc</span>;
     <span class="kw">use</span> <span class="ident">loom::thread</span>;
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2455,7 +2454,7 @@
         });
     }
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="arcstr" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
 </body></html>

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["LoadedBundles","A cache of loaded language bundles."]]});

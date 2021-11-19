@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["def","Defines the mechanism of a game."],["geometry","Common geometric shapes."],["ratio_def",""],["space","Spatial units"],["time","Chronological units"],["units","Defines common units"]]});
+initSidebarItems({"mod":[["geometry","Common geometric shapes."],["ratio_def",""],["space","Spatial units"],["time","Chronological units"],["units","Defines common units"]]});

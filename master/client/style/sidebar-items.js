@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["string_lazy",""]],"struct":[["NonStaticStyle","A wrapper for a non-static style."],["Style","A set of styles for an element."]]});
+initSidebarItems({"fn":[["string_lazy",""]],"macro":[["style",""]],"struct":[["NonStaticStyle","A wrapper for a non-static style."],["Style","A set of styles for an element."]]});

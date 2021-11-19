@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;web-sys-0.3.55&#x2F;src&#x2F;features&#x2F;gen_WebGlRenderingContext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gen_WebGlRenderingContext.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../web_sys/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;web-sys-0.3.55&#x2F;src&#x2F;features&#x2F;gen_WebGlRenderingContext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gen_WebGlRenderingContext.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../web_sys/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -3122,8 +3122,7 @@
 <span id="3122">3122</span>
 <span id="3123">3123</span>
 <span id="3124">3124</span>
-</pre><pre class="rust">
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>
+</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>
 <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">wasm_bindgen::prelude</span>::<span class="kw-2">*</span>;
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
@@ -3142,21 +3141,21 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/canvas)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">canvas</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::js_sys::Object</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">canvas</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::js_sys::Object</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">structural</span> , <span class="ident">method</span> , <span class="ident">getter</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">drawingBufferWidth</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Getter for the `drawingBufferWidth` field of this object.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/drawingBufferWidth)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drawing_buffer_width</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drawing_buffer_width</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="ident">i32</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">structural</span> , <span class="ident">method</span> , <span class="ident">getter</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">drawingBufferHeight</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;Getter for the `drawingBufferHeight` field of this object.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/drawingBufferHeight)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drawing_buffer_height</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drawing_buffer_height</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="ident">i32</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">bufferData</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `bufferData()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -3350,7 +3349,7 @@
         <span class="ident">width</span>: <span class="ident">i32</span>,
         <span class="ident">height</span>: <span class="ident">i32</span>,
         <span class="ident">format</span>: <span class="ident">u32</span>,
-        <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>],
+        <span class="ident">data</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>],
     );
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">readPixels</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `readPixels()` method.&quot;</span>]</span>
@@ -3367,7 +3366,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">::js_sys::Object</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">readPixels</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `readPixels()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -3382,8 +3381,8 @@
         <span class="ident">height</span>: <span class="ident">i32</span>,
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
-        <span class="ident">pixels</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]<span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+        <span class="ident">pixels</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]<span class="op">&gt;</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texImage2D()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -3401,7 +3400,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">::js_sys::Object</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texImage2D()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -3419,7 +3418,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ImageBitmap&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texImage2D()` method.&quot;</span>]</span>
@@ -3435,7 +3434,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="kw-2">&amp;</span><span class="ident">ImageBitmap</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ImageData&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texImage2D()` method.&quot;</span>]</span>
@@ -3451,7 +3450,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="kw-2">&amp;</span><span class="ident">ImageData</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HtmlImageElement&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texImage2D()` method.&quot;</span>]</span>
@@ -3467,7 +3466,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">image</span>: <span class="kw-2">&amp;</span><span class="ident">HtmlImageElement</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HtmlCanvasElement&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texImage2D()` method.&quot;</span>]</span>
@@ -3483,7 +3482,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">canvas</span>: <span class="kw-2">&amp;</span><span class="ident">HtmlCanvasElement</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HtmlVideoElement&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texImage2D()` method.&quot;</span>]</span>
@@ -3499,7 +3498,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">video</span>: <span class="kw-2">&amp;</span><span class="ident">HtmlVideoElement</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texSubImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texSubImage2D()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -3517,7 +3516,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">::js_sys::Object</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texSubImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texSubImage2D()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -3535,7 +3534,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ImageBitmap&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texSubImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texSubImage2D()` method.&quot;</span>]</span>
@@ -3552,7 +3551,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="kw-2">&amp;</span><span class="ident">ImageBitmap</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ImageData&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texSubImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texSubImage2D()` method.&quot;</span>]</span>
@@ -3569,7 +3568,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">pixels</span>: <span class="kw-2">&amp;</span><span class="ident">ImageData</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HtmlImageElement&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texSubImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texSubImage2D()` method.&quot;</span>]</span>
@@ -3586,7 +3585,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">image</span>: <span class="kw-2">&amp;</span><span class="ident">HtmlImageElement</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HtmlCanvasElement&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texSubImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texSubImage2D()` method.&quot;</span>]</span>
@@ -3603,7 +3602,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">canvas</span>: <span class="kw-2">&amp;</span><span class="ident">HtmlCanvasElement</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;HtmlVideoElement&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">texSubImage2D</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `texSubImage2D()` method.&quot;</span>]</span>
@@ -3620,7 +3619,7 @@
         <span class="ident">format</span>: <span class="ident">u32</span>,
         <span class="ident">type_</span>: <span class="ident">u32</span>,
         <span class="ident">video</span>: <span class="kw-2">&amp;</span><span class="ident">HtmlVideoElement</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlUniformLocation&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">uniform1fv</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `uniform1fv()` method.&quot;</span>]</span>
@@ -4010,7 +4009,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/checkFramebufferStatus)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_framebuffer_status</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">target</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_framebuffer_status</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">target</span>: <span class="ident">u32</span>) -&gt; <span class="ident">u32</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">clear</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `clear()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4101,7 +4100,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/createBuffer)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlBuffer`, `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_buffer</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlBuffer</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_buffer</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlBuffer</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlFramebuffer&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">createFramebuffer</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `createFramebuffer()` method.&quot;</span>]</span>
@@ -4109,7 +4108,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/createFramebuffer)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlFramebuffer`, `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_framebuffer</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlFramebuffer</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_framebuffer</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlFramebuffer</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">createProgram</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `createProgram()` method.&quot;</span>]</span>
@@ -4117,7 +4116,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/createProgram)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlProgram`, `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_program</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlProgram</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_program</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlProgram</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlRenderbuffer&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">createRenderbuffer</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `createRenderbuffer()` method.&quot;</span>]</span>
@@ -4125,7 +4124,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/createRenderbuffer)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderbuffer`, `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_renderbuffer</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlRenderbuffer</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_renderbuffer</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlRenderbuffer</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlShader&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">createShader</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `createShader()` method.&quot;</span>]</span>
@@ -4133,7 +4132,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/createShader)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`, `WebGlShader`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_shader</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">type_</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlShader</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_shader</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">type_</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlShader</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlTexture&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">createTexture</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `createTexture()` method.&quot;</span>]</span>
@@ -4141,7 +4140,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/createTexture)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`, `WebGlTexture`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_texture</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlTexture</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_texture</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlTexture</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">cullFace</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `cullFace()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4362,7 +4361,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>,
         <span class="ident">index</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlActiveInfo</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlActiveInfo</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlActiveInfo&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>,))]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getActiveUniform</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getActiveUniform()` method.&quot;</span>]</span>
@@ -4374,7 +4373,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>,
         <span class="ident">index</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlActiveInfo</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlActiveInfo</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getAttachedShaders</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getAttachedShaders()` method.&quot;</span>]</span>
@@ -4385,7 +4384,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_attached_shaders</span>(
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::js_sys::Array</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::js_sys::Array</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getAttribLocation</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getAttribLocation()` method.&quot;</span>]</span>
@@ -4397,7 +4396,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>,
         <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
+    ) -&gt; <span class="ident">i32</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getBufferParameter</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getBufferParameter()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4408,7 +4407,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">target</span>: <span class="ident">u32</span>,
         <span class="ident">pname</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::wasm_bindgen::JsValue</span>;
+    ) -&gt; <span class="ident">::wasm_bindgen::JsValue</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlContextAttributes&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getContextAttributes</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getContextAttributes()` method.&quot;</span>]</span>
@@ -4416,14 +4415,14 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getContextAttributes)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlContextAttributes`, `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_context_attributes</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlContextAttributes</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_context_attributes</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlContextAttributes</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getError</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getError()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getError)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_error</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_error</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="ident">u32</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getExtension</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getExtension()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4433,7 +4432,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_extension</span>(
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::js_sys::Object</span><span class="op">&gt;</span>, <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::js_sys::Object</span><span class="op">&gt;</span>, <span class="ident">JsValue</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getFramebufferAttachmentParameter</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getFramebufferAttachmentParameter()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4445,7 +4444,7 @@
         <span class="ident">target</span>: <span class="ident">u32</span>,
         <span class="ident">attachment</span>: <span class="ident">u32</span>,
         <span class="ident">pname</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">::wasm_bindgen::JsValue</span>, <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">::wasm_bindgen::JsValue</span>, <span class="ident">JsValue</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getParameter</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getParameter()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4455,7 +4454,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_parameter</span>(
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">pname</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">::wasm_bindgen::JsValue</span>, <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">::wasm_bindgen::JsValue</span>, <span class="ident">JsValue</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getProgramInfoLog</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getProgramInfoLog()` method.&quot;</span>]</span>
@@ -4466,7 +4465,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_program_info_log</span>(
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getProgramParameter</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getProgramParameter()` method.&quot;</span>]</span>
@@ -4478,7 +4477,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>,
         <span class="ident">pname</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::wasm_bindgen::JsValue</span>;
+    ) -&gt; <span class="ident">::wasm_bindgen::JsValue</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getRenderbufferParameter</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getRenderbufferParameter()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4489,7 +4488,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">target</span>: <span class="ident">u32</span>,
         <span class="ident">pname</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::wasm_bindgen::JsValue</span>;
+    ) -&gt; <span class="ident">::wasm_bindgen::JsValue</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlShader&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getShaderInfoLog</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getShaderInfoLog()` method.&quot;</span>]</span>
@@ -4500,7 +4499,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_shader_info_log</span>(
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">shader</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlShader</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlShader&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getShaderParameter</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getShaderParameter()` method.&quot;</span>]</span>
@@ -4512,7 +4511,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">shader</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlShader</span>,
         <span class="ident">pname</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::wasm_bindgen::JsValue</span>;
+    ) -&gt; <span class="ident">::wasm_bindgen::JsValue</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlShaderPrecisionFormat&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getShaderPrecisionFormat</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getShaderPrecisionFormat()` method.&quot;</span>]</span>
@@ -4524,7 +4523,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">shadertype</span>: <span class="ident">u32</span>,
         <span class="ident">precisiontype</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlShaderPrecisionFormat</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlShaderPrecisionFormat</span><span class="op">&gt;</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlShader&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getShaderSource</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getShaderSource()` method.&quot;</span>]</span>
@@ -4532,14 +4531,14 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getShaderSource)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`, `WebGlShader`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_shader_source</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">shader</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlShader</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_shader_source</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">shader</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlShader</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getSupportedExtensions</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getSupportedExtensions()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getSupportedExtensions)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_supported_extensions</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::js_sys::Array</span><span class="op">&gt;</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_supported_extensions</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">::js_sys::Array</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getTexParameter</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getTexParameter()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4550,7 +4549,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">target</span>: <span class="ident">u32</span>,
         <span class="ident">pname</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::wasm_bindgen::JsValue</span>;
+    ) -&gt; <span class="ident">::wasm_bindgen::JsValue</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlUniformLocation&quot;</span>,))]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getUniform</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getUniform()` method.&quot;</span>]</span>
@@ -4562,7 +4561,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>,
         <span class="ident">location</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlUniformLocation</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::wasm_bindgen::JsValue</span>;
+    ) -&gt; <span class="ident">::wasm_bindgen::JsValue</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlUniformLocation&quot;</span>,))]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getUniformLocation</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getUniformLocation()` method.&quot;</span>]</span>
@@ -4574,7 +4573,7 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">program</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span>,
         <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlUniformLocation</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">WebGlUniformLocation</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">catch</span> , <span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getVertexAttrib</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getVertexAttrib()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4585,14 +4584,14 @@
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">index</span>: <span class="ident">u32</span>,
         <span class="ident">pname</span>: <span class="ident">u32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">::wasm_bindgen::JsValue</span>, <span class="ident">JsValue</span><span class="op">&gt;</span>;
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">::wasm_bindgen::JsValue</span>, <span class="ident">JsValue</span><span class="op">&gt;</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">getVertexAttribOffset</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `getVertexAttribOffset()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getVertexAttribOffset)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_vertex_attrib_offset</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">index</span>: <span class="ident">u32</span>, <span class="ident">pname</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_vertex_attrib_offset</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">index</span>: <span class="ident">u32</span>, <span class="ident">pname</span>: <span class="ident">u32</span>) -&gt; <span class="ident">f64</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">hint</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `hint()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4607,21 +4606,21 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isBuffer)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlBuffer`, `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_buffer</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">buffer</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlBuffer</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_buffer</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">buffer</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlBuffer</span><span class="op">&gt;</span>) -&gt; <span class="ident">bool</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">isContextLost</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `isContextLost()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isContextLost)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_context_lost</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_context_lost</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="ident">bool</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">isEnabled</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `isEnabled()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isEnabled)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_enabled</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">cap</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_enabled</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">cap</span>: <span class="ident">u32</span>) -&gt; <span class="ident">bool</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlFramebuffer&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">isFramebuffer</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `isFramebuffer()` method.&quot;</span>]</span>
@@ -4632,7 +4631,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_framebuffer</span>(
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">framebuffer</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlFramebuffer</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    ) -&gt; <span class="ident">bool</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlProgram&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">isProgram</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `isProgram()` method.&quot;</span>]</span>
@@ -4640,7 +4639,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isProgram)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlProgram`, `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_program</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">program</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_program</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">program</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlProgram</span><span class="op">&gt;</span>) -&gt; <span class="ident">bool</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlRenderbuffer&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">isRenderbuffer</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `isRenderbuffer()` method.&quot;</span>]</span>
@@ -4651,7 +4650,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_renderbuffer</span>(
         <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>,
         <span class="ident">renderbuffer</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlRenderbuffer</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    ) -&gt; <span class="ident">bool</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlShader&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">isShader</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `isShader()` method.&quot;</span>]</span>
@@ -4659,7 +4658,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isShader)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`, `WebGlShader`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_shader</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">shader</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlShader</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_shader</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">shader</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlShader</span><span class="op">&gt;</span>) -&gt; <span class="ident">bool</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;WebGlTexture&quot;</span>)]</span>
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">isTexture</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `isTexture()` method.&quot;</span>]</span>
@@ -4667,7 +4666,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isTexture)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`, `WebGlTexture`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_texture</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">texture</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlTexture</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_texture</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>, <span class="ident">texture</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">WebGlTexture</span><span class="op">&gt;</span>) -&gt; <span class="ident">bool</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">lineWidth</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `lineWidth()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -4689,7 +4688,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;[MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/makeXRCompatible)&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">make_xr_compatible</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::js_sys::Promise</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">make_xr_compatible</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">WebGlRenderingContext</span>) -&gt; <span class="ident">::js_sys::Promise</span>;
     # [<span class="ident">wasm_bindgen</span> (<span class="ident">method</span> , <span class="ident">structural</span> , <span class="ident">js_class</span> <span class="op">=</span> <span class="string">&quot;WebGLRenderingContext&quot;</span> , <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">pixelStorei</span>)]
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;The `pixelStorei()` method.&quot;</span>]</span>
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;&quot;</span>]</span>
@@ -6247,7 +6246,7 @@
     <span class="attribute">#[<span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot;*This API requires the following crate features to be activated: `WebGlRenderingContext`*&quot;</span>]</span>
     <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BROWSER_DEFAULT_WEBGL</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">37444u64</span> <span class="kw">as</span> <span class="ident">u32</span>;
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="web_sys" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>

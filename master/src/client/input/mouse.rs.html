@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `client&#x2F;src&#x2F;input&#x2F;mouse.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mouse.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../client/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `client&#x2F;src&#x2F;input&#x2F;mouse.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mouse.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../client/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -152,16 +152,15 @@
 <span id="152">152</span>
 <span id="153">153</span>
 <span id="154">154</span>
-</pre><pre class="rust">
-<span class="doccomment">//! Handles mouse interaction.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Handles mouse interaction.</span>
 
 <span class="kw">use</span> <span class="ident">legion::Entity</span>;
 <span class="kw">use</span> <span class="ident">traffloat::space::Position</span>;
 <span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">appearance</span>, <span class="ident">edge</span>, <span class="ident">node</span>};
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">keyboard</span>, <span class="ident">ScreenPosition</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::camera::Camera</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::render</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::camera::Camera</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render</span>;
 
 <span class="doccomment">/// Resource storing the position of the mouse, in the range [0, 1]^2.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">getset::CopyGetters</span>)]</span>
@@ -175,11 +174,11 @@
     <span class="doccomment">/// Creates a new cursor position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Parameters are identical to those of [`ScreenPosition::new`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span> { <span class="ident">position</span>: <span class="ident">ScreenPosition::new</span>(<span class="ident">x</span>, <span class="ident">y</span>) } }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> { <span class="self">Self</span> { <span class="ident">position</span>: <span class="ident">ScreenPosition::new</span>(<span class="ident">x</span>, <span class="ident">y</span>) } }
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">CursorPosition</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span><span class="ident">::new</span>(<span class="number">0.5</span>, <span class="number">0.5</span>) }
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> { <span class="ident"><span class="self">Self</span>::new</span>(<span class="number">0.5</span>, <span class="number">0.5</span>) }
 }
 
 <span class="doccomment">/// Resource storing the line segment below the cursor.</span>
@@ -194,7 +193,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Segment</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> { <span class="ident">proximal</span>: <span class="ident">Position::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>), <span class="ident">distal</span>: <span class="ident">Position::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="op">-</span><span class="number">1.</span>) }
     }
 }
@@ -203,7 +202,7 @@
 <span class="kw">fn</span> <span class="ident">trace_segment</span>(
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">CursorPosition</span>,
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">camera</span>: <span class="kw-2">&amp;</span><span class="ident">Camera</span>,
-    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">segment</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Segment</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">segment</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Segment</span>,
 
     <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;Mouse&quot;</span>, <span class="string">&quot;Proximal&quot;</span>)]</span> <span class="ident">proximal_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
     <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;Mouse&quot;</span>, <span class="string">&quot;Distal&quot;</span>)]</span> <span class="ident">distal_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
@@ -247,9 +246,9 @@
 <span class="kw">fn</span> <span class="ident">trace_entity</span>(
     <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="ident">legion::world::SubWorld</span>,
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">segment</span>: <span class="kw-2">&amp;</span><span class="ident">Segment</span>,
-    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">cursor_type</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">render::CursorType</span>,
-    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">hover_target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">HoverTarget</span>,
-    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">focus_target</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">super</span><span class="ident">::FocusTarget</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">cursor_type</span>: <span class="kw-2">&amp;mut</span> <span class="ident">render::CursorType</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">hover_target</span>: <span class="kw-2">&amp;mut</span> <span class="ident">HoverTarget</span>,
+    <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">focus_target</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">super</span>::FocusTarget</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">click_sub</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">keyboard::SingleClick</span><span class="op">&gt;</span>,
 
     <span class="attribute">#[<span class="ident">debug</span>(<span class="string">&quot;Mouse&quot;</span>, <span class="string">&quot;Target&quot;</span>)]</span> <span class="ident">target_debug</span>: <span class="kw-2">&amp;</span><span class="ident">codegen::DebugEntry</span>,
@@ -297,17 +296,17 @@
     <span class="ident">cursor_type</span>.<span class="ident">set_name</span>(<span class="kw">if</span> <span class="ident">hover_target</span>.<span class="ident">entity</span>().<span class="ident">is_some</span>() { <span class="string">&quot;pointer&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;initial&quot;</span> });
 
     <span class="kw">let</span> <span class="ident">has_click</span> <span class="op">=</span>
-        <span class="ident">click_sub</span>.<span class="ident">filter</span>(<span class="op">|</span><span class="ident">click</span><span class="op">|</span> <span class="ident">click</span>.<span class="ident">command</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">keyboard::Command::LeftClick</span>).<span class="ident">count</span>() <span class="op">&gt;</span> <span class="number">0</span>; <span class="comment">// consume the whole iterator without short-circuiting</span>
+        <span class="ident">click_sub</span>.<span class="ident">filter</span>(<span class="op">|</span><span class="ident">click</span><span class="op">|</span> <span class="ident">click</span>.<span class="ident">command</span>() <span class="op">==</span> <span class="ident">keyboard::Command::LeftClick</span>).<span class="ident">count</span>() <span class="op">&gt;</span> <span class="number">0</span>; <span class="comment">// consume the whole iterator without short-circuiting</span>
     <span class="kw">if</span> <span class="ident">has_click</span> {
         <span class="ident">focus_target</span>.<span class="ident">set_entity</span>(<span class="ident">hover_target</span>.<span class="ident">entity</span>());
     }
 }
 
 <span class="doccomment">/// Sets up legion ECS for mouse input handling.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">traffloat::SetupEcs</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">traffloat::SetupEcs</span>) -&gt; <span class="ident">traffloat::SetupEcs</span> {
     <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">trace_segment_setup</span>).<span class="ident">uses</span>(<span class="ident">trace_entity_setup</span>)
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="client" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>

@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Mixer","A data structure storing liquid mixing behaviour."],["Pair","A pair of liquids."],["Type","A type of liquid."],["TypeId","Identifies a liquid type."]]});

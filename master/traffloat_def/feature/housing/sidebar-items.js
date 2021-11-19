@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Housing","Defines a housing feature."]]});

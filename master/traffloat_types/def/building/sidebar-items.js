@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Category","A category of building."],["CategoryId","Identifies a building category"],["Shape","Shape of a building."],["Storage","Storage provided by a building."],["Type","A type of building."],["TypeId","Identifies a building type."]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Action","Consequence of a crime."],["InhabitantCriterion","A criterion to sort inhabitants with."]],"struct":[["SkillChange","A change in skill level."],["Type","A type of crime customized for the game definition."],["TypeId","Identifies a crime type."]]});

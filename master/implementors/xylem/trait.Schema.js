@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["traffloat_def"] = [{"text":"impl <a class=\"trait\" href=\"xylem/trait.Schema.html\" title=\"trait xylem::Schema\">Schema</a> for <a class=\"enum\" href=\"traffloat_def/schema/enum.Schema.html\" title=\"enum traffloat_def::schema::Schema\">Schema</a>","synthetic":false,"types":["traffloat_def::schema::Schema"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

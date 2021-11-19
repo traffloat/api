@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["category","Categories of cargo."]],"struct":[["Def","A type of cargo."]],"type":[["Id","Identifies a cargo type."]]});

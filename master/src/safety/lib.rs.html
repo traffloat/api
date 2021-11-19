@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `safety&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../safety/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `safety&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../safety/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -147,13 +147,12 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
-</pre><pre class="rust">
-<span class="doccomment">//! Safety wrappers</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Safety wrappers</span>
 
 <span class="doccomment">/// Aggregate trait for all other traits in this crate</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Safety</span>: <span class="ident">Sized</span> {
     <span class="doccomment">/// See [`LossyTrunc`].</span>
-    <span class="kw">fn</span> <span class="ident">lossy_trunc</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>
+    <span class="kw">fn</span> <span class="ident">lossy_trunc</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="self">self</span>) -&gt; <span class="ident">U</span>
     <span class="kw">where</span>
         <span class="self">Self</span>: <span class="ident">LossyTrunc</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>,
     {
@@ -161,7 +160,7 @@
     }
 
     <span class="doccomment">/// See [`SmallFloat`].</span>
-    <span class="kw">fn</span> <span class="ident">small_float</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>
+    <span class="kw">fn</span> <span class="ident">small_float</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="self">self</span>) -&gt; <span class="ident">U</span>
     <span class="kw">where</span>
         <span class="self">Self</span>: <span class="ident">SmallFloat</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>,
     {
@@ -169,7 +168,7 @@
     }
 
     <span class="doccomment">/// See [`TruncInt`].</span>
-    <span class="kw">fn</span> <span class="ident">trunc_int</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>
+    <span class="kw">fn</span> <span class="ident">trunc_int</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="self">self</span>) -&gt; <span class="ident">U</span>
     <span class="kw">where</span>
         <span class="self">Self</span>: <span class="ident">TruncInt</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>,
     {
@@ -177,7 +176,7 @@
     }
 
     <span class="doccomment">/// See [`SmallUnsigned`].</span>
-    <span class="kw">fn</span> <span class="ident">homosign</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>
+    <span class="kw">fn</span> <span class="ident">homosign</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="self">self</span>) -&gt; <span class="ident">U</span>
     <span class="kw">where</span>
         <span class="self">Self</span>: <span class="ident">SmallUnsigned</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>,
     {
@@ -190,10 +189,10 @@
 <span class="doccomment">/// Lossy truncation from Self to U</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">LossyTrunc</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>: <span class="ident">Sized</span> {
     <span class="doccomment">/// Lossily truncate a float.</span>
-    <span class="kw">fn</span> <span class="ident">lossy_trunc_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>;
+    <span class="kw">fn</span> <span class="ident">lossy_trunc_impl</span>(<span class="self">self</span>) -&gt; <span class="ident">U</span>;
 }
 <span class="kw">impl</span> <span class="ident">LossyTrunc</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">f64</span> {
-    <span class="kw">fn</span> <span class="ident">lossy_trunc_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> { <span class="self">self</span> <span class="kw">as</span> <span class="ident">f32</span> }
+    <span class="kw">fn</span> <span class="ident">lossy_trunc_impl</span>(<span class="self">self</span>) -&gt; <span class="ident">f32</span> { <span class="self">self</span> <span class="kw">as</span> <span class="ident">f32</span> }
 }
 
 <span class="doccomment">/// Converts an integer to a float probably losslessly</span>
@@ -202,15 +201,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">/// Panics if the integer is too large.</span>
-    <span class="kw">fn</span> <span class="ident">small_float_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>;
+    <span class="kw">fn</span> <span class="ident">small_float_impl</span>(<span class="self">self</span>) -&gt; <span class="ident">U</span>;
 }
 
 <span class="macro">macro_rules!</span> <span class="ident">float_cast</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ty</span>) =&gt; {
         <span class="kw">impl</span> <span class="ident">SmallFloat</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span> {
-            <span class="kw">fn</span> <span class="ident">small_float_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span> {
+            <span class="kw">fn</span> <span class="ident">small_float_impl</span>(<span class="self">self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span> {
                 <span class="macro">debug_assert!</span>(
-                    <span class="self">Self</span><span class="ident">::BITS</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">leading_zeros</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&gt;</span><span class="ident">::MANTISSA_DIGITS</span>,
+                    <span class="ident"><span class="self">Self</span>::BITS</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">leading_zeros</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&gt;</span><span class="ident">::MANTISSA_DIGITS</span>,
                     <span class="string">&quot;{} may not be losslessly converted to float&quot;</span>,
                     <span class="self">self</span>
                 );
@@ -234,13 +233,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">/// Panics if the integer cannot hold the float value.</span>
-    <span class="kw">fn</span> <span class="ident">trunc_int_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>;
+    <span class="kw">fn</span> <span class="ident">trunc_int_impl</span>(<span class="self">self</span>) -&gt; <span class="ident">U</span>;
 }
 
 <span class="macro">macro_rules!</span> <span class="ident">float_trunc_int</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ty</span>) =&gt; {
         <span class="kw">impl</span> <span class="ident">TruncInt</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span> {
-            <span class="kw">fn</span> <span class="ident">trunc_int_impl</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span> {
+            <span class="kw">fn</span> <span class="ident">trunc_int_impl</span>(<span class="self">self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span> {
                 <span class="kw">let</span> <span class="ident">trunc</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">trunc</span>();
                 <span class="macro">debug_assert!</span>(
                     <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&gt;</span><span class="ident">::MIN</span> <span class="kw">as</span> <span class="self">Self</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">trunc</span> <span class="op">&amp;&amp;</span> <span class="ident">trunc</span> <span class="op">&lt;</span><span class="op">=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&gt;</span><span class="ident">::MAX</span> <span class="kw">as</span> <span class="self">Self</span>,
@@ -271,14 +270,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">/// Panics if the integer has the MSB set.</span>
-    <span class="kw">fn</span> <span class="ident">small_unsigned</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">U</span>;
+    <span class="kw">fn</span> <span class="ident">small_unsigned</span>(<span class="self">self</span>) -&gt; <span class="ident">U</span>;
 }
 
 <span class="macro">macro_rules!</span> <span class="ident">small_unsigned_int</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ty</span>) =&gt; {
         <span class="kw">impl</span> <span class="ident">SmallUnsigned</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span> {
             <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_comparisons</span>)]</span>
-            <span class="kw">fn</span> <span class="ident">small_unsigned</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span> {
+            <span class="kw">fn</span> <span class="ident">small_unsigned</span>(<span class="self">self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span> {
                 <span class="kw">let</span> <span class="ident">target</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>;
                 <span class="macro">debug_assert!</span>(<span class="self">self</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">target</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>, <span class="string">&quot;{} is not homogeneous over signs&quot;</span>, <span class="self">self</span>,);
                 <span class="ident">target</span>
@@ -297,7 +296,7 @@
 <span class="macro">small_unsigned_int!</span>(<span class="ident">i64</span>, <span class="ident">u64</span>);
 <span class="macro">small_unsigned_int!</span>(<span class="ident">usize</span>, <span class="ident">isize</span>);
 <span class="macro">small_unsigned_int!</span>(<span class="ident">isize</span>, <span class="ident">usize</span>);
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="safety" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
 </body></html>

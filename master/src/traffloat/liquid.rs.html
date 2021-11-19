@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `common&#x2F;src&#x2F;liquid.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>liquid.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../traffloat/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `common&#x2F;src&#x2F;liquid.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>liquid.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../traffloat/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -292,8 +292,71 @@
 <span id="292">292</span>
 <span id="293">293</span>
 <span id="294">294</span>
-</pre><pre class="rust">
-<span class="doccomment">//! Management of liquid in buildings</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Management of liquid in buildings</span>
+
+<span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">btree_map</span>, <span class="ident">BTreeMap</span>};
 
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">legion::world::SubWorld</span>;
@@ -301,11 +364,71 @@
 <span class="kw">use</span> <span class="ident">smallvec::SmallVec</span>;
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::clock</span>::{<span class="ident">SimulationEvent</span>, <span class="ident">SIMULATION_PERIOD</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::def::liquid::TypeId</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::time::Instant</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::units</span>::{<span class="self">self</span>, <span class="ident">LiquidVolume</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">config</span>, <span class="ident">def</span>, <span class="ident">node</span>, <span class="ident">util</span>, <span class="ident">SetupEcs</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::clock</span>::{<span class="ident">SimulationEvent</span>, <span class="ident">SIMULATION_PERIOD</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::def::liquid</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::time::Instant</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::units</span>::{<span class="self">self</span>, <span class="ident">LiquidVolume</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">config</span>, <span class="ident">def</span>, <span class="ident">node</span>, <span class="ident">save</span>, <span class="ident">util</span>, <span class="ident">SetupEcs</span>};
+
+<span class="doccomment">/// A data structure storing liquid mixing recipes.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">getset::MutGetters</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RecipeMap</span> {
+    <span class="ident">map</span>:     <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">RecipeKey</span>, <span class="ident">liquid::Id</span><span class="op">&gt;</span>,
+    <span class="ident">default</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">liquid::Id</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">RecipeMap</span> {
+    <span class="doccomment">/// Push a formula definition.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">define</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">liquid::Formula</span>) -&gt; <span class="ident">anyhow::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">RecipeKey::new</span>(<span class="ident">def</span>.<span class="ident">augend</span>(), <span class="ident">def</span>.<span class="ident">addend</span>());
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">entry</span>(<span class="ident">key</span>) {
+            <span class="ident">btree_map::Entry::Vacant</span>(<span class="ident">entry</span>) =&gt; {
+                <span class="ident">entry</span>.<span class="ident">insert</span>(<span class="ident">def</span>.<span class="ident">sum</span>());
+                <span class="prelude-val">Ok</span>(())
+            }
+            <span class="ident">btree_map::Entry::Occupied</span>(<span class="kw">_</span>) =&gt; <span class="macro">anyhow::bail!</span>(<span class="string">&quot;Duplicate recipe key {:?}&quot;</span>, <span class="ident">key</span>),
+        }
+    }
+
+    <span class="doccomment">/// Set the default formula definition.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">define_default</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">liquid::DefaultFormula</span>) -&gt; <span class="ident">anyhow::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="macro">anyhow::ensure!</span>(<span class="self">self</span>.<span class="ident">default</span>.<span class="ident">is_none</span>(), <span class="string">&quot;Duplicate default recipe&quot;</span>);
+        <span class="self">self</span>.<span class="ident">default</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">def</span>.<span class="ident">sum</span>());
+        <span class="prelude-val">Ok</span>(())
+    }
+
+    <span class="doccomment">/// Evaluate the mixing result of two liquids.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mix</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">augend</span>: <span class="ident">liquid::Id</span>, <span class="ident">addend</span>: <span class="ident">liquid::Id</span>) -&gt; <span class="ident">liquid::Id</span> {
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">RecipeKey::new</span>(<span class="ident">augend</span>, <span class="ident">addend</span>)) {
+            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">sum</span>) =&gt; <span class="ident">sum</span>,
+            <span class="prelude-val">None</span> =&gt; <span class="self">self</span>.<span class="ident">default</span>(),
+        }
+    }
+
+    <span class="doccomment">/// The default liquid mixing output type.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">liquid::Id</span> { <span class="self">self</span>.<span class="ident">default</span>.<span class="ident">expect</span>(<span class="string">&quot;Uninitialized recipe default&quot;</span>) }
+}
+
+<span class="doccomment">/// A recipe key.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// `less` is always less than `greater`</span>
+<span class="doccomment">/// to ensure the commutative property of the key.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
+<span class="kw">struct</span> <span class="ident">RecipeKey</span> {
+    <span class="ident">less</span>:    <span class="ident">liquid::Id</span>,
+    <span class="ident">greater</span>: <span class="ident">liquid::Id</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">RecipeKey</span> {
+    <span class="doccomment">/// Create a new, sorted `RecipeKey`</span>
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">a</span>: <span class="ident">liquid::Id</span>, <span class="ident">b</span>: <span class="ident">liquid::Id</span>) -&gt; <span class="self">Self</span> {
+        <span class="kw">if</span> <span class="ident">a</span> <span class="op">&lt;</span> <span class="ident">b</span> {
+            <span class="self">Self</span> { <span class="ident">less</span>: <span class="ident">a</span>, <span class="ident">greater</span>: <span class="ident">b</span> }
+        } <span class="kw">else</span> {
+            <span class="self">Self</span> { <span class="ident">less</span>: <span class="ident">b</span>, <span class="ident">greater</span>: <span class="ident">a</span> }
+        }
+    }
+}
 
 <span class="doccomment">/// A component attached to entities that house liquid.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::Getters</span>)]</span>
@@ -316,12 +439,12 @@
 }
 
 <span class="doccomment">/// A component attached to storage entities.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::Setters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Storage</span> {
     <span class="doccomment">/// The type of liquid.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">liquid</span>: <span class="ident">TypeId</span>,
+    <span class="ident">liquid</span>: <span class="ident">liquid::Id</span>,
 }
 
 <span class="doccomment">/// A component attached to storages to inidcate capacity.</span>
@@ -335,11 +458,12 @@
 <span class="macro">codegen::component_depends!</span> {
     <span class="ident">Storage</span> <span class="op">=</span> (
         <span class="ident">Storage</span>,
-        <span class="ident">node::Child</span>,
         <span class="ident">StorageCapacity</span>,
         <span class="ident">StorageSize</span>,
         <span class="ident">NextStorageType</span>,
         <span class="ident">NextStorageSize</span>,
+        <span class="ident">def::lang::Item</span>,
+        <span class="ident">node::Child</span>,
     ) <span class="op">+</span> <span class="question-mark">?</span>()
 }
 
@@ -352,12 +476,12 @@
 }
 
 <span class="doccomment">/// The type of a liquid storage in the next simulation frame.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::Setters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NextStorageType</span> {
     <span class="doccomment">/// The liquid type.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">ty</span>: <span class="ident">TypeId</span>,
+    <span class="ident">ty</span>: <span class="ident">liquid::Id</span>,
 }
 
 <span class="doccomment">/// The size of a liquid storage in the next simulation frame.</span>
@@ -370,7 +494,7 @@
 }
 
 <span class="doccomment">/// Interpolates the current graphical size of a storage.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lerp</span>(<span class="ident">current</span>: <span class="kw-2">&amp;</span><span class="ident">StorageSize</span>, <span class="ident">next</span>: <span class="kw-2">&amp;</span><span class="ident">NextStorageSize</span>, <span class="ident">time</span>: <span class="ident">Instant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LiquidVolume</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lerp</span>(<span class="ident">current</span>: <span class="kw-2">&amp;</span><span class="ident">StorageSize</span>, <span class="ident">next</span>: <span class="kw-2">&amp;</span><span class="ident">NextStorageSize</span>, <span class="ident">time</span>: <span class="ident">Instant</span>) -&gt; <span class="ident">LiquidVolume</span> {
     <span class="ident">LiquidVolume</span>(<span class="ident">util::lerp</span>(
         <span class="ident">current</span>.<span class="ident">size</span>.<span class="ident">value</span>(),
         <span class="ident">next</span>.<span class="ident">size</span>.<span class="ident">value</span>(),
@@ -403,16 +527,16 @@
 
 <span class="kw">impl</span> <span class="ident">PipeResistance</span> {
     <span class="doccomment">/// Computes the resistance of a pipe.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">compute</span>(<span class="ident">length</span>: <span class="ident">f64</span>, <span class="ident">radius</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span><span class="ident">::new</span>(<span class="ident">length</span> <span class="op">/</span> <span class="ident">radius</span>.<span class="ident">powi</span>(<span class="number">2</span>)) }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">compute</span>(<span class="ident">length</span>: <span class="ident">f64</span>, <span class="ident">radius</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> { <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">length</span> <span class="op">/</span> <span class="ident">radius</span>.<span class="ident">powi</span>(<span class="number">2</span>)) }
 }
 
 <span class="doccomment">/// A component storing the current flow of a pipe.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">getset::Getters</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PipeFlow</span> {
     <span class="doccomment">/// The type of liquid flowing over the pipe in the current simulation frame.</span>
-    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">ty</span>:    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TypeId</span><span class="op">&gt;</span>,
+    <span class="ident">ty</span>:    <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">liquid::Id</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The flow rate over the pipe in the current simulation frame.</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">set</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
@@ -447,9 +571,9 @@
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">NextStorageType</span>)]</span>
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">PipeFlow</span>)]</span>
 <span class="kw">fn</span> <span class="ident">simulate_pipes</span>(
-    <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">SubWorld</span>,
+    <span class="ident">world</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SubWorld</span>,
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">config</span>: <span class="kw-2">&amp;</span><span class="ident">config::Scalar</span>,
-    <span class="attribute">#[<span class="ident">resource</span>(<span class="ident">no_init</span>)]</span> <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">def::GameDefinition</span>,
+    <span class="attribute">#[<span class="ident">resource</span>(<span class="ident">no_init</span>)]</span> <span class="ident">def</span>: <span class="kw-2">&amp;</span><span class="ident">save::GameDefinition</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">sim_sub</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">SimulationEvent</span><span class="op">&gt;</span>,
 ) {
     <span class="kw">use</span> <span class="ident">legion::world::ComponentError</span>;
@@ -459,11 +583,11 @@
         <span class="kw">return</span>;
     }
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">query</span> <span class="op">=</span> <span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">Pipe</span>, <span class="kw-2">&amp;</span><span class="ident">PipeResistance</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">PipeFlow</span>)<span class="op">&gt;</span><span class="ident">::query</span>();
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">query</span> <span class="op">=</span> <span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">Pipe</span>, <span class="kw-2">&amp;</span><span class="ident">PipeResistance</span>, <span class="kw-2">&amp;mut</span> <span class="ident">PipeFlow</span>)<span class="op">&gt;</span><span class="ident">::query</span>();
     <span class="kw">let</span> (<span class="kw-2">mut</span> <span class="ident">query_world</span>, <span class="kw-2">mut</span> <span class="ident">entry_world</span>) <span class="op">=</span> <span class="ident">world</span>.<span class="ident">split_for_query</span>(<span class="kw-2">&amp;</span><span class="ident">query</span>);
-    <span class="kw">for</span> (<span class="ident">pipe</span>, <span class="ident">resistance</span>, <span class="ident">flow</span>) <span class="kw">in</span> <span class="ident">query</span>.<span class="ident">iter_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">query_world</span>) {
+    <span class="kw">for</span> (<span class="ident">pipe</span>, <span class="ident">resistance</span>, <span class="ident">flow</span>) <span class="kw">in</span> <span class="ident">query</span>.<span class="ident">iter_mut</span>(<span class="kw-2">&amp;mut</span> <span class="ident">query_world</span>) {
         <span class="kw">struct</span> <span class="ident">FetchEndpoint</span> {
-            <span class="ident">ty</span>:        <span class="ident">TypeId</span>,
+            <span class="ident">ty</span>:        <span class="ident">liquid::Id</span>,
             <span class="ident">force</span>:     <span class="ident">units::PipeForce</span>,
             <span class="ident">volume</span>:    <span class="ident">units::LiquidVolume</span>,
             <span class="ident">empty</span>:     <span class="ident">units::LiquidVolume</span>,
@@ -488,9 +612,9 @@
                 .<span class="ident">expect</span>(<span class="string">&quot;Storage references nonexistent parent&quot;</span>);
             <span class="kw">let</span> <span class="ident">pump</span> <span class="op">=</span> <span class="ident">parent_entry</span>.<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">Pump</span><span class="op">&gt;</span>();
             <span class="kw">let</span> <span class="ident">force</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">pump</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">pump</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">pump</span>.<span class="ident">force</span>(),
-                <span class="prelude-val">Err</span>(<span class="ident">ComponentError::NotFound</span> { .. }) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">units::PipeForce</span>(<span class="number">0.</span>),
-                <span class="prelude-val">Err</span>(<span class="ident">ComponentError::Denied</span> { .. }) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
+                <span class="prelude-val">Ok</span>(<span class="ident">pump</span>) =&gt; <span class="ident">pump</span>.<span class="ident">force</span>(),
+                <span class="prelude-val">Err</span>(<span class="ident">ComponentError::NotFound</span> { .. }) =&gt; <span class="ident">units::PipeForce</span>(<span class="number">0.</span>),
+                <span class="prelude-val">Err</span>(<span class="ident">ComponentError::Denied</span> { .. }) =&gt; <span class="macro">unreachable!</span>(),
             };
             <span class="comment">// TODO multiply force by power</span>
 
@@ -501,11 +625,10 @@
                 .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">StorageCapacity</span><span class="op">&gt;</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;Pipe endpoint does not have StorageCapacity component&quot;</span>);
 
-            <span class="kw">let</span> <span class="ident">viscosity</span> <span class="op">=</span>
-                <span class="ident">def</span>.<span class="ident">liquid</span>().<span class="ident">get</span>(<span class="ident">ty</span>).<span class="ident">expect</span>(<span class="string">&quot;Storage references undefined liquid&quot;</span>).<span class="ident">viscosity</span>();
+            <span class="kw">let</span> <span class="ident">viscosity</span> <span class="op">=</span> <span class="ident">def</span>[<span class="ident">ty</span>].<span class="ident">viscosity</span>();
 
             <span class="ident">FetchEndpoint</span> {
-                <span class="ident">ty</span>: <span class="ident">ty</span>.<span class="ident">clone</span>(),
+                <span class="ident">ty</span>,
                 <span class="ident">force</span>,
                 <span class="ident">volume</span>: <span class="ident">size</span>.<span class="ident">size</span>(),
                 <span class="ident">empty</span>: <span class="ident">capacity</span>.<span class="ident">total</span>() <span class="op">-</span> <span class="ident">size</span>.<span class="ident">size</span>(),
@@ -517,9 +640,9 @@
         <span class="kw">let</span> <span class="ident">dest</span> <span class="op">=</span> <span class="ident">fetch_endpoint</span>(<span class="ident">pipe</span>.<span class="ident">dest_entity</span>());
 
         <span class="kw">let</span> <span class="ident">sum_ty</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">src</span>.<span class="ident">volume</span> <span class="op">&lt;</span> <span class="ident">config</span>.<span class="ident">negligible_volume</span> {
-            <span class="ident">dest</span>.<span class="ident">ty</span>.<span class="ident">clone</span>()
+            <span class="ident">dest</span>.<span class="ident">ty</span>
         } <span class="kw">else</span> {
-            <span class="ident">def</span>.<span class="ident">liquid_mixer</span>().<span class="ident">mix</span>(<span class="kw-2">&amp;</span><span class="ident">src</span>.<span class="ident">ty</span>, <span class="kw-2">&amp;</span><span class="ident">dest</span>.<span class="ident">ty</span>).<span class="ident">clone</span>()
+            <span class="ident">def</span>.<span class="ident">liquid_recipes</span>().<span class="ident">mix</span>(<span class="ident">src</span>.<span class="ident">ty</span>, <span class="ident">dest</span>.<span class="ident">ty</span>)
         };
 
         <span class="kw">let</span> <span class="ident">force</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">force</span> <span class="op">+</span> <span class="ident">dest</span>.<span class="ident">force</span>;
@@ -528,7 +651,7 @@
         <span class="ident">rate</span> <span class="op">=</span> <span class="ident">rate</span>.<span class="ident">min</span>(<span class="ident">src</span>.<span class="ident">volume</span>.<span class="ident">value</span>()).<span class="ident">min</span>(<span class="ident">dest</span>.<span class="ident">empty</span>.<span class="ident">value</span>());
         <span class="kw">let</span> <span class="ident">rate</span> <span class="op">=</span> <span class="ident">units::LiquidVolume</span>(<span class="ident">rate</span>);
 
-        <span class="ident">flow</span>.<span class="ident">set_ty</span>(<span class="prelude-val">Some</span>(<span class="ident">src</span>.<span class="ident">ty</span>.<span class="ident">clone</span>()));
+        <span class="ident">flow</span>.<span class="ident">set_ty</span>(<span class="prelude-val">Some</span>(<span class="ident">src</span>.<span class="ident">ty</span>));
         <span class="ident">flow</span>.<span class="ident">set_value</span>(<span class="ident">rate</span>);
 
         {
@@ -566,7 +689,7 @@
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">NextStorageType</span>)]</span>
 <span class="attribute">#[<span class="ident">write_component</span>(<span class="ident">NextStorageSize</span>)]</span>
 <span class="kw">fn</span> <span class="ident">update_storage</span>(
-    <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">SubWorld</span>,
+    <span class="ident">world</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SubWorld</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">sim_sub</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">SimulationEvent</span><span class="op">&gt;</span>,
 ) {
     <span class="kw">use</span> <span class="ident">legion::IntoQuery</span>;
@@ -575,19 +698,19 @@
         <span class="kw">return</span>;
     }
 
-    <span class="kw">for</span> (<span class="ident">current</span>, <span class="ident">next</span>) <span class="kw">in</span> <span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">StorageSize</span>, <span class="kw-2">&amp;</span><span class="ident">NextStorageSize</span>)<span class="op">&gt;</span><span class="ident">::query</span>().<span class="ident">iter_mut</span>(<span class="ident">world</span>) {
+    <span class="kw">for</span> (<span class="ident">current</span>, <span class="ident">next</span>) <span class="kw">in</span> <span class="op">&lt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">StorageSize</span>, <span class="kw-2">&amp;</span><span class="ident">NextStorageSize</span>)<span class="op">&gt;</span><span class="ident">::query</span>().<span class="ident">iter_mut</span>(<span class="ident">world</span>) {
         <span class="ident">current</span>.<span class="ident">size</span> <span class="op">=</span> <span class="ident">next</span>.<span class="ident">size</span>;
     }
-    <span class="kw">for</span> (<span class="ident">current</span>, <span class="ident">next</span>) <span class="kw">in</span> <span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Storage</span>, <span class="kw-2">&amp;</span><span class="ident">NextStorageType</span>)<span class="op">&gt;</span><span class="ident">::query</span>().<span class="ident">iter_mut</span>(<span class="ident">world</span>) {
-        <span class="ident">current</span>.<span class="ident">set_liquid</span>(<span class="ident">next</span>.<span class="ident">ty</span>.<span class="ident">clone</span>());
+    <span class="kw">for</span> (<span class="ident">current</span>, <span class="ident">next</span>) <span class="kw">in</span> <span class="op">&lt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Storage</span>, <span class="kw-2">&amp;</span><span class="ident">NextStorageType</span>)<span class="op">&gt;</span><span class="ident">::query</span>().<span class="ident">iter_mut</span>(<span class="ident">world</span>) {
+        <span class="ident">current</span>.<span class="ident">set_liquid</span>(<span class="ident">next</span>.<span class="ident">ty</span>);
     }
 }
 
 <span class="doccomment">/// Initializes ECS</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SetupEcs</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">SetupEcs</span>) -&gt; <span class="ident">SetupEcs</span> {
     <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">simulate_pipes_setup</span>).<span class="ident">uses</span>(<span class="ident">update_storage_setup</span>)
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
 </body></html>

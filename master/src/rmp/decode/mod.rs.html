@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;rmp-0.8.10&#x2F;src&#x2F;decode&#x2F;mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../rmp/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;rmp-0.8.10&#x2F;src&#x2F;decode&#x2F;mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../rmp/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -375,8 +375,7 @@
 <span id="375">375</span>
 <span id="376">376</span>
 <span id="377">377</span>
-</pre><pre class="rust">
-<span class="doccomment">//! Provides various functions and structs for MessagePack decoding.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Provides various functions and structs for MessagePack decoding.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Most of the function defined in this module will silently handle interruption error (EINTR)</span>
 <span class="doccomment">//! received from the given `Read` to be in consistent state with the `Write::write_all` method in</span>
@@ -393,12 +392,12 @@
 <span class="kw">mod</span> <span class="ident">str</span>;
 <span class="kw">mod</span> <span class="ident">uint</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::sint</span>::{<span class="ident">read_nfix</span>, <span class="ident">read_i8</span>, <span class="ident">read_i16</span>, <span class="ident">read_i32</span>, <span class="ident">read_i64</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::uint</span>::{<span class="ident">read_pfix</span>, <span class="ident">read_u8</span>, <span class="ident">read_u16</span>, <span class="ident">read_u32</span>, <span class="ident">read_u64</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::dec</span>::{<span class="ident">read_f32</span>, <span class="ident">read_f64</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::sint</span>::{<span class="ident">read_nfix</span>, <span class="ident">read_i8</span>, <span class="ident">read_i16</span>, <span class="ident">read_i32</span>, <span class="ident">read_i64</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::uint</span>::{<span class="ident">read_pfix</span>, <span class="ident">read_u8</span>, <span class="ident">read_u16</span>, <span class="ident">read_u32</span>, <span class="ident">read_u64</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::dec</span>::{<span class="ident">read_f32</span>, <span class="ident">read_f64</span>};
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span> <span class="comment">// While we re-export deprecated items, we don&#39;t want to trigger warnings while compiling this crate</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::str</span>::{<span class="ident">read_str_len</span>, <span class="ident">read_str</span>, <span class="ident">read_str_from_slice</span>, <span class="ident">read_str_ref</span>, <span class="ident">DecodeStringError</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::ext</span>::{<span class="ident">read_fixext1</span>, <span class="ident">read_fixext2</span>, <span class="ident">read_fixext4</span>, <span class="ident">read_fixext8</span>, <span class="ident">read_fixext16</span>, <span class="ident">read_ext_meta</span>, <span class="ident">ExtMeta</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::str</span>::{<span class="ident">read_str_len</span>, <span class="ident">read_str</span>, <span class="ident">read_str_from_slice</span>, <span class="ident">read_str_ref</span>, <span class="ident">DecodeStringError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ext</span>::{<span class="ident">read_fixext1</span>, <span class="ident">read_fixext2</span>, <span class="ident">read_fixext4</span>, <span class="ident">read_fixext8</span>, <span class="ident">read_fixext16</span>, <span class="ident">read_ext_meta</span>, <span class="ident">ExtMeta</span>};
 
 <span class="kw">use</span> <span class="ident">std::error</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="self">self</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>};
@@ -408,7 +407,7 @@
 
 <span class="kw">use</span> <span class="ident">num_traits::cast::FromPrimitive</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Marker</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Marker</span>;
 
 <span class="doccomment">/// An error that can occur when attempting to read bytes from the reader.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">::std::io::Error</span>;
@@ -430,22 +429,22 @@
 
 <span class="kw">impl</span> <span class="ident">error::Error</span> <span class="kw">for</span> <span class="ident">ValueReadError</span> {
     <span class="attribute">#[<span class="ident">cold</span>]</span>
-    <span class="kw">fn</span> <span class="ident">source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">error::Error</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">error::Error</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>)<span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
             <span class="ident">ValueReadError::InvalidMarkerRead</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">|</span>
-            <span class="ident">ValueReadError::InvalidDataRead</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">err</span>),
-            <span class="ident">ValueReadError::TypeMismatch</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+            <span class="ident">ValueReadError::InvalidDataRead</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) =&gt; <span class="prelude-val">Some</span>(<span class="ident">err</span>),
+            <span class="ident">ValueReadError::TypeMismatch</span>(..) =&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">ValueReadError</span> {
     <span class="attribute">#[<span class="ident">cold</span>]</span>
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">fmt::Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">fmt::Error</span><span class="op">&gt;</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">ValueReadError::InvalidMarkerRead</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;failed to read MessagePack marker&quot;</span>,
-            <span class="ident">ValueReadError::InvalidDataRead</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;failed to read MessagePack data&quot;</span>,
-            <span class="ident">ValueReadError::TypeMismatch</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">ValueReadError::InvalidMarkerRead</span>(..) =&gt; <span class="string">&quot;failed to read MessagePack marker&quot;</span>,
+            <span class="ident">ValueReadError::InvalidDataRead</span>(..) =&gt; <span class="string">&quot;failed to read MessagePack data&quot;</span>,
+            <span class="ident">ValueReadError::TypeMismatch</span>(..) =&gt; {
                 <span class="string">&quot;the type decoded isn&#39;t match with the expected one&quot;</span>
             }
         })
@@ -454,23 +453,23 @@
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">MarkerReadError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueReadError</span> {
     <span class="attribute">#[<span class="ident">cold</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">MarkerReadError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ValueReadError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">MarkerReadError</span>) -&gt; <span class="ident">ValueReadError</span> {
         <span class="kw">match</span> <span class="ident">err</span> {
-            <span class="ident">MarkerReadError</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ValueReadError::InvalidMarkerRead</span>(<span class="ident">err</span>),
+            <span class="ident">MarkerReadError</span>(<span class="ident">err</span>) =&gt; <span class="ident">ValueReadError::InvalidMarkerRead</span>(<span class="ident">err</span>),
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MarkerReadError</span> {
     <span class="attribute">#[<span class="ident">cold</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">Error</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MarkerReadError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">Error</span>) -&gt; <span class="ident">MarkerReadError</span> {
         <span class="ident">MarkerReadError</span>(<span class="ident">err</span>)
     }
 }
 
 <span class="doccomment">/// Attempts to read a single byte from the given reader and to decode it as a MessagePack marker.</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_marker</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Marker</span>, <span class="ident">MarkerReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_marker</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Marker</span>, <span class="ident">MarkerReadError</span><span class="op">&gt;</span> {
     <span class="prelude-val">Ok</span>(<span class="ident">Marker::from_u8</span>(<span class="ident">rd</span>.<span class="ident">read_u8</span>()<span class="question-mark">?</span>))
 }
 
@@ -490,10 +489,10 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This function will silently retry on every EINTR received from the underlying `Read` until</span>
 <span class="doccomment">/// successful read.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_nil</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_nil</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">read_marker</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> {
-        <span class="ident">Marker::Null</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(()),
-        <span class="ident">marker</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
+        <span class="ident">Marker::Null</span> =&gt; <span class="prelude-val">Ok</span>(()),
+        <span class="ident">marker</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
     }
 }
 
@@ -514,11 +513,11 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This function will silently retry on every EINTR received from the underlying `Read` until</span>
 <span class="doccomment">/// successful read.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_bool</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_bool</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">read_marker</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> {
-        <span class="ident">Marker::True</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
-        <span class="ident">Marker::False</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>),
-        <span class="ident">marker</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
+        <span class="ident">Marker::True</span> =&gt; <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
+        <span class="ident">Marker::False</span> =&gt; <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>),
+        <span class="ident">marker</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
     }
 }
 
@@ -536,45 +535,45 @@
 }
 
 <span class="kw">impl</span> <span class="ident">error::Error</span> <span class="kw">for</span> <span class="ident">NumValueReadError</span> {
-    <span class="kw">fn</span> <span class="ident">source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">error::Error</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">error::Error</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>)<span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
             <span class="ident">NumValueReadError::InvalidMarkerRead</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">|</span>
-            <span class="ident">NumValueReadError::InvalidDataRead</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">err</span>),
+            <span class="ident">NumValueReadError::InvalidDataRead</span>(<span class="kw-2">ref</span> <span class="ident">err</span>) =&gt; <span class="prelude-val">Some</span>(<span class="ident">err</span>),
             <span class="ident">NumValueReadError::TypeMismatch</span>(..) <span class="op">|</span>
-            <span class="ident">NumValueReadError::OutOfRange</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+            <span class="ident">NumValueReadError::OutOfRange</span> =&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">NumValueReadError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">fmt::Error</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">fmt::Error</span><span class="op">&gt;</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">NumValueReadError::InvalidMarkerRead</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;failed to read MessagePack marker&quot;</span>,
-            <span class="ident">NumValueReadError::InvalidDataRead</span>(..) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;failed to read MessagePack data&quot;</span>,
-            <span class="ident">NumValueReadError::TypeMismatch</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">NumValueReadError::InvalidMarkerRead</span>(..) =&gt; <span class="string">&quot;failed to read MessagePack marker&quot;</span>,
+            <span class="ident">NumValueReadError::InvalidDataRead</span>(..) =&gt; <span class="string">&quot;failed to read MessagePack data&quot;</span>,
+            <span class="ident">NumValueReadError::TypeMismatch</span>(..) =&gt; {
                 <span class="string">&quot;the type decoded isn&#39;t match with the expected one&quot;</span>
             }
-            <span class="ident">NumValueReadError::OutOfRange</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;out of range integral type conversion attempted&quot;</span>,
+            <span class="ident">NumValueReadError::OutOfRange</span> =&gt; <span class="string">&quot;out of range integral type conversion attempted&quot;</span>,
         })
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">MarkerReadError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NumValueReadError</span> {
     <span class="attribute">#[<span class="ident">cold</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">MarkerReadError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NumValueReadError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">MarkerReadError</span>) -&gt; <span class="ident">NumValueReadError</span> {
         <span class="kw">match</span> <span class="ident">err</span> {
-            <span class="ident">MarkerReadError</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">NumValueReadError::InvalidMarkerRead</span>(<span class="ident">err</span>),
+            <span class="ident">MarkerReadError</span>(<span class="ident">err</span>) =&gt; <span class="ident">NumValueReadError::InvalidMarkerRead</span>(<span class="ident">err</span>),
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ValueReadError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NumValueReadError</span> {
     <span class="attribute">#[<span class="ident">cold</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">ValueReadError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NumValueReadError</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">err</span>: <span class="ident">ValueReadError</span>) -&gt; <span class="ident">NumValueReadError</span> {
         <span class="kw">match</span> <span class="ident">err</span> {
-            <span class="ident">ValueReadError::InvalidMarkerRead</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">NumValueReadError::InvalidMarkerRead</span>(<span class="ident">err</span>),
-            <span class="ident">ValueReadError::InvalidDataRead</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">NumValueReadError::InvalidDataRead</span>(<span class="ident">err</span>),
-            <span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">NumValueReadError::TypeMismatch</span>(<span class="ident">err</span>),
+            <span class="ident">ValueReadError::InvalidMarkerRead</span>(<span class="ident">err</span>) =&gt; <span class="ident">NumValueReadError::InvalidMarkerRead</span>(<span class="ident">err</span>),
+            <span class="ident">ValueReadError::InvalidDataRead</span>(<span class="ident">err</span>) =&gt; <span class="ident">NumValueReadError::InvalidDataRead</span>(<span class="ident">err</span>),
+            <span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">err</span>) =&gt; <span class="ident">NumValueReadError::TypeMismatch</span>(<span class="ident">err</span>),
         }
     }
 }
@@ -583,61 +582,61 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_u8</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_u8</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_u8</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_u16</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u16</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_u16</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u16</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_u16</span>::<span class="op">&lt;</span><span class="ident">byteorder::BigEndian</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_u32</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_u32</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">byteorder::BigEndian</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_u64</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u64</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_u64</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u64</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_u64</span>::<span class="op">&lt;</span><span class="ident">byteorder::BigEndian</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_i8</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i8</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_i8</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i8</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_i8</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_i16</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i16</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_i16</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i16</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_i16</span>::<span class="op">&lt;</span><span class="ident">byteorder::BigEndian</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_i32</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_i32</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_i32</span>::<span class="op">&lt;</span><span class="ident">byteorder::BigEndian</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_i64</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i64</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_i64</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i64</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_i64</span>::<span class="op">&lt;</span><span class="ident">byteorder::BigEndian</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_f32</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_f32</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_f32</span>::<span class="op">&lt;</span><span class="ident">byteorder::BigEndian</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_f64</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f64</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_data_f64</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f64</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="ident">rd</span>.<span class="ident">read_f64</span>::<span class="op">&lt;</span><span class="ident">byteorder::BigEndian</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="ident">ValueReadError::InvalidDataRead</span>)
 }
 
@@ -671,19 +670,19 @@
 <span class="doccomment">/// assert_eq!(300usize, rmp::decode::read_int(&amp;mut &amp;buf[..]).unwrap());</span>
 <span class="doccomment">/// assert_eq!(300isize, rmp::decode::read_int(&amp;mut &amp;buf[..]).unwrap());</span>
 <span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_int</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FromPrimitive</span>, <span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">NumValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_int</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FromPrimitive</span>, <span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">NumValueReadError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">read_marker</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> {
-        <span class="ident">Marker::FixPos</span>(<span class="ident">val</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_u8</span>(<span class="ident">val</span>),
-        <span class="ident">Marker::FixNeg</span>(<span class="ident">val</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_i8</span>(<span class="ident">val</span>),
-        <span class="ident">Marker::U8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_u8</span>(<span class="ident">read_data_u8</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">Marker::U16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_u16</span>(<span class="ident">read_data_u16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">Marker::U32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_u32</span>(<span class="ident">read_data_u32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">Marker::U64</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_u64</span>(<span class="ident">read_data_u64</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">Marker::I8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_i8</span>(<span class="ident">read_data_i8</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">Marker::I16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_i16</span>(<span class="ident">read_data_i16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">Marker::I32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_i32</span>(<span class="ident">read_data_i32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">Marker::I64</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">T::from_i64</span>(<span class="ident">read_data_i64</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">marker</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">NumValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
+        <span class="ident">Marker::FixPos</span>(<span class="ident">val</span>) =&gt; <span class="ident">T::from_u8</span>(<span class="ident">val</span>),
+        <span class="ident">Marker::FixNeg</span>(<span class="ident">val</span>) =&gt; <span class="ident">T::from_i8</span>(<span class="ident">val</span>),
+        <span class="ident">Marker::U8</span> =&gt; <span class="ident">T::from_u8</span>(<span class="ident">read_data_u8</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">Marker::U16</span> =&gt; <span class="ident">T::from_u16</span>(<span class="ident">read_data_u16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">Marker::U32</span> =&gt; <span class="ident">T::from_u32</span>(<span class="ident">read_data_u32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">Marker::U64</span> =&gt; <span class="ident">T::from_u64</span>(<span class="ident">read_data_u64</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">Marker::I8</span> =&gt; <span class="ident">T::from_i8</span>(<span class="ident">read_data_i8</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">Marker::I16</span> =&gt; <span class="ident">T::from_i16</span>(<span class="ident">read_data_i16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">Marker::I32</span> =&gt; <span class="ident">T::from_i32</span>(<span class="ident">read_data_i32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">Marker::I64</span> =&gt; <span class="ident">T::from_i64</span>(<span class="ident">read_data_i64</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">marker</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">NumValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
     };
 
     <span class="ident">val</span>.<span class="ident">ok_or</span>(<span class="ident">NumValueReadError::OutOfRange</span>)
@@ -701,15 +700,15 @@
 <span class="doccomment">/// successful read.</span>
 <span class="comment">// TODO: Docs.</span>
 <span class="comment">// NOTE: EINTR is managed internally.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_array_len</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_array_len</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">R</span>: <span class="ident">Read</span>,
 {
     <span class="kw">match</span> <span class="ident">read_marker</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> {
-        <span class="ident">Marker::FixArray</span>(<span class="ident">size</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">size</span> <span class="kw">as</span> <span class="ident">u32</span>),
-        <span class="ident">Marker::Array16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">read_data_u16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">u32</span>),
-        <span class="ident">Marker::Array32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">read_data_u32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">marker</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
+        <span class="ident">Marker::FixArray</span>(<span class="ident">size</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">size</span> <span class="kw">as</span> <span class="ident">u32</span>),
+        <span class="ident">Marker::Array16</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">read_data_u16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">u32</span>),
+        <span class="ident">Marker::Array32</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">read_data_u32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">marker</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
     }
 }
 
@@ -724,17 +723,17 @@
 <span class="doccomment">/// This function will silently retry on every EINTR received from the underlying `Read` until</span>
 <span class="doccomment">/// successful read.</span>
 <span class="comment">// TODO: Docs.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_map_len</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_map_len</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">marker</span> <span class="op">=</span> <span class="ident">read_marker</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>;
     <span class="ident">marker_to_len</span>(<span class="ident">rd</span>, <span class="ident">marker</span>)
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">marker_to_len</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>, <span class="ident">marker</span>: <span class="ident">Marker</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">marker_to_len</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>, <span class="ident">marker</span>: <span class="ident">Marker</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">marker</span> {
-        <span class="ident">Marker::FixMap</span>(<span class="ident">size</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">size</span> <span class="kw">as</span> <span class="ident">u32</span>),
-        <span class="ident">Marker::Map16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">read_data_u16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">u32</span>),
-        <span class="ident">Marker::Map32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">read_data_u32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">marker</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
+        <span class="ident">Marker::FixMap</span>(<span class="ident">size</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">size</span> <span class="kw">as</span> <span class="ident">u32</span>),
+        <span class="ident">Marker::Map16</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">read_data_u16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">u32</span>),
+        <span class="ident">Marker::Map32</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">read_data_u32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">marker</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
     }
 }
 
@@ -745,15 +744,15 @@
 <span class="doccomment">/// This function will silently retry on every EINTR received from the underlying `Read` until</span>
 <span class="doccomment">/// successful read.</span>
 <span class="comment">// TODO: Docs.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_bin_len</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_bin_len</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">rd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">ValueReadError</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">read_marker</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> {
-        <span class="ident">Marker::Bin8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">read_data_u8</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">u32</span>),
-        <span class="ident">Marker::Bin16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">read_data_u16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">u32</span>),
-        <span class="ident">Marker::Bin32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">read_data_u32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
-        <span class="ident">marker</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
+        <span class="ident">Marker::Bin8</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">read_data_u8</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">u32</span>),
+        <span class="ident">Marker::Bin16</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">read_data_u16</span>(<span class="ident">rd</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">u32</span>),
+        <span class="ident">Marker::Bin32</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">read_data_u32</span>(<span class="ident">rd</span>)<span class="question-mark">?</span>),
+        <span class="ident">marker</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ValueReadError::TypeMismatch</span>(<span class="ident">marker</span>)),
     }
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rmp" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>

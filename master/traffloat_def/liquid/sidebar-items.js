@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Def","A type of liquid."],["DefaultFormula","The default output if no corresponding formula is defined."],["Formula","A formula for mixing liquids."]],"type":[["Id","Identifies a liquid type."]]});

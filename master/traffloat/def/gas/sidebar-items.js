@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Type","A type of gas."],["TypeId","Identifies a gas type."]]});

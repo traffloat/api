@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["FlowPolicy","behaviour when inputs underflow or outputs overflow."],["Put","The inputs and outputs of a reaction."]],"struct":[["Policy","Reaction behaviour specific to this building."],["Reaction","A type of reaction."]]});

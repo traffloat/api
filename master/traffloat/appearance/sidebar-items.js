@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Unit","A unit shape variant"]],"fn":[["setup_ecs","Initializes systems"]],"struct":[["Appearance","Describes the shape and appearance of an object."],["Component","Describes the shape and appearance of an object"],["Texture","The texture of a rendered object"]]});
+initSidebarItems({"enum":[["Unit","A unit shape variant"]],"struct":[["Appearance","Describes the shape and appearance of an object."],["Component","Describes the shape and appearance of an object"]]});

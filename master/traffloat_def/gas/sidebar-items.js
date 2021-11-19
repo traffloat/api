@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Def","A type of gas."]],"type":[["Id","Identifies a gas type."]]});

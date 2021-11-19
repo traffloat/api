@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Schema","The tfsave-builder schema"]],"macro":[["impl_xylem_for_self",""]],"mod":[["curdir","Current-directory context resources."],["stdext",""],["transform_matrix",""],["units",""]],"type":[["Id","Identifies a definition of type `T`."],["IdString","The original string identifier of a definition."]]});

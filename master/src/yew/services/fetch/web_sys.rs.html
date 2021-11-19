@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;yew-0.18.0&#x2F;src&#x2F;services&#x2F;fetch&#x2F;web_sys.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>web_sys.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../yew/index.html'><div class='logo-container rust-logo'><img src='https:&#x2F;&#x2F;static.yew.rs&#x2F;logo.svg' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;yew-0.18.0&#x2F;src&#x2F;services&#x2F;fetch&#x2F;web_sys.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>web_sys.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../yew/index.html'><div class='logo-container rust-logo'><img src='https:&#x2F;&#x2F;static.yew.rs&#x2F;logo.svg' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -570,13 +570,12 @@
 <span id="570">570</span>
 <span id="571">571</span>
 <span id="572">572</span>
-</pre><pre class="rust">
-<span class="doccomment">//! `web-sys` implementation for the fetch service.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! `web-sys` implementation for the fetch service.</span>
 
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::Referrer</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::callback::Callback</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::format</span>::{<span class="ident">Binary</span>, <span class="ident">Format</span>, <span class="ident">Text</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::services::Task</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Referrer</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::callback::Callback</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::format</span>::{<span class="ident">Binary</span>, <span class="ident">Format</span>, <span class="ident">Text</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::services::Task</span>;
 <span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">anyhow</span>, <span class="ident">Error</span>};
 <span class="kw">use</span> <span class="ident">http::request::Parts</span>;
 <span class="kw">use</span> <span class="ident">js_sys</span>::{<span class="ident">Array</span>, <span class="ident">Promise</span>, <span class="ident">Uint8Array</span>};
@@ -604,26 +603,26 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">http</span>::{<span class="ident">HeaderMap</span>, <span class="ident">Method</span>, <span class="ident">Request</span>, <span class="ident">Response</span>, <span class="ident">StatusCode</span>, <span class="ident">Uri</span>};
 
 <span class="kw">trait</span> <span class="ident">JsInterop</span>: <span class="ident">Sized</span> {
-    <span class="kw">fn</span> <span class="ident">from_js</span>(<span class="ident">js_value</span>: <span class="ident">JsValue</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">FetchError</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">into_js</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">JsValue</span>;
+    <span class="kw">fn</span> <span class="ident">from_js</span>(<span class="ident">js_value</span>: <span class="ident">JsValue</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">FetchError</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">into_js</span>(<span class="self">self</span>) -&gt; <span class="ident">JsValue</span>;
 }
 
 <span class="kw">impl</span> <span class="ident">JsInterop</span> <span class="kw">for</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from_js</span>(<span class="ident">js_value</span>: <span class="ident">JsValue</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">FetchError</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from_js</span>(<span class="ident">js_value</span>: <span class="ident">JsValue</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">FetchError</span><span class="op">&gt;</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">Uint8Array::new</span>(<span class="kw-2">&amp;</span><span class="ident">js_value</span>).<span class="ident">to_vec</span>())
     }
 
-    <span class="kw">fn</span> <span class="ident">into_js</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">JsValue</span> {
+    <span class="kw">fn</span> <span class="ident">into_js</span>(<span class="self">self</span>) -&gt; <span class="ident">JsValue</span> {
         <span class="ident">Uint8Array::from</span>(<span class="self">self</span>.<span class="ident">as_slice</span>()).<span class="ident">into</span>()
     }
 }
 
 <span class="kw">impl</span> <span class="ident">JsInterop</span> <span class="kw">for</span> <span class="ident">String</span> {
-    <span class="kw">fn</span> <span class="ident">from_js</span>(<span class="ident">js_value</span>: <span class="ident">JsValue</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">FetchError</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">from_js</span>(<span class="ident">js_value</span>: <span class="ident">JsValue</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">FetchError</span><span class="op">&gt;</span> {
         <span class="ident">js_value</span>.<span class="ident">as_string</span>().<span class="ident">ok_or</span>(<span class="ident">FetchError::InternalError</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">into_js</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">JsValue</span> {
+    <span class="kw">fn</span> <span class="ident">into_js</span>(<span class="self">self</span>) -&gt; <span class="ident">JsValue</span> {
         <span class="self">self</span>.<span class="ident">into</span>()
     }
 }
@@ -649,7 +648,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">FetchOptions</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RequestInit</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">fetch_options</span>: <span class="ident">FetchOptions</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RequestInit</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">fetch_options</span>: <span class="ident">FetchOptions</span>) -&gt; <span class="ident">RequestInit</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">init</span> <span class="op">=</span> <span class="ident">RequestInit::new</span>();
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">cache</span>) <span class="op">=</span> <span class="ident">fetch_options</span>.<span class="ident">cache</span> {
@@ -670,9 +669,9 @@
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">referrer</span>) <span class="op">=</span> <span class="ident">fetch_options</span>.<span class="ident">referrer</span> {
             <span class="kw">match</span> <span class="ident">referrer</span> {
-                <span class="ident">Referrer::SameOriginUrl</span>(<span class="ident">referrer</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">init</span>.<span class="ident">referrer</span>(<span class="kw-2">&amp;</span><span class="ident">referrer</span>),
-                <span class="ident">Referrer::AboutClient</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">init</span>.<span class="ident">referrer</span>(<span class="string">&quot;about:client&quot;</span>),
-                <span class="ident">Referrer::Empty</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">init</span>.<span class="ident">referrer</span>(<span class="string">&quot;&quot;</span>),
+                <span class="ident">Referrer::SameOriginUrl</span>(<span class="ident">referrer</span>) =&gt; <span class="ident">init</span>.<span class="ident">referrer</span>(<span class="kw-2">&amp;</span><span class="ident">referrer</span>),
+                <span class="ident">Referrer::AboutClient</span> =&gt; <span class="ident">init</span>.<span class="ident">referrer</span>(<span class="string">&quot;about:client&quot;</span>),
+                <span class="ident">Referrer::Empty</span> =&gt; <span class="ident">init</span>.<span class="ident">referrer</span>(<span class="string">&quot;&quot;</span>),
             };
         }
 
@@ -689,7 +688,7 @@
 }
 
 <span class="comment">// convert `headers` to `Iterator&lt;Item = (String, String)&gt;`</span>
-<span class="kw">fn</span> <span class="ident">header_iter</span>(<span class="ident">headers</span>: <span class="ident">Headers</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">header_iter</span>(<span class="ident">headers</span>: <span class="ident">Headers</span>) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span> {
     <span class="ident">js_sys::try_iter</span>(<span class="kw-2">&amp;</span><span class="ident">headers</span>)
         .<span class="ident">unwrap</span>()
         .<span class="ident">unwrap</span>()
@@ -726,7 +725,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FetchTask</span>(<span class="ident">Handle</span>);
 
 <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">FetchTask</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;FetchTask&quot;</span>)
     }
 }
@@ -840,7 +839,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fetch</span><span class="op">&lt;</span><span class="ident">IN</span>, <span class="ident">OUT</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="ident">request</span>: <span class="ident">Request</span><span class="op">&lt;</span><span class="ident">IN</span><span class="op">&gt;</span>,
         <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&lt;</span><span class="ident">OUT</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">IN</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Text</span><span class="op">&gt;</span>,
         <span class="ident">OUT</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Text</span><span class="op">&gt;</span>,
@@ -884,7 +883,7 @@
         <span class="ident">request</span>: <span class="ident">Request</span><span class="op">&lt;</span><span class="ident">IN</span><span class="op">&gt;</span>,
         <span class="ident">options</span>: <span class="ident">FetchOptions</span>,
         <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&lt;</span><span class="ident">OUT</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">IN</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Text</span><span class="op">&gt;</span>,
         <span class="ident">OUT</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Text</span><span class="op">&gt;</span>,
@@ -896,7 +895,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fetch_binary</span><span class="op">&lt;</span><span class="ident">IN</span>, <span class="ident">OUT</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="ident">request</span>: <span class="ident">Request</span><span class="op">&lt;</span><span class="ident">IN</span><span class="op">&gt;</span>,
         <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&lt;</span><span class="ident">OUT</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">IN</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Binary</span><span class="op">&gt;</span>,
         <span class="ident">OUT</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Binary</span><span class="op">&gt;</span>,
@@ -909,7 +908,7 @@
         <span class="ident">request</span>: <span class="ident">Request</span><span class="op">&lt;</span><span class="ident">IN</span><span class="op">&gt;</span>,
         <span class="ident">options</span>: <span class="ident">FetchOptions</span>,
         <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&lt;</span><span class="ident">OUT</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">IN</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Binary</span><span class="op">&gt;</span>,
         <span class="ident">OUT</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Binary</span><span class="op">&gt;</span>,
@@ -923,7 +922,7 @@
     <span class="ident">request</span>: <span class="ident">Request</span><span class="op">&lt;</span><span class="ident">IN</span><span class="op">&gt;</span>,
     <span class="ident">options</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FetchOptions</span><span class="op">&gt;</span>,
     <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&lt;</span><span class="ident">OUT</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FetchTask</span>, <span class="ident">Error</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="ident">DATA</span>: <span class="ident">JsInterop</span>,
     <span class="ident">IN</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Format</span><span class="op">&lt;</span><span class="ident">DATA</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -932,8 +931,8 @@
     <span class="comment">// Transform http::Request into WebRequest.</span>
     <span class="kw">let</span> (<span class="ident">parts</span>, <span class="ident">body</span>) <span class="op">=</span> <span class="ident">request</span>.<span class="ident">into_parts</span>();
     <span class="kw">let</span> <span class="ident">body</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">body</span>.<span class="ident">into</span>() {
-        <span class="prelude-val">Ok</span>(<span class="ident">b</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">b</span>.<span class="ident">into_js</span>(),
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">JsValue::NULL</span>,
+        <span class="prelude-val">Ok</span>(<span class="ident">b</span>) =&gt; <span class="ident">b</span>.<span class="ident">into_js</span>(),
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="ident">JsValue::NULL</span>,
     };
     <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">build_request</span>(<span class="ident">parts</span>, <span class="kw-2">&amp;</span><span class="ident">body</span>)<span class="question-mark">?</span>;
 
@@ -974,7 +973,7 @@
     <span class="ident">DATA</span>: <span class="ident">JsInterop</span>,
     <span class="ident">OUT</span>: <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Format</span><span class="op">&lt;</span><span class="ident">DATA</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 {
-    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">binary</span>: <span class="ident">bool</span>, <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&lt;</span><span class="ident">OUT</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">active</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">binary</span>: <span class="ident">bool</span>, <span class="ident">callback</span>: <span class="ident">Callback</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&lt;</span><span class="ident">OUT</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">active</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">binary</span>,
             <span class="ident">callback</span>,
@@ -986,13 +985,13 @@
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">fetch_data</span>(<span class="self">self</span>, <span class="ident">promise</span>: <span class="ident">Promise</span>) {
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">fetch_data_impl</span>(<span class="ident">promise</span>).<span class="kw">await</span>;
         <span class="kw">let</span> (<span class="ident">data</span>, <span class="ident">status</span>, <span class="ident">headers</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="prelude-val">Ok</span>((<span class="ident">data</span>, <span class="ident">response</span>)) <span class="op">=</span><span class="op">&gt;</span> (<span class="prelude-val">Ok</span>(<span class="ident">data</span>), <span class="ident">response</span>.<span class="ident">status</span>(), <span class="prelude-val">Some</span>(<span class="ident">response</span>.<span class="ident">headers</span>())),
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span><span class="op">&gt;</span> (<span class="prelude-val">Err</span>(<span class="ident">err</span>), <span class="number">408</span>, <span class="prelude-val">None</span>),
+            <span class="prelude-val">Ok</span>((<span class="ident">data</span>, <span class="ident">response</span>)) =&gt; (<span class="prelude-val">Ok</span>(<span class="ident">data</span>), <span class="ident">response</span>.<span class="ident">status</span>(), <span class="prelude-val">Some</span>(<span class="ident">response</span>.<span class="ident">headers</span>())),
+            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; (<span class="prelude-val">Err</span>(<span class="ident">err</span>), <span class="number">408</span>, <span class="prelude-val">None</span>),
         };
         <span class="self">self</span>.<span class="ident">callback</span>(<span class="ident">data</span>, <span class="ident">status</span>, <span class="ident">headers</span>);
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">fetch_data_impl</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">promise</span>: <span class="ident">Promise</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">DATA</span>, <span class="ident">WebResponse</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">fetch_data_impl</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">promise</span>: <span class="ident">Promise</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">DATA</span>, <span class="ident">WebResponse</span>), <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_response</span>(<span class="ident">promise</span>).<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_data</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>).<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>((<span class="ident">data</span>, <span class="ident">response</span>))
@@ -1021,7 +1020,7 @@
         <span class="self">self</span>.<span class="ident">callback</span>.<span class="ident">emit</span>(<span class="ident">response</span>);
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fetch_promise</span>: <span class="ident">Promise</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WebResponse</span>, <span class="ident">FetchError</span><span class="op">&gt;</span> {
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fetch_promise</span>: <span class="ident">Promise</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WebResponse</span>, <span class="ident">FetchError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">JsFuture::from</span>(<span class="ident">fetch_promise</span>)
             .<span class="kw">await</span>
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">unchecked_into</span>::<span class="op">&lt;</span><span class="ident">js_sys::Error</span><span class="op">&gt;</span>())
@@ -1033,7 +1032,7 @@
         }
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">WebResponse</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DATA</span>, <span class="ident">FetchError</span><span class="op">&gt;</span> {
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get_data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">WebResponse</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DATA</span>, <span class="ident">FetchError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">data_promise</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">binary</span> {
             <span class="ident">response</span>.<span class="ident">array_buffer</span>()
         } <span class="kw">else</span> {
@@ -1052,7 +1051,7 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">build_request</span>(<span class="ident">parts</span>: <span class="ident">Parts</span>, <span class="ident">body</span>: <span class="kw-2">&amp;</span><span class="ident">JsValue</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WebRequest</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">build_request</span>(<span class="ident">parts</span>: <span class="ident">Parts</span>, <span class="ident">body</span>: <span class="kw-2">&amp;</span><span class="ident">JsValue</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">WebRequest</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
     <span class="comment">// Map headers into a Js `Header` type.</span>
     <span class="kw">let</span> <span class="ident">header_list</span> <span class="op">=</span> <span class="ident">parts</span>
         .<span class="ident">headers</span>
@@ -1080,13 +1079,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Task</span> <span class="kw">for</span> <span class="ident">FetchTask</span> {
-    <span class="kw">fn</span> <span class="ident">is_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">is_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw-2">*</span><span class="self">self</span>.<span class="number">0</span>.<span class="ident">active</span>.<span class="ident">borrow</span>()
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">FetchTask</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_active</span>() {
             <span class="comment">// Fetch API doesn&#39;t support request cancelling in all browsers</span>
             <span class="comment">// and we should use this workaround with a flag.</span>
@@ -1109,24 +1108,24 @@
 }
 
 <span class="kw">impl</span> <span class="ident">WindowOrWorker</span> {
-    <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
         <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
         <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
             <span class="kw">type</span> <span class="ident">Global</span>;
 
             <span class="attribute">#[<span class="ident">wasm_bindgen</span>(<span class="ident">method</span>, <span class="ident">getter</span>, <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">Window</span>)]</span>
-            <span class="kw">fn</span> <span class="ident">window</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">Global</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">JsValue</span>;
+            <span class="kw">fn</span> <span class="ident">window</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">Global</span>) -&gt; <span class="ident">JsValue</span>;
 
             <span class="attribute">#[<span class="ident">wasm_bindgen</span>(<span class="ident">method</span>, <span class="ident">getter</span>, <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">WorkerGlobalScope</span>)]</span>
-            <span class="kw">fn</span> <span class="ident">worker</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">Global</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">JsValue</span>;
+            <span class="kw">fn</span> <span class="ident">worker</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">Global</span>) -&gt; <span class="ident">JsValue</span>;
         }
 
         <span class="kw">let</span> <span class="ident">global</span>: <span class="ident">Global</span> <span class="op">=</span> <span class="ident">js_sys::global</span>().<span class="ident">unchecked_into</span>();
 
         <span class="kw">if</span> <span class="op">!</span><span class="ident">global</span>.<span class="ident">window</span>().<span class="ident">is_undefined</span>() {
-            <span class="self">Self</span><span class="ident">::Window</span>(<span class="ident">global</span>.<span class="ident">unchecked_into</span>())
+            <span class="ident"><span class="self">Self</span>::Window</span>(<span class="ident">global</span>.<span class="ident">unchecked_into</span>())
         } <span class="kw">else</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">global</span>.<span class="ident">worker</span>().<span class="ident">is_undefined</span>() {
-            <span class="self">Self</span><span class="ident">::Worker</span>(<span class="ident">global</span>.<span class="ident">unchecked_into</span>())
+            <span class="ident"><span class="self">Self</span>::Worker</span>(<span class="ident">global</span>.<span class="ident">unchecked_into</span>())
         } <span class="kw">else</span> {
             <span class="macro">panic!</span>(
                 <span class="string">&quot;Yew&#39;s `FetchService` only works when a `window` or `worker` object is available.&quot;</span>
@@ -1136,14 +1135,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">WindowOrWorker</span> {
-    <span class="kw">fn</span> <span class="ident">fetch_with_request_and_init</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">WebRequest</span>, <span class="ident">init</span>: <span class="kw-2">&amp;</span><span class="ident">RequestInit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Promise</span> {
+    <span class="kw">fn</span> <span class="ident">fetch_with_request_and_init</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">WebRequest</span>, <span class="ident">init</span>: <span class="kw-2">&amp;</span><span class="ident">RequestInit</span>) -&gt; <span class="ident">Promise</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::Window</span>(<span class="ident">window</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">window</span>.<span class="ident">fetch_with_request_and_init</span>(<span class="ident">input</span>, <span class="ident">init</span>),
-            <span class="self">Self</span><span class="ident">::Worker</span>(<span class="ident">worker</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">worker</span>.<span class="ident">fetch_with_request_and_init</span>(<span class="ident">input</span>, <span class="ident">init</span>),
+            <span class="ident"><span class="self">Self</span>::Window</span>(<span class="ident">window</span>) =&gt; <span class="ident">window</span>.<span class="ident">fetch_with_request_and_init</span>(<span class="ident">input</span>, <span class="ident">init</span>),
+            <span class="ident"><span class="self">Self</span>::Worker</span>(<span class="ident">worker</span>) =&gt; <span class="ident">worker</span>.<span class="ident">fetch_with_request_and_init</span>(<span class="ident">input</span>, <span class="ident">init</span>),
         }
     }
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="yew" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
     <script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script>
 </body></html>

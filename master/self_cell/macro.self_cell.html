@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="This macro declares a new struct of `$StructName` and implements traits based on `$AutomaticDerive`."><meta name="keywords" content="rust, rustlang, rust-lang, self_cell"><title>self_cell in self_cell - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc macro"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../self_cell/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><div class="sidebar-elems"><h2 class="location">Other items in<br><a href="index.html">self_cell</a></h2><div id="sidebar-vars" data-name="self_cell" data-ty="macro" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Macro <a href="index.html">self_cell</a>::<wbr><a class="macro" href="#">self_cell</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/self_cell/lib.rs.html#315-562" title="goto source code">[src]</a></span></h1><div class="docblock item-decl"><div class="example-wrap"><pre class="rust macro"><code><span class="macro">macro_rules!</span> <span class="ident">self_cell</span> {
+    ($(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">StructMeta</span> : <span class="ident">meta</span>]</span>) <span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Vis</span> : <span class="ident">vis</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">StructName</span> : <span class="ident">ident</span>
+ $(<span class="op">&lt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">OwnerLifetime</span> : <span class="ident">lifetime</span> <span class="op">&gt;</span>) <span class="question-mark">?</span>
+ {
+     <span class="ident">owner</span> : <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span> : <span class="ident">ty</span>, <span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">Covariance</span> : <span class="ident">ident</span>]</span> <span class="ident">dependent</span> : <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Dependent</span> :
+     <span class="ident">ident</span>,
+ } $(<span class="kw">impl</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">AutomaticDerive</span> : <span class="ident">ident</span>), <span class="op">*</span> }) <span class="question-mark">?</span>) =&gt; { ... };
+}</code></pre></div>
+</div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>This macro declares a new struct of <code>$StructName</code> and implements traits
+based on <code>$AutomaticDerive</code>.</p>
+<h4 id="example" class="section-header"><a href="#example">Example:</a></h4>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">self_cell::self_cell</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="kw">struct</span> <span class="ident">Ast</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>);
+
+<span class="macro">self_cell!</span>(
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
+    <span class="kw">struct</span> <span class="ident">PackedAstCell</span> {
+        <span class="ident">owner</span>: <span class="ident">String</span>,
+
+        <span class="attribute">#[<span class="ident">covariant</span>]</span>
+        <span class="ident">dependent</span>: <span class="ident">Ast</span>,
+    }
+
+    <span class="kw">impl</span> {<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>}
+);</code></pre></div>
+<p>See the crate overview to get a get an overview and a motivating example.</p>
+<h4 id="generated-api" class="section-header"><a href="#generated-api">Generated API:</a></h4>
+<p>The macro implements these constructors:</p>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">fn</span> <span class="ident">new</span>(
+    <span class="ident">owner</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>,
+    <span class="ident">dependent_builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Dependent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>
+) -&gt; <span class="self">Self</span></code></pre></div>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">fn</span> <span class="ident">try_new</span><span class="op">&lt;</span><span class="prelude-val">Err</span><span class="op">&gt;</span>(
+    <span class="ident">owner</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>,
+    <span class="ident">dependent_builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">Dependent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="prelude-val">Err</span><span class="op">&gt;</span>
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="prelude-val">Err</span><span class="op">&gt;</span></code></pre></div>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">fn</span> <span class="ident">try_new_or_recover</span><span class="op">&lt;</span><span class="prelude-val">Err</span><span class="op">&gt;</span>(
+    <span class="ident">owner</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>,
+    <span class="ident">dependent_builder</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">Dependent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="prelude-val">Err</span><span class="op">&gt;</span>
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>, <span class="prelude-val">Err</span>)<span class="op">&gt;</span></code></pre></div>
+<p>The macro implements these methods:</p>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">fn</span> <span class="ident">borrow_owner</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span></code></pre></div>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="comment">// Only available if dependent is covariant.</span>
+<span class="kw">fn</span> <span class="ident">borrow_dependent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Dependent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span></code></pre></div>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">fn</span> <span class="ident">with_dependent</span><span class="op">&lt;</span><span class="lifetime">&#39;outer_fn</span>, <span class="ident">Ret</span><span class="op">&gt;</span>(
+    <span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_fn</span> <span class="self">self</span>,
+    <span class="ident">func</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Dependent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>
+) -&gt; <span class="ident">Ret</span>) -&gt; <span class="ident">Ret</span></code></pre></div>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">fn</span> <span class="ident">with_dependent_mut</span><span class="op">&lt;</span><span class="lifetime">&#39;outer_fn</span>, <span class="ident">Ret</span><span class="op">&gt;</span>(
+    <span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_fn</span> <span class="kw-2">mut</span> <span class="self">self</span>,
+    <span class="ident">func</span>: <span class="kw">impl</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_fn</span> <span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Dependent</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="ident">Ret</span>
+) -&gt; <span class="ident">Ret</span></code></pre></div>
+
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="kw">fn</span> <span class="ident">into_owner</span>(<span class="self">self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Owner</span></code></pre></div>
+<h4 id="parameters" class="section-header"><a href="#parameters">Parameters:</a></h4>
+<ul>
+<li>
+<p><code>$Vis:vis struct $StructName:ident</code> Name of the struct that will be
+declared, this needs to be unique for the relevant scope. Example: <code>struct AstCell</code> or <code>pub struct AstCell</code>. <code>$Vis</code> can be used to mark the struct
+and all functions implemented by the macro as public.</p>
+<p><code>$(#[$StructMeta:meta])*</code> allows you specify further meta items for this
+struct, eg. <code>#[doc(hidden)] struct AstCell</code>.</p>
+</li>
+<li>
+<p><code>$Owner:ty</code> Type of owner. This has to have a <code>'static</code> lifetime. Example:
+<code>String</code>.</p>
+</li>
+<li>
+<p><code>$Dependent:ident</code> Name of the dependent type without specified lifetime.
+This can’t be a nested type name. As workaround either create a type alias
+<code>type Dep&lt;'a&gt; = Option&lt;Vec&lt;&amp;'a str&gt;&gt;;</code> or create a new-type <code>struct Dep&lt;'a&gt;(Option&lt;Vec&lt;&amp;'a str&gt;&gt;);</code>. Example: <code>Ast</code>.</p>
+<p><code>$Covariance:ident</code> Marker declaring if <code>$Dependent</code> is
+<a href="https://doc.rust-lang.org/nightly/nomicon/subtyping.html">covariant</a>.
+Possible Values:</p>
+<ul>
+<li>
+<p><strong>covariant</strong>: This generates the direct reference accessor function
+<code>borrow_dependent</code>. This is only safe to do if this compiles <code>fn _assert_covariance&lt;'x: 'y, 'y&gt;(x: $Dependent&lt;'x&gt;) -&gt; $Dependent&lt;'y&gt; {x}</code>. Otherwise you could choose a lifetime that is too short for types
+with interior mutability like <code>Cell</code>, which can lead to UB in safe code.
+Which would violate the promise of this library that it is safe-to-use.
+If you accidentally mark a type that is not covariant as covariant, you
+will get a compile time error.</p>
+</li>
+<li>
+<p><strong>not_covariant</strong>: This generates no additional code but you can use the
+<code>with_dependent</code> function. See <a href="https://github.com/Voultapher/self_cell/tree/main/examples/lazy_ast">How to build a lazy AST with
+self_cell</a>
+for a usage example.</p>
+</li>
+</ul>
+<p>In both cases you can use the <code>with_dependent_mut</code> function to mutate the
+dependent value. This is safe to do because notionally you are replacing
+pointers to a value not the other way around.</p>
+</li>
+<li>
+<p><code>impl {$($AutomaticDerive:ident),*},</code> Optional comma separated list of
+optional automatic trait implementations. Possible Values:</p>
+<ul>
+<li>
+<p><strong>Debug</strong>: Prints the debug representation of owner and dependent.
+Example: <code>AstCell { owner: &quot;fox = cat + dog&quot;, dependent: Ast([&quot;fox&quot;, &quot;cat&quot;, &quot;dog&quot;]) }</code></p>
+</li>
+<li>
+<p><strong>PartialEq</strong>: Logic <code>*self.borrow_owner() == *other.borrow_owner()</code>,
+this assumes that <code>Dependent&lt;'a&gt;::From&lt;&amp;'a Owner&gt;</code> is deterministic, so
+that only comparing owner is enough.</p>
+</li>
+<li>
+<p><strong>Eq</strong>: Will implement the trait marker <code>Eq</code> for <code>$StructName</code>. Beware
+if you select this <code>Eq</code> will be implemented regardless if <code>$Owner</code>
+implements <code>Eq</code>, that’s an unfortunate technical limitation.</p>
+</li>
+<li>
+<p><strong>Hash</strong>: Logic <code>self.borrow_owner().hash(state);</code>, this assumes that
+<code>Dependent&lt;'a&gt;::From&lt;&amp;'a Owner&gt;</code> is deterministic, so that only hashing
+owner is enough.</p>
+</li>
+</ul>
+<p>All <code>AutomaticDerive</code> are optional and you can implement you own version
+of these traits. The declared struct is part of your module and you are
+free to implement any trait in any way you want. Access to the unsafe
+internals is only possible via unsafe functions, so you can’t accidentally
+use them in safe code.</p>
+<p>There is limited nested cell support. Eg, having an owner with non static
+references. Eg <code>struct ChildCell&lt;'a&gt; { owner: &amp;'a String, ...</code>. You can
+use any lifetime name you want, except <code>_q</code> and only a single lifetime is
+supported, and can only be used in the owner. Due to macro_rules
+limitations, no <code>AutomaticDerive</code> are supported if an owner lifetime is
+provided.</p>
+</li>
+</ul>
+</div></details></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="self_cell" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+    <script src="../main.js"></script>
+</body></html>

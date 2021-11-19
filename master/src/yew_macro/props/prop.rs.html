@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;yew-macro-0.18.0&#x2F;src&#x2F;props&#x2F;prop.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>prop.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../yew_macro/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;yew-macro-0.18.0&#x2F;src&#x2F;props&#x2F;prop.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>prop.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../yew_macro/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -240,8 +240,7 @@
 <span id="240">240</span>
 <span id="241">241</span>
 <span id="242">242</span>
-</pre><pre class="rust">
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::html_tree::HtmlDashedName</span>;
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::html_tree::HtmlDashedName</span>;
 <span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span>;
 <span class="kw">use</span> <span class="ident">quote::ToTokens</span>;
 <span class="kw">use</span> <span class="ident">std</span>::{
@@ -259,10 +258,10 @@
     <span class="ident">Colon</span>(<span class="macro">Token!</span>[:]),
 }
 <span class="kw">impl</span> <span class="ident">ToTokens</span> <span class="kw">for</span> <span class="ident">PropPunct</span> {
-    <span class="kw">fn</span> <span class="ident">to_tokens</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tokens</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TokenStream</span>) {
+    <span class="kw">fn</span> <span class="ident">to_tokens</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tokens</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream</span>) {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::Eq</span>(<span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">p</span>.<span class="ident">to_tokens</span>(<span class="ident">tokens</span>),
-            <span class="self">Self</span><span class="ident">::Colon</span>(<span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">p</span>.<span class="ident">to_tokens</span>(<span class="ident">tokens</span>),
+            <span class="ident"><span class="self">Self</span>::Eq</span>(<span class="ident">p</span>) =&gt; <span class="ident">p</span>.<span class="ident">to_tokens</span>(<span class="ident">tokens</span>),
+            <span class="ident"><span class="self">Self</span>::Colon</span>(<span class="ident">p</span>) =&gt; <span class="ident">p</span>.<span class="ident">to_tokens</span>(<span class="ident">tokens</span>),
         }
     }
 }
@@ -274,7 +273,7 @@
     <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">Expr</span>,
 }
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">Prop</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">label</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">HtmlDashedName</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">equals</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="macro">Token!</span>[<span class="op">=</span>]<span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
             <span class="ident">syn::Error::new_spanned</span>(
@@ -309,41 +308,41 @@
 
     <span class="doccomment">/// Create a new `SortedPropList` from a vector of props.</span>
     <span class="doccomment">/// The given `props` doesn&#39;t need to be sorted.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="kw-2">mut</span> <span class="ident">props</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">props</span>.<span class="ident">sort_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="self">Self</span><span class="ident">::cmp_label</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>.<span class="ident">label</span>.<span class="ident">to_string</span>(), <span class="kw-2">&amp;</span><span class="ident">b</span>.<span class="ident">label</span>.<span class="ident">to_string</span>()));
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="kw-2">mut</span> <span class="ident">props</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident">props</span>.<span class="ident">sort_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident"><span class="self">Self</span>::cmp_label</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>.<span class="ident">label</span>.<span class="ident">to_string</span>(), <span class="kw-2">&amp;</span><span class="ident">b</span>.<span class="ident">label</span>.<span class="ident">to_string</span>()));
         <span class="self">Self</span>(<span class="ident">props</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">cmp_label</span>(<span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> {
-        <span class="kw">if</span> <span class="ident">a</span> <span class="op">=</span><span class="op">=</span> <span class="ident">b</span> {
+    <span class="kw">fn</span> <span class="ident">cmp_label</span>(<span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">Ordering</span> {
+        <span class="kw">if</span> <span class="ident">a</span> <span class="op">==</span> <span class="ident">b</span> {
             <span class="ident">Ordering::Equal</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">a</span> <span class="op">=</span><span class="op">=</span> <span class="self">Self</span><span class="ident">::CHILDREN_LABEL</span> {
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">a</span> <span class="op">==</span> <span class="ident"><span class="self">Self</span>::CHILDREN_LABEL</span> {
             <span class="ident">Ordering::Greater</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">b</span> <span class="op">=</span><span class="op">=</span> <span class="self">Self</span><span class="ident">::CHILDREN_LABEL</span> {
+        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">b</span> <span class="op">==</span> <span class="ident"><span class="self">Self</span>::CHILDREN_LABEL</span> {
             <span class="ident">Ordering::Less</span>
         } <span class="kw">else</span> {
             <span class="ident">a</span>.<span class="ident">cmp</span>(<span class="ident">b</span>)
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="number">0</span>
-            .<span class="ident">binary_search_by</span>(<span class="op">|</span><span class="ident">prop</span><span class="op">|</span> <span class="self">Self</span><span class="ident">::cmp_label</span>(<span class="ident">prop</span>.<span class="ident">label</span>.<span class="ident">to_string</span>().<span class="ident">as_str</span>(), <span class="ident">key</span>))
+            .<span class="ident">binary_search_by</span>(<span class="op">|</span><span class="ident">prop</span><span class="op">|</span> <span class="ident"><span class="self">Self</span>::cmp_label</span>(<span class="ident">prop</span>.<span class="ident">label</span>.<span class="ident">to_string</span>().<span class="ident">as_str</span>(), <span class="ident">key</span>))
             .<span class="ident">ok</span>()
     }
 
     <span class="doccomment">/// Get the first prop with the given key.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_by_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_by_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">position</span>(<span class="ident">key</span>).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">get</span>(<span class="ident">i</span>))
     }
 
     <span class="doccomment">/// Pop the first prop with the given key.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">position</span>(<span class="ident">key</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">remove</span>(<span class="ident">i</span>))
     }
 
     <span class="doccomment">/// Pop the prop with the given key and error if there are multiple ones.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pop_unique</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pop_unique</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">prop</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pop</span>(<span class="ident">key</span>);
         <span class="kw">if</span> <span class="ident">prop</span>.<span class="ident">is_some</span>() {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">other_prop</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_by_label</span>(<span class="ident">key</span>) {
@@ -358,16 +357,16 @@
     }
 
     <span class="doccomment">/// Turn the props into a vector of `Prop`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_vec</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_vec</span>(<span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="number">0</span>
     }
 
     <span class="doccomment">/// Iterate over all duplicate props in order of appearance.</span>
-    <span class="kw">fn</span> <span class="ident">iter_duplicates</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">iter_duplicates</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">windows</span>(<span class="number">2</span>).<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">pair</span><span class="op">|</span> {
             <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>) <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="ident">pair</span>[<span class="number">0</span>], <span class="kw-2">&amp;</span><span class="ident">pair</span>[<span class="number">1</span>]);
 
-            <span class="kw">if</span> <span class="ident">a</span>.<span class="ident">label</span> <span class="op">=</span><span class="op">=</span> <span class="ident">b</span>.<span class="ident">label</span> {
+            <span class="kw">if</span> <span class="ident">a</span>.<span class="ident">label</span> <span class="op">==</span> <span class="ident">b</span>.<span class="ident">label</span> {
                 <span class="prelude-val">Some</span>(<span class="ident">b</span>)
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
@@ -376,7 +375,7 @@
     }
 
     <span class="doccomment">/// Remove and return all props for which `filter` returns `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain_filter</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">filter</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">Prop</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drain_filter</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">filter</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">Prop</span>) -&gt; <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> (<span class="ident">drained</span>, <span class="ident">others</span>) <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">drain</span>(..).<span class="ident">partition</span>(<span class="ident">filter</span>);
         <span class="self">self</span>.<span class="number">0</span> <span class="op">=</span> <span class="ident">others</span>;
         <span class="self">Self</span>(<span class="ident">drained</span>)
@@ -384,13 +383,13 @@
 
     <span class="doccomment">/// Run the given function for all props and aggregate the errors.</span>
     <span class="doccomment">/// If there&#39;s at least one error, the result will be `Result::Err`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">Prop</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">crate</span><span class="ident">::join_errors</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="ident">f</span>).<span class="ident">filter_map</span>(<span class="ident">Result::err</span>))
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">Prop</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="ident"><span class="kw">crate</span>::join_errors</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="ident">f</span>).<span class="ident">filter_map</span>(<span class="ident">Result::err</span>))
     }
 
     <span class="doccomment">/// Return an error for all duplicate props.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_no_duplicates</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">crate</span><span class="ident">::join_errors</span>(<span class="self">self</span>.<span class="ident">iter_duplicates</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">prop</span><span class="op">|</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_no_duplicates</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="ident"><span class="kw">crate</span>::join_errors</span>(<span class="self">self</span>.<span class="ident">iter_duplicates</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">prop</span><span class="op">|</span> {
             <span class="ident">syn::Error::new_spanned</span>(
                 <span class="kw-2">&amp;</span><span class="ident">prop</span>.<span class="ident">label</span>,
                 <span class="macro">format!</span>(
@@ -402,19 +401,19 @@
     }
 }
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">SortedPropList</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">props</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
         <span class="kw">while</span> <span class="op">!</span><span class="ident">input</span>.<span class="ident">is_empty</span>() {
             <span class="ident">props</span>.<span class="ident">push</span>(<span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>);
         }
 
-        <span class="prelude-val">Ok</span>(<span class="self">Self</span><span class="ident">::new</span>(<span class="ident">props</span>))
+        <span class="prelude-val">Ok</span>(<span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">props</span>))
     }
 }
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">SortedPropList</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> [<span class="ident">Prop</span>];
 
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Target</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>
     }
 }
@@ -428,28 +427,28 @@
     <span class="kw">const</span> <span class="ident">REF_LABEL</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ref&quot;</span>;
     <span class="kw">const</span> <span class="ident">KEY_LABEL</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;key&quot;</span>;
 
-    <span class="kw">fn</span> <span class="ident">pop_from</span>(<span class="ident">props</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">SortedPropList</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">node_ref</span> <span class="op">=</span> <span class="ident">props</span>.<span class="ident">pop_unique</span>(<span class="self">Self</span><span class="ident">::REF_LABEL</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">props</span>.<span class="ident">pop_unique</span>(<span class="self">Self</span><span class="ident">::KEY_LABEL</span>)<span class="question-mark">?</span>;
+    <span class="kw">fn</span> <span class="ident">pop_from</span>(<span class="ident">props</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SortedPropList</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">node_ref</span> <span class="op">=</span> <span class="ident">props</span>.<span class="ident">pop_unique</span>(<span class="ident"><span class="self">Self</span>::REF_LABEL</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">props</span>.<span class="ident">pop_unique</span>(<span class="ident"><span class="self">Self</span>::KEY_LABEL</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> { <span class="ident">node_ref</span>, <span class="ident">key</span> })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_slot_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_slot_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Prop</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="ident">key</span> {
-            <span class="self">Self</span><span class="ident">::REF_LABEL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">node_ref</span>),
-            <span class="self">Self</span><span class="ident">::KEY_LABEL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">key</span>),
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+            <span class="ident"><span class="self">Self</span>::REF_LABEL</span> =&gt; <span class="prelude-val">Some</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">node_ref</span>),
+            <span class="ident"><span class="self">Self</span>::KEY_LABEL</span> =&gt; <span class="prelude-val">Some</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">key</span>),
+            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">Prop</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">node_ref</span>.<span class="ident">as_ref</span>().<span class="ident">into_iter</span>().<span class="ident">chain</span>(<span class="self">self</span>.<span class="ident">key</span>.<span class="ident">as_ref</span>())
     }
 
     <span class="doccomment">/// Run the given function for all props and aggregate the errors.</span>
     <span class="doccomment">/// If there&#39;s at least one error, the result will be `Result::Err`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">Prop</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">crate</span><span class="ident">::join_errors</span>(<span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="ident">f</span>).<span class="ident">filter_map</span>(<span class="ident">Result::err</span>))
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">Prop</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="ident"><span class="kw">crate</span>::join_errors</span>(<span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="ident">f</span>).<span class="ident">filter_map</span>(<span class="ident">Result::err</span>))
     }
 }
 
@@ -458,32 +457,32 @@
     <span class="kw">pub</span> <span class="ident">prop_list</span>: <span class="ident">SortedPropList</span>,
 }
 <span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">Props</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="self">Self</span><span class="ident">::try_from</span>(<span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">SortedPropList</span><span class="op">&gt;</span>()<span class="question-mark">?</span>)
+    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="ident"><span class="self">Self</span>::try_from</span>(<span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">SortedPropList</span><span class="op">&gt;</span>()<span class="question-mark">?</span>)
     }
 }
 <span class="kw">impl</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">Props</span> {
     <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">SortedPropList</span>;
 
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Target</span> {
+    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">prop_list</span>
     }
 }
 <span class="kw">impl</span> <span class="ident">DerefMut</span> <span class="kw">for</span> <span class="ident">Props</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span><span class="ident">::Target</span> {
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">prop_list</span>
+    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Target</span> {
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">prop_list</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">TryFrom</span><span class="op">&lt;</span><span class="ident">SortedPropList</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Props</span> {
     <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">syn::Error</span>;
 
-    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="kw-2">mut</span> <span class="ident">prop_list</span>: <span class="ident">SortedPropList</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="self">Self</span><span class="ident">::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">special</span> <span class="op">=</span> <span class="ident">SpecialProps::pop_from</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">prop_list</span>)<span class="question-mark">?</span>;
+    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="kw-2">mut</span> <span class="ident">prop_list</span>: <span class="ident">SortedPropList</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">special</span> <span class="op">=</span> <span class="ident">SpecialProps::pop_from</span>(<span class="kw-2">&amp;mut</span> <span class="ident">prop_list</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> { <span class="ident">special</span>, <span class="ident">prop_list</span> })
     }
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="yew_macro" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>

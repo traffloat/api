@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `common&#x2F;src&#x2F;edge.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>edge.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../traffloat/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `common&#x2F;src&#x2F;edge.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>edge.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../traffloat/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -344,72 +344,34 @@
 <span id="344">344</span>
 <span id="345">345</span>
 <span id="346">346</span>
-<span id="347">347</span>
-<span id="348">348</span>
-<span id="349">349</span>
-<span id="350">350</span>
-<span id="351">351</span>
-<span id="352">352</span>
-<span id="353">353</span>
-<span id="354">354</span>
-<span id="355">355</span>
-<span id="356">356</span>
-<span id="357">357</span>
-<span id="358">358</span>
-<span id="359">359</span>
-<span id="360">360</span>
-<span id="361">361</span>
-<span id="362">362</span>
-<span id="363">363</span>
-<span id="364">364</span>
-<span id="365">365</span>
-<span id="366">366</span>
-<span id="367">367</span>
-<span id="368">368</span>
-<span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-</pre><pre class="rust">
-<span class="doccomment">//! Edge management.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Edge management.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! An edge is also called a &quot;corridor&quot;.</span>
 <span class="doccomment">//! It connects two nodes together.</span>
 
+<span class="kw">use</span> <span class="ident">def::building</span>;
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
 <span class="kw">use</span> <span class="ident">legion::systems::CommandBuffer</span>;
-<span class="kw">use</span> <span class="ident">legion::world::SubWorld</span>;
-<span class="kw">use</span> <span class="ident">legion::Entity</span>;
+<span class="kw">use</span> <span class="ident">legion::world</span>::{<span class="ident">EntryRef</span>, <span class="ident">SubWorld</span>};
+<span class="kw">use</span> <span class="ident">legion</span>::{<span class="ident">Entity</span>, <span class="ident">EntityStore</span>};
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">traffloat_def::edge</span>::{
+    <span class="ident">Direction</span>, <span class="ident">DuctType</span>, <span class="ident">ElectricityDuctType</span>, <span class="ident">LiquidDuctType</span>, <span class="ident">RailDuctType</span>,
+};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">liquid</span>, <span class="ident">node</span>, <span class="ident">units</span>, <span class="ident">SetupEcs</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Position</span>, <span class="ident">Vector</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">def</span>, <span class="ident">liquid</span>, <span class="ident">node</span>, <span class="ident">save</span>, <span class="ident">units</span>, <span class="ident">SetupEcs</span>};
 
 <span class="doccomment">/// Component storing the endpoints of an edge</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">new</span>, <span class="ident">getset::CopyGetters</span>, <span class="ident">getset::Setters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Id</span> {
-    <span class="doccomment">/// The &quot;source&quot; node</span>
+    <span class="doccomment">/// The &quot;alpha&quot; node</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">from</span>: <span class="ident">Entity</span>,
-    <span class="doccomment">/// The &quot;dest&quot; node</span>
+    <span class="ident">alpha</span>: <span class="ident">Entity</span>,
+    <span class="doccomment">/// The &quot;beta&quot; node</span>
     <span class="attribute">#[<span class="ident">getset</span>(<span class="ident">get_copy</span> <span class="op">=</span> <span class="string">&quot;pub&quot;</span>)]</span>
-    <span class="ident">to</span>:   <span class="ident">Entity</span>,
+    <span class="ident">beta</span>:  <span class="ident">Entity</span>,
 }
 
 <span class="macro">codegen::component_depends!</span> {
@@ -430,38 +392,29 @@
     <span class="ident">radius</span>: <span class="ident">f64</span>,
 }
 
-<span class="doccomment">/// A direction across an edge.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Direction</span> {
-    <span class="doccomment">/// A direction starting from [`Id::from`] and ending at [`Id::to`]</span>
-    <span class="ident">FromTo</span>,
-    <span class="doccomment">/// A direction starting from [`Id::to`] and ending at [`Id::from`]</span>
-    <span class="ident">ToFrom</span>,
-}
-
 <span class="doccomment">/// A position on the cross section of an edge.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CrossSectionPosition</span>(<span class="ident">nalgebra::Vector2</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>);
 
 <span class="kw">impl</span> <span class="ident">CrossSectionPosition</span> {
     <span class="doccomment">/// Create a new position from the two components.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> { <span class="self">Self</span>(<span class="ident">nalgebra::Vector2::new</span>(<span class="ident">x</span>, <span class="ident">y</span>)) }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> { <span class="self">Self</span>(<span class="ident">nalgebra::Vector2::new</span>(<span class="ident">x</span>, <span class="ident">y</span>)) }
 
     <span class="doccomment">/// The vector from the center to the position.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vector</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">nalgebra::Vector2</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> { <span class="self">self</span>.<span class="number">0</span> }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vector</span>(<span class="self">self</span>) -&gt; <span class="ident">nalgebra::Vector2</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> { <span class="self">self</span>.<span class="number">0</span> }
 
     <span class="doccomment">/// The X-coordinate of [`Self::vector`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> { <span class="self">self</span>.<span class="number">0</span>.<span class="ident">x</span> }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x</span>(<span class="self">self</span>) -&gt; <span class="ident">f64</span> { <span class="self">self</span>.<span class="number">0</span>.<span class="ident">x</span> }
 
     <span class="doccomment">/// The Y-coordinate of [`Self::vector`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">y</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> { <span class="self">self</span>.<span class="number">0</span>.<span class="ident">y</span> }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">y</span>(<span class="self">self</span>) -&gt; <span class="ident">f64</span> { <span class="self">self</span>.<span class="number">0</span>.<span class="ident">y</span> }
 }
 
 <span class="doccomment">/// The geometric design of the edge.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This is only used for graphical user interaction.</span>
-<span class="doccomment">/// Simulation systems should depend on separate components on capacity</span>
-<span class="doccomment">/// instead of calculating from this data structure.</span>
+<span class="doccomment">/// This is only used during graphical user interaction and serialization.</span>
+<span class="doccomment">/// Simulation systems should depend on the actual duct entities</span>
+<span class="doccomment">/// instead of computing flow rates from this data structure.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">new</span>, <span class="ident">getset::Getters</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Design</span> {
     <span class="doccomment">/// The ducts in the edge.</span>
@@ -488,121 +441,82 @@
     <span class="ident">entity</span>: <span class="ident">Entity</span>,
 }
 
-<span class="doccomment">/// The type of a duct.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">DuctType</span> {
-    <span class="doccomment">/// A rail that vehicles can move along.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The first parameter is the direction of the rail,</span>
-    <span class="doccomment">/// or [`None`] if the rail is disabled.</span>
-    <span class="ident">Rail</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Direction</span><span class="op">&gt;</span>),
-    <span class="doccomment">/// A pipe that liquids can be transferred through.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The first parameter is the direction of the pipe,</span>
-    <span class="doccomment">/// or [`None`] if the rail is disabled.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The second and third parameters are the liquid storage IDs in the endpoints.</span>
-    <span class="doccomment">/// They refer to the &quot;from&quot; and &quot;to&quot; IDs, and do not change when direction is flipped.</span>
-    <span class="ident">Liquid</span> {
-        <span class="doccomment">/// The direction that the pipe runs in</span>
-        <span class="ident">dir</span>:          <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Direction</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The storage ordinal in the &quot;from&quot; node.</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// This value does **not** swap with [`to_storage`] when the direction is flipped.</span>
-        <span class="ident">from_storage</span>: <span class="ident">usize</span>,
-        <span class="doccomment">/// The storage ordinal in the &quot;to&quot; node.</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// This value does **not** swap with [`from_storage`] when the direction is flipped.</span>
-        <span class="ident">to_storage</span>:   <span class="ident">usize</span>,
-    },
-    <span class="doccomment">/// A cable that electricity can pass through.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The first parameter specifies whether the cable is enabled.</span>
-    <span class="ident">Electricity</span>(<span class="ident">bool</span>),
-}
+<span class="doccomment">/// Creates a duct entity for a duct type.</span>
+<span class="kw">fn</span> <span class="ident">create_duct</span>(
+    <span class="ident">ty</span>: <span class="ident">DuctType</span>,
+    <span class="ident">entities</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CommandBuffer</span>,
+    <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="ident">SubWorld</span>,
+    <span class="ident">alpha</span>: <span class="ident">Entity</span>,
+    <span class="ident">beta</span>: <span class="ident">Entity</span>,
+    <span class="ident">radius</span>: <span class="ident">f64</span>,
+) -&gt; <span class="ident">Entity</span> {
+    <span class="kw">let</span> <span class="ident">alpha_entry</span> <span class="op">=</span> <span class="ident">world</span>.<span class="ident">entry_ref</span>(<span class="ident">alpha</span>).<span class="ident">expect</span>(<span class="string">&quot;The alpha node entity does not exist&quot;</span>);
+    <span class="kw">let</span> <span class="ident">beta_entry</span> <span class="op">=</span> <span class="ident">world</span>.<span class="ident">entry_ref</span>(<span class="ident">beta</span>).<span class="ident">expect</span>(<span class="string">&quot;The beta node entity does not exist&quot;</span>);
 
-<span class="kw">impl</span> <span class="ident">DuctType</span> {
-    <span class="doccomment">/// Whether the duct is active.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">active</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::Rail</span>(<span class="ident">option</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">option</span>.<span class="ident">is_some</span>(),
-            <span class="self">Self</span><span class="ident">::Liquid</span> { <span class="ident">dir</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">dir</span>.<span class="ident">is_some</span>(),
-            <span class="self">Self</span><span class="ident">::Electricity</span>(<span class="ident">enabled</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">enabled</span>,
-        }
-    }
+    <span class="kw">let</span> <span class="ident">alpha_pos</span> <span class="op">=</span> <span class="ident">alpha_entry</span>
+        .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">Position</span><span class="op">&gt;</span>()
+        .<span class="ident">expect</span>(<span class="string">&quot;The alpha node entity does not have a position&quot;</span>);
+    <span class="kw">let</span> <span class="ident">beta_pos</span> <span class="op">=</span> <span class="ident">beta_entry</span>
+        .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">Position</span><span class="op">&gt;</span>()
+        .<span class="ident">expect</span>(<span class="string">&quot;The beta node entity does not have a position&quot;</span>);
 
-    <span class="doccomment">/// The direction of the duct, if any.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">direction</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Direction</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::Rail</span>(<span class="ident">dir</span>) <span class="op">|</span> <span class="self">Self</span><span class="ident">::Liquid</span> { <span class="ident">dir</span>, .. } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">dir</span>,
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
-        }
-    }
+    <span class="kw">let</span> <span class="ident">dist</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">beta_pos</span> <span class="op">-</span> <span class="kw-2">*</span><span class="ident">alpha_pos</span>).<span class="ident">norm</span>();
 
-    <span class="doccomment">/// Creates a duct entity for this duct type.</span>
-    <span class="kw">fn</span> <span class="ident">create_entity</span>(
-        <span class="self">self</span>,
-        <span class="ident">entities</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CommandBuffer</span>,
-        <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="ident">SubWorld</span>,
-        <span class="ident">from</span>: <span class="ident">Entity</span>,
-        <span class="ident">to</span>: <span class="ident">Entity</span>,
-        <span class="ident">radius</span>: <span class="ident">f64</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Entity</span> {
-        <span class="kw">use</span> <span class="ident">legion::EntityStore</span>;
-
-        <span class="kw">let</span> <span class="ident">from_entry</span> <span class="op">=</span> <span class="ident">world</span>.<span class="ident">entry_ref</span>(<span class="ident">from</span>).<span class="ident">expect</span>(<span class="string">&quot;The from node entity does not exist&quot;</span>);
-        <span class="kw">let</span> <span class="ident">to_entry</span> <span class="op">=</span> <span class="ident">world</span>.<span class="ident">entry_ref</span>(<span class="ident">to</span>).<span class="ident">expect</span>(<span class="string">&quot;The to node entity does not exist&quot;</span>);
-
-        <span class="kw">let</span> <span class="ident">from_pos</span> <span class="op">=</span> <span class="ident">from_entry</span>
-            .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">Position</span><span class="op">&gt;</span>()
-            .<span class="ident">expect</span>(<span class="string">&quot;The from node entity does not have a position&quot;</span>);
-        <span class="kw">let</span> <span class="ident">to_pos</span> <span class="op">=</span> <span class="ident">to_entry</span>
-            .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">Position</span><span class="op">&gt;</span>()
-            .<span class="ident">expect</span>(<span class="string">&quot;The to node entity does not have a position&quot;</span>);
-
-        <span class="kw">let</span> <span class="ident">dist</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">to_pos</span> <span class="op">-</span> <span class="kw-2">*</span><span class="ident">from_pos</span>).<span class="ident">norm</span>();
-
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">DuctType::Electricity</span>(<span class="bool-val">true</span>) <span class="op">=</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">ty</span> {
+        <span class="ident">DuctType::Electricity</span>(<span class="ident">ty</span>) =&gt; {
+            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::if_same_then_else</span>)]</span> <span class="comment">// TODO fix</span>
+            <span class="kw">if</span> <span class="ident">ty</span>.<span class="ident">disabled</span>() {
+                <span class="ident">entities</span>.<span class="ident">push</span>(()) <span class="comment">// create a dummy entity</span>
+            } <span class="kw">else</span> {
                 <span class="ident">entities</span>.<span class="ident">push</span>(()) <span class="comment">// TODO</span>
             }
-            <span class="ident">DuctType::Rail</span>(<span class="prelude-val">Some</span>(<span class="ident">_direction</span>)) <span class="op">=</span><span class="op">&gt;</span> {
+        }
+        <span class="ident">DuctType::Rail</span>(<span class="ident">ty</span>) =&gt; {
+            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::if_same_then_else</span>)]</span> <span class="comment">// TODO fix</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">_dir</span>) <span class="op">=</span> <span class="ident">ty</span>.<span class="ident">direction</span>() {
                 <span class="ident">entities</span>.<span class="ident">push</span>(()) <span class="comment">// TODO</span>
+            } <span class="kw">else</span> {
+                <span class="ident">entities</span>.<span class="ident">push</span>(()) <span class="comment">// create a dummy entity</span>
             }
-            <span class="ident">DuctType::Liquid</span> { <span class="ident">dir</span>: <span class="prelude-val">Some</span>(<span class="ident">direction</span>), <span class="ident">from_storage</span>, <span class="ident">to_storage</span> } <span class="op">=</span><span class="op">&gt;</span> <span class="ident">entities</span>.<span class="ident">push</span>({
-                <span class="kw">let</span> <span class="ident">from_list</span> <span class="op">=</span> <span class="ident">from_entry</span>
-                    .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">liquid::StorageList</span><span class="op">&gt;</span>()
-                    .<span class="ident">expect</span>(<span class="string">&quot;The from node entity does not have liquid::StorageList&quot;</span>);
-                <span class="kw">let</span> <span class="ident">from_tank</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">from_list</span>
-                    .<span class="ident">storages</span>()
-                    .<span class="ident">get</span>(<span class="ident">from_storage</span>)
-                    .<span class="ident">expect</span>(<span class="string">&quot;Pipe definition references a nonexistent from-storage&quot;</span>);
+        }
+        <span class="ident">DuctType::Liquid</span>(<span class="ident">ty</span>) =&gt; {
+            <span class="kw">match</span> <span class="ident">ty</span> {
+                <span class="ident">LiquidDuctType::AlphaToBeta</span> { <span class="ident">alpha_storage</span>, <span class="ident">beta_storage</span> }
+                <span class="op">|</span> <span class="ident">LiquidDuctType::BetaToAlpha</span> { <span class="ident">beta_storage</span>, <span class="ident">alpha_storage</span> } =&gt; <span class="ident">entities</span>.<span class="ident">push</span>({
+                    <span class="kw">fn</span> <span class="ident">get_tank</span>(
+                        <span class="ident">entry</span>: <span class="ident">EntryRef</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
+                        <span class="ident">storage</span>: <span class="ident">building::storage::liquid::Id</span>,
+                    ) -&gt; <span class="ident">Entity</span> {
+                        <span class="kw">let</span> <span class="ident">list</span> <span class="op">=</span> <span class="ident">entry</span>
+                            .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">liquid::StorageList</span><span class="op">&gt;</span>()
+                            .<span class="ident">expect</span>(<span class="string">&quot;Node entity has no liquid::StorageList&quot;</span>);
+                        <span class="kw">let</span> <span class="ident">tank</span> <span class="op">=</span> <span class="ident">list</span>
+                            .<span class="ident">storages</span>()
+                            .<span class="ident">get</span>(<span class="ident">storage</span>.<span class="ident">index</span>())
+                            .<span class="ident">expect</span>(<span class="string">&quot;Pipe definition references nonexistent storage&quot;</span>);
+                        <span class="kw-2">*</span><span class="ident">tank</span>
+                    }
 
-                <span class="kw">let</span> <span class="ident">to_list</span> <span class="op">=</span> <span class="ident">to_entry</span>
-                    .<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">liquid::StorageList</span><span class="op">&gt;</span>()
-                    .<span class="ident">expect</span>(<span class="string">&quot;The to node entity does not have liquid::StorageList&quot;</span>);
-                <span class="kw">let</span> <span class="ident">to_tank</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">to_list</span>
-                    .<span class="ident">storages</span>()
-                    .<span class="ident">get</span>(<span class="ident">to_storage</span>)
-                    .<span class="ident">expect</span>(<span class="string">&quot;Pipe definition references a nonexistent to-storage&quot;</span>);
+                    <span class="kw">let</span> <span class="ident">alpha_tank</span> <span class="op">=</span> <span class="ident">get_tank</span>(<span class="ident">alpha_entry</span>, <span class="ident">alpha_storage</span>);
+                    <span class="kw">let</span> <span class="ident">beta_tank</span> <span class="op">=</span> <span class="ident">get_tank</span>(<span class="ident">beta_entry</span>, <span class="ident">beta_storage</span>);
 
-                <span class="kw">let</span> (<span class="ident">src</span>, <span class="ident">dest</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">direction</span> {
-                    <span class="ident">Direction::FromTo</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">from_tank</span>, <span class="ident">to_tank</span>),
-                    <span class="ident">Direction::ToFrom</span> <span class="op">=</span><span class="op">&gt;</span> (<span class="ident">to_tank</span>, <span class="ident">from_tank</span>),
-                };
+                    <span class="kw">let</span> (<span class="ident">src</span>, <span class="ident">dest</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">ty</span> {
+                        <span class="ident">LiquidDuctType::AlphaToBeta</span> { .. } =&gt; (<span class="ident">alpha_tank</span>, <span class="ident">beta_tank</span>),
+                        <span class="ident">LiquidDuctType::BetaToAlpha</span> { .. } =&gt; (<span class="ident">beta_tank</span>, <span class="ident">alpha_tank</span>),
+                        <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;Within match arm&quot;</span>),
+                    };
 
-                <span class="kw">let</span> <span class="ident">resistance</span> <span class="op">=</span> <span class="ident">dist</span> <span class="op">/</span> <span class="ident">radius</span>.<span class="ident">powi</span>(<span class="number">2</span>);
+                    <span class="kw">let</span> <span class="ident">resistance</span> <span class="op">=</span> <span class="ident">dist</span> <span class="op">/</span> <span class="ident">radius</span>.<span class="ident">powi</span>(<span class="number">2</span>);
 
-                (
-                    <span class="ident">liquid::Pipe::new</span>(<span class="ident">src</span>, <span class="ident">dest</span>),
-                    <span class="ident">liquid::PipeResistance::new</span>(<span class="ident">resistance</span>),
-                    <span class="ident">liquid::PipeFlow::default</span>(),
-                )
-            }),
-            <span class="ident">DuctType::Electricity</span>(<span class="bool-val">false</span>)
-            <span class="op">|</span> <span class="ident">DuctType::Rail</span>(<span class="prelude-val">None</span>)
-            <span class="op">|</span> <span class="ident">DuctType::Liquid</span> { <span class="ident">dir</span>: <span class="prelude-val">None</span>, .. } <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="ident">entities</span>.<span class="ident">push</span>(()) <span class="comment">// dummy entity</span>
+                    (
+                        <span class="ident">liquid::Pipe::new</span>(<span class="ident">src</span>, <span class="ident">dest</span>),
+                        <span class="ident">liquid::PipeResistance::new</span>(<span class="ident">resistance</span>),
+                        <span class="ident">liquid::PipeFlow::default</span>(),
+                    )
+                }),
+                <span class="ident">LiquidDuctType::Disabled</span> =&gt; {
+                    <span class="ident">entities</span>.<span class="ident">push</span>(()) <span class="comment">// create a dummy entity</span>
+                }
             }
         }
     }
@@ -628,34 +542,32 @@
 }
 
 <span class="doccomment">/// Computes the transformation matrix from or to the unit cylinder</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tf</span>(<span class="ident">edge</span>: <span class="kw-2">&amp;</span><span class="ident">Id</span>, <span class="ident">size</span>: <span class="kw-2">&amp;</span><span class="ident">Size</span>, <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="ident">legion::world::SubWorld</span>, <span class="ident">from_unit</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Matrix</span> {
-    <span class="kw">use</span> <span class="ident">legion::EntityStore</span>;
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tf</span>(<span class="ident">edge</span>: <span class="kw-2">&amp;</span><span class="ident">Id</span>, <span class="ident">size</span>: <span class="kw-2">&amp;</span><span class="ident">Size</span>, <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="ident">legion::world::SubWorld</span>, <span class="ident">from_unit</span>: <span class="ident">bool</span>) -&gt; <span class="ident">Matrix</span> {
+    <span class="kw">let</span> <span class="ident">alpha</span> <span class="op">=</span> <span class="ident">edge</span>.<span class="ident">alpha</span>();
+    <span class="kw">let</span> <span class="ident">beta</span> <span class="op">=</span> <span class="ident">edge</span>.<span class="ident">beta</span>();
 
-    <span class="kw">let</span> <span class="ident">from</span> <span class="op">=</span> <span class="ident">edge</span>.<span class="ident">from</span>();
-    <span class="kw">let</span> <span class="ident">to</span> <span class="op">=</span> <span class="ident">edge</span>.<span class="ident">to</span>();
-
-    <span class="kw">let</span> <span class="ident">from</span>: <span class="ident">Position</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">world</span>
-        .<span class="ident">entry_ref</span>(<span class="ident">from</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;from_entity does not exist&quot;</span>)
+    <span class="kw">let</span> <span class="ident">alpha</span>: <span class="ident">Position</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">world</span>
+        .<span class="ident">entry_ref</span>(<span class="ident">alpha</span>)
+        .<span class="ident">expect</span>(<span class="string">&quot;alpha_entity does not exist&quot;</span>)
         .<span class="ident">get_component</span>()
-        .<span class="ident">expect</span>(<span class="string">&quot;from node does not have Position&quot;</span>);
-    <span class="kw">let</span> <span class="ident">to</span>: <span class="ident">Position</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">world</span>
-        .<span class="ident">entry_ref</span>(<span class="ident">to</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;to_entity does not exist&quot;</span>)
+        .<span class="ident">expect</span>(<span class="string">&quot;alpha node does not have Position&quot;</span>);
+    <span class="kw">let</span> <span class="ident">beta</span>: <span class="ident">Position</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">world</span>
+        .<span class="ident">entry_ref</span>(<span class="ident">beta</span>)
+        .<span class="ident">expect</span>(<span class="string">&quot;beta_entity does not exist&quot;</span>)
         .<span class="ident">get_component</span>()
-        .<span class="ident">expect</span>(<span class="string">&quot;to node does not have Position&quot;</span>);
+        .<span class="ident">expect</span>(<span class="string">&quot;beta node does not have Position&quot;</span>);
 
-    <span class="kw">let</span> <span class="ident">dir</span> <span class="op">=</span> <span class="ident">to</span> <span class="op">-</span> <span class="ident">from</span>;
+    <span class="kw">let</span> <span class="ident">dir</span> <span class="op">=</span> <span class="ident">beta</span> <span class="op">-</span> <span class="ident">alpha</span>;
     <span class="kw">let</span> <span class="ident">rot</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">nalgebra::Rotation3::rotation_between</span>(<span class="kw-2">&amp;</span><span class="ident">Vector::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>), <span class="kw-2">&amp;</span><span class="ident">dir</span>) {
-        <span class="prelude-val">Some</span>(<span class="ident">rot</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">rot</span>.<span class="ident">to_homogeneous</span>(),
-        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Matrix::identity</span>().<span class="ident">append_nonuniform_scaling</span>(<span class="kw-2">&amp;</span><span class="ident">Vector::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="op">-</span><span class="number">1.</span>)),
+        <span class="prelude-val">Some</span>(<span class="ident">rot</span>) =&gt; <span class="ident">rot</span>.<span class="ident">to_homogeneous</span>(),
+        <span class="prelude-val">None</span> =&gt; <span class="ident">Matrix::identity</span>().<span class="ident">append_nonuniform_scaling</span>(<span class="kw-2">&amp;</span><span class="ident">Vector::new</span>(<span class="number">0.</span>, <span class="number">0.</span>, <span class="op">-</span><span class="number">1.</span>)),
     };
 
     <span class="kw">if</span> <span class="ident">from_unit</span> {
         <span class="ident">rot</span>.<span class="ident">prepend_nonuniform_scaling</span>(<span class="kw-2">&amp;</span><span class="ident">Vector::new</span>(<span class="ident">size</span>.<span class="ident">radius</span>(), <span class="ident">size</span>.<span class="ident">radius</span>(), <span class="ident">dir</span>.<span class="ident">norm</span>()))
-            .<span class="ident">append_translation</span>(<span class="kw-2">&amp;</span><span class="ident">from</span>.<span class="ident">vector</span>())
+            .<span class="ident">append_translation</span>(<span class="kw-2">&amp;</span><span class="ident">alpha</span>.<span class="ident">vector</span>())
     } <span class="kw">else</span> {
-        <span class="ident">rot</span>.<span class="ident">transpose</span>().<span class="ident">prepend_translation</span>(<span class="kw-2">&amp;</span><span class="op">-</span><span class="ident">from</span>.<span class="ident">vector</span>()).<span class="ident">append_nonuniform_scaling</span>(
+        <span class="ident">rot</span>.<span class="ident">transpose</span>().<span class="ident">prepend_translation</span>(<span class="kw-2">&amp;</span><span class="op">-</span><span class="ident">alpha</span>.<span class="ident">vector</span>()).<span class="ident">append_nonuniform_scaling</span>(
             <span class="kw-2">&amp;</span><span class="ident">Vector::new</span>(<span class="number">1.</span> <span class="op">/</span> <span class="ident">size</span>.<span class="ident">radius</span>(), <span class="number">1.</span> <span class="op">/</span> <span class="ident">size</span>.<span class="ident">radius</span>(), <span class="number">1.</span> <span class="op">/</span> <span class="ident">dir</span>.<span class="ident">norm</span>()),
         )
     }
@@ -664,39 +576,20 @@
 <span class="doccomment">/// An event to schedule requests to initialize new edges.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateRequest</span> {
-    <span class="ident">from</span>:   <span class="ident">Entity</span>,
-    <span class="ident">to</span>:     <span class="ident">Entity</span>,
-    <span class="ident">size</span>:   <span class="ident">f64</span>,
-    <span class="ident">hp</span>:     <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
-    <span class="ident">design</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">save::SavedDuct</span><span class="op">&gt;</span>,
+    <span class="ident">from</span>: <span class="ident">Entity</span>,
+    <span class="ident">to</span>:   <span class="ident">Entity</span>,
+    <span class="ident">size</span>: <span class="ident">f64</span>,
+    <span class="ident">hp</span>:   <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">CreateChild</span>)]</span>
-<span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Position</span>)]</span>
-<span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">liquid::StorageList</span>)]</span>
 <span class="kw">fn</span> <span class="ident">create_new_edge</span>(
-    <span class="ident">entities</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CommandBuffer</span>,
-    <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="ident">SubWorld</span>,
+    <span class="ident">entities</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CommandBuffer</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">requests</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">CreateRequest</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">publisher</span>]</span> <span class="ident">add_events</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="ident">AddEvent</span>),
 ) {
     <span class="kw">for</span> <span class="ident">request</span> <span class="kw">in</span> <span class="ident">requests</span> {
-        <span class="kw">let</span> <span class="ident">design</span> <span class="op">=</span> <span class="ident">request</span>
-            .<span class="ident">design</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">duct</span><span class="op">|</span> <span class="ident">Duct</span> {
-                <span class="ident">center</span>: <span class="ident">duct</span>.<span class="ident">center</span>,
-                <span class="ident">radius</span>: <span class="ident">duct</span>.<span class="ident">radius</span>,
-                <span class="ident">ty</span>:     <span class="ident">duct</span>.<span class="ident">ty</span>,
-                <span class="ident">entity</span>: <span class="ident">duct</span>.<span class="ident">ty</span>.<span class="ident">create_entity</span>(
-                    <span class="ident">entities</span>,
-                    <span class="ident">world</span>,
-                    <span class="ident">request</span>.<span class="ident">from</span>,
-                    <span class="ident">request</span>.<span class="ident">to</span>,
-                    <span class="ident">duct</span>.<span class="ident">radius</span>,
-                ),
-            })
-            .<span class="ident">collect</span>();
+        <span class="kw">let</span> <span class="ident">design</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
         <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="ident">request</span>.<span class="ident">from</span>, <span class="ident">request</span>.<span class="ident">to</span>);
         <span class="kw">let</span> <span class="ident">entity</span> <span class="op">=</span> <span class="ident">entities</span>.<span class="ident">push</span>((<span class="ident">id</span>, <span class="ident">Size::new</span>(<span class="ident">request</span>.<span class="ident">size</span>), <span class="ident">request</span>.<span class="ident">hp</span>, <span class="ident">Design::new</span>(<span class="ident">design</span>)));
         <span class="ident">add_events</span>(<span class="ident">AddEvent</span> { <span class="ident">edge</span>: <span class="ident">id</span>, <span class="ident">entity</span> });
@@ -707,73 +600,97 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LoadRequest</span> {
     <span class="doccomment">/// The saved edge.</span>
-    <span class="ident">save</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">save::Edge</span><span class="op">&gt;</span>,
+    <span class="ident">save</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">def::edge::Edge</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">CreateChild</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Position</span>)]</span>
 <span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">liquid::StorageList</span>)]</span>
 <span class="kw">fn</span> <span class="ident">create_saved_edge</span>(
-    <span class="ident">entities</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">CommandBuffer</span>,
+    <span class="ident">entities</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CommandBuffer</span>,
     <span class="ident">world</span>: <span class="kw-2">&amp;</span><span class="ident">SubWorld</span>,
     <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">requests</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">LoadRequest</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">publisher</span>]</span> <span class="ident">add_events</span>: <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="ident">AddEvent</span>),
     <span class="attribute">#[<span class="ident">resource</span>]</span> <span class="ident">index</span>: <span class="kw-2">&amp;</span><span class="ident">node::Index</span>,
 ) {
     <span class="kw">for</span> <span class="ident">LoadRequest</span> { <span class="ident">save</span> } <span class="kw">in</span> <span class="ident">requests</span> {
-        <span class="kw">let</span> <span class="ident">from</span> <span class="op">=</span> <span class="ident">index</span>.<span class="ident">get</span>(<span class="ident">save</span>.<span class="ident">from</span>).<span class="ident">expect</span>(<span class="string">&quot;Edge references nonexistent node&quot;</span>);
-        <span class="kw">let</span> <span class="ident">to</span> <span class="op">=</span> <span class="ident">index</span>.<span class="ident">get</span>(<span class="ident">save</span>.<span class="ident">to</span>).<span class="ident">expect</span>(<span class="string">&quot;Edge references nonexistent node&quot;</span>);
+        <span class="kw">let</span> <span class="ident">alpha</span> <span class="op">=</span> <span class="ident">index</span>.<span class="ident">get</span>(<span class="ident">save</span>.<span class="ident">endpoints</span>().<span class="ident">alpha</span>()).<span class="ident">expect</span>(<span class="string">&quot;Edge references nonexistent node&quot;</span>);
+        <span class="kw">let</span> <span class="ident">beta</span> <span class="op">=</span> <span class="ident">index</span>.<span class="ident">get</span>(<span class="ident">save</span>.<span class="ident">endpoints</span>().<span class="ident">beta</span>()).<span class="ident">expect</span>(<span class="string">&quot;Edge references nonexistent node&quot;</span>);
         <span class="comment">// FIXME how do we handle the error here properly?</span>
 
         <span class="kw">let</span> <span class="ident">design</span> <span class="op">=</span> <span class="ident">save</span>
-            .<span class="ident">design</span>
+            .<span class="ident">ducts</span>()
             .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">duct</span><span class="op">|</span> <span class="ident">Duct</span> {
-                <span class="ident">center</span>: <span class="ident">duct</span>.<span class="ident">center</span>,
-                <span class="ident">radius</span>: <span class="ident">duct</span>.<span class="ident">radius</span>,
-                <span class="ident">ty</span>:     <span class="ident">duct</span>.<span class="ident">ty</span>,
-                <span class="ident">entity</span>: <span class="ident">duct</span>.<span class="ident">ty</span>.<span class="ident">create_entity</span>(<span class="ident">entities</span>, <span class="ident">world</span>, <span class="ident">from</span>, <span class="ident">to</span>, <span class="ident">duct</span>.<span class="ident">radius</span>),
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">duct</span><span class="op">|</span> {
+                <span class="ident">Duct::builder</span>()
+                    .<span class="ident">center</span>(<span class="ident">CrossSectionPosition::new</span>(<span class="ident">duct</span>.<span class="ident">center</span>().<span class="ident">x</span>, <span class="ident">duct</span>.<span class="ident">center</span>().<span class="ident">y</span>))
+                    .<span class="ident">radius</span>(<span class="ident">duct</span>.<span class="ident">radius</span>())
+                    .<span class="ident">ty</span>(<span class="ident">duct</span>.<span class="ident">ty</span>())
+                    .<span class="ident">entity</span>(<span class="ident">create_duct</span>(<span class="ident">duct</span>.<span class="ident">ty</span>(), <span class="ident">entities</span>, <span class="ident">world</span>, <span class="ident">alpha</span>, <span class="ident">beta</span>, <span class="ident">duct</span>.<span class="ident">radius</span>()))
+                    .<span class="ident">build</span>()
             })
             .<span class="ident">collect</span>();
 
-        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="ident">from</span>, <span class="ident">to</span>);
-        <span class="kw">let</span> <span class="ident">entity</span> <span class="op">=</span> <span class="ident">entities</span>.<span class="ident">push</span>((<span class="ident">id</span>, <span class="ident">save</span>.<span class="ident">size</span>, <span class="ident">save</span>.<span class="ident">hitpoint</span>, <span class="ident">Design::new</span>(<span class="ident">design</span>)));
+        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="ident">alpha</span>, <span class="ident">beta</span>);
+        <span class="kw">let</span> <span class="ident">entity</span> <span class="op">=</span>
+            <span class="ident">entities</span>.<span class="ident">push</span>((<span class="ident">id</span>, <span class="ident">Size::new</span>(<span class="ident">save</span>.<span class="ident">radius</span>()), <span class="ident">save</span>.<span class="ident">hitpoint</span>(), <span class="ident">Design::new</span>(<span class="ident">design</span>)));
         <span class="ident">add_events</span>(<span class="ident">AddEvent</span> { <span class="ident">edge</span>: <span class="ident">id</span>, <span class="ident">entity</span> });
     }
 }
 
+<span class="attribute">#[<span class="ident">codegen::system</span>(<span class="ident">Visualize</span>)]</span>
+<span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Id</span>)]</span>
+<span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Size</span>)]</span>
+<span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>)]</span>
+<span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">Design</span>)]</span>
+<span class="attribute">#[<span class="ident">read_component</span>(<span class="ident">node::Id</span>)]</span>
+<span class="kw">fn</span> <span class="ident">save_edges</span>(<span class="ident">world</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SubWorld</span>, <span class="attribute">#[<span class="ident">subscriber</span>]</span> <span class="ident">requests</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">save::Request</span><span class="op">&gt;</span>) {
+    <span class="kw">use</span> <span class="ident">legion::IntoQuery</span>;
+
+    <span class="kw">for</span> <span class="ident">request</span> <span class="kw">in</span> <span class="ident">requests</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">query</span> <span class="op">=</span> <span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">Id</span>, <span class="kw-2">&amp;</span><span class="ident">Size</span>, <span class="kw-2">&amp;</span><span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="ident">Design</span>)<span class="op">&gt;</span><span class="ident">::query</span>();
+        <span class="kw">let</span> (<span class="ident">query_world</span>, <span class="ident">ra_world</span>) <span class="op">=</span> <span class="ident">world</span>.<span class="ident">split_for_query</span>(<span class="kw-2">&amp;</span><span class="ident">query</span>);
+
+        <span class="kw">for</span> (<span class="ident">id</span>, <span class="ident">size</span>, <span class="kw-2">&amp;</span><span class="ident">hitpoint</span>, <span class="ident">design</span>) <span class="kw">in</span> <span class="ident">query</span>.<span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="ident">query_world</span>) {
+            <span class="kw">let</span> <span class="ident">get_node_id</span> <span class="op">=</span> <span class="op">|</span><span class="ident">entity</span><span class="op">|</span> {
+                <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="ident">ra_world</span>.<span class="ident">entry_ref</span>(<span class="ident">entity</span>).<span class="ident">expect</span>(<span class="string">&quot;Dangling edge endpoint&quot;</span>);
+                <span class="kw-2">*</span><span class="ident">entry</span>.<span class="ident">get_component</span>::<span class="op">&lt;</span><span class="ident">node::Id</span><span class="op">&gt;</span>().<span class="ident">expect</span>(<span class="string">&quot;Edge endpoint is not a node&quot;</span>)
+            };
+            <span class="kw">let</span> <span class="ident">alpha</span> <span class="op">=</span> <span class="ident">get_node_id</span>(<span class="ident">id</span>.<span class="ident">alpha</span>());
+            <span class="kw">let</span> <span class="ident">beta</span> <span class="op">=</span> <span class="ident">get_node_id</span>(<span class="ident">id</span>.<span class="ident">beta</span>());
+
+            <span class="kw">let</span> <span class="ident">edge</span> <span class="op">=</span> <span class="ident">def::edge::Edge::builder</span>()
+                .<span class="ident">endpoints</span>(<span class="ident">def::edge::AlphaBeta::new</span>(<span class="ident">alpha</span>, <span class="ident">beta</span>))
+                .<span class="ident">radius</span>(<span class="ident">size</span>.<span class="ident">radius</span>())
+                .<span class="ident">hitpoint</span>(<span class="ident">hitpoint</span>)
+                .<span class="ident">ducts</span>(
+                    <span class="ident">design</span>
+                        .<span class="ident">ducts</span>()
+                        .<span class="ident">iter</span>()
+                        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">duct</span><span class="op">|</span> {
+                            <span class="ident">def::edge::Duct::builder</span>()
+                                .<span class="ident">center</span>(<span class="ident">duct</span>.<span class="ident">center</span>().<span class="ident">vector</span>())
+                                .<span class="ident">radius</span>(<span class="ident">duct</span>.<span class="ident">radius</span>())
+                                .<span class="ident">ty</span>(<span class="ident">duct</span>.<span class="ident">ty</span>())
+                                .<span class="ident">build</span>()
+                        })
+                        .<span class="ident">collect</span>(),
+                )
+                .<span class="ident">build</span>();
+
+            {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">request</span>.<span class="ident">file</span>();
+                <span class="ident">file</span>.<span class="ident">state_mut</span>().<span class="ident">edges_mut</span>().<span class="ident">push</span>(<span class="ident">edge</span>);
+            }
+        }
+    }
+}
+
 <span class="doccomment">/// Initializes ECS</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">SetupEcs</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SetupEcs</span> {
-    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">create_new_edge_setup</span>).<span class="ident">uses</span>(<span class="ident">create_saved_edge_setup</span>)
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">setup_ecs</span>(<span class="ident">setup</span>: <span class="ident">SetupEcs</span>) -&gt; <span class="ident">SetupEcs</span> {
+    <span class="ident">setup</span>.<span class="ident">uses</span>(<span class="ident">create_new_edge_setup</span>).<span class="ident">uses</span>(<span class="ident">create_saved_edge_setup</span>).<span class="ident">uses</span>(<span class="ident">save_edges_setup</span>)
 }
-
-<span class="doccomment">/// Save type for edges.</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">save</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::node</span>;
-
-    <span class="doccomment">/// Saves all data related to an edge.</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Edge</span> {
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">from</span>:     <span class="ident">node::Id</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">to</span>:       <span class="ident">node::Id</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">size</span>:     <span class="kw">super</span><span class="ident">::Size</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">design</span>:   <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SavedDuct</span><span class="op">&gt;</span>,
-        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">hitpoint</span>: <span class="ident">units::Portion</span><span class="op">&lt;</span><span class="ident">units::Hitpoint</span><span class="op">&gt;</span>,
-    }
-
-    <span class="doccomment">/// Saves all data related to a duct.</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SavedDuct</span> {
-        <span class="doccomment">/// Center position of the duct.</span>
-        <span class="kw">pub</span> <span class="ident">center</span>: <span class="ident">CrossSectionPosition</span>,
-        <span class="doccomment">/// Radius of the duct.</span>
-        <span class="kw">pub</span> <span class="ident">radius</span>: <span class="ident">f64</span>,
-        <span class="doccomment">/// Type of the duct.</span>
-        <span class="kw">pub</span> <span class="ident">ty</span>:     <span class="ident">DuctType</span>,
-    }
-}
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
 </body></html>

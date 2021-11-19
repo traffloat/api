@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `types&#x2F;src&#x2F;ratio_def.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ratio_def.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../traffloat_types/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `types&#x2F;src&#x2F;ratio_def.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ratio_def.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../traffloat_types/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -233,8 +233,10 @@
 <span id="233">233</span>
 <span id="234">234</span>
 <span id="235">235</span>
-</pre><pre class="rust">
-<span class="macro">macro_rules!</span> <span class="ident">units</span> {
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+</pre><pre class="rust"><code><span class="macro">macro_rules!</span> <span class="ident">units</span> {
     (
         $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">blanket_meta</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
         <span class="macro-nonterminal">$</span><span class="macro-nonterminal">blanket</span>:<span class="ident">ident</span>($(<span class="macro-nonterminal">$</span><span class="kw">super</span>:<span class="macro-nonterminal">tt</span>)<span class="kw-2">*</span>);
@@ -248,14 +250,14 @@
         $(
             <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">path</span><span class="op">&gt;</span> <span class="op">*</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">path</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span>:<span class="ident">path</span>;
         )<span class="op">*</span>
-    ) <span class="op">=</span><span class="op">&gt;</span> {
+    ) =&gt; {
         $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">blanket_meta</span>]</span>)<span class="op">*</span>
         <span class="kw">pub</span> <span class="kw">trait</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">blanket</span> : $(<span class="macro-nonterminal">$</span><span class="kw">super</span>)<span class="op">*</span> {
             <span class="doccomment">/// Returns the raw value of this struct.</span>
-            <span class="kw">fn</span> <span class="macro-nonterminal">value</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>;
+            <span class="kw">fn</span> <span class="macro-nonterminal">value</span>(<span class="self">self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>;
 
             <span class="doccomment">/// Returns a reference to the raw value of this struct.</span>
-            <span class="kw">fn</span> <span class="ident">value_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>;
+            <span class="kw">fn</span> <span class="ident">value_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>;
         }
 
         $(
@@ -265,7 +267,7 @@
 
             <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">base</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">base</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) -&gt; <span class="self">Self</span> {
                     <span class="self">Self</span>(<span class="ident">base</span>)
                 }
             }
@@ -273,7 +275,7 @@
             <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                 <span class="doccomment">/// Returns the raw value of this struct.</span>
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> {
+                <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="self">self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> {
                     <span class="self">self</span>.<span class="number">0</span>
                 }
             }
@@ -281,7 +283,7 @@
             $(
                 <span class="kw">impl</span> <span class="ident">RoundedUnit</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                     <span class="doccomment">/// Rounds the unit</span>
-                    <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">round</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">precision</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                    <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">round</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">precision</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
                         <span class="kw">let</span> <span class="ident">ten</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> <span class="op">=</span> <span class="number">10.</span>;
                         <span class="kw">let</span> <span class="ident">exp</span> <span class="op">=</span> <span class="ident">ten</span>.<span class="ident">powi</span>(<span class="ident">precision</span>);
                         <span class="self">self</span>.<span class="number">0</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">exp</span>;
@@ -293,7 +295,7 @@
             )<span class="question-mark">?</span>
 
             <span class="kw">impl</span> <span class="ident">::std::fmt::Display</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
-                <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+                <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">::std::fmt::Formatter</span>) -&gt; <span class="ident">::std::fmt::Result</span> {
                     <span class="macro">write!</span>(<span class="ident">f</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fmt_front</span>)<span class="question-mark">?</span>;
                     <span class="ident">::std::fmt::Display::fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, <span class="ident">f</span>)<span class="question-mark">?</span>;
                     <span class="macro">write!</span>(<span class="ident">f</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fmt_back</span>)<span class="question-mark">?</span>;
@@ -303,13 +305,13 @@
 
             <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">blanket</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">value</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> {
+                <span class="kw">fn</span> <span class="ident">value</span>(<span class="self">self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> {
                     <span class="self">self</span>.<span class="number">0</span>
                 }
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">value_mut</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> {
-                    <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="number">0</span>
+                <span class="kw">fn</span> <span class="ident">value_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> {
+                    <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>
                 }
             }
 
@@ -317,14 +319,14 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">add</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                <span class="kw">fn</span> <span class="ident">add</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) -&gt; <span class="self">Self</span> {
                     <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span>(<span class="self">self</span>.<span class="ident">value</span>() <span class="op">+</span> <span class="ident">other</span>.<span class="ident">value</span>())
                 }
             }
 
             <span class="kw">impl</span> <span class="ident">::std::ops::AddAssign</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">add_assign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
+                <span class="kw">fn</span> <span class="ident">add_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
                     <span class="self">self</span>.<span class="number">0</span> <span class="op">+</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">value</span>();
                 }
             }
@@ -333,14 +335,14 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">sub</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                <span class="kw">fn</span> <span class="ident">sub</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) -&gt; <span class="self">Self</span> {
                     <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span>(<span class="self">self</span>.<span class="ident">value</span>() <span class="op">-</span> <span class="ident">other</span>.<span class="ident">value</span>())
                 }
             }
 
             <span class="kw">impl</span> <span class="ident">::std::ops::SubAssign</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">sub_assign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
+                <span class="kw">fn</span> <span class="ident">sub_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
                     <span class="self">self</span>.<span class="number">0</span> <span class="op">-</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">value</span>();
                 }
             }
@@ -349,14 +351,14 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) -&gt; <span class="self">Self</span> {
                     <span class="self">Self</span>(<span class="self">self</span>.<span class="number">0</span> <span class="op">*</span> <span class="ident">other</span>)
                 }
             }
 
             <span class="kw">impl</span> <span class="ident">::std::ops::MulAssign</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">mul_assign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) {
+                <span class="kw">fn</span> <span class="ident">mul_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) {
                     <span class="self">self</span>.<span class="number">0</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">other</span>;
                 }
             }
@@ -365,7 +367,7 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> {
+                <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span> {
                     <span class="self">self</span>.<span class="number">0</span> <span class="op">/</span> <span class="ident">other</span>.<span class="number">0</span>
                 }
             }
@@ -374,14 +376,14 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) -&gt; <span class="self">Self</span> {
                     <span class="self">Self</span>(<span class="self">self</span>.<span class="number">0</span> <span class="op">/</span> <span class="ident">other</span>)
                 }
             }
 
             <span class="kw">impl</span> <span class="ident">::std::ops::DivAssign</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">div_assign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) {
+                <span class="kw">fn</span> <span class="ident">div_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">base</span>) {
                     <span class="self">self</span>.<span class="number">0</span> <span class="op">/</span><span class="op">=</span> <span class="ident">other</span>;
                 }
             }
@@ -390,21 +392,21 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">rem</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                <span class="kw">fn</span> <span class="ident">rem</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) -&gt; <span class="self">Self</span> {
                     <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span>(<span class="self">self</span>.<span class="ident">value</span>() <span class="op">%</span> <span class="ident">other</span>.<span class="ident">value</span>())
                 }
             }
 
             <span class="kw">impl</span> <span class="ident">::std::ops::RemAssign</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">rem_assign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
+                <span class="kw">fn</span> <span class="ident">rem_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
                     <span class="self">self</span>.<span class="number">0</span> <span class="op">%</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">value</span>();
                 }
             }
 
             <span class="kw">impl</span> <span class="ident">::std::iter::Sum</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tys</span> {
-                <span class="kw">fn</span> <span class="ident">sum</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-                    <span class="ident">iter</span>.<span class="ident">fold</span>(<span class="self">Self</span><span class="ident">::default</span>(), <span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">a</span> <span class="op">+</span> <span class="ident">b</span>)
+                <span class="kw">fn</span> <span class="ident">sum</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) -&gt; <span class="self">Self</span> {
+                    <span class="ident">iter</span>.<span class="ident">fold</span>(<span class="ident"><span class="self">Self</span>::default</span>(), <span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">a</span> <span class="op">+</span> <span class="ident">b</span>)
                 }
             }
         )<span class="op">*</span>
@@ -414,7 +416,7 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span> {
+                <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span> {
                     <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span>(<span class="self">self</span>.<span class="ident">value</span>() <span class="op">*</span> <span class="ident">other</span>.<span class="ident">value</span>())
                 }
             }
@@ -423,7 +425,7 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span> {
+                <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span> {
                     <span class="macro-nonterminal">$</span><span class="macro-nonterminal">c</span>(<span class="self">self</span>.<span class="ident">value</span>() <span class="op">*</span> <span class="ident">other</span>.<span class="ident">value</span>())
                 }
             }
@@ -432,7 +434,7 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span> {
+                <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span> {
                     <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>(<span class="self">self</span>.<span class="ident">value</span>() <span class="op">/</span> <span class="ident">other</span>.<span class="ident">value</span>())
                 }
             }
@@ -441,7 +443,7 @@
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>;
 
                 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-                <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span> {
+                <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span> {
                     <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>(<span class="self">self</span>.<span class="ident">value</span>() <span class="op">/</span> <span class="ident">other</span>.<span class="ident">value</span>())
                 }
             }
@@ -451,10 +453,13 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="macro">units!</span> {
-        <span class="ident">Blanket</span>(<span class="ident">std::fmt::Debug</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Default</span> <span class="op">+</span> <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">PartialOrd</span>);
+    <span class="kw">use</span> <span class="ident">serde::de::DeserializeOwned</span>;
+    <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span> <span class="ident">f64</span>:
+    <span class="macro">units!</span> {
+        <span class="ident">Blanket</span>(<span class="ident">std::fmt::Debug</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Copy</span> <span class="op">+</span> <span class="ident">Default</span> <span class="op">+</span> <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">PartialOrd</span> <span class="op">+</span> <span class="ident">Serialize</span> <span class="op">+</span> <span class="ident">DeserializeOwned</span>);
+
+        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span> <span class="ident">f64</span>:
         <span class="ident">Accel</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; ms^-2&quot;</span>);
         <span class="ident">Veloc</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; ms^-1&quot;</span>);
         <span class="ident">Length</span>(<span class="string">&quot;&quot;</span>, <span class="string">&quot; m&quot;</span>);
@@ -469,7 +474,7 @@
         <span class="op">&lt;</span><span class="ident">Force</span><span class="op">&gt;</span> <span class="op">*</span> <span class="op">&lt;</span><span class="ident">Length</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Energy</span>;
     }
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="traffloat_types" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
 </body></html>

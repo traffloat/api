@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["unescape_unicode","Unescapes to a writer without allocating."],["unescape_unicode_to_string","Unescapes to a `Cow<str>` optionally allocating."]]});

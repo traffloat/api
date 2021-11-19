@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;yew-0.18.0&#x2F;src&#x2F;html&#x2F;component&#x2F;lifecycle.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lifecycle.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../yew/index.html'><div class='logo-container rust-logo'><img src='https:&#x2F;&#x2F;static.yew.rs&#x2F;logo.svg' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `&#x2F;home&#x2F;runner&#x2F;.cargo&#x2F;registry&#x2F;src&#x2F;github.com-1ecc6299db9ec823&#x2F;yew-0.18.0&#x2F;src&#x2F;html&#x2F;component&#x2F;lifecycle.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lifecycle.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../yew/index.html'><div class='logo-container rust-logo'><img src='https:&#x2F;&#x2F;static.yew.rs&#x2F;logo.svg' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -454,13 +454,12 @@
 <span id="454">454</span>
 <span id="455">455</span>
 <span id="456">456</span>
-</pre><pre class="rust">
-<span class="doccomment">//! Component lifecycle module</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Component lifecycle module</span>
 
 <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Component</span>, <span class="ident">Scope</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::scheduler</span>::{<span class="ident">scheduler</span>, <span class="ident">ComponentRunnableType</span>, <span class="ident">Runnable</span>, <span class="ident">Shared</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::virtual_dom</span>::{<span class="ident">VDiff</span>, <span class="ident">VNode</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::NodeRef</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::scheduler</span>::{<span class="ident">scheduler</span>, <span class="ident">ComponentRunnableType</span>, <span class="ident">Runnable</span>, <span class="ident">Shared</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtual_dom</span>::{<span class="ident">VDiff</span>, <span class="ident">VNode</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::NodeRef</span>;
 <span class="kw">use</span> <span class="ident">cfg_if::cfg_if</span>;
 <span class="macro">cfg_if!</span> {
     <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std_web&quot;</span>)]</span> {
@@ -491,7 +490,7 @@
         <span class="ident">node_ref</span>: <span class="ident">NodeRef</span>,
         <span class="ident">scope</span>: <span class="ident">Scope</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span>,
         <span class="ident">props</span>: <span class="ident">COMP::Properties</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    ) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">component</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">COMP::create</span>(<span class="ident">props</span>, <span class="ident">scope</span>.<span class="ident">clone</span>()));
         <span class="self">Self</span> {
             <span class="ident">component</span>,
@@ -506,7 +505,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">drain_pending_updates</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">state</span>: <span class="kw-2">&amp;</span><span class="ident">Shared</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ComponentState</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+    <span class="kw">fn</span> <span class="ident">drain_pending_updates</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">state</span>: <span class="kw-2">&amp;</span><span class="ident">Shared</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ComponentState</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">pending_updates</span>.<span class="ident">is_empty</span>() {
             <span class="ident">scheduler</span>()
                 .<span class="ident">component</span>
@@ -530,20 +529,20 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">COMP</span>: <span class="ident">Component</span><span class="op">&gt;</span> <span class="ident">ComponentLifecycleEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">as_runnable_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ComponentRunnableType</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">as_runnable_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">ComponentRunnableType</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="self">Self</span><span class="ident">::Create</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ComponentRunnableType::Create</span>,
-            <span class="self">Self</span><span class="ident">::Update</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ComponentRunnableType::Update</span>,
-            <span class="self">Self</span><span class="ident">::Render</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ComponentRunnableType::Render</span>,
-            <span class="self">Self</span><span class="ident">::Rendered</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ComponentRunnableType::Rendered</span>,
-            <span class="self">Self</span><span class="ident">::Destroy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ComponentRunnableType::Destroy</span>,
+            <span class="ident"><span class="self">Self</span>::Create</span>(<span class="kw">_</span>) =&gt; <span class="ident">ComponentRunnableType::Create</span>,
+            <span class="ident"><span class="self">Self</span>::Update</span>(<span class="kw">_</span>) =&gt; <span class="ident">ComponentRunnableType::Update</span>,
+            <span class="ident"><span class="self">Self</span>::Render</span> =&gt; <span class="ident">ComponentRunnableType::Render</span>,
+            <span class="ident"><span class="self">Self</span>::Rendered</span> =&gt; <span class="ident">ComponentRunnableType::Rendered</span>,
+            <span class="ident"><span class="self">Self</span>::Destroy</span> =&gt; <span class="ident">ComponentRunnableType::Destroy</span>,
         }
     }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">COMP</span>: <span class="ident">Component</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">CreateEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ComponentLifecycleEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">create</span>: <span class="ident">CreateEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::Create</span>(<span class="ident">create</span>)
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">create</span>: <span class="ident">CreateEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident"><span class="self">Self</span>::Create</span>(<span class="ident">create</span>)
     }
 }
 
@@ -557,8 +556,8 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">COMP</span>: <span class="ident">Component</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">UpdateEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ComponentLifecycleEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">update</span>: <span class="ident">UpdateEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span><span class="ident">::Update</span>(<span class="ident">update</span>)
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">update</span>: <span class="ident">UpdateEvent</span><span class="op">&lt;</span><span class="ident">COMP</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident"><span class="self">Self</span>::Update</span>(<span class="ident">update</span>)
     }
 }
 
@@ -582,7 +581,7 @@
     <span class="kw">fn</span> <span class="ident">run</span>(<span class="self">self</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">current_state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">borrow_mut</span>();
         <span class="kw">match</span> <span class="self">self</span>.<span class="ident">event</span> {
-            <span class="ident">ComponentLifecycleEvent::Create</span>(<span class="ident">event</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">ComponentLifecycleEvent::Create</span>(<span class="ident">event</span>) =&gt; {
                 <span class="kw">if</span> <span class="ident">current_state</span>.<span class="ident">is_none</span>() {
                     <span class="kw-2">*</span><span class="ident">current_state</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ComponentState::new</span>(
                         <span class="ident">event</span>.<span class="ident">parent</span>,
@@ -594,7 +593,7 @@
                     ));
                 }
             }
-            <span class="ident">ComponentLifecycleEvent::Update</span>(<span class="ident">event</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">ComponentLifecycleEvent::Update</span>(<span class="ident">event</span>) =&gt; {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">state</span>) <span class="op">=</span> <span class="ident">current_state</span>.<span class="ident">as_mut</span>() {
                     <span class="kw">if</span> <span class="ident">state</span>.<span class="ident">pending_root</span>.<span class="ident">is_some</span>() {
                         <span class="ident">state</span>.<span class="ident">pending_updates</span>.<span class="ident">push</span>(<span class="ident">event</span>);
@@ -602,15 +601,15 @@
                     }
 
                     <span class="kw">let</span> <span class="ident">should_render</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">event</span> {
-                        <span class="ident">UpdateEvent::First</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
-                        <span class="ident">UpdateEvent::Message</span>(<span class="ident">message</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">state</span>.<span class="ident">component</span>.<span class="ident">update</span>(<span class="ident">message</span>),
-                        <span class="ident">UpdateEvent::MessageBatch</span>(<span class="ident">messages</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                            <span class="kw">let</span> <span class="ident">component</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">state</span>.<span class="ident">component</span>;
+                        <span class="ident">UpdateEvent::First</span> =&gt; <span class="bool-val">true</span>,
+                        <span class="ident">UpdateEvent::Message</span>(<span class="ident">message</span>) =&gt; <span class="ident">state</span>.<span class="ident">component</span>.<span class="ident">update</span>(<span class="ident">message</span>),
+                        <span class="ident">UpdateEvent::MessageBatch</span>(<span class="ident">messages</span>) =&gt; {
+                            <span class="kw">let</span> <span class="ident">component</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">state</span>.<span class="ident">component</span>;
                             <span class="ident">messages</span>
                                 .<span class="ident">into_iter</span>()
                                 .<span class="ident">fold</span>(<span class="bool-val">false</span>, <span class="op">|</span><span class="ident">acc</span>, <span class="ident">msg</span><span class="op">|</span> <span class="ident">component</span>.<span class="ident">update</span>(<span class="ident">msg</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">acc</span>)
                         }
-                        <span class="ident">UpdateEvent::Properties</span>(<span class="ident">props</span>, <span class="ident">node_ref</span>, <span class="ident">next_sibling</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                        <span class="ident">UpdateEvent::Properties</span>(<span class="ident">props</span>, <span class="ident">node_ref</span>, <span class="ident">next_sibling</span>) =&gt; {
                             <span class="comment">// When components are updated, a new node ref could have been passed in</span>
                             <span class="ident">state</span>.<span class="ident">node_ref</span> <span class="op">=</span> <span class="ident">node_ref</span>;
                             <span class="comment">// When components are updated, their siblings were likely also updated</span>
@@ -625,12 +624,12 @@
                     };
                 }
             }
-            <span class="ident">ComponentLifecycleEvent::Render</span> <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">ComponentLifecycleEvent::Render</span> =&gt; {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="ident">current_state</span>.<span class="ident">as_mut</span>() {
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">new_root</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">pending_root</span>.<span class="ident">take</span>() {
-                        <span class="ident">std::mem::swap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">new_root</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">state</span>.<span class="ident">root_node</span>);
+                        <span class="ident">std::mem::swap</span>(<span class="kw-2">&amp;mut</span> <span class="ident">new_root</span>, <span class="kw-2">&amp;mut</span> <span class="ident">state</span>.<span class="ident">root_node</span>);
                         <span class="kw">let</span> <span class="ident">ancestor</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">new_root</span>);
-                        <span class="kw">let</span> <span class="ident">new_root</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">state</span>.<span class="ident">root_node</span>;
+                        <span class="kw">let</span> <span class="ident">new_root</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">state</span>.<span class="ident">root_node</span>;
                         <span class="kw">let</span> <span class="ident">scope</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">scope</span>.<span class="ident">clone</span>().<span class="ident">into</span>();
                         <span class="kw">let</span> <span class="ident">next_sibling</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">next_sibling</span>.<span class="ident">clone</span>();
                         <span class="kw">let</span> <span class="ident">node</span> <span class="op">=</span> <span class="ident">new_root</span>.<span class="ident">apply</span>(<span class="kw-2">&amp;</span><span class="ident">scope</span>, <span class="kw-2">&amp;</span><span class="ident">state</span>.<span class="ident">parent</span>, <span class="ident">next_sibling</span>, <span class="ident">ancestor</span>);
@@ -639,7 +638,7 @@
                     }
                 }
             }
-            <span class="ident">ComponentLifecycleEvent::Rendered</span> <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">ComponentLifecycleEvent::Rendered</span> =&gt; {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">state</span>) <span class="op">=</span> <span class="ident">current_state</span>.<span class="ident">as_mut</span>() {
                     <span class="kw">let</span> <span class="ident">first_render</span> <span class="op">=</span> <span class="op">!</span><span class="ident">state</span>.<span class="ident">has_rendered</span>;
                     <span class="ident">state</span>.<span class="ident">component</span>.<span class="ident">rendered</span>(<span class="ident">first_render</span>);
@@ -647,7 +646,7 @@
                     <span class="ident">state</span>.<span class="ident">drain_pending_updates</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">state</span>);
                 }
             }
-            <span class="ident">ComponentLifecycleEvent::Destroy</span> <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">ComponentLifecycleEvent::Destroy</span> =&gt; {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">state</span>) <span class="op">=</span> <span class="ident">current_state</span>.<span class="ident">take</span>() {
                     <span class="ident">state</span>.<span class="ident">component</span>.<span class="ident">destroy</span>();
                     <span class="ident">state</span>.<span class="ident">root_node</span>.<span class="ident">detach</span>(<span class="kw-2">&amp;</span><span class="ident">state</span>.<span class="ident">parent</span>);
@@ -662,9 +661,9 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">extern</span> <span class="kw">crate</span> <span class="self">self</span> <span class="kw">as</span> <span class="ident">yew</span>;
 
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::html</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::html</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Properties</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::html</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::html</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Properties</span>;
     <span class="kw">use</span> <span class="ident">std::ops::Deref</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wasm_test&quot;</span>)]</span>
     <span class="kw">use</span> <span class="ident">wasm_bindgen_test</span>::{<span class="ident">wasm_bindgen_test</span> <span class="kw">as</span> <span class="ident">test</span>, <span class="ident">wasm_bindgen_test_configure</span>};
@@ -685,26 +684,26 @@
         <span class="kw">type</span> <span class="ident">Message</span> <span class="op">=</span> ();
         <span class="kw">type</span> <span class="ident">Properties</span> <span class="op">=</span> <span class="ident">ChildProps</span>;
 
-        <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="self">Self</span><span class="ident">::Properties</span>, <span class="ident">_link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident"><span class="self">Self</span>::Properties</span>, <span class="ident">_link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
             <span class="ident">Child</span> { <span class="ident">props</span> }
         }
 
-        <span class="kw">fn</span> <span class="ident">rendered</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">_first_render</span>: <span class="ident">bool</span>) {
+        <span class="kw">fn</span> <span class="ident">rendered</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">_first_render</span>: <span class="ident">bool</span>) {
             <span class="self">self</span>.<span class="ident">props</span>
                 .<span class="ident">lifecycle</span>
                 .<span class="ident">borrow_mut</span>()
                 .<span class="ident">push</span>(<span class="string">&quot;child rendered&quot;</span>.<span class="ident">into</span>());
         }
 
-        <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="self">Self</span><span class="ident">::Message</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
+        <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident"><span class="self">Self</span>::Message</span>) -&gt; <span class="ident">ShouldRender</span> {
             <span class="bool-val">false</span>
         }
 
-        <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="self">Self</span><span class="ident">::Properties</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
+        <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident"><span class="self">Self</span>::Properties</span>) -&gt; <span class="ident">ShouldRender</span> {
             <span class="bool-val">false</span>
         }
 
-        <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
+        <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Html</span> {
             <span class="macro">html!</span> {}
         }
     }
@@ -729,7 +728,7 @@
         <span class="kw">type</span> <span class="ident">Message</span> <span class="op">=</span> <span class="ident">bool</span>;
         <span class="kw">type</span> <span class="ident">Properties</span> <span class="op">=</span> <span class="ident">Props</span>;
 
-        <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="self">Self</span><span class="ident">::Properties</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">props</span>: <span class="ident"><span class="self">Self</span>::Properties</span>, <span class="ident">link</span>: <span class="ident">ComponentLink</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
             <span class="ident">props</span>.<span class="ident">lifecycle</span>.<span class="ident">borrow_mut</span>().<span class="ident">push</span>(<span class="string">&quot;create&quot;</span>.<span class="ident">into</span>());
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wasm_test&quot;</span>)]</span>
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">msg</span>) <span class="op">=</span> <span class="ident">props</span>.<span class="ident">create_message</span> {
@@ -738,7 +737,7 @@
             <span class="ident">Comp</span> { <span class="ident">props</span>, <span class="ident">link</span> }
         }
 
-        <span class="kw">fn</span> <span class="ident">rendered</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">first_render</span>: <span class="ident">bool</span>) {
+        <span class="kw">fn</span> <span class="ident">rendered</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">first_render</span>: <span class="ident">bool</span>) {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">msg</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">rendered_message</span>.<span class="ident">borrow_mut</span>().<span class="ident">take</span>() {
                 <span class="self">self</span>.<span class="ident">link</span>.<span class="ident">send_message</span>(<span class="ident">msg</span>);
             }
@@ -748,7 +747,7 @@
                 .<span class="ident">push</span>(<span class="macro">format!</span>(<span class="string">&quot;rendered({})&quot;</span>, <span class="ident">first_render</span>));
         }
 
-        <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="self">Self</span><span class="ident">::Message</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
+        <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident"><span class="self">Self</span>::Message</span>) -&gt; <span class="ident">ShouldRender</span> {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">msg</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">update_message</span>.<span class="ident">borrow_mut</span>().<span class="ident">take</span>() {
                 <span class="self">self</span>.<span class="ident">link</span>.<span class="ident">send_message</span>(<span class="ident">msg</span>);
             }
@@ -759,12 +758,12 @@
             <span class="ident">msg</span>
         }
 
-        <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="self">Self</span><span class="ident">::Properties</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShouldRender</span> {
+        <span class="kw">fn</span> <span class="ident">change</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident"><span class="self">Self</span>::Properties</span>) -&gt; <span class="ident">ShouldRender</span> {
             <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">lifecycle</span>.<span class="ident">borrow_mut</span>().<span class="ident">push</span>(<span class="string">&quot;change&quot;</span>.<span class="ident">into</span>());
             <span class="bool-val">false</span>
         }
 
-        <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Html</span> {
+        <span class="kw">fn</span> <span class="ident">view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Html</span> {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">msg</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">view_message</span>.<span class="ident">borrow_mut</span>().<span class="ident">take</span>() {
                 <span class="self">self</span>.<span class="ident">link</span>.<span class="ident">send_message</span>(<span class="ident">msg</span>);
             }
@@ -774,13 +773,13 @@
     }
 
     <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">Comp</span> {
-        <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
+        <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
             <span class="self">self</span>.<span class="ident">props</span>.<span class="ident">lifecycle</span>.<span class="ident">borrow_mut</span>().<span class="ident">push</span>(<span class="string">&quot;drop&quot;</span>.<span class="ident">into</span>());
         }
     }
 
     <span class="kw">fn</span> <span class="ident">test_lifecycle</span>(<span class="ident">props</span>: <span class="ident">Props</span>, <span class="ident">expected</span>: <span class="kw-2">&amp;</span>[<span class="ident">String</span>]) {
-        <span class="kw">let</span> <span class="ident">document</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::utils::document</span>();
+        <span class="kw">let</span> <span class="ident">document</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::utils::document</span>();
         <span class="kw">let</span> <span class="ident">scope</span> <span class="op">=</span> <span class="ident">Scope</span>::<span class="op">&lt;</span><span class="ident">Comp</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="prelude-val">None</span>);
         <span class="kw">let</span> <span class="ident">el</span> <span class="op">=</span> <span class="ident">document</span>.<span class="ident">create_element</span>(<span class="string">&quot;div&quot;</span>).<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">lifecycle</span> <span class="op">=</span> <span class="ident">props</span>.<span class="ident">lifecycle</span>.<span class="ident">clone</span>();
@@ -911,7 +910,7 @@
         );
     }
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="yew" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
     <script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script>
 </body></html>
