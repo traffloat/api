@@ -177,6 +177,7 @@
 <span id="177">177</span>
 <span id="178">178</span>
 <span id="179">179</span>
+<span id="180">180</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Node states.</span>
 
 <span class="kw">use</span> <span class="ident">derive_new::new</span>;
@@ -195,6 +196,7 @@
     <span class="ident">inner</span>: <span class="ident">u32</span>,
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">Identifiable</span><span class="op">&lt;</span><span class="ident">Schema</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Node</span> {
     <span class="kw">type</span> <span class="ident">Scope</span> <span class="op">=</span> ();
 
@@ -217,7 +219,7 @@
 <span class="doccomment">/// The state of a node.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// State of population storages are stored in the inhabitant states.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Getters</span>, <span class="ident">CopyGetters</span>, <span class="ident">TypedBuilder</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Getters</span>, <span class="ident">CopyGetters</span>, <span class="ident">TypedBuilder</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>, <span class="ident">derive</span>(<span class="ident">xylem::Xylem</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>, <span class="ident">xylem</span>(<span class="ident">derive</span>(<span class="ident">Deserialize</span>), <span class="ident">process</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Node</span> {

@@ -88,6 +88,10 @@
 <span id="88">88</span>
 <span id="89">89</span>
 <span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">arcstr::ArcStr</span>;
 <span class="kw">use</span> <span class="ident">smallvec::SmallVec</span>;
 <span class="kw">use</span> <span class="ident">xylem</span>::{<span class="ident">declare_schema</span>, <span class="ident">DefaultContext</span>, <span class="ident">SchemaExt</span>, <span class="ident">Xylem</span>};
@@ -120,6 +124,7 @@
 
 <span class="macro">impl_xylem_for_self!</span>(<span class="ident">ArcStr</span>);
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">A</span>: <span class="ident">smallvec::Array</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span> <span class="ident">Xylem</span><span class="op">&lt;</span><span class="ident">Schema</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SmallVec</span><span class="op">&lt;</span><span class="ident">A</span><span class="op">&gt;</span>
 <span class="kw">where</span>
     <span class="op">&lt;</span><span class="ident">A</span> <span class="kw">as</span> <span class="ident">smallvec::Array</span><span class="op">&gt;</span><span class="ident">::Item</span>: <span class="ident">Xylem</span><span class="op">&lt;</span><span class="ident">Schema</span><span class="op">&gt;</span>,
@@ -152,8 +157,10 @@
 <span class="doccomment">/// such as in URLs for rule browsing.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">IdString</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">xylem::IdString</span><span class="op">&lt;</span><span class="ident">Schema</span>, <span class="ident">T</span><span class="op">&gt;</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">transform_matrix</span>;
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">units</span>;
 
 <span class="macro">impl_xylem_for_self!</span>(<span class="ident">traffloat_types::geometry::Unit</span>);
@@ -162,6 +169,7 @@
 <span class="macro">impl_xylem_for_self!</span>(<span class="ident">traffloat_types::space::Vector</span>);
 <span class="macro">impl_xylem_for_self!</span>(<span class="ident">nalgebra::Vector2</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>);
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>)]</span>
 <span class="kw">impl</span> <span class="ident">Xylem</span><span class="op">&lt;</span><span class="ident">Schema</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CustomizableName</span> {
     <span class="kw">type</span> <span class="ident">From</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">lang::Item</span> <span class="kw">as</span> <span class="ident">Xylem</span><span class="op">&lt;</span><span class="ident">Schema</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::From</span>;
     <span class="kw">type</span> <span class="ident">Args</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">lang::Item</span> <span class="kw">as</span> <span class="ident">Xylem</span><span class="op">&lt;</span><span class="ident">Schema</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Args</span>;

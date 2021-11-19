@@ -438,7 +438,7 @@
 
                 <span class="kw">let</span> <span class="ident">unit_to_real</span> <span class="op">=</span> <span class="ident">component</span>.<span class="ident">transform</span>(<span class="kw-2">*</span><span class="ident">position</span>);
                 <span class="kw">let</span> <span class="ident">tex</span>: <span class="kw-2">&amp;</span><span class="ident">ModelRef</span> <span class="op">=</span> <span class="ident">component</span>.<span class="ident">texture</span>();
-                <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">texture::AtlasId::new</span>(<span class="ident">tex</span>.<span class="ident">spritesheet_id</span>(), <span class="macro">arcstr::literal!</span>(<span class="string">&quot;fancy&quot;</span>)); <span class="comment">// TODO allow choosing variant</span>
+                <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">texture::AtlasId::new</span>(<span class="ident">tex</span>.<span class="ident">spritesheet_id</span>(), <span class="macro">arcstr::literal!</span>(<span class="string">&quot;pixel&quot;</span>)); <span class="comment">// TODO allow choosing variant</span>
                 <span class="kw">let</span> <span class="ident">sprite</span> <span class="op">=</span> <span class="ident">texture_pool</span>.<span class="ident">resolve</span>(<span class="kw-2">&amp;</span><span class="ident">scene</span>.<span class="ident">gl</span>, <span class="kw-2">&amp;</span><span class="ident">id</span>);
 
                 <span class="ident">scene</span>.<span class="ident">node_prog</span>.<span class="ident">draw</span>(

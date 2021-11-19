@@ -45,8 +45,11 @@
 <span id="45">45</span>
 <span id="46">46</span>
 <span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
+<span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat</span>::{<span class="ident">def</span>, <span class="ident">save</span>, <span class="ident">SetupEcs</span>};
 
 <span class="kw">mod</span> <span class="ident">editor</span>;
@@ -60,6 +63,7 @@
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">mux::Mux</span>;
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::util::high_res_time</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ContextPath</span>;
 
 <span class="doccomment">/// Arguments for starting a game</span>
@@ -74,7 +78,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">setup</span>: <span class="ident">SetupEcs</span>) -&gt; <span class="ident">SetupEcs</span> {
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident"><span class="self">Self</span>::Sp</span>(<span class="ident">args</span>) =&gt; {
-                <span class="ident">setup</span> <span class="op">=</span> <span class="ident">save::load_scenario</span>(<span class="ident">setup</span>, <span class="kw-2">&amp;</span><span class="ident">args</span>.<span class="ident">scenario</span>)
+                <span class="ident">setup</span> <span class="op">=</span> <span class="ident">save::load_scenario</span>(<span class="ident">setup</span>, <span class="kw-2">&amp;</span><span class="ident">args</span>.<span class="ident">scenario</span>, <span class="ident">high_res_time</span>().<span class="ident">homosign</span>())
                     .<span class="ident">resource</span>(<span class="ident">ContextPath::new</span>(<span class="ident">args</span>.<span class="ident">context_path</span>.<span class="ident">to_string</span>()));
             }
         }

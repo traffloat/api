@@ -293,7 +293,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::node::NodeId</span>;
 
 <span class="doccomment">/// The state of an edge.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Getters</span>, <span class="ident">CopyGetters</span>, <span class="ident">TypedBuilder</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Getters</span>, <span class="ident">CopyGetters</span>, <span class="ident">TypedBuilder</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>, <span class="ident">derive</span>(<span class="ident">xylem::Xylem</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>, <span class="ident">xylem</span>(<span class="ident">derive</span>(<span class="ident">Deserialize</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Edge</span> {
@@ -314,7 +314,7 @@
 }
 
 <span class="doccomment">/// The endpoints of an edge.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">CopyGetters</span>, <span class="ident">new</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">CopyGetters</span>, <span class="ident">new</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>, <span class="ident">derive</span>(<span class="ident">xylem::Xylem</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>, <span class="ident">xylem</span>(<span class="ident">derive</span>(<span class="ident">Deserialize</span>), <span class="ident">process</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AlphaBeta</span> {
@@ -327,7 +327,7 @@
 }
 
 <span class="doccomment">/// The state of a duct.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Getters</span>, <span class="ident">CopyGetters</span>, <span class="ident">TypedBuilder</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Getters</span>, <span class="ident">CopyGetters</span>, <span class="ident">TypedBuilder</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>, <span class="ident">derive</span>(<span class="ident">xylem::Xylem</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>, <span class="ident">xylem</span>(<span class="ident">derive</span>(<span class="ident">Deserialize</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Duct</span> {

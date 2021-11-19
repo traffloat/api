@@ -235,6 +235,7 @@
 <span id="235">235</span>
 <span id="236">236</span>
 <span id="237">237</span>
+<span id="238">238</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Defines the mechanism of a game scenario.</span>
 
 <span class="attribute">#![<span class="ident">deny</span>(
@@ -275,6 +276,7 @@
 
 <span class="macro">macro_rules!</span> <span class="ident">impl_identifiable</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">scope</span>:<span class="ident">ty</span>) =&gt; {
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xy&quot;</span>)]</span>
         <span class="kw">impl</span> <span class="ident">::xylem::Identifiable</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::Schema</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
             <span class="kw">type</span> <span class="ident">Scope</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">scope</span>;
 
