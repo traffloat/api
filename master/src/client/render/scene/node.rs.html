@@ -123,11 +123,11 @@
 <span id="123">123</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Node rendering</span>
 
-<span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat::appearance</span>;
 <span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Vector</span>};
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">WebGlProgram</span>, <span class="ident">WebGlRenderingContext</span>};
+<span class="kw">use</span> <span class="ident">xias::Xias</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render::util</span>::{<span class="ident">create_program</span>, <span class="ident">AttrLocation</span>, <span class="ident">UniformLocation</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render</span>::{<span class="ident">mesh</span>, <span class="ident">texture</span>};

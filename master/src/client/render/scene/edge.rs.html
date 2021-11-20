@@ -87,9 +87,9 @@
 <span id="87">87</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Edge rendering</span>
 
-<span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat::space</span>::{<span class="ident">Matrix</span>, <span class="ident">Vector</span>};
 <span class="kw">use</span> <span class="ident">web_sys</span>::{<span class="ident">WebGlProgram</span>, <span class="ident">WebGlRenderingContext</span>};
+<span class="kw">use</span> <span class="ident">xias::Xias</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::options</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render::mesh</span>;
@@ -161,10 +161,10 @@
         <span class="self">self</span>.<span class="ident">u_trans</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">proj</span>);
         <span class="self">self</span>.<span class="ident">u_trans_sun</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">sun</span>);
         <span class="self">self</span>.<span class="ident">u_color</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">rgba</span>);
-        <span class="self">self</span>.<span class="ident">u_ambient</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">args</span>.<span class="ident">ambient</span>().<span class="ident">lossy_trunc</span>());
-        <span class="self">self</span>.<span class="ident">u_diffuse</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">args</span>.<span class="ident">diffuse</span>().<span class="ident">lossy_trunc</span>());
-        <span class="self">self</span>.<span class="ident">u_specular</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">args</span>.<span class="ident">specular</span>().<span class="ident">lossy_trunc</span>());
-        <span class="self">self</span>.<span class="ident">u_specular_coef</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">args</span>.<span class="ident">specular_coef</span>().<span class="ident">lossy_trunc</span>());
+        <span class="self">self</span>.<span class="ident">u_ambient</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">args</span>.<span class="ident">ambient</span>().<span class="ident">lossy_float</span>());
+        <span class="self">self</span>.<span class="ident">u_diffuse</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">args</span>.<span class="ident">diffuse</span>().<span class="ident">lossy_float</span>());
+        <span class="self">self</span>.<span class="ident">u_specular</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">args</span>.<span class="ident">specular</span>().<span class="ident">lossy_float</span>());
+        <span class="self">self</span>.<span class="ident">u_specular_coef</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="ident">args</span>.<span class="ident">specular_coef</span>().<span class="ident">lossy_float</span>());
         <span class="self">self</span>.<span class="ident">u_inv_gain</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="kw">if</span> <span class="ident">selected</span> { <span class="number">0.5f32</span> } <span class="kw">else</span> { <span class="number">1f32</span> });
 
         <span class="self">self</span>.<span class="ident">a_pos</span>.<span class="ident">assign</span>(<span class="ident">gl</span>, <span class="self">self</span>.<span class="ident">cylinder</span>.<span class="ident">position</span>());

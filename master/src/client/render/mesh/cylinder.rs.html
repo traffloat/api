@@ -89,15 +89,16 @@
 <span id="89">89</span>
 <span id="90">90</span>
 <span id="91">91</span>
+<span id="92">92</span>
 </pre><pre class="rust"><code><span class="doccomment">//! A cylinder model.</span>
 
 <span class="kw">use</span> <span class="ident">std::f32::consts::PI</span>;
 
 <span class="kw">use</span> <span class="ident">nalgebra</span>::{<span class="ident">Vector2</span>, <span class="ident">Vector3</span>};
-<span class="kw">use</span> <span class="ident">safety::Safety</span>;
 <span class="kw">use</span> <span class="ident">traffloat::appearance</span>;
 <span class="kw">use</span> <span class="ident">typed_builder::TypedBuilder</span>;
 <span class="kw">use</span> <span class="ident">web_sys::WebGlRenderingContext</span>;
+<span class="kw">use</span> <span class="ident">xias::Xias</span>;
 
 <span class="doccomment">/// Options for cylinder model generation.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">TypedBuilder</span>)]</span>
@@ -134,7 +135,8 @@
                 <span class="ident">tex_pos_fn</span>(<span class="ident">Vector2::new</span>(<span class="number">1.</span>, <span class="number">0.</span>)), <span class="comment">// cos(0), sin(0)</span>
             );
             <span class="kw">for</span> <span class="ident">vert</span> <span class="kw">in</span> <span class="number">1</span>..<span class="op">=</span><span class="ident">options</span>.<span class="ident">num_vert</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">PI</span> <span class="op">*</span> <span class="number">2.</span> <span class="op">/</span> <span class="ident">options</span>.<span class="ident">num_vert</span>.<span class="ident">small_float</span>() <span class="op">*</span> <span class="ident">vert</span>.<span class="ident">small_float</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">angle</span> <span class="op">=</span>
+                    <span class="ident">PI</span> <span class="op">*</span> <span class="number">2.</span> <span class="op">/</span> <span class="ident">options</span>.<span class="ident">num_vert</span>.<span class="ident">small_float</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>() <span class="op">*</span> <span class="ident">vert</span>.<span class="ident">small_float</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>();
                 <span class="ident">angle</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">z</span> <span class="op">*</span> <span class="number">2.</span> <span class="op">-</span> <span class="number">1.</span>; <span class="comment">// negate the angle if z == 0.</span>
 
                 <span class="kw">let</span> <span class="ident">pos2</span> <span class="op">=</span> <span class="ident">Vector2::new</span>(<span class="ident">angle</span>.<span class="ident">cos</span>(), <span class="ident">angle</span>.<span class="ident">sin</span>());
@@ -154,7 +156,7 @@
         <span class="ident">Vector2::new</span>(<span class="ident">curved_tex_pos</span>.<span class="number">0</span>.<span class="ident">small_float</span>(), <span class="ident">curved_tex_pos</span>.<span class="number">1</span>.<span class="ident">small_float</span>());
 
     <span class="kw">let</span> <span class="ident">push_side_vertex</span> <span class="op">=</span> <span class="op">|</span><span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">super</span>::Builder</span>, <span class="ident">vert</span>: <span class="ident">u32</span>, <span class="ident">z</span>: <span class="ident">f32</span><span class="op">|</span> {
-        <span class="kw">let</span> <span class="ident">ratio</span> <span class="op">=</span> <span class="ident">vert</span>.<span class="ident">small_float</span>() <span class="op">/</span> <span class="ident">options</span>.<span class="ident">num_vert</span>.<span class="ident">small_float</span>();
+        <span class="kw">let</span> <span class="ident">ratio</span> <span class="op">=</span> <span class="ident">vert</span>.<span class="ident">small_float</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>() <span class="op">/</span> <span class="ident">options</span>.<span class="ident">num_vert</span>.<span class="ident">small_float</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>();
         <span class="kw">let</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">PI</span> <span class="op">*</span> <span class="number">2.</span> <span class="op">*</span> <span class="ident">ratio</span>;
 
         <span class="ident">builder</span>.<span class="ident">push</span>(

@@ -6,7 +6,6 @@
 - [traffloat_codegen_raw](./traffloat_codegen_raw)
 - [traffloat](./traffloat)
 - [traffloat_def](./traffloat_def)
-- [safety](./safety)
 - [tfsave_builder](./tfsave_builder)
 - [traffloat_types](./traffloat_types)
 - [traffloat_version](./traffloat_version)
@@ -21,10 +20,10 @@
  HTML                    2           60           58            0            2
  JavaScript              5           68           60            0            8
  Markdown                2          207            0          163           44
- Rust                  112        12299        10468          145         1686
- TOML                   55         1817         1529            2          286
+ Rust                  111        12175        10358          145         1672
+ TOML                   54         1804         1517            2          285
 ===============================================================================
- Total                 197        14794        12405          326         2063
+ Total                 195        14657        12283          326         2048
 ===============================================================================
 ```
 
