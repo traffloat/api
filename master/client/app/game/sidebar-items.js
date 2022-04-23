@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Msg","Events in the game page."]],"fn":[["body",""]],"struct":[["Game","HTML interface of the game page"],["Props","yew properties for [`Game`]."],["PropsWrapper",""]]});

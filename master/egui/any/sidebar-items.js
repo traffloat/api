@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["AnyMap","Stores any object by `Key`."],["TypeMap","Maps types to a single instance of that type."]],"trait":[["AnyMapTrait",""]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Msg","Switches the component state."],["State",""]],"struct":[["Mux","Wrapper component for the site."]]});

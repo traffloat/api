@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Comm","Thread-local communication between yew and legion renderer"],["CommInner","The actual fields of Comm"],["CursorType","Resource for the cursor icon."],["Perf","Performance tracker"],["RenderFlag","An event fired when rendering is requested."]]});

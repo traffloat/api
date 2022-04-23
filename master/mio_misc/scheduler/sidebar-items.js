@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["SchedulerStatus","Scheduler Status"]],"struct":[["NotificationScheduler","Schedules notification deliveries"],["ScheduleEntry","Entry associated with callback"],["ScheduleEntryId","Id associated with an entry"],["Scheduler","Single-threaded scheduler that prioritizes “cancels” over schedule executions, hence multiple queues"]]});

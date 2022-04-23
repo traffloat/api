@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["channel","Thread safe communication channels"],["poll","Wrapper around `mio::Poll` to offer a slightly more convenient API"],["queue","Thread safe queues that that trigger notifications on `mio::Waker`"],["scheduler","Thread safe scheduler"]],"struct":[["NotificationId","Used while sending notifications"]]});

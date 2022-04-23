@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["OPTIONS",""]],"struct":[["ScenarioDef",""]]});

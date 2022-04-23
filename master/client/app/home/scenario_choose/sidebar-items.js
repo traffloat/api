@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"struct":[["Comp","Displays a form for choosing a scenario."],["Props","Yew properties for [`Comp`]."],["PropsWrapper",""]]});

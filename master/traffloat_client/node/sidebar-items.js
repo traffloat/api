@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["new_model",""],["shape_to_models",""],["shapes_to_inner",""]],"struct":[["NewModelContext",""],["Prepared",""],["PreparedInner",""],["View",""]],"type":[["Model",""]]});

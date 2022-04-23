@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"struct":[["Comp","Displays a list of cargo."],["Props","Yew properties for [`Comp`]."],["PropsWrapper",""]]});

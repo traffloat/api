@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["FXAAEffect","A simple anti-aliasing approach which smooths otherwise jagged edges (for example lines) but also smooths the rest of the image."],["FogEffect","An effect that simulates fog, ie. the entire screen gets hazy white when objects are far away."]]});

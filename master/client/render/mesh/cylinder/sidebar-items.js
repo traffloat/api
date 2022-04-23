@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["prepare","Creates a cylinder model."]],"struct":[["Options","Options for cylinder model generation."]]});

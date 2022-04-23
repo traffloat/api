@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Event",""],["PickTarget",""]],"fn":[["mat",""],["run",""],["vec",""]],"mod":[["edge",""],["error",""],["input",""],["interface",""],["mesh",""],["node",""],["state",""],["texture",""],["windowing",""]],"struct":[["Clock",""],["Config",""],["SetClock",""],["State",""],["Sun",""]],"trait":[["Server","An abstraction of the simulation source."]]});

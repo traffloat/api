@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Msg","Events for [`Comp`]."]],"mod":[["toggle","Options menu for Traffloat client."]],"struct":[["Comp","Options menu for Traffloat client."],["Props","Yew properties for [`Comp`]."],["PropsWrapper",""]],"type":[["OptionsField",""]]});

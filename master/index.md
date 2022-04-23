@@ -1,11 +1,12 @@
 # API documentation
 - [legion](./legion)
 - [legion_codegen](./legion_codegen)
-- [client](./client)
+- [traffloat_client](./traffloat_client)
 - [codegen](./codegen)
 - [traffloat_codegen_raw](./traffloat_codegen_raw)
 - [traffloat](./traffloat)
 - [traffloat_def](./traffloat_def)
+- [traffloat_desktop](./traffloat_desktop)
 - [tfsave_builder](./tfsave_builder)
 - [traffloat_types](./traffloat_types)
 - [traffloat_version](./traffloat_version)
@@ -16,14 +17,11 @@
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
  FreeMarker             11          196          189            0            7
- GLSL                   10          147          101           16           30
- HTML                    2           60           58            0            2
- JavaScript              5           68           60            0            8
  Markdown                2          207            0          163           44
- Rust                  111        12175        10358          145         1672
- TOML                   54         1806         1519            2          285
+ Rust                   70         7523         6382           53         1088
+ TOML                   55         1773         1487            2          284
 ===============================================================================
- Total                 195        14659        12285          326         2048
+ Total                 138         9699         8058          218         1423
 ===============================================================================
 ```
 
